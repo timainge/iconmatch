@@ -62,6 +62,7 @@ export {
   DEFAULT_LIMIT,
   DEFAULT_MIN_CONFIDENCE,
   DEFAULT_REMOTE_TIMEOUT_MS,
+  EXPANSION_ORIGINAL_WEIGHT,
   IconMatchTimeoutError,
   resolveVariant,
 } from "./matcher.js";

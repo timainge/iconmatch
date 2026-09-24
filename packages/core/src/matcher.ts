@@ -44,6 +44,13 @@ export interface IconMatcherParts {
   remoteTimeoutMs?: number;
   /** Called when `remoteSearch` rejects or times out. */
   onRemoteError?: (error: unknown) => void;
+  /**
+   * Optional query expansion (spec §7.3), e.g. an LLM returning 2–3 concrete
+   * objects for an abstract label. The library ships no LLM.
+   */
+  expandQuery?: (query: string) => Promise<string[]>;
+  /** Called when `expandQuery` rejects; search continues without expansions. */
+  onExpandError?: (error: unknown) => void;
   /** Checked against `embedder` and `vectors` (model, dims) at construction. */
   manifest?: Pick<Manifest, "embedding">;
   /** SVG bodies, e.g. `svgsFromArtifact(await loadSvgs(src))` or a remote fetch. */
@@ -98,6 +105,33 @@ export interface IconMatcher {
 }
 
 export const DEFAULT_LIMIT = 10;
+
+/** RRF weight of the original query when expansions are fused (spec §7.3). */
+export const EXPANSION_ORIGINAL_WEIGHT = 2;
+
+interface Candidate {
+  confidence: number;
+  keyword: boolean;
+  vector: boolean;
+  remote?: IconMatch;
+}
+
+function mergeCandidates(a: Candidate, b: Candidate): Candidate {
+  const merged: Candidate = {
+    confidence: Math.max(a.confidence, b.confidence),
+    keyword: a.keyword || b.keyword,
+    vector: a.vector || b.vector,
+  };
+  const remote = a.remote ?? b.remote;
+  if (remote) merged.remote = remote;
+  return merged;
+}
+
+interface QueryRanking {
+  rankings: string[][];
+  candidates: Map<string, Candidate>;
+  remoteUsed: boolean;
+}
 
 /** Default `remoteTimeoutMs`. */
 export const DEFAULT_REMOTE_TIMEOUT_MS = 1500;
@@ -222,6 +256,74 @@ export function createIconMatcher(
   const semantic =
     vector && parts.embedder ? { vector, embedder: parts.embedder } : undefined;
 
+  /** Keyword + (remote or vector) rankings and per-icon evidence for one query text. */
+  async function rankQuery(query: string): Promise<QueryRanking> {
+    const keywordHits = keyword
+      ? keyword.search(normaliseQuery(query), {
+          limit: KEYWORD_TOP_K,
+          includeGlyphs,
+        })
+      : [];
+    const keywordById = new Map(keywordHits.map((h) => [h.id, h]));
+
+    // The second ranking: remote search in place of local vectors (spec §7.0).
+    let remote: Map<string, IconMatch> | undefined;
+    let sims: Float32Array | undefined;
+    let secondIds: string[] = [];
+    if (parts.remoteSearch) {
+      try {
+        const results = await withTimeout(
+          (signal) =>
+            parts.remoteSearch?.(query, { limit: KEYWORD_TOP_K, signal }) ??
+            Promise.resolve([]),
+          parts.remoteTimeoutMs ?? DEFAULT_REMOTE_TIMEOUT_MS,
+        );
+        remote = new Map(
+          results
+            .filter((r) => !r.isFallback && !glyphs.has(r.id))
+            .map((r) => [r.id, r]),
+        );
+        secondIds = [...remote.keys()];
+      } catch (error) {
+        parts.onRemoteError?.(error);
+        if (!keyword) throw error;
+      }
+    } else if (semantic) {
+      const [q] = await semantic.embedder.embed([query.trim()], "query");
+      if (q) {
+        sims = semantic.vector.similarities(q);
+        secondIds = semantic.vector
+          .search(q, { limit: VECTOR_TOP_K, exclude: glyphs })
+          .map((h) => h.id);
+      }
+    }
+
+    const inSecond = new Set(secondIds);
+    const candidates = new Map<string, Candidate>();
+    for (const id of new Set([...keywordHits.map((h) => h.id), ...secondIds])) {
+      const kw = keywordById.get(id);
+      const r = remote?.get(id);
+      const row = rowOf.get(id);
+      const confidence = r
+        ? Math.max(r.confidence, kw?.confidence ?? 0)
+        : sims && row !== undefined
+          ? hybridConfidence(sims[row] ?? 0, kw !== undefined)
+          : (kw?.confidence ?? 0);
+      const c: Candidate = {
+        confidence,
+        keyword: kw !== undefined,
+        vector: r ? r.matchedOn.vector : inSecond.has(id),
+      };
+      if (r) c.remote = r;
+      candidates.set(id, c);
+    }
+    return {
+      rankings: [keywordHits.map((h) => h.id), secondIds],
+      candidates,
+      remoteUsed: remote !== undefined,
+    };
+  }
+
   const matcher: IconMatcher = {
     async search(query, options = {}) {
       if (!keyword && !semantic && !parts.remoteSearch) {
@@ -229,59 +331,53 @@ export function createIconMatcher(
       }
       const limit = options.limit ?? DEFAULT_LIMIT;
       // No letters or digits: nothing to match, and nothing worth embedding.
-      const normalised = normaliseQuery(query);
-      if (normalised === "") return [];
-      const keywordHits = keyword
-        ? keyword.search(normalised, {
-            limit: KEYWORD_TOP_K,
-            includeGlyphs,
-          })
+      if (normaliseQuery(query) === "") return [];
+
+      // Query expansion (spec §7.3): the original plus each expansion, the
+      // original weighted ×2 in the fusion. A failing expander is ignored.
+      const expansions = parts.expandQuery
+        ? (
+            await parts.expandQuery(query).catch((error: unknown) => {
+              parts.onExpandError?.(error);
+              return [];
+            })
+          )
+            .map((q) => q.trim())
+            .filter(
+              (q) => q !== "" && q.toLowerCase() !== query.trim().toLowerCase(),
+            )
         : [];
-      const keywordById = new Map(keywordHits.map((h) => [h.id, h]));
+      const ranked = [
+        {
+          weight: expansions.length > 0 ? EXPANSION_ORIGINAL_WEIGHT : 1,
+          result: await rankQuery(query),
+        },
+        ...(await Promise.all(
+          expansions.map(async (q) => ({
+            weight: 1,
+            result: await rankQuery(q),
+          })),
+        )),
+      ];
 
-      // The second ranking: remote search in place of local vectors (spec §7.0).
-      let remote: Map<string, IconMatch> | undefined;
-      let sims: Float32Array | undefined;
-      let secondIds: string[] = [];
-      if (parts.remoteSearch) {
-        try {
-          const results = await withTimeout(
-            (signal) =>
-              parts.remoteSearch?.(query, { limit: KEYWORD_TOP_K, signal }) ??
-              Promise.resolve([]),
-            parts.remoteTimeoutMs ?? DEFAULT_REMOTE_TIMEOUT_MS,
-          );
-          remote = new Map(
-            results
-              .filter((r) => !r.isFallback && !glyphs.has(r.id))
-              .map((r) => [r.id, r]),
-          );
-          secondIds = [...remote.keys()];
-        } catch (error) {
-          parts.onRemoteError?.(error);
-          if (!keyword) throw error;
-        }
-      } else if (semantic) {
-        const [q] = await semantic.embedder.embed([query.trim()], "query");
-        if (q) {
-          sims = semantic.vector.similarities(q);
-          secondIds = semantic.vector
-            .search(q, { limit: VECTOR_TOP_K, exclude: glyphs })
-            .map((h) => h.id);
-        }
-      }
-
-      const inSecond = new Set(secondIds);
-      const fused = fuse([
-        { ids: keywordHits.map((h) => h.id) },
-        { ids: secondIds },
-      ]);
+      const fused = fuse(
+        ranked.flatMap(({ weight, result }) =>
+          result.rankings.map((ids) => ({ ids, weight })),
+        ),
+      );
+      const remoteUsed = ranked.some(({ result }) => result.remoteUsed);
       const matches = fused.flatMap(({ id, score }) => {
-        const kw = keywordById.get(id);
-        const r = remote?.get(id);
+        let hit: Candidate | undefined;
+        for (const { result } of ranked) {
+          const c = result.candidates.get(id);
+          if (!c) continue;
+          hit = hit ? mergeCandidates(hit, c) : c;
+        }
+        if (!hit) return [];
         const entry = byId.get(id);
         if (!entry) {
           // A remote-only icon unknown to this catalog: trust the server's fields.
+          const r = hit.remote;
           return r
             ? [
                 {
@@ -296,23 +392,17 @@ export function createIconMatcher(
               ]
             : [];
         }
-        const row = rowOf.get(id);
-        const confidence = r
-          ? Math.max(r.confidence, kw?.confidence ?? 0)
-          : sims && row !== undefined
-            ? hybridConfidence(sims[row] ?? 0, kw !== undefined)
-            : (kw?.confidence ?? 0);
         const match = toMatch(
           entry,
           {
             score,
-            confidence,
-            keyword: kw !== undefined,
-            vector: r ? r.matchedOn.vector : inSecond.has(id),
+            confidence: hit.confidence,
+            keyword: hit.keyword,
+            vector: hit.vector,
           },
           options.variant,
         );
-        if (remote) match.matchedOn.remote = r !== undefined;
+        if (remoteUsed) match.matchedOn.remote = hit.remote !== undefined;
         return [match];
       });
       return matches.sort(compareMatches(options.variant)).slice(0, limit);

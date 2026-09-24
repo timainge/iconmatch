@@ -62,9 +62,9 @@ Checklist derived from `docs/plan.md` §11. The spec is the source of truth for 
 
 ## M5: Package
 
-- [ ] Query expansion hook + README example (no eval)
+- [x] Query expansion hook + README example (no eval): hook in core, example in `examples/query-expansion/` (README item must include it)
 - [ ] `package` stage (unblocks the M2 AUDIT server-defaults test): manifest (from `build/embed-meta.json`), licenses, size report; data excluding SVGs is ~4.55 MB vs the 4 MB §6.6 target: reduce (e.g. drop glyph vectors, trim index) or record the overage
-- [ ] README with examples + Tabler MIT notice + brand trademark note (§6.1.3) + note that keyword-only quality is lower (§7.2.7); publish-ready `package.json` with subpath exports
+- [ ] README with examples (incl. the query-expansion example from `examples/query-expansion/`) + Tabler MIT notice + brand trademark note (§6.1.3) + note that keyword-only quality is lower (§7.2.7); publish-ready `package.json` with subpath exports
 - [ ] CI: build with `--enrich none` on 200-icon subset (workflow file only; never pushed)
 - [ ] `npm pack --dry-run` contents check; per-composition size report
 - [ ] Eval configs 6–7 (query expansion, int8 vs float32) and final results on the test split vs the acceptance bar — WAITS: eval/REVIEWED
