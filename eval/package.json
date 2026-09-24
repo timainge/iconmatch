@@ -3,5 +3,9 @@
   "version": "0.0.0",
   "type": "module",
   "private": true,
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@iconmatch/pipeline": "0.0.0",
+    "iconmatch": "0.0.0"
+  }
 }

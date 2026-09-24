@@ -1,0 +1,64 @@
+import { describe, expect, it } from "vitest";
+import { createTablerAdapter } from "../../packages/pipeline/src/adapters/tabler.js";
+import { ingest } from "../../packages/pipeline/src/ingest.js";
+import {
+  evalSetProblems,
+  readEvalSet,
+  REQUIRED_GROUPS,
+  type EvalSet,
+} from "./queries.js";
+
+// Spec §9.1 / §11.1 M3: ≥120 queries, ≥10 fallback, every group, dev/test
+// split, every id resolves against the current catalog.
+describe("eval/queries.json", () => {
+  it("passes every §9.1 check against the installed Tabler catalog", async () => {
+    const [set, { catalog }] = await Promise.all([
+      readEvalSet(),
+      ingest([createTablerAdapter({ log: () => undefined })]),
+    ]);
+    expect(evalSetProblems(set, new Set(catalog.map((e) => e.id)))).toEqual([]);
+    expect(new Set(set.queries.map((q) => q.group))).toEqual(
+      new Set(REQUIRED_GROUPS),
+    );
+  });
+});
+
+describe("evalSetProblems", () => {
+  const ids = new Set(["t:a", "t:b"]);
+  const q = (
+    query: string,
+    extra: Partial<EvalSet["queries"][number]> = {},
+  ) => ({
+    query,
+    acceptable: ["t:a"],
+    group: "concrete",
+    split: "dev" as const,
+    ...extra,
+  });
+
+  it("reports unknown ids, bad ideals, duplicates, size, fallbacks, groups and split balance", () => {
+    const problems = evalSetProblems(
+      {
+        version: 1,
+        queries: [
+          q("Dog", { acceptable: ["t:nope"] }),
+          q("dog", { ideal: "t:b" }),
+          q("Misc", { acceptable: [], group: "vague", split: "test" }),
+        ],
+      },
+      ids,
+    );
+    expect(problems).toEqual(
+      expect.arrayContaining([
+        '"Dog": unknown id t:nope',
+        '"dog": ideal t:b is not acceptable',
+        'duplicate query "dog"',
+        "only 3 queries (need ≥ 120)",
+        "only 1 fallback queries (need ≥ 10)",
+        "no fallback queries in dev",
+        "missing group brands",
+        "group concrete: test share 0.00 outside 0.2–0.4 (stratified 70/30)",
+      ]),
+    );
+  });
+});
