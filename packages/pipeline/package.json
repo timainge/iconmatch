@@ -8,7 +8,8 @@
     "@iconify-json/tabler": "^1.2.40",
     "@tabler/icons": "^3.48.0",
     "iconmatch": "0.0.0",
-    "tsx": "^4.23.15"
+    "tsx": "^4.23.15",
+    "zod": "^4.6.5"
   },
   "bin": {
     "iconmatch-build": "bin/iconmatch-build.js"

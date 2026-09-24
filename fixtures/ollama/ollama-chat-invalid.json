@@ -1,0 +1,22 @@
+{
+  "source": "synthetic",
+  "note": "Schema-violating reply (only 2 concepts), for the zod retry path.",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:11434/api/chat",
+    "body": {
+      "model": "qwen2.5:7b-instruct"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "model": "qwen2.5:7b-instruct",
+      "message": {
+        "role": "assistant",
+        "content": "{\"description\": \"A heart.\", \"concepts\": [\"love\", \"like\"], \"domains\": [\"relationships\"]}"
+      },
+      "done": true
+    }
+  }
+}
