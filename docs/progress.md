@@ -15,7 +15,7 @@ Checklist derived from `docs/plan.md` §11. The spec is the source of truth for 
 - [x] Lettered fallback: `letterFallback()`, verify `square-letter-*`/`square-number-*` ids, exclude glyphs from ranking (§7.4); add the lettered-glyph `svg()` snapshot (§10) to `svg.test.ts`
 - [x] Browser bundle test: default entry has no Node built-ins or transformers (esbuild)
 - [x] Build CLI (`iconmatch-build`) + `iconmatch.config.ts`
-- [ ] 200-icon fixture subset committed for tests (§10)
+- [x] 200-icon fixture subset committed for tests (§10)
 - [ ] Audit M1 (§11.1)
 
 ## M2: Vectors + hybrid

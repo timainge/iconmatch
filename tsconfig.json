@@ -1,5 +1,13 @@
 {
   "extends": "./tsconfig.base.json",
-  "compilerOptions": { "noEmit": true },
-  "include": ["packages/*/src", "eval/src", "test-support", "*.config.ts"]
+  "compilerOptions": {
+    "noEmit": true
+  },
+  "include": [
+    "packages/*/src",
+    "packages/*/scripts",
+    "eval/src",
+    "test-support",
+    "*.config.ts"
+  ]
 }

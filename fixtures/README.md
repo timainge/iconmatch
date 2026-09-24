@@ -11,4 +11,9 @@ fetched at test time; tests locate files with `fixturePath()` from
 | `reference-vectors/` | Real-model reference embeddings checked by the slow tier            |
 
 Regenerate fixtures only with the pipeline scripts that produce them, and say
-why in the commit message.
+why in the commit message:
+
+- `tabler-200/`: `npm run fixtures` (`packages/pipeline/scripts/make-fixtures.ts`).
+  A default-tier test fails when the committed files drift from the installed
+  Tabler packages or the keyword index options. Load it in tests with
+  `loadTabler200()` from `test-support/tabler-200.ts`.

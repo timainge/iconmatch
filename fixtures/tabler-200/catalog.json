@@ -1,0 +1,4996 @@
+[
+ {
+  "id": "tabler:alert-hexagon-off",
+  "set": "tabler",
+  "name": "alert-hexagon-off",
+  "label": "Alert hexagon off",
+  "tags": [
+   "warning",
+   "muted",
+   "caution",
+   "inactive",
+   "silent",
+   "unalerted",
+   "disabled",
+   "quiet",
+   "off",
+   "dormant"
+  ],
+  "categories": [
+   "system"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:apple",
+  "set": "tabler",
+  "name": "apple",
+  "label": "Apple",
+  "tags": [
+   "fruit",
+   "healthy",
+   "diet",
+   "fitness",
+   "apple",
+   "meal",
+   "cuisine",
+   "eating",
+   "nutrition",
+   "culinary"
+  ],
+  "categories": [
+   "food"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:arrow-ramp-right-2",
+  "set": "tabler",
+  "name": "arrow-ramp-right-2",
+  "label": "Arrow ramp right 2",
+  "tags": [
+   "direction",
+   "east",
+   "arrow",
+   "ramp",
+   "right",
+   "pointer",
+   "navigation",
+   "flow",
+   "navigate",
+   "move"
+  ],
+  "categories": [
+   "arrows"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:arrow-ramp-right-3",
+  "set": "tabler",
+  "name": "arrow-ramp-right-3",
+  "label": "Arrow ramp right 3",
+  "tags": [
+   "direction",
+   "east",
+   "arrow",
+   "ramp",
+   "right",
+   "pointer",
+   "navigation",
+   "flow",
+   "navigate",
+   "move"
+  ],
+  "categories": [
+   "arrows"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:arrow-up-right",
+  "set": "tabler",
+  "name": "arrow-up-right",
+  "label": "Arrow up right",
+  "tags": [
+   "top",
+   "corner",
+   "point",
+   "arrow",
+   "right",
+   "direction",
+   "pointer",
+   "increase",
+   "navigation",
+   "flow"
+  ],
+  "categories": [
+   "arrows"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:arrows-right",
+  "set": "tabler",
+  "name": "arrows-right",
+  "label": "Arrows right",
+  "tags": [
+   "direction",
+   "east",
+   "arrows",
+   "right",
+   "navigation",
+   "flow",
+   "movement",
+   "route",
+   "path",
+   "pointers"
+  ],
+  "categories": [
+   "arrows"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:baby-carriage",
+  "set": "tabler",
+  "name": "baby-carriage",
+  "label": "Baby carriage",
+  "tags": [
+   "child",
+   "infant",
+   "cradle",
+   "pram",
+   "baby",
+   "carriage",
+   "medical",
+   "wellness",
+   "healthcare",
+   "treatment"
+  ],
+  "categories": [
+   "health"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:backpack",
+  "set": "tabler",
+  "name": "backpack",
+  "label": "Backpack",
+  "tags": [
+   "education",
+   "school",
+   "learning",
+   "adventure",
+   "travel",
+   "backpack",
+   "store",
+   "purchase",
+   "shopping",
+   "retail"
+  ],
+  "categories": [
+   "e-commerce"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:badges-off",
+  "set": "tabler",
+  "name": "badges-off",
+  "label": "Badges off",
+  "tags": [
+   "army",
+   "badge",
+   "military",
+   "rank",
+   "soldier",
+   "war",
+   "badges",
+   "off",
+   "disabled",
+   "inactive"
+  ],
+  "categories": [
+   "badges"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:ball-basketball",
+  "set": "tabler",
+  "name": "ball-basketball",
+  "label": "Ball basketball",
+  "tags": [
+   "game",
+   "round",
+   "quarter",
+   "basket",
+   "nba",
+   "ball",
+   "basketball",
+   "athletic",
+   "fitness",
+   "exercise"
+  ],
+  "categories": [
+   "sport"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:ball-football",
+  "set": "tabler",
+  "name": "ball-football",
+  "label": "Ball football",
+  "tags": [
+   "sport",
+   "game",
+   "sportsman",
+   "play",
+   "match",
+   "pitch",
+   "ball",
+   "football",
+   "athletic",
+   "fitness"
+  ],
+  "categories": [
+   "sport"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:balloon-off",
+  "set": "tabler",
+  "name": "balloon-off",
+  "label": "Balloon off",
+  "tags": [
+   "party",
+   "birthday",
+   "decoration",
+   "balloon",
+   "off",
+   "disabled",
+   "inactive"
+  ],
+  "categories": [
+   "nature"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:ballpen-off",
+  "set": "tabler",
+  "name": "ballpen-off",
+  "label": "Ballpen off",
+  "tags": [
+   "write",
+   "school",
+   "education",
+   "stationery",
+   "text",
+   "ballpen",
+   "off",
+   "disabled",
+   "inactive",
+   "typography"
+  ],
+  "categories": [
+   "text"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:basket",
+  "set": "tabler",
+  "name": "basket",
+  "label": "Basket",
+  "tags": [
+   "shop",
+   "store",
+   "online",
+   "shopping",
+   "basket",
+   "purchase",
+   "retail",
+   "business"
+  ],
+  "categories": [
+   "e-commerce"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:bath",
+  "set": "tabler",
+  "name": "bath",
+  "label": "Bath",
+  "tags": [
+   "water",
+   "clean",
+   "hygiene",
+   "bathroom",
+   "tub",
+   "bath"
+  ],
+  "categories": [
+   "buildings"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:beach",
+  "set": "tabler",
+  "name": "beach",
+  "label": "Beach",
+  "tags": [
+   "sand",
+   "sun",
+   "umbrella",
+   "vacation",
+   "travel",
+   "beach",
+   "location",
+   "navigation",
+   "geography",
+   "place"
+  ],
+  "categories": [
+   "map"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:bike",
+  "set": "tabler",
+  "name": "bike",
+  "label": "Bike",
+  "tags": [
+   "cycling",
+   "bicycle",
+   "sport",
+   "wheel",
+   "bike",
+   "transport",
+   "travel",
+   "vehicle",
+   "automobile",
+   "mobility"
+  ],
+  "categories": [
+   "vehicles"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:bluetooth-off",
+  "set": "tabler",
+  "name": "bluetooth-off",
+  "label": "Bluetooth off",
+  "tags": [
+   "wireless",
+   "connection",
+   "connect",
+   "bluetooth",
+   "off",
+   "hardware",
+   "technology",
+   "disabled",
+   "inactive",
+   "electronic"
+  ],
+  "categories": [
+   "devices"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:bone",
+  "set": "tabler",
+  "name": "bone",
+  "label": "Bone",
+  "tags": [
+   "skeleton",
+   "human",
+   "dog",
+   "body",
+   "bone",
+   "meal",
+   "cuisine",
+   "eating",
+   "nutrition",
+   "culinary"
+  ],
+  "categories": [
+   "food"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:book",
+  "set": "tabler",
+  "name": "book",
+  "label": "Book",
+  "tags": [
+   "read",
+   "dictionary",
+   "magazine",
+   "library",
+   "booklet",
+   "novel",
+   "book",
+   "file",
+   "paper",
+   "text"
+  ],
+  "categories": [
+   "document"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:border-top",
+  "set": "tabler",
+  "name": "border-top",
+  "label": "Border top",
+  "tags": [
+   "table",
+   "side",
+   "line",
+   "border",
+   "top",
+   "creative",
+   "artistic",
+   "visual",
+   "aesthetic",
+   "style"
+  ],
+  "categories": [
+   "design"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:box",
+  "set": "tabler",
+  "name": "box",
+  "label": "Box",
+  "tags": [
+   "cube",
+   "app",
+   "application",
+   "package",
+   "container",
+   "box"
+  ],
+  "categories": [
+   "design"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:brand-github",
+  "set": "tabler",
+  "name": "brand-github",
+  "label": "Github",
+  "tags": [
+   "logo",
+   "website",
+   "hosting",
+   "project",
+   "programming",
+   "software",
+   "development",
+   "brand",
+   "github",
+   "company"
+  ],
+  "categories": [
+   "brand"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "brand": true
+ },
+ {
+  "id": "tabler:brand-google-drive",
+  "set": "tabler",
+  "name": "brand-google-drive",
+  "label": "Google drive",
+  "tags": [
+   "logo",
+   "cloud",
+   "disc",
+   "documents",
+   "sheet",
+   "presentation",
+   "file",
+   "edit",
+   "brand",
+   "google",
+   "google drive"
+  ],
+  "categories": [
+   "brand"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "brand": true
+ },
+ {
+  "id": "tabler:brand-google-photos",
+  "set": "tabler",
+  "name": "brand-google-photos",
+  "label": "Google photos",
+  "tags": [
+   "gallery",
+   "videos",
+   "photography",
+   "website",
+   "brand",
+   "google",
+   "photos",
+   "logo",
+   "company",
+   "trademark",
+   "google photos"
+  ],
+  "categories": [
+   "brand"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "brand": true
+ },
+ {
+  "id": "tabler:brand-netflix",
+  "set": "tabler",
+  "name": "brand-netflix",
+  "label": "Netflix",
+  "tags": [
+   "series",
+   "tv",
+   "episode",
+   "movie",
+   "film",
+   "media",
+   "watch",
+   "app",
+   "technology",
+   "brand",
+   "netflix"
+  ],
+  "categories": [
+   "brand"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "brand": true
+ },
+ {
+  "id": "tabler:brand-pocket",
+  "set": "tabler",
+  "name": "brand-pocket",
+  "label": "Pocket",
+  "tags": [
+   "logo",
+   "software",
+   "application",
+   "app",
+   "mobile",
+   "device",
+   "gathering",
+   "storage",
+   "brand",
+   "pocket"
+  ],
+  "categories": [
+   "brand"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "brand": true
+ },
+ {
+  "id": "tabler:brand-spotify",
+  "set": "tabler",
+  "name": "brand-spotify",
+  "label": "Spotify",
+  "tags": [
+   "logo",
+   "app",
+   "application",
+   "platform",
+   "music",
+   "listening",
+   "streaming",
+   "podcast",
+   "brand",
+   "spotify"
+  ],
+  "categories": [
+   "brand"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "brand": true
+ },
+ {
+  "id": "tabler:brand-yatse",
+  "set": "tabler",
+  "name": "brand-yatse",
+  "label": "Yatse",
+  "tags": [
+   "multimedia",
+   "technology",
+   "pilot",
+   "software",
+   "android",
+   "brand",
+   "yatse",
+   "logo",
+   "company",
+   "trademark"
+  ],
+  "categories": [
+   "brand"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "brand": true
+ },
+ {
+  "id": "tabler:brand-youtube-kids",
+  "set": "tabler",
+  "name": "brand-youtube-kids",
+  "label": "Youtube kids",
+  "tags": [
+   "video",
+   "program",
+   "young",
+   "children",
+   "maker",
+   "stories",
+   "youtuber",
+   "brand",
+   "youtube",
+   "kids",
+   "youtube kids"
+  ],
+  "categories": [
+   "brand"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "brand": true
+ },
+ {
+  "id": "tabler:bread",
+  "set": "tabler",
+  "name": "bread",
+  "label": "Bread",
+  "tags": [
+   "food",
+   "breakfast",
+   "sandwich",
+   "toast",
+   "baking",
+   "bread",
+   "meal",
+   "cuisine",
+   "eating",
+   "nutrition"
+  ],
+  "categories": [
+   "food"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:briefcase",
+  "set": "tabler",
+  "name": "briefcase",
+  "label": "Briefcase",
+  "tags": [
+   "bag",
+   "baggage",
+   "folder",
+   "carrier",
+   "documents",
+   "suitcase",
+   "job",
+   "work",
+   "luggage",
+   "briefcase"
+  ],
+  "categories": [
+   "design"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:building-castle",
+  "set": "tabler",
+  "name": "building-castle",
+  "label": "Building castle",
+  "tags": [
+   "king",
+   "queen",
+   "royal",
+   "architecture",
+   "medieval",
+   "middle",
+   "ages",
+   "nobility",
+   "tower",
+   "fortress",
+   "fort",
+   "fortification",
+   "princess",
+   "prince"
+  ],
+  "categories": [
+   "buildings"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:building-cottage",
+  "set": "tabler",
+  "name": "building-cottage",
+  "label": "Building cottage",
+  "tags": [
+   "small",
+   "house",
+   "countryside",
+   "live",
+   "farm",
+   "rural",
+   "outskirts",
+   "building",
+   "cottage",
+   "architecture"
+  ],
+  "categories": [
+   "buildings"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:building-eiffel-tower",
+  "set": "tabler",
+  "name": "building-eiffel-tower",
+  "label": "Building eiffel tower",
+  "tags": [
+   "eiffel",
+   "tower",
+   "paris",
+   "france",
+   "landmark",
+   "monument",
+   "architecture",
+   "tourism",
+   "iconic",
+   "building"
+  ],
+  "categories": [
+   "buildings"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:building-warehouse",
+  "set": "tabler",
+  "name": "building-warehouse",
+  "label": "Building warehouse",
+  "tags": [
+   "store",
+   "inventory",
+   "stuff",
+   "things",
+   "machinery",
+   "building",
+   "warehouse",
+   "architecture",
+   "structure",
+   "construction"
+  ],
+  "categories": [
+   "buildings"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:bulb",
+  "set": "tabler",
+  "name": "bulb",
+  "label": "Bulb",
+  "tags": [
+   "energy",
+   "power",
+   "electricity",
+   "creativity",
+   "light",
+   "idea",
+   "bulb"
+  ],
+  "categories": [
+   "design"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:bus",
+  "set": "tabler",
+  "name": "bus",
+  "label": "Bus",
+  "tags": [
+   "vehicle",
+   "drive",
+   "driver",
+   "engine",
+   "motor",
+   "journey",
+   "trip",
+   "bus",
+   "transport",
+   "travel"
+  ],
+  "categories": [
+   "vehicles"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:calendar",
+  "set": "tabler",
+  "name": "calendar",
+  "label": "Calendar",
+  "tags": [
+   "date",
+   "day",
+   "plan",
+   "schedule",
+   "agenda",
+   "calender",
+   "calendar",
+   "control",
+   "operation",
+   "function"
+  ],
+  "categories": [
+   "system"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:calendar-down",
+  "set": "tabler",
+  "name": "calendar-down",
+  "label": "Calendar down",
+  "tags": [
+   "decrease",
+   "fall",
+   "drop",
+   "reduce",
+   "lower",
+   "descend",
+   "decline",
+   "diminish",
+   "plummet",
+   "subside"
+  ],
+  "categories": [
+   "system"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:calendar-event",
+  "set": "tabler",
+  "name": "calendar-event",
+  "label": "Calendar event",
+  "tags": [
+   "date",
+   "day",
+   "plan",
+   "schedule",
+   "agenda",
+   "calender",
+   "calendar",
+   "event",
+   "control",
+   "operation"
+  ],
+  "categories": [
+   "system"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:calendar-stats",
+  "set": "tabler",
+  "name": "calendar-stats",
+  "label": "Calendar stats",
+  "tags": [
+   "plan",
+   "timetable",
+   "schedule",
+   "meeting",
+   "busy",
+   "month",
+   "year",
+   "date",
+   "statistics",
+   "calender"
+  ],
+  "categories": [
+   "system"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:camera",
+  "set": "tabler",
+  "name": "camera",
+  "label": "Camera",
+  "tags": [
+   "video",
+   "photo",
+   "aperture",
+   "camera",
+   "content",
+   "entertainment",
+   "multimedia",
+   "broadcast",
+   "audio"
+  ],
+  "categories": [
+   "media"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:canary",
+  "set": "tabler",
+  "name": "canary",
+  "label": "Canary",
+  "tags": [
+   "bird",
+   "release",
+   "testing",
+   "deployment",
+   "warning",
+   "monitor",
+   "alert",
+   "early",
+   "detection",
+   "safety",
+   "check",
+   "indicator"
+  ],
+  "categories": [
+   "development"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:car",
+  "set": "tabler",
+  "name": "car",
+  "label": "Car",
+  "tags": [
+   "vehicle",
+   "drive",
+   "driver",
+   "engine",
+   "motor",
+   "journey",
+   "trip",
+   "car",
+   "transport",
+   "travel"
+  ],
+  "categories": [
+   "vehicles"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:car-crash",
+  "set": "tabler",
+  "name": "car-crash",
+  "label": "Car crash",
+  "tags": [
+   "accident",
+   "collision",
+   "damage",
+   "insurance",
+   "car",
+   "crash",
+   "transport",
+   "travel",
+   "vehicle",
+   "automobile"
+  ],
+  "categories": [
+   "vehicles"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:car-garage",
+  "set": "tabler",
+  "name": "car-garage",
+  "label": "Car garage",
+  "tags": [
+   "auto-shop",
+   "vehicle-repair",
+   "automobile-maintenance",
+   "parking-garage",
+   "car-storage",
+   "automotive",
+   "garage-service",
+   "car-park",
+   "vehicle-maintenance",
+   "car-repair"
+  ],
+  "categories": [
+   "buildings"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:car-suv",
+  "set": "tabler",
+  "name": "car-suv",
+  "label": "Car suv",
+  "tags": [
+   "sport-utility",
+   "crossover",
+   "automobile",
+   "suv",
+   "off-road",
+   "four-wheel-drive",
+   "vehicle",
+   "transportation",
+   "auto",
+   "truck"
+  ],
+  "categories": [
+   "vehicles"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:cash",
+  "set": "tabler",
+  "name": "cash",
+  "label": "Cash",
+  "tags": [
+   "currency",
+   "payment",
+   "money",
+   "pay",
+   "cash",
+   "store",
+   "purchase",
+   "finance",
+   "dollar",
+   "banknote"
+  ],
+  "categories": [
+   "e-commerce"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:cat",
+  "set": "tabler",
+  "name": "cat",
+  "label": "Cat",
+  "tags": [
+   "animal",
+   "pet",
+   "kitty",
+   "cute",
+   "cat",
+   "creature",
+   "wildlife",
+   "nature",
+   "living",
+   "organism"
+  ],
+  "categories": [
+   "animals"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:category",
+  "set": "tabler",
+  "name": "category",
+  "label": "Category",
+  "tags": [
+   "folder",
+   "menu",
+   "tag",
+   "game",
+   "category",
+   "geometry",
+   "form",
+   "figure",
+   "pattern",
+   "outline"
+  ],
+  "categories": [
+   "shapes"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:cell",
+  "set": "tabler",
+  "name": "cell",
+  "label": "Cell",
+  "tags": [
+   "biology",
+   "molecule",
+   "chemistry",
+   "human",
+   "laboratory",
+   "cell"
+  ],
+  "categories": [
+   "design"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:chef-hat",
+  "set": "tabler",
+  "name": "chef-hat",
+  "label": "Chef hat",
+  "tags": [
+   "cooking",
+   "kitchen",
+   "restaurant",
+   "food",
+   "job",
+   "chef",
+   "hat",
+   "meal",
+   "cuisine",
+   "eating"
+  ],
+  "categories": [
+   "food"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:chevrons-up-left",
+  "set": "tabler",
+  "name": "chevrons-up-left",
+  "label": "Chevrons up left",
+  "tags": [
+   "move",
+   "aside",
+   "top",
+   "chevrons",
+   "left",
+   "increase",
+   "navigation",
+   "flow",
+   "rise",
+   "upward"
+  ],
+  "categories": [
+   "arrows"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:circuit-inductor",
+  "set": "tabler",
+  "name": "circuit-inductor",
+  "label": "Circuit inductor",
+  "tags": [
+   "electric",
+   "electricity",
+   "diagram",
+   "coil",
+   "circuit",
+   "inductor",
+   "energy",
+   "voltage",
+   "power",
+   "current"
+  ],
+  "categories": [
+   "electrical"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:clock-hour-1",
+  "set": "tabler",
+  "name": "clock-hour-1",
+  "label": "Clock hour 1",
+  "tags": [
+   "time",
+   "watch",
+   "timer",
+   "alarm",
+   "minutes",
+   "seconds",
+   "clock",
+   "hour",
+   "control",
+   "operation"
+  ],
+  "categories": [
+   "system"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:clock-hour-2",
+  "set": "tabler",
+  "name": "clock-hour-2",
+  "label": "Clock hour 2",
+  "tags": [
+   "time",
+   "watch",
+   "timer",
+   "alarm",
+   "minutes",
+   "seconds",
+   "clock",
+   "hour",
+   "control",
+   "operation"
+  ],
+  "categories": [
+   "system"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:clock-hour-3",
+  "set": "tabler",
+  "name": "clock-hour-3",
+  "label": "Clock hour 3",
+  "tags": [
+   "time",
+   "watch",
+   "timer",
+   "alarm",
+   "minutes",
+   "seconds",
+   "clock",
+   "hour",
+   "control",
+   "operation"
+  ],
+  "categories": [
+   "system"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:cloud-minus",
+  "set": "tabler",
+  "name": "cloud-minus",
+  "label": "Cloud minus",
+  "tags": [
+   "subtract",
+   "reduce",
+   "decrease",
+   "lessen",
+   "deduct",
+   "remove",
+   "lower",
+   "diminish",
+   "shorten",
+   "cut"
+  ],
+  "categories": [
+   "weather"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:cloud-plus",
+  "set": "tabler",
+  "name": "cloud-plus",
+  "label": "Cloud plus",
+  "tags": [
+   "add",
+   "increase",
+   "gain",
+   "expand",
+   "grow",
+   "enhance",
+   "augment",
+   "build",
+   "boost",
+   "amplify"
+  ],
+  "categories": [
+   "weather"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:coffee",
+  "set": "tabler",
+  "name": "coffee",
+  "label": "Coffee",
+  "tags": [
+   "espresso",
+   "hot",
+   "cup",
+   "latte",
+   "cafe",
+   "drink",
+   "coffee",
+   "meal",
+   "cuisine",
+   "eating"
+  ],
+  "categories": [
+   "food"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:coin",
+  "set": "tabler",
+  "name": "coin",
+  "label": "Coin",
+  "tags": [
+   "money",
+   "earn",
+   "salary",
+   "change",
+   "dollar",
+   "coin",
+   "store",
+   "purchase",
+   "shopping",
+   "retail"
+  ],
+  "categories": [
+   "e-commerce"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:coins",
+  "set": "tabler",
+  "name": "coins",
+  "label": "Coins",
+  "tags": [
+   "money",
+   "cash",
+   "finance",
+   "currency",
+   "dollar",
+   "coins",
+   "store",
+   "purchase",
+   "shopping",
+   "retail"
+  ],
+  "categories": [
+   "e-commerce"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:credit-card-refund",
+  "set": "tabler",
+  "name": "credit-card-refund",
+  "label": "Credit card refund",
+  "tags": [
+   "refund-card",
+   "credit-refund",
+   "card-refund",
+   "transaction",
+   "credit-transaction",
+   "return",
+   "money-back",
+   "credit",
+   "refund",
+   "card"
+  ],
+  "categories": [
+   "e-commerce"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:cricket",
+  "set": "tabler",
+  "name": "cricket",
+  "label": "Cricket",
+  "tags": [
+   "ball",
+   "game",
+   "sport",
+   "cricket",
+   "athletic",
+   "fitness",
+   "exercise",
+   "physical"
+  ],
+  "categories": [
+   "sport"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:currency-dollar",
+  "set": "tabler",
+  "name": "currency-dollar",
+  "label": "Currency dollar",
+  "tags": [
+   "american",
+   "us",
+   "dollar",
+   "usd",
+   "sign",
+   "bucks",
+   "usa",
+   "money",
+   "banknote",
+   "pay"
+  ],
+  "categories": [
+   "currencies"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:currency-taka",
+  "set": "tabler",
+  "name": "currency-taka",
+  "label": "Currency taka",
+  "tags": [
+   "trade",
+   "bangladesh",
+   "bdt",
+   "taka",
+   "money",
+   "banknote",
+   "pay",
+   "currency",
+   "finance",
+   "payment"
+  ],
+  "categories": [
+   "currencies"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:delta",
+  "set": "tabler",
+  "name": "delta",
+  "label": "Delta",
+  "tags": [
+   "letter",
+   "alphabet",
+   "greek",
+   "math",
+   "delta",
+   "character",
+   "typography",
+   "text",
+   "writing"
+  ],
+  "categories": [
+   "letters"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:device-imac-plus",
+  "set": "tabler",
+  "name": "device-imac-plus",
+  "label": "Device imac plus",
+  "tags": [
+   "increase",
+   "add",
+   "augment",
+   "boost",
+   "expand",
+   "enhance",
+   "grow",
+   "raise",
+   "amplify",
+   "elevate"
+  ],
+  "categories": [
+   "devices"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:device-ipad-down",
+  "set": "tabler",
+  "name": "device-ipad-down",
+  "label": "Device ipad down",
+  "tags": [
+   "download",
+   "descend",
+   "lower",
+   "decrease",
+   "drop",
+   "reduce",
+   "fall",
+   "sink",
+   "bottom",
+   "under"
+  ],
+  "categories": [
+   "devices"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:device-unknown",
+  "set": "tabler",
+  "name": "device-unknown",
+  "label": "Device unknown",
+  "tags": [
+   "mystery",
+   "undefined",
+   "unclear",
+   "unidentified",
+   "uncertain",
+   "ambiguous",
+   "obscure",
+   "unseen",
+   "anonymous",
+   "unspecified"
+  ],
+  "categories": [
+   "system"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:device-watch-stats",
+  "set": "tabler",
+  "name": "device-watch-stats",
+  "label": "Device watch stats",
+  "tags": [
+   "steps",
+   "pulse",
+   "hour",
+   "date",
+   "device",
+   "watch",
+   "stats",
+   "hardware",
+   "technology",
+   "electronic"
+  ],
+  "categories": [
+   "devices"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:dog",
+  "set": "tabler",
+  "name": "dog",
+  "label": "Dog",
+  "tags": [
+   "pet",
+   "animal",
+   "cute",
+   "bone",
+   "home",
+   "puppy",
+   "dog",
+   "creature",
+   "wildlife",
+   "nature"
+  ],
+  "categories": [
+   "animals"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:dog-bowl",
+  "set": "tabler",
+  "name": "dog-bowl",
+  "label": "Dog bowl",
+  "tags": [
+   "pet",
+   "food",
+   "animal",
+   "bone",
+   "dog",
+   "bowl",
+   "meal",
+   "cuisine",
+   "eating",
+   "nutrition"
+  ],
+  "categories": [
+   "food"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:eggs",
+  "set": "tabler",
+  "name": "eggs",
+  "label": "Eggs",
+  "tags": [
+   "food",
+   "chicken",
+   "easter",
+   "eggs",
+   "meal",
+   "cuisine",
+   "eating",
+   "nutrition",
+   "culinary"
+  ],
+  "categories": [
+   "food"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:empathize",
+  "set": "tabler",
+  "name": "empathize",
+  "label": "Empathize",
+  "tags": [
+   "people",
+   "understand",
+   "thinking",
+   "care",
+   "empathize",
+   "medical",
+   "wellness",
+   "healthcare",
+   "treatment"
+  ],
+  "categories": [
+   "health"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:eraser-off",
+  "set": "tabler",
+  "name": "eraser-off",
+  "label": "Eraser off",
+  "tags": [
+   "delete",
+   "remove",
+   "eliminate",
+   "wipe-out",
+   "eraser",
+   "off",
+   "disabled",
+   "inactive",
+   "typography",
+   "writing"
+  ],
+  "categories": [
+   "text"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:eye-heart",
+  "set": "tabler",
+  "name": "eye-heart",
+  "label": "Eye heart",
+  "tags": [
+   "love",
+   "affection",
+   "vision",
+   "sight",
+   "emotion",
+   "passion",
+   "admire",
+   "adore",
+   "view",
+   "focus"
+  ],
+  "categories": [
+   "system"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:fall",
+  "set": "tabler",
+  "name": "fall",
+  "label": "Fall",
+  "tags": [
+   "collapse",
+   "damage",
+   "cliff",
+   "height",
+   "fall",
+   "medical",
+   "wellness",
+   "healthcare",
+   "treatment",
+   "care"
+  ],
+  "categories": [
+   "health"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:file-invoice",
+  "set": "tabler",
+  "name": "file-invoice",
+  "label": "File invoice",
+  "tags": [
+   "accounting",
+   "bill",
+   "statement",
+   "settlement",
+   "finance",
+   "file",
+   "invoice",
+   "document",
+   "data",
+   "content"
+  ],
+  "categories": [
+   "document"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:file-type-css",
+  "set": "tabler",
+  "name": "file-type-css",
+  "label": "File type css",
+  "tags": [
+   "stylesheet",
+   "web",
+   "design",
+   "style",
+   "coding",
+   "format",
+   "layout",
+   "markup",
+   "presentation",
+   "look"
+  ],
+  "categories": [
+   "document"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:first-aid-kit",
+  "set": "tabler",
+  "name": "first-aid-kit",
+  "label": "First aid kit",
+  "tags": [
+   "medical",
+   "healthcare",
+   "hospital",
+   "health",
+   "first",
+   "aid",
+   "kit",
+   "wellness",
+   "treatment",
+   "care"
+  ],
+  "categories": [
+   "health"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:fish-christianity",
+  "set": "tabler",
+  "name": "fish-christianity",
+  "label": "Fish christianity",
+  "tags": [
+   "religion",
+   "jesus",
+   "faith",
+   "christian",
+   "fish",
+   "christianity",
+   "sign",
+   "mark",
+   "emblem",
+   "representation"
+  ],
+  "categories": [
+   "symbols"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:gift",
+  "set": "tabler",
+  "name": "gift",
+  "label": "Gift",
+  "tags": [
+   "present",
+   "birthday",
+   "celebration",
+   "wish",
+   "bonus",
+   "souvenire",
+   "surprise",
+   "gift",
+   "store",
+   "purchase"
+  ],
+  "categories": [
+   "e-commerce"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:glass-full",
+  "set": "tabler",
+  "name": "glass-full",
+  "label": "Glass full",
+  "tags": [
+   "wine",
+   "cup",
+   "goblet",
+   "glass",
+   "full",
+   "meal",
+   "cuisine",
+   "eating",
+   "nutrition",
+   "culinary"
+  ],
+  "categories": [
+   "food"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:hammer",
+  "set": "tabler",
+  "name": "hammer",
+  "label": "Hammer",
+  "tags": [
+   "tool",
+   "repair",
+   "building",
+   "construction",
+   "hammer"
+  ],
+  "categories": [
+   "design"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:heart",
+  "set": "tabler",
+  "name": "heart",
+  "label": "Heart",
+  "tags": [
+   "love",
+   "emotion",
+   "like",
+   "favorite",
+   "relationship",
+   "heart",
+   "geometry",
+   "form",
+   "figure",
+   "pattern"
+  ],
+  "categories": [
+   "shapes"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:hearts",
+  "set": "tabler",
+  "name": "hearts",
+  "label": "Hearts",
+  "tags": [
+   "love",
+   "valentine",
+   "romantic",
+   "romance",
+   "marriage",
+   "hearts",
+   "like",
+   "geometry",
+   "form",
+   "figure"
+  ],
+  "categories": [
+   "shapes"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:help-square",
+  "set": "tabler",
+  "name": "help-square",
+  "label": "Help square",
+  "tags": [
+   "support",
+   "aid",
+   "assist",
+   "guide",
+   "rectangle",
+   "box",
+   "frame",
+   "border",
+   "straight",
+   "outline"
+  ],
+  "categories": [
+   "system"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:hexagon-3d",
+  "set": "tabler",
+  "name": "hexagon-3d",
+  "label": "Hexagon 3d",
+  "tags": [
+   "geometry",
+   "six",
+   "dimensional",
+   "shape",
+   "hexagon",
+   "3d"
+  ],
+  "categories": [
+   "shapes"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:home",
+  "set": "tabler",
+  "name": "home",
+  "label": "Home",
+  "tags": [
+   "house",
+   "dashboard",
+   "living",
+   "building",
+   "home",
+   "main",
+   "architecture",
+   "structure",
+   "start",
+   "construction"
+  ],
+  "categories": [
+   "buildings"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:home-2",
+  "set": "tabler",
+  "name": "home-2",
+  "label": "Home 2",
+  "tags": [
+   "house",
+   "dashboard",
+   "living",
+   "building",
+   "home",
+   "main",
+   "architecture",
+   "structure",
+   "start",
+   "construction"
+  ],
+  "categories": [
+   "buildings"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:hourglass",
+  "set": "tabler",
+  "name": "hourglass",
+  "label": "Hourglass",
+  "tags": [
+   "time",
+   "timer",
+   "sand",
+   "clock",
+   "hourglass",
+   "control",
+   "operation",
+   "function",
+   "interface",
+   "management"
+  ],
+  "categories": [
+   "system"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:label-important",
+  "set": "tabler",
+  "name": "label-important",
+  "label": "Label important",
+  "tags": [
+   "priority",
+   "urgent",
+   "highlight",
+   "notable",
+   "key",
+   "marker",
+   "tag",
+   "significant",
+   "flag",
+   "pivotal"
+  ],
+  "categories": [
+   "system"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:language-off",
+  "set": "tabler",
+  "name": "language-off",
+  "label": "Language off",
+  "tags": [
+   "tongue",
+   "country",
+   "speech",
+   "speak",
+   "translate",
+   "communication",
+   "communicate",
+   "english",
+   "dialect",
+   "dictionary",
+   "word"
+  ],
+  "categories": [
+   "text"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:layers-selected-bottom",
+  "set": "tabler",
+  "name": "layers-selected-bottom",
+  "label": "Layers selected bottom",
+  "tags": [
+   "stack",
+   "arrange",
+   "pile",
+   "base",
+   "underneath",
+   "beneath",
+   "select",
+   "bottom",
+   "sort",
+   "layers"
+  ],
+  "categories": [
+   "design"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:leaf",
+  "set": "tabler",
+  "name": "leaf",
+  "label": "Leaf",
+  "tags": [
+   "nature",
+   "plant",
+   "tree",
+   "autumn",
+   "fall",
+   "greenery",
+   "flower",
+   "forest",
+   "garden",
+   "leaf"
+  ],
+  "categories": [
+   "nature"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:live-photo-off",
+  "set": "tabler",
+  "name": "live-photo-off",
+  "label": "Live photo off",
+  "tags": [
+   "capture",
+   "photo",
+   "movement",
+   "sound",
+   "memory",
+   "camera",
+   "live",
+   "off",
+   "disabled",
+   "picture"
+  ],
+  "categories": [
+   "photography"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:loader",
+  "set": "tabler",
+  "name": "loader",
+  "label": "Loader",
+  "tags": [
+   "process",
+   "download",
+   "upload",
+   "loader",
+   "loading",
+   "control",
+   "operation",
+   "function",
+   "interface",
+   "management"
+  ],
+  "categories": [
+   "system"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:location-code",
+  "set": "tabler",
+  "name": "location-code",
+  "label": "Location code",
+  "tags": [
+   "programming",
+   "software",
+   "script",
+   "algorithm",
+   "cipher",
+   "decode",
+   "encode",
+   "function",
+   "syntax",
+   "compile"
+  ],
+  "categories": [
+   "map"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:lock",
+  "set": "tabler",
+  "name": "lock",
+  "label": "Lock",
+  "tags": [
+   "security",
+   "password",
+   "secure",
+   "lock",
+   "private",
+   "control",
+   "operation",
+   "protected",
+   "closed",
+   "function"
+  ],
+  "categories": [
+   "system"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:lock-exclamation",
+  "set": "tabler",
+  "name": "lock-exclamation",
+  "label": "Lock exclamation",
+  "tags": [
+   "security",
+   "alert",
+   "caution",
+   "warn",
+   "restricted",
+   "notice",
+   "attention",
+   "important",
+   "danger",
+   "secure"
+  ],
+  "categories": [
+   "system"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:magnet-off",
+  "set": "tabler",
+  "name": "magnet-off",
+  "label": "Magnet off",
+  "tags": [
+   "magnetic field",
+   "pole",
+   "iron",
+   "attract",
+   "magnet",
+   "off",
+   "disabled",
+   "inactive"
+  ],
+  "categories": [
+   "design"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:mail",
+  "set": "tabler",
+  "name": "mail",
+  "label": "Mail",
+  "tags": [
+   "inbox",
+   "gmail",
+   "email",
+   "envelope",
+   "message",
+   "mail",
+   "contact",
+   "conversation",
+   "letter",
+   "post"
+  ],
+  "categories": [
+   "communication"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:medal",
+  "set": "tabler",
+  "name": "medal",
+  "label": "Medal",
+  "tags": [
+   "decorate",
+   "uniform",
+   "medal",
+   "design"
+  ],
+  "categories": [
+   "sport"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:moneybag",
+  "set": "tabler",
+  "name": "moneybag",
+  "label": "Moneybag",
+  "tags": [
+   "finance",
+   "cash",
+   "dollar",
+   "currency",
+   "bank",
+   "moneybag",
+   "wealth",
+   "rich",
+   "money",
+   "savings"
+  ],
+  "categories": [
+   "e-commerce"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:mood-kid",
+  "set": "tabler",
+  "name": "mood-kid",
+  "label": "Mood kid",
+  "tags": [
+   "face",
+   "emoji",
+   "emotion",
+   "mood",
+   "kid"
+  ],
+  "categories": [
+   "mood"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:mood-spark",
+  "set": "tabler",
+  "name": "mood-spark",
+  "label": "Mood spark",
+  "tags": [
+   "inspiration",
+   "ignite",
+   "emotion",
+   "joy",
+   "brightness",
+   "enthusiasm",
+   "energy",
+   "creativity",
+   "light",
+   "sparkle"
+  ],
+  "categories": [
+   "mood"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:mountain",
+  "set": "tabler",
+  "name": "mountain",
+  "label": "Mountain",
+  "tags": [
+   "alps",
+   "camping",
+   "mount everest",
+   "trekking",
+   "mountain",
+   "environment",
+   "natural",
+   "outdoor",
+   "ecosystem",
+   "earth"
+  ],
+  "categories": [
+   "nature"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:music",
+  "set": "tabler",
+  "name": "music",
+  "label": "Music",
+  "tags": [
+   "sound",
+   "mp3",
+   "album",
+   "speakers",
+   "melody",
+   "music",
+   "content",
+   "entertainment",
+   "multimedia",
+   "broadcast"
+  ],
+  "categories": [
+   "media"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:music-discount",
+  "set": "tabler",
+  "name": "music-discount",
+  "label": "Music discount",
+  "tags": [
+   "offer",
+   "sale",
+   "reduce",
+   "discounted",
+   "promotion",
+   "bargain",
+   "deal",
+   "cut",
+   "rebate",
+   "markdown"
+  ],
+  "categories": [
+   "system"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:music-pin",
+  "set": "tabler",
+  "name": "music-pin",
+  "label": "Music pin",
+  "tags": [
+   "attach",
+   "fix",
+   "bookmark",
+   "point",
+   "secure",
+   "marker",
+   "fasten",
+   "stick",
+   "location",
+   "anchor"
+  ],
+  "categories": [
+   "media"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:number-89-small",
+  "set": "tabler",
+  "name": "number-89-small",
+  "label": "Number 89 small",
+  "tags": [
+   "eighty-nine",
+   "digit",
+   "count",
+   "numeral",
+   "value",
+   "sequence",
+   "numeric",
+   "figure",
+   "calculate",
+   "number"
+  ],
+  "categories": [
+   "numbers"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:palette-off",
+  "set": "tabler",
+  "name": "palette-off",
+  "label": "Palette off",
+  "tags": [
+   "color",
+   "paint",
+   "painter",
+   "picture",
+   "board",
+   "artist",
+   "palette",
+   "off",
+   "creative",
+   "artistic"
+  ],
+  "categories": [
+   "design"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:paw",
+  "set": "tabler",
+  "name": "paw",
+  "label": "Paw",
+  "tags": [
+   "animal",
+   "dog",
+   "cat",
+   "foot",
+   "pets",
+   "paw"
+  ],
+  "categories": [
+   "animals"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:pendulum",
+  "set": "tabler",
+  "name": "pendulum",
+  "label": "Pendulum",
+  "tags": [
+   "pendulum",
+   "physics",
+   "swing",
+   "oscillation",
+   "gravity",
+   "time",
+   "motion",
+   "science",
+   "experiment",
+   "mechanics"
+  ],
+  "categories": [
+   "math"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:phone",
+  "set": "tabler",
+  "name": "phone",
+  "label": "Phone",
+  "tags": [
+   "call",
+   "mobile",
+   "conversation",
+   "landline",
+   "answer",
+   "number",
+   "phone",
+   "hardware",
+   "technology",
+   "contact"
+  ],
+  "categories": [
+   "devices"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:phone-ringing",
+  "set": "tabler",
+  "name": "phone-ringing",
+  "label": "Phone ringing",
+  "tags": [
+   "incoming",
+   "alert",
+   "bell",
+   "notification",
+   "dialing",
+   "call",
+   "sound",
+   "ringtone",
+   "vibrate",
+   "connect"
+  ],
+  "categories": [
+   "communication"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:photo-circle-minus",
+  "set": "tabler",
+  "name": "photo-circle-minus",
+  "label": "Photo circle minus",
+  "tags": [
+   "subtract",
+   "reduce",
+   "delete",
+   "decrease",
+   "minus",
+   "empty",
+   "border",
+   "rim",
+   "round",
+   "picture"
+  ],
+  "categories": [
+   "media"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:pig-money",
+  "set": "tabler",
+  "name": "pig-money",
+  "label": "Pig money",
+  "tags": [
+   "coin",
+   "finance",
+   "saving",
+   "bank",
+   "pig",
+   "money",
+   "creature",
+   "wildlife",
+   "nature",
+   "living"
+  ],
+  "categories": [
+   "animals"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:pill",
+  "set": "tabler",
+  "name": "pill",
+  "label": "Pill",
+  "tags": [
+   "drug",
+   "medication",
+   "illness",
+   "sickness",
+   "doctor",
+   "prescription",
+   "pill",
+   "medical",
+   "wellness",
+   "healthcare"
+  ],
+  "categories": [
+   "health"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:pizza",
+  "set": "tabler",
+  "name": "pizza",
+  "label": "Pizza",
+  "tags": [
+   "food",
+   "cheese",
+   "italy",
+   "pepperoni",
+   "margherita",
+   "capricciosa",
+   "rucole",
+   "pizza",
+   "meal",
+   "cuisine"
+  ],
+  "categories": [
+   "food"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:plane",
+  "set": "tabler",
+  "name": "plane",
+  "label": "Plane",
+  "tags": [
+   "travel",
+   "journey",
+   "trip",
+   "airport",
+   "baggage",
+   "luggage",
+   "plane",
+   "transport",
+   "vehicle",
+   "automobile"
+  ],
+  "categories": [
+   "vehicles"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:plant",
+  "set": "tabler",
+  "name": "plant",
+  "label": "Plant",
+  "tags": [
+   "nature",
+   "green",
+   "flower",
+   "pot",
+   "tree",
+   "leaf",
+   "greenery",
+   "root",
+   "stem",
+   "seed"
+  ],
+  "categories": [
+   "nature"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:progress-alert",
+  "set": "tabler",
+  "name": "progress-alert",
+  "label": "Progress alert",
+  "tags": [
+   "warning",
+   "notification",
+   "caution",
+   "indicator",
+   "status",
+   "attention",
+   "update",
+   "signal",
+   "process",
+   "info"
+  ],
+  "categories": [
+   "system"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:prompt",
+  "set": "tabler",
+  "name": "prompt",
+  "label": "Prompt",
+  "tags": [
+   "command line",
+   "terminal",
+   "code",
+   "prompt",
+   "programming",
+   "software",
+   "coding",
+   "technical",
+   "developer"
+  ],
+  "categories": [
+   "development"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:receipt",
+  "set": "tabler",
+  "name": "receipt",
+  "label": "Receipt",
+  "tags": [
+   "bill",
+   "restaurant",
+   "shop",
+   "price",
+   "pay",
+   "money",
+   "total",
+   "tax",
+   "receipt",
+   "file"
+  ],
+  "categories": [
+   "document"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:receipt-tax",
+  "set": "tabler",
+  "name": "receipt-tax",
+  "label": "Receipt tax",
+  "tags": [
+   "income",
+   "percentage",
+   "money",
+   "finance",
+   "charge",
+   "obligation",
+   "taxpayer",
+   "vat",
+   "receipt",
+   "tax"
+  ],
+  "categories": [
+   "document"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:report-money",
+  "set": "tabler",
+  "name": "report-money",
+  "label": "Report money",
+  "tags": [
+   "results",
+   "business",
+   "sales",
+   "analysis",
+   "analyse",
+   "finance",
+   "financial",
+   "total",
+   "report",
+   "money"
+  ],
+  "categories": [
+   "document"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:ribbon-health",
+  "set": "tabler",
+  "name": "ribbon-health",
+  "label": "Ribbon health",
+  "tags": [
+   "medical",
+   "care",
+   "heatlh",
+   "medic",
+   "healthcare",
+   "ribbon",
+   "health",
+   "sign",
+   "mark",
+   "emblem"
+  ],
+  "categories": [
+   "symbols"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:rosette-discount-check",
+  "set": "tabler",
+  "name": "rosette-discount-check",
+  "label": "Rosette discount check",
+  "tags": [
+   "reduction",
+   "price",
+   "cost",
+   "money",
+   "shopping",
+   "bargain",
+   "tick",
+   "done",
+   "verified",
+   "certificate",
+   "valid",
+   "official",
+   "success"
+  ],
+  "categories": [
+   "e-commerce"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:ruler",
+  "set": "tabler",
+  "name": "ruler",
+  "label": "Ruler",
+  "tags": [
+   "maths",
+   "dimensions",
+   "size",
+   "width",
+   "length",
+   "geometry",
+   "measure",
+   "technical",
+   "ruler",
+   "creative"
+  ],
+  "categories": [
+   "design"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:school",
+  "set": "tabler",
+  "name": "school",
+  "label": "School",
+  "tags": [
+   "students",
+   "class",
+   "teachers",
+   "professors",
+   "doctors",
+   "hall",
+   "classroom",
+   "subject",
+   "science",
+   "break",
+   "lesson"
+  ],
+  "categories": [
+   "map"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:scissors",
+  "set": "tabler",
+  "name": "scissors",
+  "label": "Scissors",
+  "tags": [
+   "cut",
+   "paper",
+   "file",
+   "document",
+   "hairdresser",
+   "blade",
+   "sharp",
+   "scissors",
+   "creative",
+   "artistic"
+  ],
+  "categories": [
+   "design"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:screen-share-off",
+  "set": "tabler",
+  "name": "screen-share-off",
+  "label": "Screen share off",
+  "tags": [
+   "monitor",
+   "stream",
+   "tv",
+   "mirroring",
+   "cast",
+   "online",
+   "screen",
+   "share",
+   "off",
+   "hardware"
+  ],
+  "categories": [
+   "devices"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:section-sign",
+  "set": "tabler",
+  "name": "section-sign",
+  "label": "Section sign",
+  "tags": [
+   "legal",
+   "paragraph",
+   "law",
+   "section",
+   "sign",
+   "typography",
+   "writing",
+   "font",
+   "character",
+   "word"
+  ],
+  "categories": [
+   "text"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:settings",
+  "set": "tabler",
+  "name": "settings",
+  "label": "Settings",
+  "tags": [
+   "cog",
+   "edit",
+   "gear",
+   "preferences",
+   "tools",
+   "settings",
+   "config",
+   "options",
+   "control",
+   "operation"
+  ],
+  "categories": [
+   "system"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:shield",
+  "set": "tabler",
+  "name": "shield",
+  "label": "Shield",
+  "tags": [
+   "safety",
+   "protect",
+   "protection",
+   "shield",
+   "control",
+   "operation",
+   "function",
+   "interface",
+   "management"
+  ],
+  "categories": [
+   "system"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:shield-check",
+  "set": "tabler",
+  "name": "shield-check",
+  "label": "Shield check",
+  "tags": [
+   "safety",
+   "protect",
+   "protection",
+   "yes",
+   "add",
+   "shield",
+   "check",
+   "control",
+   "operation",
+   "confirm"
+  ],
+  "categories": [
+   "system"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:ship-off",
+  "set": "tabler",
+  "name": "ship-off",
+  "label": "Ship off",
+  "tags": [
+   "sail",
+   "sail across",
+   "ocean",
+   "river",
+   "lake",
+   "sea",
+   "sailor",
+   "journey",
+   "transit",
+   "manufactures",
+   "containers"
+  ],
+  "categories": [
+   "vehicles"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:shopping-cart",
+  "set": "tabler",
+  "name": "shopping-cart",
+  "label": "Shopping cart",
+  "tags": [
+   "shop",
+   "store",
+   "buy",
+   "purchase",
+   "product",
+   "bag",
+   "trolley",
+   "supermarket",
+   "grocery",
+   "shopping"
+  ],
+  "categories": [
+   "e-commerce"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:ski-jumping",
+  "set": "tabler",
+  "name": "ski-jumping",
+  "label": "Ski jumping",
+  "tags": [
+   "sport",
+   "winter",
+   "snow",
+   "jump",
+   "hill",
+   "competition",
+   "flight",
+   "aerial",
+   "athlete",
+   "extreme"
+  ],
+  "categories": [
+   "sport"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:snowflake",
+  "set": "tabler",
+  "name": "snowflake",
+  "label": "Snowflake",
+  "tags": [
+   "winter",
+   "weather",
+   "cold",
+   "frost",
+   "snowflake",
+   "climate",
+   "forecast",
+   "meteorology",
+   "atmospheric",
+   "conditions"
+  ],
+  "categories": [
+   "weather"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:square-chevrons-right",
+  "set": "tabler",
+  "name": "square-chevrons-right",
+  "label": "Square chevrons right",
+  "tags": [
+   "shape",
+   "direction",
+   "east",
+   "square",
+   "chevrons",
+   "right",
+   "navigation",
+   "flow",
+   "rectangular",
+   "movement"
+  ],
+  "categories": [
+   "arrows"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:square-letter-a",
+  "set": "tabler",
+  "name": "square-letter-a",
+  "label": "Square letter a",
+  "tags": [
+   "shape",
+   "alphabet",
+   "sign",
+   "latin",
+   "square",
+   "letter",
+   "rectangular",
+   "character",
+   "typography",
+   "text"
+  ],
+  "categories": [
+   "letters"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "glyph": "letter"
+ },
+ {
+  "id": "tabler:square-letter-b",
+  "set": "tabler",
+  "name": "square-letter-b",
+  "label": "Square letter b",
+  "tags": [
+   "shape",
+   "alphabet",
+   "sign",
+   "latin",
+   "square",
+   "letter",
+   "rectangular",
+   "character",
+   "typography",
+   "text"
+  ],
+  "categories": [
+   "letters"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "glyph": "letter"
+ },
+ {
+  "id": "tabler:square-letter-c",
+  "set": "tabler",
+  "name": "square-letter-c",
+  "label": "Square letter c",
+  "tags": [
+   "shape",
+   "alphabet",
+   "sign",
+   "latin",
+   "square",
+   "letter",
+   "rectangular",
+   "character",
+   "typography",
+   "text"
+  ],
+  "categories": [
+   "letters"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "glyph": "letter"
+ },
+ {
+  "id": "tabler:square-letter-d",
+  "set": "tabler",
+  "name": "square-letter-d",
+  "label": "Square letter d",
+  "tags": [
+   "shape",
+   "alphabet",
+   "sign",
+   "latin",
+   "square",
+   "letter",
+   "rectangular",
+   "character",
+   "typography",
+   "text"
+  ],
+  "categories": [
+   "letters"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "glyph": "letter"
+ },
+ {
+  "id": "tabler:square-letter-e",
+  "set": "tabler",
+  "name": "square-letter-e",
+  "label": "Square letter e",
+  "tags": [
+   "shape",
+   "alphabet",
+   "sign",
+   "latin",
+   "square",
+   "letter",
+   "rectangular",
+   "character",
+   "typography",
+   "text"
+  ],
+  "categories": [
+   "letters"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "glyph": "letter"
+ },
+ {
+  "id": "tabler:square-letter-f",
+  "set": "tabler",
+  "name": "square-letter-f",
+  "label": "Square letter f",
+  "tags": [
+   "shape",
+   "alphabet",
+   "sign",
+   "latin",
+   "square",
+   "letter",
+   "rectangular",
+   "character",
+   "typography",
+   "text"
+  ],
+  "categories": [
+   "letters"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "glyph": "letter"
+ },
+ {
+  "id": "tabler:square-letter-g",
+  "set": "tabler",
+  "name": "square-letter-g",
+  "label": "Square letter g",
+  "tags": [
+   "shape",
+   "alphabet",
+   "sign",
+   "latin",
+   "square",
+   "letter",
+   "rectangular",
+   "character",
+   "typography",
+   "text"
+  ],
+  "categories": [
+   "letters"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "glyph": "letter"
+ },
+ {
+  "id": "tabler:square-letter-h",
+  "set": "tabler",
+  "name": "square-letter-h",
+  "label": "Square letter h",
+  "tags": [
+   "shape",
+   "alphabet",
+   "sign",
+   "latin",
+   "square",
+   "letter",
+   "rectangular",
+   "character",
+   "typography",
+   "text"
+  ],
+  "categories": [
+   "letters"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "glyph": "letter"
+ },
+ {
+  "id": "tabler:square-letter-i",
+  "set": "tabler",
+  "name": "square-letter-i",
+  "label": "Square letter i",
+  "tags": [
+   "shape",
+   "alphabet",
+   "sign",
+   "latin",
+   "square",
+   "letter",
+   "rectangular",
+   "character",
+   "typography",
+   "text"
+  ],
+  "categories": [
+   "letters"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "glyph": "letter"
+ },
+ {
+  "id": "tabler:square-letter-j",
+  "set": "tabler",
+  "name": "square-letter-j",
+  "label": "Square letter j",
+  "tags": [
+   "shape",
+   "alphabet",
+   "sign",
+   "latin",
+   "square",
+   "letter",
+   "rectangular",
+   "character",
+   "typography",
+   "text"
+  ],
+  "categories": [
+   "letters"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "glyph": "letter"
+ },
+ {
+  "id": "tabler:square-letter-k",
+  "set": "tabler",
+  "name": "square-letter-k",
+  "label": "Square letter k",
+  "tags": [
+   "shape",
+   "alphabet",
+   "sign",
+   "latin",
+   "square",
+   "letter",
+   "rectangular",
+   "character",
+   "typography",
+   "text"
+  ],
+  "categories": [
+   "letters"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "glyph": "letter"
+ },
+ {
+  "id": "tabler:square-letter-l",
+  "set": "tabler",
+  "name": "square-letter-l",
+  "label": "Square letter l",
+  "tags": [
+   "shape",
+   "alphabet",
+   "sign",
+   "latin",
+   "square",
+   "letter",
+   "rectangular",
+   "character",
+   "typography",
+   "text"
+  ],
+  "categories": [
+   "letters"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "glyph": "letter"
+ },
+ {
+  "id": "tabler:square-letter-m",
+  "set": "tabler",
+  "name": "square-letter-m",
+  "label": "Square letter m",
+  "tags": [
+   "shape",
+   "alphabet",
+   "sign",
+   "latin",
+   "square",
+   "letter",
+   "rectangular",
+   "character",
+   "typography",
+   "text"
+  ],
+  "categories": [
+   "letters"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "glyph": "letter"
+ },
+ {
+  "id": "tabler:square-letter-n",
+  "set": "tabler",
+  "name": "square-letter-n",
+  "label": "Square letter n",
+  "tags": [
+   "shape",
+   "alphabet",
+   "sign",
+   "latin",
+   "square",
+   "letter",
+   "rectangular",
+   "character",
+   "typography",
+   "text"
+  ],
+  "categories": [
+   "letters"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "glyph": "letter"
+ },
+ {
+  "id": "tabler:square-letter-o",
+  "set": "tabler",
+  "name": "square-letter-o",
+  "label": "Square letter o",
+  "tags": [
+   "shape",
+   "alphabet",
+   "sign",
+   "latin",
+   "square",
+   "letter",
+   "rectangular",
+   "character",
+   "typography",
+   "text"
+  ],
+  "categories": [
+   "letters"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "glyph": "letter"
+ },
+ {
+  "id": "tabler:square-letter-p",
+  "set": "tabler",
+  "name": "square-letter-p",
+  "label": "Square letter p",
+  "tags": [
+   "shape",
+   "alphabet",
+   "sign",
+   "latin",
+   "square",
+   "letter",
+   "rectangular",
+   "character",
+   "typography",
+   "text"
+  ],
+  "categories": [
+   "letters"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "glyph": "letter"
+ },
+ {
+  "id": "tabler:square-letter-q",
+  "set": "tabler",
+  "name": "square-letter-q",
+  "label": "Square letter q",
+  "tags": [
+   "shape",
+   "alphabet",
+   "sign",
+   "latin",
+   "square",
+   "letter",
+   "rectangular",
+   "character",
+   "typography",
+   "text"
+  ],
+  "categories": [
+   "letters"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "glyph": "letter"
+ },
+ {
+  "id": "tabler:square-letter-r",
+  "set": "tabler",
+  "name": "square-letter-r",
+  "label": "Square letter r",
+  "tags": [
+   "shape",
+   "alphabet",
+   "sign",
+   "latin",
+   "square",
+   "letter",
+   "rectangular",
+   "character",
+   "typography",
+   "text"
+  ],
+  "categories": [
+   "letters"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "glyph": "letter"
+ },
+ {
+  "id": "tabler:square-letter-s",
+  "set": "tabler",
+  "name": "square-letter-s",
+  "label": "Square letter s",
+  "tags": [
+   "shape",
+   "alphabet",
+   "sign",
+   "latin",
+   "square",
+   "letter",
+   "rectangular",
+   "character",
+   "typography",
+   "text"
+  ],
+  "categories": [
+   "letters"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "glyph": "letter"
+ },
+ {
+  "id": "tabler:square-letter-t",
+  "set": "tabler",
+  "name": "square-letter-t",
+  "label": "Square letter t",
+  "tags": [
+   "shape",
+   "alphabet",
+   "sign",
+   "latin",
+   "square",
+   "letter",
+   "rectangular",
+   "character",
+   "typography",
+   "text"
+  ],
+  "categories": [
+   "letters"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "glyph": "letter"
+ },
+ {
+  "id": "tabler:square-letter-u",
+  "set": "tabler",
+  "name": "square-letter-u",
+  "label": "Square letter u",
+  "tags": [
+   "shape",
+   "alphabet",
+   "sign",
+   "latin",
+   "square",
+   "letter",
+   "rectangular",
+   "character",
+   "typography",
+   "text"
+  ],
+  "categories": [
+   "letters"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "glyph": "letter"
+ },
+ {
+  "id": "tabler:square-letter-v",
+  "set": "tabler",
+  "name": "square-letter-v",
+  "label": "Square letter v",
+  "tags": [
+   "shape",
+   "alphabet",
+   "sign",
+   "latin",
+   "square",
+   "letter",
+   "rectangular",
+   "character",
+   "typography",
+   "text"
+  ],
+  "categories": [
+   "letters"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "glyph": "letter"
+ },
+ {
+  "id": "tabler:square-letter-w",
+  "set": "tabler",
+  "name": "square-letter-w",
+  "label": "Square letter w",
+  "tags": [
+   "shape",
+   "alphabet",
+   "sign",
+   "latin",
+   "square",
+   "letter",
+   "rectangular",
+   "character",
+   "typography",
+   "text"
+  ],
+  "categories": [
+   "letters"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "glyph": "letter"
+ },
+ {
+  "id": "tabler:square-letter-x",
+  "set": "tabler",
+  "name": "square-letter-x",
+  "label": "Square letter x",
+  "tags": [
+   "cancel",
+   "close",
+   "delete",
+   "remove",
+   "times",
+   "clear",
+   "no",
+   "square",
+   "letter",
+   "rectangular"
+  ],
+  "categories": [
+   "letters"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "glyph": "letter"
+ },
+ {
+  "id": "tabler:square-letter-y",
+  "set": "tabler",
+  "name": "square-letter-y",
+  "label": "Square letter y",
+  "tags": [
+   "shape",
+   "alphabet",
+   "sign",
+   "latin",
+   "square",
+   "letter",
+   "rectangular",
+   "character",
+   "typography",
+   "text"
+  ],
+  "categories": [
+   "letters"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "glyph": "letter"
+ },
+ {
+  "id": "tabler:square-letter-z",
+  "set": "tabler",
+  "name": "square-letter-z",
+  "label": "Square letter z",
+  "tags": [
+   "shape",
+   "alphabet",
+   "sign",
+   "latin",
+   "square",
+   "letter",
+   "rectangular",
+   "character",
+   "typography",
+   "text"
+  ],
+  "categories": [
+   "letters"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "glyph": "letter"
+ },
+ {
+  "id": "tabler:square-number-0",
+  "set": "tabler",
+  "name": "square-number-0",
+  "label": "Square number 0",
+  "tags": [
+   "zero",
+   "number",
+   "digit",
+   "quantity",
+   "amount",
+   "order",
+   "maths",
+   "sum",
+   "total",
+   "square"
+  ],
+  "categories": [
+   "numbers"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "glyph": "number"
+ },
+ {
+  "id": "tabler:square-number-1",
+  "set": "tabler",
+  "name": "square-number-1",
+  "label": "Square number 1",
+  "tags": [
+   "one",
+   "zero",
+   "number",
+   "digit",
+   "quantity",
+   "amount",
+   "order",
+   "maths",
+   "sum",
+   "total"
+  ],
+  "categories": [
+   "numbers"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "glyph": "number"
+ },
+ {
+  "id": "tabler:square-number-2",
+  "set": "tabler",
+  "name": "square-number-2",
+  "label": "Square number 2",
+  "tags": [
+   "two",
+   "zero",
+   "number",
+   "digit",
+   "quantity",
+   "amount",
+   "order",
+   "maths",
+   "sum",
+   "total"
+  ],
+  "categories": [
+   "numbers"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "glyph": "number"
+ },
+ {
+  "id": "tabler:square-number-3",
+  "set": "tabler",
+  "name": "square-number-3",
+  "label": "Square number 3",
+  "tags": [
+   "three",
+   "zero",
+   "number",
+   "digit",
+   "quantity",
+   "amount",
+   "order",
+   "maths",
+   "sum",
+   "total"
+  ],
+  "categories": [
+   "numbers"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "glyph": "number"
+ },
+ {
+  "id": "tabler:square-number-4",
+  "set": "tabler",
+  "name": "square-number-4",
+  "label": "Square number 4",
+  "tags": [
+   "four",
+   "zero",
+   "number",
+   "digit",
+   "quantity",
+   "amount",
+   "order",
+   "maths",
+   "sum",
+   "total"
+  ],
+  "categories": [
+   "numbers"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "glyph": "number"
+ },
+ {
+  "id": "tabler:square-number-5",
+  "set": "tabler",
+  "name": "square-number-5",
+  "label": "Square number 5",
+  "tags": [
+   "five",
+   "zero",
+   "number",
+   "digit",
+   "quantity",
+   "amount",
+   "order",
+   "maths",
+   "sum",
+   "total"
+  ],
+  "categories": [
+   "numbers"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "glyph": "number"
+ },
+ {
+  "id": "tabler:square-number-6",
+  "set": "tabler",
+  "name": "square-number-6",
+  "label": "Square number 6",
+  "tags": [
+   "six",
+   "zero",
+   "number",
+   "digit",
+   "quantity",
+   "amount",
+   "order",
+   "maths",
+   "sum",
+   "total"
+  ],
+  "categories": [
+   "numbers"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "glyph": "number"
+ },
+ {
+  "id": "tabler:square-number-7",
+  "set": "tabler",
+  "name": "square-number-7",
+  "label": "Square number 7",
+  "tags": [
+   "seven",
+   "zero",
+   "number",
+   "digit",
+   "quantity",
+   "amount",
+   "order",
+   "maths",
+   "sum",
+   "total"
+  ],
+  "categories": [
+   "numbers"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "glyph": "number"
+ },
+ {
+  "id": "tabler:square-number-8",
+  "set": "tabler",
+  "name": "square-number-8",
+  "label": "Square number 8",
+  "tags": [
+   "eight",
+   "zero",
+   "number",
+   "digit",
+   "quantity",
+   "amount",
+   "order",
+   "maths",
+   "sum",
+   "total"
+  ],
+  "categories": [
+   "numbers"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "glyph": "number"
+ },
+ {
+  "id": "tabler:square-number-9",
+  "set": "tabler",
+  "name": "square-number-9",
+  "label": "Square number 9",
+  "tags": [
+   "nine",
+   "zero",
+   "number",
+   "digit",
+   "quantity",
+   "amount",
+   "order",
+   "maths",
+   "sum",
+   "total"
+  ],
+  "categories": [
+   "numbers"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT",
+  "glyph": "number"
+ },
+ {
+  "id": "tabler:square-off",
+  "set": "tabler",
+  "name": "square-off",
+  "label": "Square off",
+  "tags": [
+   "checkbox",
+   "box",
+   "shape",
+   "square",
+   "off",
+   "disabled",
+   "inactive",
+   "rectangular",
+   "geometry",
+   "form"
+  ],
+  "categories": [
+   "shapes"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:square-rounded-chevrons-right",
+  "set": "tabler",
+  "name": "square-rounded-chevrons-right",
+  "label": "Square rounded chevrons right",
+  "tags": [
+   "shape",
+   "direction",
+   "east",
+   "square",
+   "rounded",
+   "chevrons",
+   "right",
+   "navigation",
+   "flow",
+   "rectangular"
+  ],
+  "categories": [
+   "arrows"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:stethoscope",
+  "set": "tabler",
+  "name": "stethoscope",
+  "label": "Stethoscope",
+  "tags": [
+   "doctor",
+   "medical",
+   "physician",
+   "test",
+   "examination",
+   "health",
+   "illness",
+   "sickness",
+   "scrutiny",
+   "hospital"
+  ],
+  "categories": [
+   "health"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:sticker",
+  "set": "tabler",
+  "name": "sticker",
+  "label": "Sticker",
+  "tags": [
+   "label",
+   "stamp",
+   "adhesive",
+   "sticker"
+  ],
+  "categories": [
+   "design"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:tag-minus",
+  "set": "tabler",
+  "name": "tag-minus",
+  "label": "Tag minus",
+  "tags": [
+   "label",
+   "price",
+   "tag",
+   "minus",
+   "store",
+   "purchase",
+   "subtract",
+   "remove",
+   "less",
+   "decrease"
+  ],
+  "categories": [
+   "e-commerce"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:tent",
+  "set": "tabler",
+  "name": "tent",
+  "label": "Tent",
+  "tags": [
+   "camping",
+   "holiday",
+   "vacation",
+   "outdoor",
+   "survival",
+   "travel",
+   "adventure",
+   "tent",
+   "location",
+   "navigation"
+  ],
+  "categories": [
+   "map"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:tools",
+  "set": "tabler",
+  "name": "tools",
+  "label": "Tools",
+  "tags": [
+   "preferences",
+   "edit",
+   "settings",
+   "tools",
+   "creative",
+   "artistic",
+   "visual",
+   "aesthetic",
+   "style"
+  ],
+  "categories": [
+   "design"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:trash",
+  "set": "tabler",
+  "name": "trash",
+  "label": "Trash",
+  "tags": [
+   "garbage",
+   "delete",
+   "remove",
+   "bin",
+   "ash-bin",
+   "uninstall",
+   "dustbin",
+   "trash",
+   "control",
+   "operation"
+  ],
+  "categories": [
+   "system"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:tree",
+  "set": "tabler",
+  "name": "tree",
+  "label": "Tree",
+  "tags": [
+   "nature",
+   "greenery",
+   "park",
+   "leaf",
+   "trunk",
+   "stem",
+   "root",
+   "forest",
+   "garden",
+   "tree"
+  ],
+  "categories": [
+   "map"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:trolley",
+  "set": "tabler",
+  "name": "trolley",
+  "label": "Trolley",
+  "tags": [
+   "shopping",
+   "market",
+   "shop",
+   "delivery",
+   "trolley",
+   "transport",
+   "travel",
+   "vehicle",
+   "automobile",
+   "mobility"
+  ],
+  "categories": [
+   "vehicles"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:truck-delivery",
+  "set": "tabler",
+  "name": "truck-delivery",
+  "label": "Truck delivery",
+  "tags": [
+   "order",
+   "purchase",
+   "online",
+   "shop",
+   "store",
+   "e-commerce",
+   "lorry",
+   "truck",
+   "delivery",
+   "shopping"
+  ],
+  "categories": [
+   "e-commerce"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:umbrella-off",
+  "set": "tabler",
+  "name": "umbrella-off",
+  "label": "Umbrella off",
+  "tags": [
+   "rain",
+   "weather",
+   "storm",
+   "wet",
+   "autumn",
+   "fall",
+   "umbrella",
+   "off",
+   "disabled",
+   "inactive"
+  ],
+  "categories": [
+   "system"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:user",
+  "set": "tabler",
+  "name": "user",
+  "label": "User",
+  "tags": [
+   "person",
+   "account",
+   "user",
+   "control",
+   "operation",
+   "profile",
+   "member",
+   "function",
+   "interface",
+   "management"
+  ],
+  "categories": [
+   "system"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:user-star",
+  "set": "tabler",
+  "name": "user-star",
+  "label": "User star",
+  "tags": [
+   "favorite",
+   "highlight",
+   "shine",
+   "glow",
+   "stellar",
+   "bright",
+   "famous",
+   "prominent",
+   "recognize",
+   "feature"
+  ],
+  "categories": [
+   "system"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:users",
+  "set": "tabler",
+  "name": "users",
+  "label": "Users",
+  "tags": [
+   "people",
+   "persons",
+   "accounts",
+   "users",
+   "control",
+   "operation",
+   "function",
+   "interface",
+   "management"
+  ],
+  "categories": [
+   "system"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:vip-2",
+  "set": "tabler",
+  "name": "vip-2",
+  "label": "Vip 2",
+  "tags": [
+   "premium",
+   "exclusive",
+   "staff",
+   "expensive",
+   "vip",
+   "variant",
+   "alternate"
+  ],
+  "categories": [
+   "system"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:virtual-space",
+  "set": "tabler",
+  "name": "virtual-space",
+  "label": "Virtual space",
+  "tags": [
+   "virtual",
+   "space",
+   "spatial",
+   "3d",
+   "environment",
+   "room",
+   "metaverse",
+   "augmented",
+   "reality",
+   "dimension",
+   "immersive"
+  ],
+  "categories": [
+   "system"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:wash-machine",
+  "set": "tabler",
+  "name": "wash-machine",
+  "label": "Wash machine",
+  "tags": [
+   "bathroom",
+   "clean",
+   "cleaning",
+   "laundry",
+   "machine",
+   "clothes",
+   "wash",
+   "hardware",
+   "technology",
+   "electronic"
+  ],
+  "categories": [
+   "devices"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:world-share",
+  "set": "tabler",
+  "name": "world-share",
+  "label": "World share",
+  "tags": [
+   "distribute",
+   "broadcast",
+   "communicate",
+   "transfer",
+   "global",
+   "convey",
+   "transmit",
+   "spread",
+   "disseminate",
+   "exchange"
+  ],
+  "categories": [
+   "map"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ },
+ {
+  "id": "tabler:zodiac-virgo",
+  "set": "tabler",
+  "name": "zodiac-virgo",
+  "label": "Zodiac virgo",
+  "tags": [
+   "sign",
+   "horoscope",
+   "constellation",
+   "stars",
+   "zodiac",
+   "virgo",
+   "astrology",
+   "star"
+  ],
+  "categories": [
+   "zodiac"
+  ],
+  "variants": [
+   "outline"
+  ],
+  "license": "MIT"
+ }
+]
