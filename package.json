@@ -13,7 +13,8 @@
     "fixtures:vectors": "tsx --conditions=source packages/pipeline/scripts/make-reference-vectors.ts",
     "bench": "tsx --conditions=source packages/pipeline/scripts/bench.ts",
     "build": "npm run build -w iconmatch",
-    "readme": "tsx --conditions=source packages/pipeline/scripts/sync-readme.ts"
+    "readme": "tsx --conditions=source packages/pipeline/scripts/sync-readme.ts",
+    "sizes": "npm run build && tsx --conditions=source packages/pipeline/scripts/sizes.ts"
   },
   "license": "UNLICENSED",
   "type": "module",

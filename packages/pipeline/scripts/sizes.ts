@@ -1,0 +1,30 @@
+// `npm run sizes`: per-composition artifact sizes (spec §11.1 M5) and the npm pack check.
+import { homedir } from "node:os";
+import { join } from "node:path";
+import { fileURLToPath } from "node:url";
+import {
+  checkPackFiles,
+  compositionSizes,
+  formatCompositionSizes,
+  packFiles,
+} from "../src/pack-check.js";
+
+const root = fileURLToPath(new URL("../../../", import.meta.url));
+const modelDir = join(
+  process.env.ICONMATCH_MODEL_CACHE ??
+    join(homedir(), ".cache", "iconmatch", "models"),
+  "Xenova",
+  "bge-small-en-v1.5",
+);
+console.log(
+  formatCompositionSizes(
+    await compositionSizes(join(root, "packages/core/data"), modelDir),
+  ),
+);
+const pack = await packFiles(root);
+const problems = checkPackFiles(pack.paths);
+console.log(
+  `\nnpm pack: ${String(pack.paths.length)} files, ${(pack.size / 1e6).toFixed(2)} MB packed, ${(pack.unpackedSize / 1e6).toFixed(2)} MB unpacked`,
+);
+console.log(problems.length ? problems.join("\n") : "pack contents ok");
+if (problems.length) process.exitCode = 1;

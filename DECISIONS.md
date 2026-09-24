@@ -207,3 +207,16 @@ The published README is `packages/core/README.md` (in the package's `files`); th
 ## 2026-09-25 — CI workflow (written, not pushed)
 
 `.github/workflows/ci.yml` (ubuntu, Node 22): `npm ci`, `npm run check` (default tier: offline, no Ollama), then the §10 integration build `npx iconmatch-build all --config iconmatch.ci.config.ts --mode none` with the model cache (`~/.cache/iconmatch/models`) cached between runs, a check that `build-ci/package/manifest.json` and `vectors.bin` exist, and `npm run build && npm pack --dry-run -w iconmatch`. `iconmatch.ci.config.ts` wraps the Tabler adapter in the new `subsetAdapter(adapter, names)` (exported from `@iconmatch/pipeline/config`) using the names in `fixtures/tabler-200/catalog.json`, building into `build-ci/` (gitignored). New `--package-dir` CLI flag. Tested in-process with the fake embedder (package holds exactly the 200 fixture ids) and run for real locally: 200 icons, 0.26 MB packaged. The workflow runs `npm run check` (per §11.1 M5) plus the build; the slow tier isn't in CI because it needs the model and minutes of runtime. Not pushed: pushing is a human checkpoint.
+
+## 2026-09-25 — Pack contents and per-composition sizes
+
+`checkPackFiles()` holds an allowlist for the `iconmatch` tarball (`package.json`, `README.md`, `LICENSE`, `dist/**/*.{js,d.ts}` minus tests, the six `data/` artifacts, `data/licenses/*.txt`) plus required files. The default tier unit-tests it; a slow-tier test runs `npm run build` and the real `npm pack --dry-run --json --ignore-scripts -w iconmatch`. Real result: **48 files, 2.39 MB packed, 6.39 MB unpacked**, no sources or tests. `npm run sizes` (build, then `compositionSizes` + pack check) reports per composition, counting only the model files a deployment ships (config, tokenizer and the one ONNX file for its dtype; the local cache holds every variant I downloaded while checking the model card):
+
+| composition         | ships                                            | raw      | gzip    |
+| ------------------- | ------------------------------------------------ | -------- | ------- |
+| browser-client      | catalog + keyword index (+ per-icon SVG fetches) | 2.43 MB  | 0.40 MB |
+| server / local-full | all data                                         | 6.31 MB  | 2.36 MB |
+| server / local-full | + q8 model (ONNX + tokenizer)                    | 34.73 MB |         |
+| server / local-full | total                                            | 41.04 MB |         |
+
+These are pre-enrichment sizes; enrichment will grow the keyword index.

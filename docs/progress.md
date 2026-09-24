@@ -68,6 +68,6 @@ Checklist derived from `docs/plan.md` §11. The spec is the source of truth for 
 - [x] README with type-checked examples (incl. the query-expansion example from `examples/query-expansion/`) + Tabler MIT notice (§8) + brand trademark note (§6.1.3) + keyword-only quality note (§7.2.7)
 - [x] `matcher.attributions()` + `attributionRequired` per set in the manifest (§8 MUST; found while writing the README)
 - [x] CI: build with `--enrich none` on 200-icon subset (workflow file only; never pushed)
-- [ ] `npm pack --dry-run` contents check; per-composition size report
+- [x] `npm pack --dry-run` contents check; per-composition size report
 - [ ] Eval configs 6–7 (query expansion, int8 vs float32) and final results on the test split vs the acceptance bar — WAITS: eval/REVIEWED
 - [ ] Audit M5 (§11.1) — WAITS: eval/REVIEWED
