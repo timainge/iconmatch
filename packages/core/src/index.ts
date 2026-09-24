@@ -8,3 +8,18 @@ export type {
   SvgBody,
   VariantName,
 } from "./types.js";
+
+export {
+  buildKeywordIndex,
+  foldPlural,
+  KEYWORD_BOOSTS,
+  KEYWORD_FIELDS,
+  KEYWORD_INDEX_OPTIONS,
+  KEYWORD_SEARCH_OPTIONS,
+  keywordDocument,
+  parseKeywordIndex,
+  processTerm,
+  STOPWORDS,
+  tokenize,
+} from "./keyword-index.js";
+export type { KeywordDocument, KeywordEnrichment } from "./keyword-index.js";

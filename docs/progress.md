@@ -8,7 +8,7 @@ Checklist derived from `docs/plan.md` §11. The spec is the source of truth for 
 - [x] Adapter interface + types (§6.1)
 - [x] Tabler adapter: SVGs from `@iconify-json/tabler`, outline only (drop `-filled`), include + flag brands, mark letter/number glyphs, skip deprecated, log counts; locate tag/category source and record in DECISIONS.md
 - [x] `ingest` → `build/catalog.json` + `build/svgs.json`
-- [ ] `index` → MiniSearch keyword index with field boosts, fuzzy/prefix, stopwords, plural folding
+- [x] `index` → MiniSearch keyword index with field boosts, fuzzy/prefix, stopwords, plural folding
 - [ ] Core primitives: `DataSource` (fetch, memory, `iconmatch/node` fs/packaged), per-artifact loaders, subpath exports (§7.0)
 - [ ] Runtime: `createIconMatcher(parts)` with capability errors, keyword-only `search()`, `get()`, query normalisation
 - [ ] `renderSvg`/`svg()` output per §7.6 + snapshot tests
