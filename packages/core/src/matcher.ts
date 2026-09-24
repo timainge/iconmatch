@@ -1,5 +1,6 @@
 import type MiniSearch from "minisearch";
 import { IconMatchCapabilityError } from "./errors.js";
+import { letterFallback, type FallbackOptions } from "./fallback.js";
 import type { KeywordDocument } from "./keyword-index.js";
 import {
   createKeywordSearcher,
@@ -9,6 +10,9 @@ import {
 import { normaliseQuery } from "./query.js";
 import { renderSvg, type RenderSvgOptions, type SvgProvider } from "./svg.js";
 import type { CatalogEntry, IconMatch, VariantName } from "./types.js";
+import { resolveVariant } from "./variant.js";
+
+export { resolveVariant };
 
 /** Parts `createIconMatcher` composes (spec §7.0 rule 3). Only `catalog` is required. */
 export interface IconMatcherParts {
@@ -18,6 +22,13 @@ export interface IconMatcherParts {
   svgs?: SvgProvider;
   /** Include letter/number glyphs in ranked results. Default false (spec §7.2 step 8). */
   includeGlyphs?: boolean;
+  /**
+   * Below this top-result confidence, `best()` returns the lettered fallback.
+   * Default `DEFAULT_MIN_CONFIDENCE` (provisional until chosen from the eval).
+   */
+  minConfidence?: number;
+  fallbackShape?: FallbackOptions["fallbackShape"];
+  fallbackIcon?: string;
 }
 
 export interface SearchOptions {
@@ -40,6 +51,11 @@ export interface SvgOptions {
 
 export interface IconMatcher {
   search(query: string, options?: SearchOptions): Promise<IconMatch[]>;
+  /** Top match, or the lettered fallback when confidence is below `minConfidence` (spec §7.4). */
+  best(
+    query: string,
+    options?: Pick<SearchOptions, "variant">,
+  ): Promise<IconMatch>;
   get(id: string): CatalogEntry | undefined;
   /** Rendered `<svg>` string (spec §7.6). Needs the `svgs` part. */
   svg(id: string, options?: SvgOptions): Promise<string>;
@@ -47,14 +63,8 @@ export interface IconMatcher {
 
 export const DEFAULT_LIMIT = 10;
 
-/** Renderable variant: the requested one if present, else the icon's default. */
-export function resolveVariant(
-  entry: CatalogEntry,
-  requested?: VariantName,
-): VariantName {
-  if (requested && entry.variants.includes(requested)) return requested;
-  return entry.variants[0] ?? "outline";
-}
+/** Provisional; the default is chosen from the eval threshold sweep (spec §7.2 step 5, §9.3). */
+export const DEFAULT_MIN_CONFIDENCE = 0.5;
 
 function toMatch(
   entry: CatalogEntry,
@@ -114,6 +124,19 @@ export function createIconMatcher(
       return Promise.resolve(
         matches.sort(compareMatches(options.variant)).slice(0, limit),
       );
+    },
+    async best(query, options = {}) {
+      const [top] = await matcher.search(query, { ...options, limit: 1 });
+      if (
+        top &&
+        top.confidence >= (parts.minConfidence ?? DEFAULT_MIN_CONFIDENCE)
+      )
+        return top;
+      const fallback: FallbackOptions = {};
+      if (parts.fallbackShape) fallback.fallbackShape = parts.fallbackShape;
+      if (parts.fallbackIcon) fallback.fallbackIcon = parts.fallbackIcon;
+      if (options.variant) fallback.variant = options.variant;
+      return letterFallback(query, byId, fallback);
     },
     get: (id) => byId.get(id),
     async svg(id, options = {}) {

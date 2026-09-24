@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { IconMatchCapabilityError } from "./errors.js";
+import { letterFallback } from "./fallback.js";
 import { createIconMatcher } from "./matcher.js";
 import { renderSvg, svgsFromArtifact } from "./svg.js";
 import type { CatalogEntry, SvgArtifact, SvgBody } from "./types.js";
@@ -136,6 +137,16 @@ describe("matcher.svg()", () => {
         ).toMatchSnapshot("with title, size and strokeWidth");
       },
     );
+
+    it("lettered fallback glyph", async () => {
+      const m = await createIconMatcher(parts);
+      const fallback = letterFallback("Apples", catalog);
+      expect(fallback).toMatchObject({
+        id: "tabler:square-letter-a",
+        fallbackLetter: "a",
+      });
+      expect(await m.svg(fallback.id)).toMatchSnapshot();
+    });
 
     it("requested filled variant falls back to outline", async () => {
       const m = await createIconMatcher(parts);

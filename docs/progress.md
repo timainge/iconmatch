@@ -12,7 +12,7 @@ Checklist derived from `docs/plan.md` §11. The spec is the source of truth for 
 - [x] Core primitives: `DataSource` (fetch, memory, `iconmatch/node` fs/packaged), per-artifact loaders, subpath exports (§7.0)
 - [x] Runtime: `createIconMatcher(parts)` with capability errors, keyword-only `search()`, `get()`, query normalisation
 - [x] `renderSvg`/`svg()` output per §7.6 + snapshot tests
-- [ ] Lettered fallback: `letterFallback()`, verify `square-letter-*`/`square-number-*` ids, exclude glyphs from ranking (§7.4); add the lettered-glyph `svg()` snapshot (§10) to `svg.test.ts`
+- [x] Lettered fallback: `letterFallback()`, verify `square-letter-*`/`square-number-*` ids, exclude glyphs from ranking (§7.4); add the lettered-glyph `svg()` snapshot (§10) to `svg.test.ts`
 - [ ] Browser bundle test: default entry has no Node built-ins or transformers (esbuild)
 - [ ] Build CLI (`iconmatch-build`) + `iconmatch.config.ts`
 - [ ] 200-icon fixture subset committed for tests (§10)

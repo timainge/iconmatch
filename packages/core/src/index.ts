@@ -56,6 +56,7 @@ export {
   compareMatches,
   createIconMatcher,
   DEFAULT_LIMIT,
+  DEFAULT_MIN_CONFIDENCE,
   resolveVariant,
 } from "./matcher.js";
 export type {
@@ -63,3 +64,10 @@ export type {
   IconMatcherParts,
   SearchOptions,
 } from "./matcher.js";
+export {
+  DEFAULT_FALLBACK_ICON,
+  fallbackCharacter,
+  glyphId,
+  letterFallback,
+} from "./fallback.js";
+export type { FallbackOptions } from "./fallback.js";
