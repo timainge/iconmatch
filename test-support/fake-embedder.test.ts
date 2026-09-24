@@ -48,6 +48,13 @@ describe("createFakeEmbedder", () => {
     expect(cosine(q, near)).toBeGreaterThan(cosine(q, far));
   });
 
+  it("never returns a zero vector when token hashes cancel out", async () => {
+    // "amazon orders" cancels in 32 dims (same slot, opposite signs).
+    const v = await embedOne(createFakeEmbedder({ dims: 32 }), "amazon orders");
+    expect(v.every(Number.isFinite)).toBe(true);
+    expect(cosine(v, v)).toBeCloseTo(1, 5);
+  });
+
   it("gives token-less text a finite unit vector", async () => {
     const v = await embedOne(createFakeEmbedder({ dims: 8 }), "!!!");
     expect(v.every(Number.isFinite)).toBe(true);

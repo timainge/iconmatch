@@ -54,6 +54,8 @@ export function createVectorSearcher(vectors: VectorArtifact): VectorSearcher {
     for (let i = 0; i < dims; i++) qn += (query[i] ?? 0) ** 2;
     qn = Math.sqrt(qn);
     const out = new Float32Array(rows);
+    // A zero or non-finite query (e.g. NaN from a bad embedder) matches nothing.
+    if (!Number.isFinite(qn) || qn === 0) return out;
     for (let r = 0; r < rows; r++) {
       let dot = 0;
       const base = r * dims;

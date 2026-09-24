@@ -58,8 +58,11 @@ describe.each(["float32", "int8"] as const)(
       );
     });
 
-    it("returns 0 for a zero query", () => {
+    it("returns 0 for a zero or non-finite query", () => {
       expect(Array.from(searcher(q).similarities([0, 0, 0]))).toEqual([
+        0, 0, 0, 0,
+      ]);
+      expect(Array.from(searcher(q).similarities([Number.NaN, 1, 0]))).toEqual([
         0, 0, 0, 0,
       ]);
     });

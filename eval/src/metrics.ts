@@ -48,7 +48,8 @@ export function fallbackMetrics(
   let fp = 0;
   let fn = 0;
   for (const r of runs) {
-    const fellBack = r.ranked.length === 0 || r.topConfidence < threshold;
+    // Mirrors best(): it keeps the top result only if confidence >= threshold.
+    const fellBack = r.ranked.length === 0 || !(r.topConfidence >= threshold);
     const shouldFallBack = r.query.acceptable.length === 0;
     if (fellBack && shouldFallBack) tp++;
     else if (fellBack) fp++;

@@ -47,6 +47,11 @@ function embedOne(text: string, dims: number): Float32Array {
   let norm = 0;
   for (const x of v) norm += x * x;
   norm = Math.sqrt(norm);
+  // Opposite-signed hash collisions can cancel out; never return a zero vector.
+  if (norm === 0) {
+    v[fnv1a(text) % dims] = 1;
+    return v;
+  }
   for (let i = 0; i < dims; i++) v[i] = (v[i] ?? 0) / norm;
   return v;
 }

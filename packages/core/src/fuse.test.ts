@@ -40,5 +40,6 @@ describe("hybridConfidence", () => {
     expect(hybridConfidence(0.42, true)).toBeCloseTo(0.52, 12);
     expect(hybridConfidence(0.95, true)).toBe(1);
     expect(hybridConfidence(-0.2, false)).toBe(0);
+    expect(hybridConfidence(Number.NaN, true)).toBe(0);
   });
 });

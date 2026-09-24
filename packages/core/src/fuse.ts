@@ -48,5 +48,5 @@ export function hybridConfidence(
   keywordMatched: boolean,
 ): number {
   const c = cosine + (keywordMatched ? KEYWORD_CONFIDENCE_BUMP : 0);
-  return Math.min(1, Math.max(0, c));
+  return Number.isFinite(c) ? Math.min(1, Math.max(0, c)) : 0;
 }
