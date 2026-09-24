@@ -35,7 +35,7 @@ Checklist derived from `docs/plan.md` §11. The spec is the source of truth for 
 - [x] `npm run bench`: warm query + embedding latency vs §7.5 targets
 - [x] Audit M2 (§11.1): see `docs/audits/M2.md`
 - [x] AUDIT: test that keyword and vector rankings each contribute at most 50 ids to fusion (§7.2 steps 2–3)
-- [ ] AUDIT: (unblocked by the `package` stage; slow tier: build + package the real data first) Test `examples/server` `createServer()` with defaults (packagedSource + transformers embedder, unloaded until first search) (§7.7)
+- [x] AUDIT: (unblocked by the `package` stage; slow tier: build + package the real data first) Test `examples/server` `createServer()` with defaults (packagedSource + transformers embedder, unloaded until first search) (§7.7)
 
 ## M3: Eval harness
 

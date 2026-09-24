@@ -27,6 +27,8 @@ export interface ServerOptions {
 
 export interface IconServer {
   handle(request: Request): Promise<Response>;
+  /** The embedder in use (lazy: loads its model on the first text search). */
+  embedder: Embedder;
 }
 
 const json = (body: unknown, status = 200) =>
@@ -49,15 +51,16 @@ export async function createServer(
     loadSvgs(source, { manifest }),
   ]);
   const svgs = svgsFromArtifact(svgArtifact);
+  const embedder =
+    options.embedder ??
+    createTransformersEmbedder({ model: manifest.embedding?.model ?? "" });
   const matcher = await createIconMatcher({
     catalog,
     keywordIndex,
     vectors,
     svgs,
     manifest,
-    embedder:
-      options.embedder ??
-      createTransformersEmbedder({ model: manifest.embedding?.model ?? "" }),
+    embedder,
   });
 
   async function route(url: URL): Promise<Response> {
@@ -91,6 +94,7 @@ export async function createServer(
   }
 
   return {
+    embedder,
     async handle(request) {
       if (request.method !== "GET") return error(405, "Method not allowed");
       try {
