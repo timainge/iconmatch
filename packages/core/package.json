@@ -1,28 +1,51 @@
 {
   "name": "iconmatch",
-  "version": "0.0.0",
-  "type": "module",
-  "private": false,
+  "version": "0.1.0",
+  "description": "Semantic icon matching for user-defined categories: hybrid keyword + vector search over Tabler icons, with a lettered fallback.",
+  "keywords": [
+    "icons",
+    "tabler",
+    "semantic search",
+    "embeddings",
+    "icon picker",
+    "category icons"
+  ],
   "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=20"
+  },
   "exports": {
     ".": {
-      "types": "./src/index.ts",
-      "default": "./src/index.ts"
+      "source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     },
     "./node": {
-      "types": "./src/node.ts",
-      "default": "./src/node.ts"
+      "source": "./src/node.ts",
+      "types": "./dist/node.d.ts",
+      "default": "./dist/node.js"
     },
     "./embedder-transformers": {
-      "types": "./src/embedders/transformers.ts",
-      "default": "./src/embedders/transformers.ts"
-    }
+      "source": "./src/embedders/transformers.ts",
+      "types": "./dist/embedders/transformers.d.ts",
+      "default": "./dist/embedders/transformers.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "data",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "prepack": "npm run build"
   },
   "dependencies": {
     "minisearch": "^7.2.0"
-  },
-  "devDependencies": {
-    "@huggingface/transformers": "^4.3.0"
   },
   "peerDependencies": {
     "@huggingface/transformers": "^4.3.0"
@@ -31,5 +54,8 @@
     "@huggingface/transformers": {
       "optional": true
     }
+  },
+  "devDependencies": {
+    "@huggingface/transformers": "^4.3.0"
   }
 }

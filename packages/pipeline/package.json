@@ -8,7 +8,7 @@
     "@iconify-json/tabler": "^1.2.40",
     "@resvg/resvg-js": "^2.6.2",
     "@tabler/icons": "^3.48.0",
-    "iconmatch": "0.0.0",
+    "iconmatch": "^0.1.0",
     "tsx": "^4.23.15",
     "zod": "^4.6.5"
   },

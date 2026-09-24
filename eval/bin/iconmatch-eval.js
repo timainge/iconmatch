@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env -S node --conditions=source
 // Runs the TypeScript eval CLI via tsx.
 import process from "node:process";
 import { register } from "tsx/esm/api";

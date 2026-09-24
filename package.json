@@ -9,9 +9,10 @@
     "format:check": "prettier --check .",
     "check": "npm run typecheck && npm run lint && npm run format:check && npm test",
     "test:slow": "ICONMATCH_SLOW_TESTS=1 vitest run",
-    "fixtures": "tsx packages/pipeline/scripts/make-fixtures.ts",
-    "fixtures:vectors": "tsx packages/pipeline/scripts/make-reference-vectors.ts",
-    "bench": "tsx packages/pipeline/scripts/bench.ts"
+    "fixtures": "tsx --conditions=source packages/pipeline/scripts/make-fixtures.ts",
+    "fixtures:vectors": "tsx --conditions=source packages/pipeline/scripts/make-reference-vectors.ts",
+    "bench": "tsx --conditions=source packages/pipeline/scripts/bench.ts",
+    "build": "npm run build -w iconmatch"
   },
   "license": "UNLICENSED",
   "type": "module",

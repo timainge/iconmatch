@@ -9,7 +9,11 @@ const repo = fileURLToPath(new URL("../../../", import.meta.url));
 function sourceFiles(dir: string): string[] {
   return readdirSync(dir, { withFileTypes: true }).flatMap((d) => {
     const p = join(dir, d.name);
-    if (d.isDirectory()) return d.name === "node_modules" ? [] : sourceFiles(p);
+    // Generated output (node_modules, dist) isn't source.
+    if (d.isDirectory())
+      return d.name === "node_modules" || d.name === "dist"
+        ? []
+        : sourceFiles(p);
     return /\.ts$/.test(d.name) && !/\.test\.ts$/.test(d.name) ? [p] : [];
   });
 }

@@ -129,9 +129,13 @@ describe("iconmatch-build bin (end to end, real Tabler)", () => {
     const repo = fileURLToPath(new URL("../../../", import.meta.url));
     const run = promisify(execFile);
     for (const stage of ["ingest", "index"]) {
-      await run(process.execPath, [bin, stage, "--build-dir", dir], {
-        cwd: repo,
-      });
+      await run(
+        process.execPath,
+        ["--conditions=source", bin, stage, "--build-dir", dir],
+        {
+          cwd: repo,
+        },
+      );
     }
     const catalog = JSON.parse(
       await readFile(join(dir, "catalog.json"), "utf8"),

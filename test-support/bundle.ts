@@ -44,6 +44,7 @@ export async function bundleForBrowser(
     entryPoints: [entry],
     bundle: true,
     platform: "browser",
+    conditions: ["source"],
     format: "esm",
     write: false,
     metafile: true,
