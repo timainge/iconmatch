@@ -32,7 +32,7 @@ Checklist derived from `docs/plan.md` §11. The spec is the source of truth for 
 - [x] `examples/local-full`: fs source + local model, `localOnly`; slow-tier real-model test
 - [x] Determinism test (ingest + embed twice → identical hashes)
 - [x] Slow-tier reference-vector test for the real model (§11.1)
-- [ ] `npm run bench`: warm query + embedding latency vs §7.5 targets
+- [x] `npm run bench`: warm query + embedding latency vs §7.5 targets
 - [ ] Audit M2 (§11.1)
 
 ## M3: Eval harness
