@@ -41,3 +41,7 @@ Installed counts: 5,166 concepts (in range), **376 brands** (spec sanity range 4
 ## 2026-09-24 — Variant-suffix check only for non-default variants
 
 Tabler has real concepts `scale-outline` and `text-outline`, so `rawIconProblems()` only flags suffixes of non-default variants (e.g. `-filled`), which is how Iconify names variants.
+
+## 2026-09-24 — Ingest output format and labels
+
+`catalog.json` is a compact JSON array of `CatalogEntry` sorted by id; `svgs.json` is a compact object `id → variant → SvgBody` in the same order (core wire types `SvgBody`/`SvgArtifact`). Both are byte-stable for the same input (tested). Labels are sentence case of the name with hyphens as spaces; brand labels drop the `brand-` prefix ("Netflix", "Google drive") because the `brand` category and flag already carry that, and the label field gets the highest keyword boost. Any invariant violation or duplicate id fails ingest with every problem listed. Real Tabler 3.48.0 sizes: catalog 1.34 MB, svgs 1.76 MB (within §6.6 targets).

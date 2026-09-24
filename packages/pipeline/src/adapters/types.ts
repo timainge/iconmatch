@@ -1,4 +1,4 @@
-import type { VariantName } from "iconmatch";
+import type { SvgBody, VariantName } from "iconmatch";
 
 export type { VariantName };
 
@@ -18,11 +18,7 @@ export interface IconSetAdapter {
 }
 
 /** SVG inner markup plus its viewBox size. */
-export interface RawVariant {
-  body: string;
-  width: number;
-  height: number;
-}
+export type RawVariant = SvgBody;
 
 export interface RawIcon {
   /** Base concept name, kebab-case, WITHOUT variant suffix, e.g. "heart". */

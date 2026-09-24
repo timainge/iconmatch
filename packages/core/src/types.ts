@@ -31,6 +31,16 @@ export interface CatalogEntry {
   glyph?: "letter" | "number";
 }
 
+/** One variant's SVG inner markup plus its viewBox size. JSON-safe wire type. */
+export interface SvgBody {
+  body: string;
+  width: number;
+  height: number;
+}
+
+/** Contents of `svgs.json`: icon id, then variant (spec §6.2). */
+export type SvgArtifact = Record<string, Partial<Record<VariantName, SvgBody>>>;
+
 /** Turns text into vectors (spec §7.1). */
 export interface Embedder {
   /** Must match `manifest.embedding.model`, or `createIconMatcher` throws. */
