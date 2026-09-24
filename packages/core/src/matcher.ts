@@ -7,12 +7,15 @@ import {
   type KeywordHit,
 } from "./keyword.js";
 import { normaliseQuery } from "./query.js";
+import { renderSvg, type RenderSvgOptions, type SvgProvider } from "./svg.js";
 import type { CatalogEntry, IconMatch, VariantName } from "./types.js";
 
 /** Parts `createIconMatcher` composes (spec §7.0 rule 3). Only `catalog` is required. */
 export interface IconMatcherParts {
   catalog: CatalogEntry[];
   keywordIndex?: MiniSearch<KeywordDocument>;
+  /** SVG bodies, e.g. `svgsFromArtifact(await loadSvgs(src))` or a remote fetch. */
+  svgs?: SvgProvider;
   /** Include letter/number glyphs in ranked results. Default false (spec §7.2 step 8). */
   includeGlyphs?: boolean;
 }
@@ -24,9 +27,22 @@ export interface SearchOptions {
   variant?: VariantName;
 }
 
+export interface SvgOptions {
+  /** Default 24. */
+  size?: number;
+  /** Outline variants only. */
+  strokeWidth?: number;
+  /** Requested variant; falls back to the icon's default. */
+  variant?: VariantName;
+  /** Accessible name; otherwise the SVG is `aria-hidden`. */
+  title?: string;
+}
+
 export interface IconMatcher {
   search(query: string, options?: SearchOptions): Promise<IconMatch[]>;
   get(id: string): CatalogEntry | undefined;
+  /** Rendered `<svg>` string (spec §7.6). Needs the `svgs` part. */
+  svg(id: string, options?: SvgOptions): Promise<string>;
 }
 
 export const DEFAULT_LIMIT = 10;
@@ -100,6 +116,19 @@ export function createIconMatcher(
       );
     },
     get: (id) => byId.get(id),
+    async svg(id, options = {}) {
+      if (!parts.svgs) throw new IconMatchCapabilityError("svg", "svgs");
+      const entry = byId.get(id);
+      if (!entry) throw new Error(`Unknown icon id: ${id}`);
+      const variant = resolveVariant(entry, options.variant);
+      const body = await parts.svgs.get(id, variant);
+      const render: RenderSvgOptions = { variant };
+      if (options.size !== undefined) render.size = options.size;
+      if (options.strokeWidth !== undefined)
+        render.strokeWidth = options.strokeWidth;
+      if (options.title !== undefined) render.title = options.title;
+      return renderSvg(body, render);
+    },
   };
   return Promise.resolve(matcher);
 }
