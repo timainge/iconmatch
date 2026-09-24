@@ -17,10 +17,17 @@ export default tseslint.config(
   ...tseslint.configs.strictTypeChecked,
   {
     languageOptions: {
-      parserOptions: { projectService: { allowDefaultProject: ["*.js"] } },
+      parserOptions: {
+        projectService: {
+          allowDefaultProject: ["*.js", "packages/*/bin/*.js"],
+        },
+      },
     },
   },
-  { files: ["*.js"], ...tseslint.configs.disableTypeChecked },
+  {
+    files: ["*.js", "packages/*/bin/*.js"],
+    ...tseslint.configs.disableTypeChecked,
+  },
   // Core must stay browser-safe and light (spec §7.0, §10): Node built-ins only in
   // *.node.ts loaders; transformers.js only in the embedders/ subpath.
   {

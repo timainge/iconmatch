@@ -32,11 +32,11 @@ SVGs: `@iconify-json/tabler` 1.2.40 (`icons.json`, Iconify set version 3.48.0 pe
 
 ## 2026-09-24 — Tabler counts vs §11.1 ranges
 
-Installed counts: 5,166 concepts (in range), **376 brands** (spec sanity range 400–1,000; below it, so recorded rather than forced; the adapter test uses 350–1,000), 0 concepts with zero tags, 1,088 `-filled` dropped (34 have no outline base, e.g. `circle-0-filled`), 14 hidden skipped, 300 glyphs.
+Installed counts: 5,166 concepts (in range), **376 brands** (spec sanity range 400–1,000; below it, so recorded rather than forced; the adapter test uses 350–1,000), 0 concepts with zero tags, 1,088 `-filled` dropped (34 have no outline base, e.g. `circle-0-filled`), 14 hidden skipped, 298 glyphs.
 
 ## 2026-09-24 — Glyph marking and fallback ids
 
-`glyph` is set for single-character letter/number glyphs: `letter-<a-z>` / `number-<0-9>`, optionally `-small`, bare or framed by circle, circle-dashed, circle-dotted, hexagon, pentagon, rosette, square or square-rounded (300 icons). Multi-digit (`number-10`), `number-123`, `letter-case`, `scan-letter-*` stay rankable. Verified present in 3.48.0: `square-letter-a…z`, `square-number-0…9`, `circle-letter-a…z`, `circle-number-0…9`, and `category` (default `fallbackIcon`).
+`glyph` is set for single-character letter/number glyphs: `letter-<a-z>` / `number-<0-9>`, optionally `-small`, bare or framed by circle, circle-dashed, circle-dotted, hexagon, pentagon, rosette, square or square-rounded (298 icons). Multi-digit (`number-10`), `number-123`, `letter-case`, `scan-letter-*` stay rankable. Verified present in 3.48.0: `square-letter-a…z`, `square-number-0…9`, `circle-letter-a…z`, `circle-number-0…9`, and `category` (default `fallbackIcon`).
 
 ## 2026-09-24 — Variant-suffix check only for non-default variants
 
@@ -73,3 +73,7 @@ Every Tabler outline body carries `stroke-width="2"` inline (on a `<path>` or a 
 ## 2026-09-24 — Process: record edits and commit in separate tool calls
 
 The guard hook runs `npm run check` before the whole Bash command. When a command both appends to a file and commits, the check runs before the append. That let `2a6178d` land with a Prettier issue in `DECISIONS.md` (`*first*` vs `_first_`), fixed in the next commit. From now on, edits and `git commit` go in separate tool calls. The hook itself is unchanged; a human may want it to re-check staged content (e.g. a git pre-commit hook).
+
+## 2026-09-24 — Build CLI runs through tsx
+
+Workspace sources are TypeScript with `.js` import specifiers and `exports` pointing at `src/*.ts`, which Node's built-in type stripping can't resolve, so `packages/pipeline/bin/iconmatch-build.js` registers tsx 4.23.15 (`tsx/esm/api`) and imports `src/cli.ts`. That also lets the root `iconmatch.config.ts` be TypeScript. tsx is a runtime dependency of the private pipeline package. Config (`defineConfig`, `resolveConfig` in `packages/pipeline/src/config.ts`, exported as `@iconmatch/pipeline/config`) covers sets, `buildDir`, `packageDir`, enrichment (mode none by default, provider, base URL, models, concurrency, cache file) and embedding (model, quantisation). Relative paths resolve against the config file's directory; `--build-dir` overrides relative to cwd. Stages not built yet (`enrich`, `embed`, `package`) exit 1 when run directly, and `all` logs them as skipped. Their items replace that when they land. ESLint now treats `packages/*/bin/*.js` like root `*.js` (untyped); no rule weakened. The glyph count in earlier entries is corrected to 298 (the first estimate counted two `scan-letter-*` icons the adapter excludes).

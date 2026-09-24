@@ -7,6 +7,16 @@
   "dependencies": {
     "@iconify-json/tabler": "^1.2.40",
     "@tabler/icons": "^3.48.0",
-    "iconmatch": "0.0.0"
+    "iconmatch": "0.0.0",
+    "tsx": "^4.23.15"
+  },
+  "bin": {
+    "iconmatch-build": "bin/iconmatch-build.js"
+  },
+  "exports": {
+    "./config": {
+      "types": "./src/config.ts",
+      "default": "./src/config.ts"
+    }
   }
 }
