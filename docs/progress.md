@@ -16,7 +16,8 @@ Checklist derived from `docs/plan.md` §11. The spec is the source of truth for 
 - [x] Browser bundle test: default entry has no Node built-ins or transformers (esbuild)
 - [x] Build CLI (`iconmatch-build`) + `iconmatch.config.ts`
 - [x] 200-icon fixture subset committed for tests (§10)
-- [ ] Audit M1 (§11.1)
+- [x] Audit M1 (§11.1): see `docs/audits/M1.md`
+- [ ] AUDIT: test that wire types (`IconMatch` incl. fallbacks, `CatalogEntry`, `SvgBody`) survive a JSON round-trip and `renderSvg` output is unchanged (§7.0 rule 4)
 
 ## M2: Vectors + hybrid
 
@@ -57,7 +58,7 @@ Checklist derived from `docs/plan.md` §11. The spec is the source of truth for 
 
 - [ ] Query expansion hook + README example (no eval)
 - [ ] `package` stage: manifest, licenses, size report
-- [ ] README with examples + Tabler MIT notice + brand trademark note; publish-ready `package.json` with subpath exports
+- [ ] README with examples + Tabler MIT notice + brand trademark note (§6.1.3) + note that keyword-only quality is lower (§7.2.7); publish-ready `package.json` with subpath exports
 - [ ] CI: build with `--enrich none` on 200-icon subset (workflow file only; never pushed)
 - [ ] `npm pack --dry-run` contents check; per-composition size report
 - [ ] Eval configs 6–7 (query expansion, int8 vs float32) and final results on the test split vs the acceptance bar — WAITS: eval/REVIEWED
