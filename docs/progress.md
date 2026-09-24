@@ -17,7 +17,7 @@ Checklist derived from `docs/plan.md` §11. The spec is the source of truth for 
 - [x] Build CLI (`iconmatch-build`) + `iconmatch.config.ts`
 - [x] 200-icon fixture subset committed for tests (§10)
 - [x] Audit M1 (§11.1): see `docs/audits/M1.md`
-- [ ] AUDIT: test that wire types (`IconMatch` incl. fallbacks, `CatalogEntry`, `SvgBody`) survive a JSON round-trip and `renderSvg` output is unchanged (§7.0 rule 4)
+- [x] AUDIT: test that wire types (`IconMatch` incl. fallbacks, `CatalogEntry`, `SvgBody`) survive a JSON round-trip and `renderSvg` output is unchanged (§7.0 rule 4)
 
 ## M2: Vectors + hybrid
 
