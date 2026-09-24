@@ -220,3 +220,7 @@ The published README is `packages/core/README.md` (in the package's `files`); th
 | server / local-full | total                                            | 41.04 MB |         |
 
 These are pre-enrichment sizes; enrichment will grow the keyword index.
+
+## 2026-09-25 — Full-catalog text enrichment run
+
+`iconmatch-build enrich --mode text` (qwen2.5:7b-instruct via Ollama, concurrency 2, prompt `text-v1`): **4,868 / 4,868 eligible icons enriched, 0 failures** (no validation give-ups, no provider errors) in 3 h 26 min wall-clock (≈ 2.5 s/icon, with test runs competing for the machine). Cache: `packages/pipeline/cache/enrichment.jsonl` (4,868 lines, gitignored); `build/enrichments.json` is 1.1 MB. Spot checks: pig-money → savings, piggy bank; tip-jar → donation, charity; receipt-tax → tax, vat, tax return; shield → security, protection, safety (no "insurance", the spec's own example); rocking-chair → relaxation, nursery (no "retirement"). 104 descriptions mention a colour despite outline icons, the `text-v1` weakness noted earlier. **`build/` was not re-embedded or re-indexed with enrichment**: the committed eval baseline (config 3, no enrichment) must stay reproducible, and measuring enrichment is eval config 4, a `WAITS: eval/REVIEWED` item, as are prompt revisions judged on eval numbers.

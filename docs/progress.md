@@ -53,7 +53,7 @@ Checklist derived from `docs/plan.md` §11. The spec is the source of truth for 
 - [x] Text enrichment (a): versioned prompts + few-shots, zod schema + JSON schema, `inputHash`, single-icon enrichment with validation and up to 2 retries (§6.3)
 - [x] Text enrichment (b): `pipeline/cache/enrichment.jsonl` cache by `inputHash`, runner with `--limit`, concurrency (default 2), exponential backoff on provider errors, `enrich` CLI stage feeding index + embed (§6.3)
 - [x] Local LLM runtime: install/start Ollama (or LM Studio), pull models, record timings in DECISIONS.md; replace the synthetic `fixtures/ollama/*.json` with real recordings
-- [ ] Run text enrichment over full catalog
+- [x] Run text enrichment over full catalog
 - [x] Vision enrichment (a): resvg 256×256 render, `sparse` rule (readability + < 3 tags), vision prompt + `enrichVision` (§6.3)
 - [x] Vision enrichment (b): `--mode vision` in runner/stage (`visionFor: sparse|all`, vision model for selected icons, text for the rest)
 - [ ] Vision enrichment (c): after the text run finishes, time `qwen2.5vl:7b`, record a real vision fixture, and run `enrich --mode vision` over the 655 sparse icons
