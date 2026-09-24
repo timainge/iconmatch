@@ -6,6 +6,7 @@ import {
   currentEnrichments,
   runEnrichment,
   type EnrichmentRunStats,
+  type EnrichmentSelection,
   type RetryOptions,
 } from "./runner.js";
 import type { ModelEnrichment } from "./schema.js";
@@ -23,8 +24,11 @@ export type BuildEnrichments = Record<string, ModelEnrichment>;
 export async function runEnrichStage(
   buildDir: string,
   options: {
-    mode: "none" | "text";
+    mode: "none" | "text" | "vision";
     provider?: EnrichmentProvider;
+    /** Required for mode "vision". */
+    visionProvider?: EnrichmentProvider;
+    visionFor?: "sparse" | "all";
     cacheFile: string;
     limit?: number;
     concurrency?: number;
@@ -38,7 +42,22 @@ export async function runEnrichStage(
     await writeFile(out, "{}\n");
     return { written: 0 };
   }
-  if (!options.provider) throw new Error("enrich --mode text needs a provider");
+  if (!options.provider) {
+    throw new Error(`enrich --mode ${options.mode} needs a text provider`);
+  }
+  if (options.mode === "vision" && !options.visionProvider) {
+    throw new Error("enrich --mode vision needs a vision provider");
+  }
+  const selection: EnrichmentSelection =
+    options.mode === "vision" && options.visionProvider
+      ? {
+          textModel: options.provider.model,
+          vision: {
+            model: options.visionProvider.model,
+            visionFor: options.visionFor ?? "sparse",
+          },
+        }
+      : { textModel: options.provider.model };
   const catalog = JSON.parse(
     await readFile(join(buildDir, "catalog.json"), "utf8"),
   ) as CatalogEntry[];
@@ -49,6 +68,11 @@ export async function runEnrichStage(
     catalog,
     svgs,
     provider: options.provider,
+    ...(selection.vision &&
+      options.visionProvider && {
+        visionProvider: options.visionProvider,
+        visionFor: selection.vision.visionFor,
+      }),
     cacheFile: options.cacheFile,
     ...(options.limit !== undefined && { limit: options.limit }),
     ...(options.concurrency !== undefined && {
@@ -62,7 +86,7 @@ export async function runEnrichStage(
     catalog,
     svgs,
     options.cacheFile,
-    options.provider.model,
+    selection,
   );
   const map: BuildEnrichments = {};
   for (const [id, e] of [...current].sort(([a], [b]) => (a < b ? -1 : 1))) {

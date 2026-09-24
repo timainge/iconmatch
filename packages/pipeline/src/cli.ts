@@ -22,7 +22,7 @@ const USAGE = `Usage: iconmatch-build <stage> [options]
 
 Stages:
   ingest    icon sets -> build/catalog.json + build/svgs.json
-  enrich    LLM enrichment (--mode text|none; vision not yet) -> build/enrichments.json
+  enrich    LLM enrichment (--mode none|text|vision) -> build/enrichments.json
   embed     build/catalog.json -> build/vectors.bin + vector-ids.json
   index     build/catalog.json -> build/keyword-index.json
   package   (not implemented yet: M5)
@@ -45,7 +45,10 @@ export interface CliIo {
   /** Test seam: replaces the transformers.js embedder for `embed`. */
   createEmbedder?: (config: ResolvedConfig) => Embedder;
   /** Test seam: replaces the configured enrichment provider. */
-  createProvider?: (config: ResolvedConfig) => EnrichmentProvider;
+  createProvider?: (
+    config: ResolvedConfig,
+    model: string,
+  ) => EnrichmentProvider;
 }
 
 interface StageOptions {
@@ -98,19 +101,21 @@ const STAGES = {
   },
   async enrich(config: ResolvedConfig, io: CliIo, opts: StageOptions) {
     const mode = config.enrich.mode;
-    if (mode === "vision")
-      throw new Error("enrich --mode vision is not implemented yet");
+    const make = (model: string) =>
+      io.createProvider?.(config, model) ??
+      createProvider({
+        provider: config.enrich.provider,
+        baseUrl: config.enrich.baseUrl,
+        model,
+      });
     const provider =
-      mode === "text"
-        ? (io.createProvider?.(config) ??
-          createProvider({
-            provider: config.enrich.provider,
-            baseUrl: config.enrich.baseUrl,
-            model: config.enrich.textModel,
-          }))
-        : undefined;
+      mode === "none" ? undefined : make(config.enrich.textModel);
+    const visionProvider =
+      mode === "vision" ? make(config.enrich.visionModel) : undefined;
     const { written, stats } = await runEnrichStage(config.buildDir, {
       mode,
+      visionFor: config.enrich.visionFor,
+      ...(visionProvider && { visionProvider }),
       cacheFile: config.enrich.cacheFile,
       concurrency: config.enrich.concurrency,
       log: io.log,
@@ -119,7 +124,7 @@ const STAGES = {
     });
     if (stats) {
       io.log(
-        `enrich: ${String(stats.enriched)} new, ${String(stats.cached)} cached, ${String(stats.failed.length)} failed, ${String(stats.skippedByLimit)} left by --limit`,
+        `enrich: ${String(stats.enriched)} new (${String(stats.vision)} vision), ${String(stats.cached)} cached, ${String(stats.failed.length)} failed, ${String(stats.skippedByLimit)} left by --limit`,
       );
       for (const f of stats.failed.slice(0, 5))
         io.error(`  ${f.id}: ${f.error}`);

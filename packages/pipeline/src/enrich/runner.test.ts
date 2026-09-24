@@ -313,3 +313,105 @@ it("currentEnrichments returns only entries matching the current inputs and mode
     (await currentEnrichments(catalog, svgs, cacheFile, "other-model")).size,
   ).toBe(0);
 });
+
+describe("vision mode", () => {
+  const sparseCatalog = [
+    entry("heart", { tags: ["love", "like", "emotion"] }),
+    entry("a-b-2", { tags: ["test", "ab", "compare"] }),
+  ];
+  const sparseSvgs: SvgArtifact = Object.fromEntries(
+    sparseCatalog.map((e) => [
+      e.id,
+      { outline: { body: `<path d="${e.name}"/>`, width: 24, height: 24 } },
+    ]),
+  );
+
+  async function providers() {
+    const ok = await loadRecording("ollama-chat-text.json");
+    const vis = await loadRecording("ollama-chat-vision.json");
+    const t = replayFetch([ok, ok, ok]);
+    const v = replayFetch([vis, vis, vis]);
+    return {
+      t,
+      v,
+      provider: createOllamaProvider({
+        baseUrl: "http://x",
+        model: "qwen2.5:7b-instruct",
+        fetch: t.fetch,
+      }),
+      visionProvider: createOllamaProvider({
+        baseUrl: "http://x",
+        model: "qwen2.5vl:7b",
+        fetch: v.fetch,
+      }),
+    };
+  }
+
+  it("visionFor sparse: unreadable names go to the vision model with a rendered PNG", async () => {
+    const p = await providers();
+    const rendered: string[] = [];
+    const stats = await runEnrichment({
+      catalog: sparseCatalog,
+      svgs: sparseSvgs,
+      provider: p.provider,
+      visionProvider: p.visionProvider,
+      cacheFile,
+      render: (svg) => {
+        rendered.push(svg.body);
+        return Buffer.from("PNG");
+      },
+    });
+    expect(stats).toMatchObject({ enriched: 2, vision: 1 });
+    expect(rendered).toEqual(['<path d="a-b-2"/>']);
+    expect(p.t.sent).toHaveLength(1);
+    expect(p.v.sent).toHaveLength(1);
+    const images = (
+      p.v.sent[0]?.body as { messages: { images?: string[] }[] }
+    ).messages.at(-1)?.images;
+    expect(images).toEqual([Buffer.from("PNG").toString("base64")]);
+    const current = await currentEnrichments(
+      sparseCatalog,
+      sparseSvgs,
+      cacheFile,
+      {
+        textModel: "qwen2.5:7b-instruct",
+        vision: { model: "qwen2.5vl:7b", visionFor: "sparse" },
+      },
+    );
+    expect(current.get("tabler:a-b-2")?.mode).toBe("vision");
+    expect(current.get("tabler:heart")?.mode).toBe("text");
+  });
+
+  it("visionFor all sends every icon to the vision model; text cache entries stay reusable", async () => {
+    const first = await providers();
+    await runEnrichment({
+      catalog: sparseCatalog,
+      svgs: sparseSvgs,
+      provider: first.provider,
+      cacheFile,
+    });
+    const p = await providers();
+    const stats = await runEnrichment({
+      catalog: sparseCatalog,
+      svgs: sparseSvgs,
+      provider: p.provider,
+      visionProvider: p.visionProvider,
+      visionFor: "all",
+      cacheFile,
+      render: () => Buffer.from("PNG"),
+    });
+    expect(stats).toMatchObject({ cached: 0, enriched: 2, vision: 2 });
+    expect(p.t.sent).toHaveLength(0);
+    // Text-only selection still finds the earlier text entries.
+    expect(
+      (
+        await currentEnrichments(
+          sparseCatalog,
+          sparseSvgs,
+          cacheFile,
+          "qwen2.5:7b-instruct",
+        )
+      ).size,
+    ).toBe(2);
+  });
+});

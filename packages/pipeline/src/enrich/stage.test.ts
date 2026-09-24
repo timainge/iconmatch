@@ -57,7 +57,9 @@ afterEach(async () => {
 it("enrich (text) feeds concepts into the keyword index and the embedding text", async () => {
   expect(await main(["ingest"], io)).toBe(0);
   expect(await main(["enrich", "--limit", "5"], io)).toBe(0);
-  expect(out).toContain("enrich: 1 new, 0 cached, 0 failed, 0 left by --limit");
+  expect(out).toContain(
+    "enrich: 1 new (0 vision), 0 cached, 0 failed, 0 left by --limit",
+  );
   const enrichments = JSON.parse(
     await readFile(join(dir, "out", "enrichments.json"), "utf8"),
   ) as Record<string, { concepts: string[] }>;
@@ -96,9 +98,34 @@ it("enrich --mode none writes an empty map so later stages ignore stale enrichme
   );
 });
 
-it("rejects vision (not yet) and bad flags", async () => {
+it("--mode vision sends sparse icons to the vision model, the rest to the text model", async () => {
+  // demo:heart has 1 tag, so it is sparse and goes to the vision model.
+  const vision = await loadRecording("ollama-chat-vision.json");
+  const text = await loadRecording("ollama-chat-text.json");
+  const models: string[] = [];
+  io.createProvider = (_config, model) => {
+    models.push(model);
+    const r = replayFetch([model.includes("vl") ? vision : text]);
+    return createOllamaProvider({ baseUrl: "http://x", model, fetch: r.fetch });
+  };
   expect(await main(["ingest"], io)).toBe(0);
-  expect(await main(["enrich", "--mode", "vision"], io)).toBe(1);
+  expect(await main(["enrich", "--mode", "vision"], io)).toBe(0);
+  expect(models).toEqual(["qwen2.5:7b-instruct", "qwen2.5vl:7b"]);
+  expect(out).toContain(
+    "enrich: 1 new (1 vision), 0 cached, 0 failed, 0 left by --limit",
+  );
+  const line = (
+    await readFile(join(dir, "cache", "enrichment.jsonl"), "utf8")
+  ).trim();
+  expect(JSON.parse(line)).toMatchObject({
+    id: "demo:heart",
+    mode: "vision",
+    model: "qwen2.5vl:7b",
+  });
+});
+
+it("rejects bad flags", async () => {
+  expect(await main(["ingest"], io)).toBe(0);
   expect(await main(["enrich", "--mode", "bogus"], io)).toBe(1);
   expect(await main(["enrich", "--limit", "abc"], io)).toBe(1);
 });

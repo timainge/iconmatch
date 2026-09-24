@@ -55,7 +55,8 @@ Checklist derived from `docs/plan.md` §11. The spec is the source of truth for 
 - [x] Local LLM runtime: install/start Ollama (or LM Studio), pull models, record timings in DECISIONS.md; replace the synthetic `fixtures/ollama/*.json` with real recordings
 - [ ] Run text enrichment over full catalog
 - [x] Vision enrichment (a): resvg 256×256 render, `sparse` rule (readability + < 3 tags), vision prompt + `enrichVision` (§6.3)
-- [ ] Vision enrichment (b): `--mode vision` in runner/stage (`visionFor: sparse|all`, vision model for selected icons, text for the rest); `qwen2.5vl:7b` is pulled, so time it, record a real vision fixture and run over the sparse icons after the text run finishes
+- [x] Vision enrichment (b): `--mode vision` in runner/stage (`visionFor: sparse|all`, vision model for selected icons, text for the rest)
+- [ ] Vision enrichment (c): after the text run finishes, time `qwen2.5vl:7b`, record a real vision fixture, and run `enrich --mode vision` over the 655 sparse icons
 - [ ] Eval configs 4–5 with deltas against baseline — WAITS: eval/REVIEWED
 - [ ] Audit M4 (§11.1) — WAITS: eval/REVIEWED
 

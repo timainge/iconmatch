@@ -1,9 +1,11 @@
-import type { CatalogEntry, SvgArtifact } from "iconmatch";
+import type { CatalogEntry, SvgArtifact, SvgBody } from "iconmatch";
+import { renderPng } from "../render.js";
 import { appendEnrichment, readEnrichmentCache } from "./cache.js";
-import { PROMPT_VERSION } from "./prompts.js";
+import { PROMPT_VERSION, VISION_PROMPT_VERSION } from "./prompts.js";
 import { ProviderError, type EnrichmentProvider } from "./provider.js";
 import type { Enrichment } from "./schema.js";
 import { enrichText, inputHash } from "./text.js";
+import { enrichVision, needsVision } from "./vision.js";
 
 export interface RetryOptions {
   /** Attempts per icon for retryable provider errors. Default 5. */
@@ -12,10 +14,21 @@ export interface RetryOptions {
   baseDelayMs?: number;
 }
 
+/** Which enrichment each icon should have: text for all, or vision for some (spec §6.3). */
+export interface EnrichmentSelection {
+  textModel: string;
+  vision?: { model: string; visionFor: "sparse" | "all" };
+}
+
 export interface RunEnrichmentOptions {
   catalog: CatalogEntry[];
   svgs: SvgArtifact;
+  /** Text model provider. */
   provider: EnrichmentProvider;
+  /** Vision model provider; enables vision mode. */
+  visionProvider?: EnrichmentProvider;
+  /** With a vision provider: "sparse" (default) or "all". */
+  visionFor?: "sparse" | "all";
   cacheFile: string;
   /** Process at most N uncached icons (smoke tests). */
   limit?: number;
@@ -23,6 +36,7 @@ export interface RunEnrichmentOptions {
   concurrency?: number;
   retry?: RetryOptions;
   sleep?: (ms: number) => Promise<void>;
+  render?: (svg: SvgBody) => Buffer;
   log?: (message: string) => void;
 }
 
@@ -30,6 +44,8 @@ export interface EnrichmentRunStats {
   eligible: number;
   cached: number;
   enriched: number;
+  /** Of `enriched`, how many used the vision model. */
+  vision: number;
   failed: { id: string; error: string }[];
   skippedByLimit: number;
 }
@@ -39,19 +55,41 @@ export function eligibleForEnrichment(entry: CatalogEntry): boolean {
   return entry.glyph === undefined;
 }
 
+function defaultSvg(
+  entry: CatalogEntry,
+  svgs: SvgArtifact,
+): SvgBody | undefined {
+  return svgs[entry.id]?.[entry.variants[0] ?? "outline"];
+}
+
 export function hashFor(
   entry: CatalogEntry,
   svgs: SvgArtifact,
   model: string,
   promptVersion = PROMPT_VERSION,
 ): string {
-  const variant = entry.variants[0] ?? "outline";
   return inputHash(
-    svgs[entry.id]?.[variant]?.body ?? "",
+    defaultSvg(entry, svgs)?.body ?? "",
     entry.tags,
     promptVersion,
     model,
   );
+}
+
+/** Text or vision for this icon, and the cache key that goes with it. */
+export function planFor(
+  entry: CatalogEntry,
+  svgs: SvgArtifact,
+  selection: EnrichmentSelection,
+): { mode: "text" | "vision"; hash: string } {
+  const v = selection.vision;
+  if (v && (v.visionFor === "all" || needsVision(entry))) {
+    return {
+      mode: "vision",
+      hash: hashFor(entry, svgs, v.model, VISION_PROMPT_VERSION),
+    };
+  }
+  return { mode: "text", hash: hashFor(entry, svgs, selection.textModel) };
 }
 
 /** Calls `fn`, retrying retryable ProviderErrors with exponential backoff. */
@@ -73,8 +111,25 @@ export async function withBackoff<T>(
   }
 }
 
+function selectionOf(
+  options: Pick<
+    RunEnrichmentOptions,
+    "provider" | "visionProvider" | "visionFor"
+  >,
+): EnrichmentSelection {
+  return options.visionProvider
+    ? {
+        textModel: options.provider.model,
+        vision: {
+          model: options.visionProvider.model,
+          visionFor: options.visionFor ?? "sparse",
+        },
+      }
+    : { textModel: options.provider.model };
+}
+
 /**
- * Text-enriches every eligible icon not already in the cache (by inputHash),
+ * Enriches every eligible icon whose planned cache entry is missing,
  * appending each result as it arrives. Failures are collected, not fatal.
  */
 export async function runEnrichment(
@@ -82,17 +137,20 @@ export async function runEnrichment(
 ): Promise<EnrichmentRunStats> {
   const sleep =
     options.sleep ?? ((ms) => new Promise<void>((r) => setTimeout(r, ms)));
+  const render = options.render ?? ((svg: SvgBody) => renderPng(svg));
+  const selection = selectionOf(options);
   const { byHash } = await readEnrichmentCache(options.cacheFile);
   const eligible = options.catalog.filter(eligibleForEnrichment);
-  const todo = eligible.filter(
-    (e) => !byHash.has(hashFor(e, options.svgs, options.provider.model)),
-  );
+  const todo = eligible
+    .map((entry) => ({ entry, plan: planFor(entry, options.svgs, selection) }))
+    .filter((t) => !byHash.has(t.plan.hash));
   const batch =
     options.limit === undefined ? todo : todo.slice(0, options.limit);
   const stats: EnrichmentRunStats = {
     eligible: eligible.length,
     cached: eligible.length - todo.length,
     enriched: 0,
+    vision: 0,
     failed: [],
     skippedByLimit: todo.length - batch.length,
   };
@@ -100,18 +158,25 @@ export async function runEnrichment(
   let next = 0;
   const worker = async () => {
     for (let i = next++; i < batch.length; i = next++) {
-      const entry = batch[i];
-      if (!entry) continue;
-      const body =
-        options.svgs[entry.id]?.[entry.variants[0] ?? "outline"]?.body ?? "";
+      const item = batch[i];
+      if (!item) continue;
+      const { entry, plan } = item;
+      const svg = defaultSvg(entry, options.svgs);
       try {
-        const e = await withBackoff(
-          () => enrichText(options.provider, entry, body),
-          options.retry ?? {},
-          sleep,
-        );
+        const run =
+          plan.mode === "vision" && options.visionProvider && svg
+            ? () =>
+                enrichVision(
+                  options.visionProvider as EnrichmentProvider,
+                  entry,
+                  svg.body,
+                  render(svg),
+                )
+            : () => enrichText(options.provider, entry, svg?.body ?? "");
+        const e = await withBackoff(run, options.retry ?? {}, sleep);
         await appendEnrichment(options.cacheFile, e);
         stats.enriched++;
+        if (e.mode === "vision") stats.vision++;
       } catch (err) {
         stats.failed.push({ id: entry.id, error: (err as Error).message });
       }
@@ -129,17 +194,19 @@ export async function runEnrichment(
   return stats;
 }
 
-/** The cached enrichments matching the current catalog, model and prompt version. */
+/** The cached enrichments matching the current catalog and selection (text model, or text + vision). */
 export async function currentEnrichments(
   catalog: CatalogEntry[],
   svgs: SvgArtifact,
   cacheFile: string,
-  model: string,
+  selection: EnrichmentSelection | string,
 ): Promise<Map<string, Enrichment>> {
+  const sel =
+    typeof selection === "string" ? { textModel: selection } : selection;
   const { byHash } = await readEnrichmentCache(cacheFile);
   const out = new Map<string, Enrichment>();
   for (const entry of catalog.filter(eligibleForEnrichment)) {
-    const e = byHash.get(hashFor(entry, svgs, model));
+    const e = byHash.get(planFor(entry, svgs, sel).hash);
     if (e) out.set(entry.id, e);
   }
   return out;
