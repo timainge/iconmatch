@@ -30,7 +30,7 @@ Checklist derived from `docs/plan.md` §11. The spec is the source of truth for 
 - [x] `examples/server`: `handle(Request)` for search/best/icons, tested in-process (§7.7)
 - [x] `examples/browser-client`: remote search + SVG provider + review/override flow; works with remote down
 - [x] `examples/local-full`: fs source + local model, `localOnly`; slow-tier real-model test
-- [ ] Determinism test (ingest + embed twice → identical hashes)
+- [x] Determinism test (ingest + embed twice → identical hashes)
 - [ ] Slow-tier reference-vector test for the real model (§11.1)
 - [ ] `npm run bench`: warm query + embedding latency vs §7.5 targets
 - [ ] Audit M2 (§11.1)
