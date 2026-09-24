@@ -8,7 +8,7 @@
 
 An application lets users create their own categories of things (e.g. "Dog grooming", "Super contributions", "Kids' ski gear"). Each category needs an icon because a text label alone doesn't scan well. We want to automatically suggest a sensible icon from a free, visually cohesive line-icon set, given only the category name (or a precomputed embedding), and let the user override it.
 
-The match doesn't need to be perfect. It needs to be **plausible, fast, offline-capable, and never confidently wrong** — when nothing fits, return a neutral fallback rather than a misleading icon.
+The match doesn't need to be perfect. It needs to be **plausible, fast, offline-capable, and never confidently wrong** — when nothing fits, return a lettered fallback glyph rather than a misleading icon.
 
 ## 2. Goals and non-goals
 
@@ -18,7 +18,8 @@ The match doesn't need to be perfect. It needs to be **plausible, fast, offline-
 2. A build pipeline that produces the library's data artifacts from open-source icon packages and their metadata.
 3. Optional enrichment of icon metadata with a local LLM / vision model to improve recall for abstract or long-tail categories.
 4. An evaluation harness that measures match quality so every pipeline change can be judged on numbers.
-5. Support for variants (outline, filled) of the same base concept, with graceful fallback when a variant doesn't exist.
+5. A variant-aware data model (outline, filled, …) with graceful fallback when a variant doesn't exist. **v1 ships outline only**; the model exists so filled icons or other weights can be added without schema changes.
+6. **Composable by design.** The core library is a set of small primitives (data loading, keyword search, vector search, fusion, embedding, SVG rendering, fallback) that a thin second layer composes per deployment. For example, a server that embeds, searches and serves SVGs on request; a browser client that searches and lets users review and override without downloading a model; and a desktop (Tauri) app that bundles the full index and embedding model for offline use. See §7.
 
 ### Non-goals (v1)
 
@@ -32,7 +33,7 @@ The match doesn't need to be perfect. It needs to be **plausible, fast, offline-
 
 | Decision                            | Choice                                                                                                  | Rationale                                                                                             |
 | ----------------------------------- | ------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| Primary icon set                    | **Tabler Icons** (outline, plus filled where available)                                                 | ~5,100 outline + ~1,050 filled, MIT, single consistent 24px/2px-stroke style, has tags and categories |
+| Primary icon set                    | **Tabler Icons**, outline only, including brand icons                                                   | ~5,100 outline + ~1,050 filled, MIT, single consistent 24px/2px-stroke style, has tags and categories |
 | Source of SVG data                  | `@iconify/json` (or `@iconify-json/tabler`)                                                             | Already cleaned, normalised to `currentColor`, updated regularly. Do not crawl websites.              |
 | Source of tags/categories           | The icon library's own metadata (Tabler repo/package)                                                   | Iconify's per-icon tag data is thin                                                                   |
 | Embedding model                     | `bge-small-en-v1.5` (384-dim) via `@huggingface/transformers` (transformers.js), quantised              | Small, runs locally in Node and browser, good retrieval quality                                       |
@@ -76,7 +77,10 @@ iconmatch/
         keyword.ts
         vector.ts         # cosine over int8/float32
         fuse.ts           # RRF + confidence
-        embedder.ts       # transformers.js wrapper, lazy-loaded
+        svg.ts            # SVG rendering
+        fallback.ts       # lettered fallback glyph
+        data/             # DataSource: fetch, memory; *.node.ts: fs, packaged
+        embedders/        # transformers.ts (subpath export, optional peer dep)
         types.ts
       data/               # generated artifacts copied here at package time
     pipeline/             # build CLI (not published, or published separately)
@@ -96,6 +100,7 @@ iconmatch/
         index.ts
         package.ts
       cache/              # gitignored: enrichment cache, rendered PNGs
+  examples/               # reference compositions (§7.7): server, browser-client, local-full
     eval/
       queries.json        # evaluation set (§9)
       src/run.ts
@@ -151,10 +156,10 @@ export interface RawIcon {
 
 **Tabler adapter requirements:**
 
-1. Load SVG bodies from `@iconify-json/tabler`. In Iconify, filled icons appear as `<name>-filled`; the adapter MUST fold these into the `filled` variant of the base concept `<name>`.
+1. Load SVG bodies from `@iconify-json/tabler`. In Iconify, filled icons appear as `<name>-filled`. v1 is outline-only, so the adapter MUST drop these and MUST NOT emit them as separate concepts. Folding them into a `filled` variant is behind an `includeFilled` option, off by default. It may be left unimplemented in v1, but the code path must not preclude it.
 2. Load tags and categories from Tabler's own metadata. The agent MUST locate the authoritative source (check the `@tabler/icons` npm package for a JSON metadata file with name/category/tags; if not present, the Tabler GitHub repo's source SVGs carry tag/category metadata in a comment block). Record which source was used in `DECISIONS.md`.
-3. Skip hidden/deprecated icons, and skip brand icons (`brand-*`) by default (configurable). Brand logos are trademarks and poor category icons.
-4. Log counts: total base concepts, concepts with filled variant, concepts with zero tags.
+3. Skip hidden/deprecated icons. **Include** brand icons (`brand-*`) by default (`includeBrands`, default `true`). Mark them `brand: true` in the catalog, give them the category `brand`, and add the brand name (e.g. "netflix") as a tag. The README MUST note that brand icons depict third-party trademarks and that the consuming app is responsible for appropriate use.
+4. Log counts: total base concepts, brand concepts, concepts with zero tags, and dropped `-filled` icons.
 
 ### 6.2 `ingest`
 
@@ -168,8 +173,10 @@ interface CatalogEntry {
   label: string; // "Heart" (humanised name)
   tags: string[];
   categories: string[];
-  variants: VariantName[]; // which variants exist
+  variants: VariantName[]; // which variants exist (v1: ["outline"])
   license: string; // spdx
+  brand?: boolean; // depicts a third-party trademark
+  glyph?: "letter" | "number"; // letter/number glyphs, used by the fallback (§7.4)
 }
 ```
 
@@ -280,33 +287,57 @@ Log final artifact sizes. Target: total data ≤ 8 MB uncompressed, excluding SV
 
 ## 7. Runtime library API
 
-```ts
-import { createIconMatcher } from "iconmatch";
+### 7.0 Composability
 
+The library has two layers:
+
+- **Core primitives** (this package). Each primitive is independently importable, takes its dependencies as arguments, and never reaches for the network, the filesystem or a model on its own. Everything it returns is plain JSON-serialisable data, except handles and typed arrays.
+- **Compositions** (the second layer). These are thin wiring for a deployment. v1 ships three reference compositions as `examples/` (§7.7). Each is type-checked and tested, and is not published. A published integration package is future work (§12).
+
+Core primitives (names indicative; the agent may refine them, recording the change in `DECISIONS.md`):
+
+| Primitive                                     | Purpose                                                                                                                                                 |
+| --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `DataSource`                                  | `{ read(file): Promise<ArrayBuffer>; }`. Core ships `fetchSource(baseUrl)` and `memorySource(files)`; `iconmatch/node` ships `fsSource(dir)` and `packagedSource()`. |
+| `loadManifest`, `loadCatalog`, `loadKeywordIndex`, `loadVectors`, `loadSvgs` | Load one artifact each from a `DataSource`, so a consumer loads only what it needs.                                                                                   |
+| `createKeywordSearcher(catalog, index)`       | Keyword search only.                                                                                                                                    |
+| `createVectorSearcher(vectors, manifest)`     | Cosine search over a query vector. No model involved.                                                                                                  |
+| `fuse(rankings, opts)` / `confidence(...)`    | RRF fusion and confidence (§7.2).                                                                                                                       |
+| `Embedder`                                    | Interface (§7.1). The local implementation lives at the subpath `iconmatch/embedder-transformers`, the **only** module that imports `@huggingface/transformers` (optional peer dependency). A remote embedder is just a user-supplied `Embedder` that calls a server. |
+| `SvgProvider`                                 | `{ get(id, variant): Promise<SvgBody> }`, implemented by `svgsFromArtifact(svgs)` or a user-supplied remote fetch.                                     |
+| `renderSvg(body, opts)`                       | Pure string rendering (§7.6).                                                                                                                           |
+| `letterFallback(label, catalog)`              | Lettered fallback (§7.4).                                                                                                                               |
+| `createIconMatcher(parts)`                    | Convenience composition over whichever parts it's given.                                                                                                |
+
+Rules:
+
+1. The default entry point MUST NOT import `@huggingface/transformers` or any Node built-in. A bundle of `import { createIconMatcher } from "iconmatch"` for the browser MUST contain neither (checked by a test).
+2. Core MUST NOT download a model or fetch an artifact unless the consumer passed a source or embedder that does so. There is no `"auto"`.
+3. `createIconMatcher` works with any subset of parts. `catalog` is required; `keywordIndex`, `vectors`, `embedder` and `svgs` are optional. `search(text)` uses what's present (hybrid, keyword-only or vector-only). A method whose required part is missing throws `IconMatchCapabilityError` naming the part (e.g. `svg()` without `svgs`, `searchByEmbedding` without `vectors`).
+4. The wire types (`IconMatch`, `CatalogEntry`, `SvgBody`) are JSON-safe, so a server can return search results and SVG bodies that a browser renders with the same `renderSvg`.
+
+```ts
+import { createIconMatcher, fetchSource, loadCatalog, loadKeywordIndex } from "iconmatch";
+
+// Browser: search and review/override. No model download; semantic search delegated to a server.
+const src = fetchSource("/iconmatch-data/");
 const matcher = await createIconMatcher({
-  variant: "outline", // preferred variant; falls back to set default
-  embedder: "auto", // "auto" | "none" | custom Embedder
+  catalog: await loadCatalog(src),
+  keywordIndex: await loadKeywordIndex(src),
+  remoteSearch: (q, opts) => fetch(`/api/icons/search?q=${encodeURIComponent(q)}`).then((r) => r.json()), // optional
+  svgs: { get: (id) => fetch(`/api/icons/${id}`).then((r) => r.json()) },
   minConfidence: 0.5, // below this, best() returns the fallback. Default set from eval.
   expandQuery: undefined, // optional async (q) => string[]  (§7.3)
-  dataUrl: undefined, // browser: where to fetch artifacts from; Node: read from package
 });
 
-const results = await matcher.search("Dog grooming", { limit: 5 });
-// -> IconMatch[]
-
-const best = await matcher.best("Super contributions");
-// -> IconMatch (possibly the fallback, with isFallback: true)
-
-const byVec = matcher.searchByEmbedding(float32Array384, { limit: 5 });
-// No model load needed. MUST validate dims against manifest and throw a clear error on mismatch.
-
+const results = await matcher.search("Dog grooming", { limit: 20 }); // -> IconMatch[]
+const best = await matcher.best("Super contributions"); // -> IconMatch (possibly the lettered fallback, isFallback: true)
+const byVec = matcher.searchByEmbedding(float32Array384, { limit: 5 }); // needs `vectors`; validates dims
 const icon = matcher.get("tabler:heart");
-const svg = await matcher.svg("tabler:heart", {
-  variant: "filled",
-  size: 24,
-  strokeWidth: 2,
-});
+const svg = await matcher.svg("tabler:heart", { size: 24, strokeWidth: 2 });
 ```
+
+`remoteSearch`, when given, supplies ranked `IconMatch[]` from a server. The matcher uses it in place of local vector search, falls back to local keyword search if it rejects, and never blocks on it longer than a configurable timeout.
 
 ### 7.1 Types
 
@@ -320,8 +351,9 @@ interface IconMatch {
   confidence: number; // 0..1, see 7.2; use this for thresholds
   variant: VariantName; // variant that will be rendered (after fallback)
   availableVariants: VariantName[];
-  matchedOn: { keyword: boolean; vector: boolean };
+  matchedOn: { keyword: boolean; vector: boolean; remote?: boolean };
   isFallback?: boolean;
+  fallbackLetter?: string; // set when isFallback: the character the glyph shows
 }
 
 interface Embedder {
@@ -338,7 +370,8 @@ interface Embedder {
 4. Fuse with RRF: `score = Σ 1 / (k + rank)`, `k = 60`.
 5. `confidence` is **not** the RRF score (RRF isn't calibrated). Define `confidence = cosine similarity of that icon to the query`, bumped when it also matched on keyword: `min(1, cosine + 0.1)` if keyword-matched. The exact formula is a tunable; the eval (§9) MUST be used to choose the default `minConfidence`.
 6. Tie-break: prefer icons that have the requested variant, then shorter names (more generic concepts).
-7. If `embedder: "none"` and no embedding is supplied, run keyword-only and set confidence from normalised keyword score. Document that quality is lower.
+7. With no embedder (and no remote search), run keyword-only and set confidence from normalised keyword score. Document that quality is lower.
+8. Letter/number glyphs (`glyph` set) are excluded from ranked results by default (`includeGlyphs: false`), because they only exist to serve the fallback.
 
 ### 7.3 Query expansion (optional hook)
 
@@ -346,18 +379,32 @@ Short abstract labels ("Admin", "Misc", "Life") embed poorly. Provide an optiona
 
 ### 7.4 Fallback
 
-`best()` returns a fallback when the top result's confidence is below `minConfidence`. The fallback is configurable (`fallbackIcon: "tabler:category"` default; pick a neutral glyph from the set and record the choice). The consuming app can alternatively render a lettered badge; expose `isFallback` so it can.
+`best()` returns a **lettered glyph** when the top result's confidence is below `minConfidence`. The glyph comes from the icon set, so it matches the style:
+
+- The letter is the first alphanumeric character of the label ("Misc" → `m`, "2024 taxes" → `2`), after Unicode normalisation (NFKD, strip diacritics).
+- It maps to the set's framed letter/number icons. For Tabler, that's `square-letter-<a-z>` / `square-number-<0-9>`; the agent MUST verify these ids exist in the installed package and record them. The frame is configurable (`fallbackShape: "square" | "circle"`, default `"square"`).
+- If there is no alphanumeric character, or the glyph is missing from the set, use a neutral glyph (`fallbackIcon`, default `tabler:category`).
+- The result has `isFallback: true` and `fallbackLetter`, so an app can draw its own badge instead. `letterFallback()` is exported for apps that want the glyph without searching.
 
 ### 7.5 Loading and performance
 
-- The embedding model MUST lazy-load on first text query, not at `createIconMatcher()`. `searchByEmbedding` and `get`/`svg` must never trigger a model load.
-- SVG bodies MUST load lazily (separate file) so search-only use doesn't pay for them.
+- A local embedder MUST lazy-load its model on the first text query, not at construction. `searchByEmbedding`, `get` and `svg` must never trigger a model load.
+- SVG bodies MUST load lazily (separate file, or per icon via a remote `SvgProvider`) so search-only use doesn't pay for them.
+- The local embedder accepts a model location (hub id, mirror URL or local directory) and a `localOnly` flag, so a desktop app can run fully offline from bundled files.
 - Targets (Node, M-series Mac): warm query ≤ 30 ms excluding embedding; embedding ≤ 50 ms; cold model load reported but not gated.
-- Browser: artifacts fetched from `dataUrl`; model fetched from the Hugging Face hub or a configurable mirror.
+- Browser: the browser composition SHOULD need only the catalog and keyword index (report their size) plus per-icon SVG fetches. It downloads no model.
 
 ### 7.6 SVG output
 
-`svg()` returns a complete `<svg>` string with `viewBox`, `width`/`height` from `size`, `fill`/`stroke` as `currentColor` according to the variant, and `stroke-width` applied to outline variants only. `aria-hidden="true"` by default; accept `title` to switch to `role="img"` with a `<title>`.
+`svg()` (via `renderSvg`) returns a complete `<svg>` string with `viewBox`, `width`/`height` from `size`, `fill`/`stroke` as `currentColor` according to the variant, and `stroke-width` applied to outline variants only. `aria-hidden="true"` by default; accept `title` to switch to `role="img"` with a `<title>`.
+
+### 7.7 Reference compositions (`examples/`)
+
+Each is under 150 lines, type-checked by the root `tsconfig.json`, and exercised by a default-tier test (fake embedder, fixture data):
+
+1. **`server`**: Node. Loads everything via `packagedSource()` plus the transformers embedder. Exposes a framework-agnostic `handle(Request): Promise<Response>` for `GET /search?q=`, `GET /best?q=`, `GET /icons/:id` (SvgBody JSON) and `GET /icons/:id.svg`. It's tested by calling `handle` in-process, with no port binding.
+2. **`browser-client`**: catalog and keyword index from `fetchSource`, `remoteSearch` and `SvgProvider` pointed at the server, and a review/override flow (search 20 → user picks → persist `{ query, iconId }` via a callback). The test proves it works with the remote down (keyword-only) and never imports the transformers subpath.
+3. **`local-full`** (Tauri-style): every artifact via `fsSource(dir)`, and the transformers embedder with `localOnly: true` and a local model directory. It is fully offline. The default-tier test uses the fake embedder; a slow-tier test uses the real model.
 
 ## 8. Licensing
 
@@ -377,6 +424,7 @@ At least **120** queries, written to resemble real user category names, spread a
 - abstract/financial/admin ("Super contributions", "Tax", "Insurance", "Subscriptions")
 - hobbies and long-tail ("Pottery", "Beekeeping", "Ski training")
 - home and life admin ("Home build", "School stuff", "Medical" as a generic label)
+- brands/services ("Netflix", "Spotify", "GitHub stuff"): brand icons are in the catalog
 - deliberately hard/vague ("Misc", "Stuff to sort", "Life")
 - at least 10 that have **no** good icon in the set (to test the fallback)
 
@@ -396,7 +444,7 @@ Because tuning is done by an agent, the set MUST be split to keep reported numbe
 - Each query carries `split: "dev" | "test"`, about 70/30 and stratified by `group` (fallback queries included in both).
 - All tuning (boosts, confidence formula, `minConfidence`, prompts) uses `dev` only. Headline numbers and the acceptance bar are reported on `test`.
 - Every acceptable id MUST exist in the current catalog; the eval CLI fails loudly on unknown ids.
-- Once a human has reviewed the set (signalled by the file `eval/REVIEWED`), the agent MUST NOT edit `eval/queries.json`. Suspected labelling errors go in `eval/label-issues.md` for the human.
+- Before review, the agent may fix its own labels, but any fix made after seeing results must be noted in `eval/label-issues.md`. Once a human has reviewed the set (signalled by the file `eval/REVIEWED`), the agent MUST NOT edit `eval/queries.json`. Suspected labelling errors go in `eval/label-issues.md` for the human.
 
 ### 9.2 Metrics
 
@@ -436,46 +484,48 @@ Tests run in two tiers so the default loop stays fast and offline-safe:
 
 Core stays browser-safe: `packages/core/src` MUST NOT import `node:*` modules or Node-only packages, except in files named `*.node.ts` that are only reached via a runtime check or a conditional export. ESLint enforces this.
 
-- Unit: RRF, cosine (int8 and float32), query normalisation, variant fallback, manifest/embedder mismatch error, zod enrichment validation.
-- Adapter: Tabler adapter folds `-filled` correctly; counts are within expected ranges; no brand icons by default.
-- Snapshot: `svg()` output for 3 icons × 2 variants.
+- Unit: RRF, cosine (int8 and float32), query normalisation, variant fallback, lettered fallback (letters, digits, diacritics, no-alphanumeric, missing glyph), capability errors for missing parts, manifest/embedder mismatch error, zod enrichment validation.
+- Adapter: Tabler adapter drops `-filled` icons; brand icons are included and flagged; counts are within expected ranges.
+- Snapshot: `svg()` output for 3 icons (including one brand icon), with and without `title`, plus a requested `filled` variant falling back to outline, and the lettered fallback glyph.
 - Integration: build with `--enrich none` on a 200-icon subset in CI (no Ollama in CI; enrichment tests use recorded fixtures).
 - Determinism: running `ingest` + `embed` twice produces identical artifacts (hash compare).
 
 ## 11. Milestones
 
 1. **M1: Ingest + keyword search.** Tabler adapter, catalog, keyword index, `search()` keyword-only, `svg()`. Tests pass.
-2. **M2: Vectors + hybrid.** Embedding at build and runtime, RRF, confidence, `searchByEmbedding`, lazy loading.
+2. **M2: Vectors + hybrid.** Embedding at build and runtime, RRF, confidence, `searchByEmbedding`, lazy loading, composable primitives and the three reference compositions (§7.0, §7.7).
 3. **M3: Eval harness.** Eval set drafted, results table for configs 1–3, threshold sweep.
 4. **M4: Enrichment.** Text mode, cache, then vision mode with rendering; eval configs 4–5.
 5. **M5: Package.** Query expansion hook, README with examples, licenses, size report, publish-ready `package.json`.
 
-Stop and report after M3 with the baseline numbers before starting M4.
+After M3, the agent reports the baseline numbers and flags the eval set for human review. This is a **soft checkpoint** (§14): the loop keeps building work that doesn't depend on eval labels, and holds work that does until the review is done.
 
 ### 11.1 Milestone acceptance (verification)
 
 A milestone is done only when every checklist item is ticked **and** a milestone audit has confirmed the criteria below, with evidence (test names, command output, numbers) written to `docs/audits/M<n>.md`. `npm run check` must be green throughout.
 
 - **M1**
-  - Adapter test proves `-filled` folding, no `brand-*` by default, no deprecated icons, and counts within ranges (outline concepts 4,500–6,000; with filled 800–1,300).
+  - Adapter test proves `-filled` icons are dropped, brand icons are included and flagged, deprecated icons are skipped, and counts are within ranges (concepts including brands 4,500–6,500; brands 400–1,000). Ranges are sanity bounds: if the installed package falls outside them, record the actual counts in `DECISIONS.md` rather than forcing a pass.
   - `iconmatch-build ingest` and `index` run from a clean checkout and produce the §6.2/§6.5 files.
   - Keyword `search()` returns a plausible top 3 for a smoke set ("dog", "heart", "money", "car", "calendar"), asserted in a test against the fixture catalog.
-  - `svg()` snapshot tests cover 3 icons × 2 variants, plus `title` and variant fallback.
+  - `svg()` snapshot tests per §10. The lettered fallback resolves to real glyph ids for a–z and 0–9 (asserted against the catalog).
+  - The default entry point bundles for the browser with no Node built-ins and no `@huggingface/transformers` (esbuild test). This stays green in every later milestone.
 - **M2**
   - The query prefix exists in exactly one module and is imported by both build and runtime (checked by a test).
   - Slow tier: real-model embedding of a fixed sentence matches a committed reference vector (cosine ≥ 0.999). The determinism test passes.
   - Tests prove that `searchByEmbedding`, `get` and `svg` never load the model (spy on the lazy loader), and that wrong dims or a wrong `modelId` throw clear errors.
+  - All three `examples/` compositions pass their tests. `createIconMatcher` with each partial set of parts either works or throws `IconMatchCapabilityError`, and a table-driven test covers the combinations.
   - `npm run bench` reports warm query latency and embedding latency against the §7.5 targets. Reported, not gated.
 - **M3**
   - `eval/queries.json` has ≥120 queries, ≥10 fallback queries, every group from §9.1, and a dev/test split. Every id resolves.
   - `eval/results/<date>.md` holds configs 1–3 and the threshold sweep; `baseline.json` is written.
-  - `docs/checkpoints/M3.md` summarises the numbers, failing groups, and the queries most worth a human look.
+  - `docs/checkpoints/M3.md` summarises the provisional numbers, failing groups, and the 10–15 labels most worth a human look. The human has been notified.
 - **M4**
   - Enrichment tests (zod rejection, retry, cache hit by `inputHash`, `--limit`) pass on recorded fixtures.
   - Configs 4–5 are in the results table with deltas against the baseline.
 - **M5**
   - `npm pack --dry-run` in `packages/core` lists only the intended files. Data size is within §6.6 targets or the overage is recorded.
-  - Core bundles for `platform: "browser"` (esbuild) without Node built-ins.
+  - Artifact sizes are reported per composition (browser: catalog + keyword index; server/local-full: everything plus the model).
   - A CI workflow file runs `npm run check` and the 200-icon `--enrich none` build. It is written but not pushed.
   - The README examples are type-checked or executed by a test.
 
@@ -488,12 +538,12 @@ A milestone is done only when every checklist item is ticked **and** a milestone
 
 ## 13. Open questions for the human
 
-The agent proceeds on the stated default for each question and records it in `DECISIONS.md`. The human may override a default at any checkpoint.
+Answered by the project owner on 2026-09-24. Where an answer conflicts with an earlier section, this section and the sections it references win.
 
-1. Include brand icons at all? **Default: no** (configurable, off).
-2. Is the filled variant needed at launch, or only outline? **Default: ship both.** Outline is the default variant.
-3. Browser use: acceptable to fetch a ~30 MB embedding model on first query, or must browser use rely on `searchByEmbedding` with server-side embedding? **Default: support both.** `embedder: "auto"` lazy-fetches in the browser, and the README documents the server-side `searchByEmbedding` path as the lighter option.
-4. Fallback: neutral glyph from the set, or lettered badge in the app? **Default: neutral glyph** (`tabler:category`), with `isFallback` exposed so the app can draw a badge instead.
+1. Include brand icons at all? **Decided: yes**, included by default and flagged `brand: true`, with a trademark note in the README.
+2. Is the filled variant needed at launch, or only outline? **Decided: outline only.** `-filled` icons are dropped; the variant model stays for later.
+3. Browser use: acceptable to fetch a ~30 MB embedding model on first query? **Decided: no big downloads in the browser.** Core is composable (§7.0): the browser composition searches with the keyword index plus optional server-side semantic search, the server embeds and serves icons on request, and a desktop (Tauri) app may bundle the full index and model locally.
+4. Fallback: neutral glyph or lettered badge? **Decided: lettered glyph** from the set (§7.4), with a neutral glyph only when there is no usable character.
 
 ## 14. Autonomous execution
 
@@ -501,7 +551,8 @@ The build is driven by an agent running `/next` in a loop (see `CLAUDE.md`). Con
 
 - **Progress** lives in `docs/progress.md`, **judgement calls** in `DECISIONS.md`, **milestone evidence** in `docs/audits/`, and **human handoffs** in `docs/checkpoints/`.
 - **Every commit is green.** `npm run check` passes before each commit. Tests and lint rules are never weakened to get there.
-- **Human checkpoints:** after M3 (baseline numbers and eval set review), and before any outward-facing or irreversible action (push, publish, deleting data outside `build/` and `cache/`).
+- **Soft checkpoint after M3 (eval review):** the agent writes `docs/checkpoints/M3.md`, notifies the human, and **keeps going**. Until the human creates `eval/REVIEWED`, eval labels are unreviewed and every number is **provisional**. Checklist items that tune against or report on eval numbers are tagged `WAITS: eval/REVIEWED` and skipped. These include the eval comparisons for enrichment and query expansion, choosing the default `minConfidence`, accepting enrichment prompts on eval evidence, final results, and M4/M5 audits that depend on them. Everything else continues: enrichment code on fixtures, installing the LLM runtime and running enrichment, compositions, packaging, README and CI. When `eval/REVIEWED` appears, the first gated item re-baselines on the reviewed set. Provisional numbers never go in the README or the acceptance-bar verdict.
+- **Hard checkpoints:** before any outward-facing or irreversible action (push, publish, deleting data outside `build/` and `cache/`). The loop stops only when every remaining item is done, blocked or waiting.
 - **Blockers don't stop the loop.** A blocked item is marked `BLOCKED: <reason>` and the loop moves on to the next unblocked item. Later work that truly depends on it is also marked blocked. Local, free resources count as available: npm packages, Hugging Face model downloads, and local LLM runtimes.
 - **Local LLM runtime for M4:** the agent MAY install and start one itself: `brew install ollama`, then `ollama serve` in the background, then `ollama pull` of the configured models. LM Studio (`lms` CLI, OpenAI-compatible server on `:1234`) is an accepted alternative. The enrichment client talks to one small provider interface with an Ollama implementation and an OpenAI-compatible implementation, selected in `iconmatch.config.ts`. It MUST still be written and tested against recorded fixtures first, and the runtime is only needed for real enrichment runs. It is a blocker only if installation fails or the machine can't run a 7–8B model at a usable speed (record timings in `DECISIONS.md`).
 - **External facts** (package contents, metadata locations, model ids) are verified by inspecting the installed package or source, never assumed. The finding and its source go in `DECISIONS.md`.
