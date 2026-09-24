@@ -15,6 +15,8 @@ export interface VectorArtifact {
   ids: string[];
   dims: number;
   quantisation: Quantisation;
+  /** Embedding model the rows came from (from the manifest), if known. */
+  model?: string;
   /** Row-major, `ids.length × dims`. */
   data: Int8Array | Float32Array;
   /** Per-row scales (int8 only). */

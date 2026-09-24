@@ -1,5 +1,8 @@
 import type MiniSearch from "minisearch";
-import { IconMatchCapabilityError } from "./errors.js";
+import {
+  IconMatchCapabilityError,
+  IconMatchModelMismatchError,
+} from "./errors.js";
 import { letterFallback, type FallbackOptions } from "./fallback.js";
 import type { KeywordDocument } from "./keyword-index.js";
 import { fuse, hybridConfidence } from "./fuse.js";
@@ -10,9 +13,14 @@ import type {
   CatalogEntry,
   Embedder,
   IconMatch,
+  Manifest,
   VariantName,
 } from "./types.js";
-import { createVectorSearcher, VECTOR_TOP_K } from "./vector.js";
+import {
+  createVectorSearcher,
+  IconMatchDimensionError,
+  VECTOR_TOP_K,
+} from "./vector.js";
 import type { VectorArtifact } from "./vectors.js";
 import { resolveVariant } from "./variant.js";
 
@@ -26,6 +34,8 @@ export interface IconMatcherParts {
   vectors?: VectorArtifact;
   /** Embeds text queries. Lazy-loading embedders load on the first `search()`. */
   embedder?: Embedder;
+  /** Checked against `embedder` and `vectors` (model, dims) at construction. */
+  manifest?: Pick<Manifest, "embedding">;
   /** SVG bodies, e.g. `svgsFromArtifact(await loadSvgs(src))` or a remote fetch. */
   svgs?: SvgProvider;
   /** Include letter/number glyphs in ranked results. Default false (spec §7.2 step 8). */
@@ -64,6 +74,14 @@ export interface IconMatcher {
     query: string,
     options?: Pick<SearchOptions, "variant">,
   ): Promise<IconMatch>;
+  /**
+   * Ranks icons against a precomputed query embedding (same model as the
+   * index, query prefix applied). Needs `vectors`; never loads a model.
+   */
+  searchByEmbedding(
+    vector: ArrayLike<number>,
+    options?: SearchOptions,
+  ): IconMatch[];
   get(id: string): CatalogEntry | undefined;
   /** Rendered `<svg>` string (spec §7.6). Needs the `svgs` part. */
   svg(id: string, options?: SvgOptions): Promise<string>;
@@ -111,9 +129,31 @@ export function compareMatches(requested?: VariantName) {
     (a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
 }
 
+/**
+ * Construction-time checks (spec §7.1, §11.1 M2): the embedder must use the
+ * model the vectors were built with, and dims must agree.
+ */
+function validateParts(parts: IconMatcherParts): Error | undefined {
+  const embedding = parts.manifest?.embedding;
+  const indexModel = embedding?.model ?? parts.vectors?.model;
+  if (
+    parts.embedder &&
+    indexModel !== undefined &&
+    parts.embedder.modelId !== indexModel
+  ) {
+    return new IconMatchModelMismatchError(indexModel, parts.embedder.modelId);
+  }
+  if (parts.vectors && embedding && parts.vectors.dims !== embedding.dims) {
+    return new IconMatchDimensionError(embedding.dims, parts.vectors.dims);
+  }
+  return undefined;
+}
+
 export function createIconMatcher(
   parts: IconMatcherParts,
 ): Promise<IconMatcher> {
+  const invalid = validateParts(parts);
+  if (invalid) return Promise.reject(invalid);
   const byId = new Map(parts.catalog.map((e) => [e.id, e]));
   const includeGlyphs = parts.includeGlyphs ?? false;
   const glyphs = new Set(
@@ -196,6 +236,34 @@ export function createIconMatcher(
       if (parts.fallbackIcon) fallback.fallbackIcon = parts.fallbackIcon;
       if (options.variant) fallback.variant = options.variant;
       return letterFallback(query, byId, fallback);
+    },
+    searchByEmbedding(queryVector, options = {}) {
+      if (!vector)
+        throw new IconMatchCapabilityError("searchByEmbedding", "vectors");
+      const hits = vector.search(queryVector, {
+        limit: VECTOR_TOP_K,
+        exclude: glyphs,
+      });
+      const fused = new Map(
+        fuse([{ ids: hits.map((h) => h.id) }]).map((h) => [h.id, h.score]),
+      );
+      return hits
+        .flatMap((h) => {
+          const entry = byId.get(h.id);
+          const score = fused.get(h.id) ?? 0;
+          const confidence = hybridConfidence(h.cosine, false);
+          return entry
+            ? [
+                toMatch(
+                  entry,
+                  { score, confidence, keyword: false, vector: true },
+                  options.variant,
+                ),
+              ]
+            : [];
+        })
+        .sort(compareMatches(options.variant))
+        .slice(0, options.limit ?? DEFAULT_LIMIT);
     },
     get: (id) => byId.get(id),
     async svg(id, options = {}) {

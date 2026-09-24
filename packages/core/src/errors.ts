@@ -10,3 +10,20 @@ export class IconMatchCapabilityError extends Error {
     );
   }
 }
+
+/**
+ * The embedder's model differs from the one the vectors were built with
+ * (spec §7.1), so query and document vectors would not be comparable.
+ */
+export class IconMatchModelMismatchError extends Error {
+  override name = "IconMatchModelMismatchError";
+  constructor(
+    readonly expected: string,
+    readonly actual: string,
+  ) {
+    super(
+      `Embedder modelId "${actual}" does not match the index model "${expected}"; ` +
+        "use the same embedding model the data was built with",
+    );
+  }
+}

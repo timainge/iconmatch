@@ -135,6 +135,7 @@ describe("loadVectors", () => {
   it("decodes vectors using the manifest's dims and quantisation", async () => {
     const art = await loadVectors(src, m);
     expect(art.ids).toEqual(["t:a", "t:b"]);
+    expect(art.model).toBe("m");
     expect(Array.from(art.data)).toEqual([
       0.6000000238418579, 0.800000011920929, 1, 0,
     ]);

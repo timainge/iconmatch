@@ -123,7 +123,14 @@ export async function loadVectors(
   }
   const buffer = await source.read(files.vectors);
   try {
-    return decodeVectors(buffer, ids, embedding.dims, embedding.quantisation);
+    const vectors = decodeVectors(
+      buffer,
+      ids,
+      embedding.dims,
+      embedding.quantisation,
+    );
+    vectors.model = embedding.model;
+    return vectors;
   } catch (cause) {
     throw new IconMatchDataError(files.vectors, (cause as Error).message, {
       cause,

@@ -44,7 +44,10 @@ export {
 } from "./keyword-index.js";
 export type { KeywordDocument, KeywordEnrichment } from "./keyword-index.js";
 
-export { IconMatchCapabilityError } from "./errors.js";
+export {
+  IconMatchCapabilityError,
+  IconMatchModelMismatchError,
+} from "./errors.js";
 export { normaliseQuery } from "./query.js";
 export {
   createKeywordSearcher,
