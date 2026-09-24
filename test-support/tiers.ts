@@ -1,3 +1,5 @@
+import { homedir } from "node:os";
+import { join } from "node:path";
 import { describe, it } from "vitest";
 
 /** Env var that enables the slow test tier (spec §10). */
@@ -16,3 +18,16 @@ const slow = isSlowTier(process.env);
  */
 export const describeSlow = describe.runIf(slow);
 export const itSlow = it.runIf(slow);
+
+/**
+ * Model download cache for slow-tier tests, outside the repo (spec §10):
+ * `ICONMATCH_MODEL_CACHE`, else `~/.cache/iconmatch/models`.
+ */
+export function modelCacheDir(
+  env: Record<string, string | undefined> = process.env,
+): string {
+  return (
+    env.ICONMATCH_MODEL_CACHE ??
+    join(homedir(), ".cache", "iconmatch", "models")
+  );
+}

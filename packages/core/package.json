@@ -12,9 +12,24 @@
     "./node": {
       "types": "./src/node.ts",
       "default": "./src/node.ts"
+    },
+    "./embedder-transformers": {
+      "types": "./src/embedders/transformers.ts",
+      "default": "./src/embedders/transformers.ts"
     }
   },
   "dependencies": {
     "minisearch": "^7.2.0"
+  },
+  "devDependencies": {
+    "@huggingface/transformers": "^4.3.0"
+  },
+  "peerDependencies": {
+    "@huggingface/transformers": "^4.3.0"
+  },
+  "peerDependenciesMeta": {
+    "@huggingface/transformers": {
+      "optional": true
+    }
   }
 }

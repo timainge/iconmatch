@@ -17,6 +17,13 @@ describe("browser bundle of the default entry", () => {
     expect(report.inputs.some((f) => f.includes("minisearch"))).toBe(true);
   });
 
+  it("detects transformers.js (control: the embedder-transformers subpath)", async () => {
+    const report = await bundleForBrowser(entry("./embedders/transformers.ts"));
+    expect(
+      report.inputs.some((f) => f.includes("@huggingface/transformers")),
+    ).toBe(true);
+  });
+
   it("detects Node built-ins (control: the iconmatch/node entry)", async () => {
     const report = await bundleForBrowser(entry("./node.ts"));
     expect(report.nodeImports).toEqual(

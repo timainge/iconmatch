@@ -71,3 +71,9 @@ export {
   letterFallback,
 } from "./fallback.js";
 export type { FallbackOptions } from "./fallback.js";
+export {
+  DEFAULT_EMBEDDING_DIMS,
+  DEFAULT_EMBEDDING_MODEL,
+  embeddingInput,
+  QUERY_PREFIX,
+} from "./embedding.js";
