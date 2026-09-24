@@ -160,4 +160,16 @@ describe("configureEnv", () => {
     configureEnv(e, {});
     expect(e).toEqual(env());
   });
+
+  it("restores library defaults before applying, so settings don't leak between embedders", () => {
+    const e = env();
+    const pristine = { ...e };
+    configureEnv(e, {
+      modelLocation: "/app/models",
+      localOnly: true,
+      cacheDir: "/tmp/c",
+    });
+    configureEnv(e, { cacheDir: "/tmp/other" });
+    expect(e).toEqual({ ...pristine, cacheDir: "/tmp/other" });
+  });
 });

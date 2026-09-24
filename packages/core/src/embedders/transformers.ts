@@ -39,7 +39,29 @@ type Extractor = (
   options: { pooling: "mean"; normalize: true },
 ) => Promise<{ dims: readonly number[]; data: ArrayLike<number> }>;
 
-/** Applies model location and offline settings to the transformers.js env. */
+type EnvKey =
+  | "remoteHost"
+  | "localModelPath"
+  | "allowLocalModels"
+  | "allowRemoteModels"
+  | "cacheDir";
+const ENV_KEYS: readonly EnvKey[] = [
+  "remoteHost",
+  "localModelPath",
+  "allowLocalModels",
+  "allowRemoteModels",
+  "cacheDir",
+];
+const envDefaults = new WeakMap<
+  object,
+  Pick<TransformersModule["env"], EnvKey>
+>();
+
+/**
+ * Applies model location and offline settings to the transformers.js env.
+ * The env is process-global, so the library defaults are captured on first
+ * use and restored first; one embedder's settings never leak into the next.
+ */
 export function configureEnv(
   env: TransformersModule["env"],
   options: Pick<
@@ -47,6 +69,15 @@ export function configureEnv(
     "modelLocation" | "localOnly" | "cacheDir"
   >,
 ): void {
+  let defaults = envDefaults.get(env);
+  if (!defaults) {
+    defaults = Object.fromEntries(ENV_KEYS.map((k) => [k, env[k]])) as Pick<
+      TransformersModule["env"],
+      EnvKey
+    >;
+    envDefaults.set(env, defaults);
+  }
+  Object.assign(env, defaults);
   const location = options.modelLocation;
   if (location !== undefined && /^https?:\/\//.test(location)) {
     env.remoteHost = location.endsWith("/") ? location : `${location}/`;
