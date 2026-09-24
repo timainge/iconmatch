@@ -1,6 +1,6 @@
 {
-  "source": "synthetic",
-  "note": "Shape from docs/api.md (POST /api/chat, stream false, format = JSON schema). Replace with a real recording once Ollama runs locally.",
+  "source": "recorded",
+  "note": "Recorded from Ollama with qwen2.5:7b-instruct on 2026-09-24.",
   "request": {
     "method": "POST",
     "url": "http://127.0.0.1:11434/api/chat",
@@ -12,15 +12,20 @@
     "status": 200,
     "body": {
       "model": "qwen2.5:7b-instruct",
-      "created_at": "2026-09-25T00:00:00Z",
+      "created_at": "2026-09-24T14:21:15.88395Z",
       "message": {
         "role": "assistant",
-        "content": "{\"description\": \"A heart shape outline.\", \"concepts\": [\"love\", \"health\", \"favourites\", \"relationships\", \"dating\", \"wellbeing\", \"charity\"], \"domains\": [\"relationships\", \"health\"]}"
+        "content": "{\"description\":\"A red heart shape.\",\"concepts\":[\"love\",\"like\",\"favorite\",\"relationship\",\"valentine\",\"affection\",\"emotions\",\"valentines day\"],\"domains\":[\"emotions\",\"relationships\",\"holidays\"]}"
       },
-      "done_reason": "stop",
       "done": true,
-      "total_duration": 812000000,
-      "eval_count": 64
+      "done_reason": "stop",
+      "total_duration": 6600713667,
+      "load_duration": 3560031375,
+      "prompt_eval_count": 500,
+      "prompt_eval_cached_count": 0,
+      "prompt_eval_duration": 1353189000,
+      "eval_count": 44,
+      "eval_duration": 1662022000
     }
   }
 }

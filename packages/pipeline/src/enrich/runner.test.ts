@@ -3,7 +3,11 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import type { CatalogEntry, SvgArtifact } from "iconmatch";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
-import { loadRecording, replayFetch } from "../../../../test-support/replay.js";
+import {
+  loadRecording,
+  recordedEnrichment,
+  replayFetch,
+} from "../../../../test-support/replay.js";
 import { appendEnrichment, readEnrichmentCache } from "./cache.js";
 import {
   createOllamaProvider,
@@ -302,7 +306,9 @@ it("currentEnrichments returns only entries matching the current inputs and mode
     "tabler:dog",
     "tabler:heart",
   ]);
-  expect(current.get("tabler:dog")?.description).toBe("A heart shape outline.");
+  expect(current.get("tabler:dog")?.description).toBe(
+    (await recordedEnrichment()).description,
+  );
   expect(
     (await currentEnrichments(catalog, svgs, cacheFile, "other-model")).size,
   ).toBe(0);

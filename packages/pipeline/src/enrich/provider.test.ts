@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { loadRecording, replayFetch } from "../../../../test-support/replay.js";
+import {
+  loadRecording,
+  recordedEnrichment,
+  replayFetch,
+} from "../../../../test-support/replay.js";
 import {
   createOllamaProvider,
   createOpenAICompatibleProvider,
@@ -43,9 +47,7 @@ describe("Ollama provider", () => {
       },
     });
     expect(reply.model).toBe("qwen2.5:7b-instruct");
-    expect(JSON.parse(reply.content)).toMatchObject({
-      description: "A heart shape outline.",
-    });
+    expect(JSON.parse(reply.content)).toEqual(await recordedEnrichment());
   });
 
   it("sends base64 images on the user message for vision", async () => {

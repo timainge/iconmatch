@@ -1,6 +1,10 @@
 import type { CatalogEntry } from "iconmatch";
 import { describe, expect, it } from "vitest";
-import { loadRecording, replayFetch } from "../../../../test-support/replay.js";
+import {
+  loadRecording,
+  recordedEnrichment,
+  replayFetch,
+} from "../../../../test-support/replay.js";
 import { PROMPT_VERSION } from "./prompts.js";
 import { createOllamaProvider } from "./provider.js";
 import {
@@ -34,7 +38,7 @@ describe("enrichText", () => {
     const e = await enrichText(provider(r.fetch), heart, BODY);
     expect(e).toMatchObject({
       id: "tabler:heart",
-      description: "A heart shape outline.",
+      description: (await recordedEnrichment()).description,
       model: "qwen2.5:7b-instruct",
       mode: "text",
       promptVersion: PROMPT_VERSION,
@@ -55,7 +59,7 @@ describe("enrichText", () => {
       await loadRecording("ollama-chat-text.json"),
     ]);
     const e = await enrichText(provider(r.fetch), heart, BODY);
-    expect(e.concepts).toContain("love");
+    expect(e.concepts).toContain((await recordedEnrichment()).concepts[0]);
     const second = r.sent[1]?.body as {
       messages: { role: string; content: string }[];
     };

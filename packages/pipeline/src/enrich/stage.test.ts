@@ -4,7 +4,11 @@ import { join } from "node:path";
 import { parseKeywordIndex } from "iconmatch";
 import { afterEach, beforeEach, expect, it } from "vitest";
 import { createFakeEmbedder } from "../../../../test-support/fake-embedder.js";
-import { loadRecording, replayFetch } from "../../../../test-support/replay.js";
+import {
+  loadRecording,
+  recordedEnrichment,
+  replayFetch,
+} from "../../../../test-support/replay.js";
 import { main, type CliIo } from "../cli.js";
 import { createOllamaProvider } from "./provider.js";
 
@@ -57,17 +61,23 @@ it("enrich (text) feeds concepts into the keyword index and the embedding text",
   const enrichments = JSON.parse(
     await readFile(join(dir, "out", "enrichments.json"), "utf8"),
   ) as Record<string, { concepts: string[] }>;
-  expect(enrichments["demo:heart"]?.concepts).toContain("dating");
+  const recorded = await recordedEnrichment();
+  expect(enrichments["demo:heart"]?.concepts).toEqual(recorded.concepts);
+  // A concept that appears nowhere in the label or tags, so only enrichment can match it.
+  const onlyFromEnrichment = recorded.concepts.find(
+    (c) => !/heart|shape/.test(c),
+  );
+  if (!onlyFromEnrichment) throw new Error("fixture needs a distinct concept");
   expect(await main(["index"], io)).toBe(0);
   const index = parseKeywordIndex(
     await readFile(join(dir, "out", "keyword-index.json"), "utf8"),
   );
-  expect(index.search("dating").map((r) => r.id as string)).toEqual([
+  expect(index.search(onlyFromEnrichment).map((r) => r.id as string)).toEqual([
     "demo:heart",
   ]);
   expect(await main(["embed"], io)).toBe(0);
-  expect(embedder.calls[0]?.texts[0]).toMatch(
-    /^Heart\. Tags: shape\. A heart shape outline\. Represents: love, .*Domains: relationships, health\.$/,
+  expect(embedder.calls[0]?.texts[0]).toBe(
+    `Heart. Tags: shape. ${recorded.description} Represents: ${recorded.concepts.join(", ")}. Domains: ${recorded.domains.join(", ")}.`,
   );
   // Cache is resolved against the config dir and reused.
   expect(

@@ -56,3 +56,16 @@ export function replayFetch(recordings: Recording[]) {
   };
   return { fetch, sent };
 }
+
+/** The enrichment JSON inside a recorded Ollama reply (message.content), parsed. */
+export async function recordedEnrichment(
+  name = "ollama-chat-text.json",
+): Promise<{ description: string; concepts: string[]; domains: string[] }> {
+  const rec = await loadRecording(name);
+  const body = rec.response.body as { message: { content: string } };
+  return JSON.parse(body.message.content) as {
+    description: string;
+    concepts: string[];
+    domains: string[];
+  };
+}
