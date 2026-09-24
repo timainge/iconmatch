@@ -70,6 +70,12 @@ describe("rawIconProblems", () => {
     ).toEqual(['name carries the variant suffix "-filled"']);
   });
 
+  it("allows names ending in the default variant word", () => {
+    expect(
+      rawIconProblems({ ...heart, name: "text-outline" }, adapter),
+    ).toEqual([]);
+  });
+
   it("allows names that merely end in an unsupported variant word", () => {
     expect(
       rawIconProblems(

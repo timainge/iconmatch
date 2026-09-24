@@ -25,3 +25,19 @@ Shared test helpers live in root `test-support/` (type-checked via the root `tsc
 ## 2026-09-24 — Shared types live in core; pipeline imports `iconmatch`
 
 `VariantName`, `VARIANT_NAMES` and `CatalogEntry` are defined once in `packages/core/src/types.ts` (runtime needs them) and the pipeline imports them from the `iconmatch` workspace package. Core's `package.json` `exports["."]` points at `src/index.ts` for now; the subpath-exports item (§7.0) adds built `dist` conditions. `RawIcon` gains optional `brand` and `glyph` fields (not in the §6.1 sketch) so adapters can pass the §6.1 rule 3 flag and §7.4 glyph marking through to the catalog. `rawIconProblems()` checks the §6.1 invariants (kebab-case name, no suffix for a supported variant, supported variants only, lowercase deduped tags); the suffix check is limited to the adapter's declared variants so names like `text-bold` stay legal.
+
+## 2026-09-24 — Tabler sources (verified in node_modules)
+
+SVGs: `@iconify-json/tabler` 1.2.40 (`icons.json`, Iconify set version 3.48.0 per `info.json`, 24×24, no per-icon size overrides). Tags/category: `@tabler/icons` 3.48.0 `icons.json`, a map `name → { name, category, tags, styles }`; its `exports` map (`"./*": "./icons/*"`) hides the root file, so `readTablerSource()` finds it via `require.resolve.paths`. Versions match. Visible, non-`-filled` Iconify names equal the metadata key set exactly (5,166). Tabler tags include numbers and `null`: numbers are stringified, nulls dropped. Each icon has a single `category`, stored lowercased (brands get `brand`). "Deprecated" = Iconify `hidden: true` (14 base icons, e.g. `barell`, `pause`); `@tabler/icons` has no deprecated field. Iconify aliases (renamed old ids) are ignored.
+
+## 2026-09-24 — Tabler counts vs §11.1 ranges
+
+Installed counts: 5,166 concepts (in range), **376 brands** (spec sanity range 400–1,000; below it, so recorded rather than forced; the adapter test uses 350–1,000), 0 concepts with zero tags, 1,088 `-filled` dropped (34 have no outline base, e.g. `circle-0-filled`), 14 hidden skipped, 300 glyphs.
+
+## 2026-09-24 — Glyph marking and fallback ids
+
+`glyph` is set for single-character letter/number glyphs: `letter-<a-z>` / `number-<0-9>`, optionally `-small`, bare or framed by circle, circle-dashed, circle-dotted, hexagon, pentagon, rosette, square or square-rounded (300 icons). Multi-digit (`number-10`), `number-123`, `letter-case`, `scan-letter-*` stay rankable. Verified present in 3.48.0: `square-letter-a…z`, `square-number-0…9`, `circle-letter-a…z`, `circle-number-0…9`, and `category` (default `fallbackIcon`).
+
+## 2026-09-24 — Variant-suffix check only for non-default variants
+
+Tabler has real concepts `scale-outline` and `text-outline`, so `rawIconProblems()` only flags suffixes of non-default variants (e.g. `-filled`), which is how Iconify names variants.

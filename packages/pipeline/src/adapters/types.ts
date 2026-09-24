@@ -9,6 +9,8 @@ export type { VariantName };
 export interface IconSetAdapter {
   /** Short stable id, e.g. "tabler". Used as the id prefix. */
   id: string;
+  /** Source package version, known after `load()`; goes in the manifest. */
+  version?: string;
   license: { spdx: string; url: string; attributionRequired: boolean };
   /** Variants this set supports, in preference order. First is the default. */
   variants: VariantName[];
@@ -68,7 +70,9 @@ export function rawIconProblems(
       problems.push(`variant "${v}" is not supported by the adapter`);
     }
   }
-  for (const v of adapter.variants) {
+  // Only non-default variants appear as name suffixes; names like
+  // "text-outline" are real concepts in an outline-default set.
+  for (const v of adapter.variants.slice(1)) {
     if (icon.name.endsWith(`-${v}`)) {
       problems.push(`name carries the variant suffix "-${v}"`);
     }
