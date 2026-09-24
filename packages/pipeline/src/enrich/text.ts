@@ -11,6 +11,7 @@ import {
   ENRICHMENT_JSON_SCHEMA,
   parseModelEnrichment,
   type Enrichment,
+  type ModelEnrichment,
 } from "./schema.js";
 
 /** Spec §6.3: reject and retry up to 2 times on validation failure. */
@@ -41,38 +42,25 @@ export function inputHash(
 }
 
 /**
- * Text-mode enrichment of one base concept. Invalid output is fed back to the
- * model with the validation problems and retried up to twice.
+ * Asks the model, validating each reply; invalid output is fed back with the
+ * validation problems and retried up to MAX_VALIDATION_RETRIES times.
  */
-export async function enrichText(
+export async function enrichWithRetries(
   provider: EnrichmentProvider,
-  entry: CatalogEntry,
-  svgBody: string,
-): Promise<Enrichment> {
-  const messages: ChatMessage[] = textMessages(iconInput(entry));
+  id: string,
+  system: string,
+  initial: ChatMessage[],
+): Promise<ModelEnrichment> {
+  const messages = [...initial];
   let problems: string[] = [];
   for (let attempt = 0; attempt <= MAX_VALIDATION_RETRIES; attempt++) {
     const reply = await provider.chat({
-      system: SYSTEM_PROMPT,
+      system,
       messages,
       jsonSchema: ENRICHMENT_JSON_SCHEMA,
     });
     const parsed = parseModelEnrichment(reply.content);
-    if (parsed.ok) {
-      return {
-        id: entry.id,
-        ...parsed.value,
-        model: provider.model,
-        mode: "text",
-        promptVersion: PROMPT_VERSION,
-        inputHash: inputHash(
-          svgBody,
-          entry.tags,
-          PROMPT_VERSION,
-          provider.model,
-        ),
-      };
-    }
+    if (parsed.ok) return parsed.value;
     problems = parsed.problems;
     messages.push(
       { role: "assistant", content: reply.content },
@@ -82,5 +70,27 @@ export async function enrichText(
       },
     );
   }
-  throw new EnrichmentValidationError(entry.id, problems);
+  throw new EnrichmentValidationError(id, problems);
+}
+
+/** Text-mode enrichment of one base concept (spec §6.3). */
+export async function enrichText(
+  provider: EnrichmentProvider,
+  entry: CatalogEntry,
+  svgBody: string,
+): Promise<Enrichment> {
+  const value = await enrichWithRetries(
+    provider,
+    entry.id,
+    SYSTEM_PROMPT,
+    textMessages(iconInput(entry)),
+  );
+  return {
+    id: entry.id,
+    ...value,
+    model: provider.model,
+    mode: "text",
+    promptVersion: PROMPT_VERSION,
+    inputHash: inputHash(svgBody, entry.tags, PROMPT_VERSION, provider.model),
+  };
 }

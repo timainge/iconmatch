@@ -6,6 +6,7 @@
   "license": "MIT",
   "dependencies": {
     "@iconify-json/tabler": "^1.2.40",
+    "@resvg/resvg-js": "^2.6.2",
     "@tabler/icons": "^3.48.0",
     "iconmatch": "0.0.0",
     "tsx": "^4.23.15",

@@ -119,3 +119,23 @@ export function textMessages(icon: IconInput): ChatMessage[] {
     { role: "user", content: userMessage(icon) },
   ];
 }
+
+/** Bump whenever the vision prompt changes. */
+export const VISION_PROMPT_VERSION = "vision-v1";
+
+/** Vision variant (spec §6.3): the description is what is visibly drawn in the image. */
+export const VISION_SYSTEM_PROMPT = SYSTEM_PROMPT.replace(
+  '"description": one literal sentence (max 160 characters) saying what the icon clearly shows, based only on its name and tags. No speculation.',
+  '"description": one literal sentence (max 160 characters) describing only what is visibly drawn in the attached image (a black line drawing on white). No speculation, no colours.',
+);
+
+/** Few-shot turns (text) followed by the icon with its rendered image. */
+export function visionMessages(
+  icon: IconInput,
+  pngBase64: string,
+): ChatMessage[] {
+  const msgs = textMessages(icon);
+  const last = msgs[msgs.length - 1];
+  if (last) last.images = [pngBase64];
+  return msgs;
+}

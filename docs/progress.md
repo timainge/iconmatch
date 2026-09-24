@@ -54,7 +54,8 @@ Checklist derived from `docs/plan.md` §11. The spec is the source of truth for 
 - [x] Text enrichment (b): `pipeline/cache/enrichment.jsonl` cache by `inputHash`, runner with `--limit`, concurrency (default 2), exponential backoff on provider errors, `enrich` CLI stage feeding index + embed (§6.3)
 - [x] Local LLM runtime: install/start Ollama (or LM Studio), pull models, record timings in DECISIONS.md; replace the synthetic `fixtures/ollama/*.json` with real recordings
 - [ ] Run text enrichment over full catalog
-- [ ] Vision enrichment: resvg render, `visionFor: sparse|all`; run over sparse icons (confirm `qwen2.5vl:7b` finished pulling; time it and record a real vision fixture)
+- [x] Vision enrichment (a): resvg 256×256 render, `sparse` rule (readability + < 3 tags), vision prompt + `enrichVision` (§6.3)
+- [ ] Vision enrichment (b): `--mode vision` in runner/stage (`visionFor: sparse|all`, vision model for selected icons, text for the rest); `qwen2.5vl:7b` is pulled, so time it, record a real vision fixture and run over the sparse icons after the text run finishes
 - [ ] Eval configs 4–5 with deltas against baseline — WAITS: eval/REVIEWED
 - [ ] Audit M4 (§11.1) — WAITS: eval/REVIEWED
 
