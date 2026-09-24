@@ -1,0 +1,29 @@
+# Written by the build loop; not pushed (pushing is a human checkpoint).
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # Typecheck, lint, format and the default test tier (offline, no Ollama).
+      - run: npm run check
+      # Spec §10: build the 200-icon subset with --enrich none (downloads the
+      # embedding model, cached between runs).
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/iconmatch/models
+          key: iconmatch-models-${{ hashFiles('package-lock.json') }}
+      - run: npx iconmatch-build all --config iconmatch.ci.config.ts --mode none
+      - run: test -s build-ci/package/manifest.json && test -s build-ci/package/vectors.bin
+      - run: npm run build && npm pack --dry-run -w iconmatch

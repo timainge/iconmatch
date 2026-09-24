@@ -87,3 +87,4 @@ export function resolveConfig(config: IconmatchConfig = {}): ResolvedConfig {
 }
 
 export { createTablerAdapter };
+export { subsetAdapter } from "./adapters/subset.js";

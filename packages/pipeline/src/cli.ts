@@ -32,6 +32,7 @@ Stages:
 Options:
   --config <file>     config file (default ./iconmatch.config.ts if present)
   --build-dir <dir>   override the config's buildDir
+  --package-dir <dir> override the config's packageDir
   --float32           embed: store float32 vectors instead of int8
   --mode <mode>       enrich: text | none (default from config)
   --limit <n>         enrich: process at most n uncached icons
@@ -180,6 +181,7 @@ export async function main(
       options: {
         config: { type: "string" },
         "build-dir": { type: "string" },
+        "package-dir": { type: "string" },
         float32: { type: "boolean" },
         mode: { type: "string" },
         limit: { type: "string" },
@@ -216,7 +218,10 @@ export async function main(
       io.cwd,
       values["build-dir"] ?? resolve(root, resolved.buildDir),
     );
-    resolved.packageDir = resolve(root, resolved.packageDir);
+    resolved.packageDir =
+      values["package-dir"] !== undefined
+        ? resolve(io.cwd, values["package-dir"])
+        : resolve(root, resolved.packageDir);
     if (values.float32 === true) resolved.embed.quantisation = "float32";
     if (values.mode !== undefined) {
       if (!["none", "text", "vision"].includes(values.mode))
