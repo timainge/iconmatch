@@ -16,6 +16,7 @@ export interface SetInfo {
   version: string;
   license: string;
   attributionRequired: boolean;
+  url: string;
   count: number;
   /** Licence text to ship in `data/licenses/<id>.txt` (spec §8). */
   licenseText?: string;
@@ -84,6 +85,7 @@ export async function ingest(
       version: adapter.version ?? "unknown",
       license: adapter.license.spdx,
       attributionRequired: adapter.license.attributionRequired,
+      url: adapter.license.url,
       count: catalog.length - before,
     };
     const text = await adapter.licenseText?.();

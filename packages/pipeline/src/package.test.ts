@@ -80,7 +80,16 @@ describe("runPackage (spec §6.6, §8)", () => {
     expect(manifest).toEqual({
       schemaVersion: 1,
       builtAt: "2026-09-25T00:00:00.000Z",
-      sets: [{ id: "demo", version: "1.2.3", license: "MIT", count: 2 }],
+      sets: [
+        {
+          id: "demo",
+          version: "1.2.3",
+          license: "MIT",
+          count: 2,
+          attributionRequired: false,
+          url: "https://example.com",
+        },
+      ],
       enrichment: { mode: "none" },
       files: {
         catalog: "catalog.json",
@@ -107,6 +116,7 @@ describe("runPackage (spec §6.6, §8)", () => {
       manifest: m,
     });
     expect((await matcher.search("heart"))[0]?.id).toBe("demo:heart");
+    expect(matcher.attributions()).toEqual([]);
   });
 
   it("copies each set's licence into licenses/ and fails without one", async () => {

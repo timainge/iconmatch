@@ -61,7 +61,16 @@ export interface ManifestFiles {
 export interface Manifest {
   schemaVersion: number;
   builtAt: string;
-  sets: { id: string; version: string; license: string; count: number }[];
+  sets: {
+    id: string;
+    version: string;
+    license: string;
+    count: number;
+    /** The licence requires visible attribution (spec §8). */
+    attributionRequired?: boolean;
+    /** Licence URL, for attribution UIs. */
+    url?: string;
+  }[];
   embedding?: {
     model: string;
     dims: number;
@@ -93,4 +102,11 @@ export interface IconMatch {
   isFallback?: boolean;
   /** Set when isFallback: the character the glyph shows. */
   fallbackLetter?: string;
+}
+
+/** A set the consuming app must credit (spec §8, `matcher.attributions()`). */
+export interface Attribution {
+  set: string;
+  license: string;
+  url?: string;
 }

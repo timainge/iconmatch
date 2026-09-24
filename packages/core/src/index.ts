@@ -19,6 +19,7 @@ export type { LoadOptions } from "./data/loaders.js";
 
 export { VARIANT_NAMES } from "./types.js";
 export type {
+  Attribution,
   CatalogEntry,
   Embedder,
   IconMatch,

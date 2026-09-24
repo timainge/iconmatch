@@ -99,6 +99,8 @@ export async function runPackage(
       version: s.version,
       license: s.license,
       count: s.count,
+      attributionRequired: s.attributionRequired,
+      url: s.url,
     })),
     enrichment:
       enrichments.size === 0 || options.enrich.mode === "none"

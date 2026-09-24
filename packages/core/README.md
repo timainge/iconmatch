@@ -139,6 +139,8 @@ The expander used above (`examples/query-expansion/ollama-expander.ts` in the re
 | `letterFallback(label, catalog)`                                                                     | The lettered glyph on its own                                               |
 | `createTransformersEmbedder` from `iconmatch/embedder-transformers`                                  | Local embedder (optional peer dependency)                                   |
 
+`matcher.attributions()` lists the icon sets whose licence requires visible credit (none for Tabler, which is MIT); it needs the `manifest` part.
+
 Only `catalog` is required. A method whose part is missing throws `IconMatchCapabilityError` naming it; an embedder for a different model than the data throws `IconMatchModelMismatchError`; a wrong-length vector throws `IconMatchDimensionError`.
 
 ### Confidence and fallback

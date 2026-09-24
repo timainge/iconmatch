@@ -10,6 +10,7 @@ import { createKeywordSearcher, KEYWORD_TOP_K } from "./keyword.js";
 import { normaliseQuery } from "./query.js";
 import { renderSvg, type RenderSvgOptions, type SvgProvider } from "./svg.js";
 import type {
+  Attribution,
   CatalogEntry,
   Embedder,
   IconMatch,
@@ -51,8 +52,11 @@ export interface IconMatcherParts {
   expandQuery?: (query: string) => Promise<string[]>;
   /** Called when `expandQuery` rejects; search continues without expansions. */
   onExpandError?: (error: unknown) => void;
-  /** Checked against `embedder` and `vectors` (model, dims) at construction. */
-  manifest?: Pick<Manifest, "embedding">;
+  /**
+   * Checked against `embedder` and `vectors` (model, dims) at construction;
+   * its `sets` feed `attributions()`.
+   */
+  manifest?: Pick<Manifest, "embedding"> & Partial<Pick<Manifest, "sets">>;
   /** SVG bodies, e.g. `svgsFromArtifact(await loadSvgs(src))` or a remote fetch. */
   svgs?: SvgProvider;
   /** Include letter/number glyphs in ranked results. Default false (spec §7.2 step 8). */
@@ -100,6 +104,8 @@ export interface IconMatcher {
     options?: SearchOptions,
   ): IconMatch[];
   get(id: string): CatalogEntry | undefined;
+  /** Sets whose licence requires visible attribution (spec §8). Needs the `manifest` part. */
+  attributions(): Attribution[];
   /** Rendered `<svg>` string (spec §7.6). Needs the `svgs` part. */
   svg(id: string, options?: SvgOptions): Promise<string>;
 }
@@ -449,6 +455,17 @@ export function createIconMatcher(
         .slice(0, options.limit ?? DEFAULT_LIMIT);
     },
     get: (id) => byId.get(id),
+    attributions() {
+      if (!parts.manifest?.sets)
+        throw new IconMatchCapabilityError("attributions", "manifest");
+      return parts.manifest.sets
+        .filter((s) => s.attributionRequired === true)
+        .map((s) =>
+          s.url === undefined
+            ? { set: s.id, license: s.license }
+            : { set: s.id, license: s.license, url: s.url },
+        );
+    },
     async svg(id, options = {}) {
       if (!parts.svgs) throw new IconMatchCapabilityError("svg", "svgs");
       const entry = byId.get(id);
