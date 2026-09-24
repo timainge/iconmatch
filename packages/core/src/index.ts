@@ -20,6 +20,7 @@ export { VARIANT_NAMES } from "./types.js";
 export type {
   CatalogEntry,
   Embedder,
+  IconMatch,
   Manifest,
   ManifestFiles,
   SvgArtifact,
@@ -41,3 +42,24 @@ export {
   tokenize,
 } from "./keyword-index.js";
 export type { KeywordDocument, KeywordEnrichment } from "./keyword-index.js";
+
+export { IconMatchCapabilityError } from "./errors.js";
+export { normaliseQuery } from "./query.js";
+export {
+  createKeywordSearcher,
+  KEYWORD_TOP_K,
+  keywordConfidence,
+  queryTerms,
+} from "./keyword.js";
+export type { KeywordHit, KeywordSearcher } from "./keyword.js";
+export {
+  compareMatches,
+  createIconMatcher,
+  DEFAULT_LIMIT,
+  resolveVariant,
+} from "./matcher.js";
+export type {
+  IconMatcher,
+  IconMatcherParts,
+  SearchOptions,
+} from "./matcher.js";

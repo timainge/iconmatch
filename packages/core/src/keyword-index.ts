@@ -107,9 +107,14 @@ export const KEYWORD_INDEX_OPTIONS: Options<KeywordDocument> = {
   processTerm,
 };
 
-/** Prefix for terms of 3+ chars; fuzzy (edit distance 1) for terms of 5+ chars. */
+/**
+ * Prefix for terms of 3+ chars; fuzzy (edit distance 1) for terms of 5+ chars.
+ * Prefix weight 0.2 (MiniSearch default 0.375) so "dog" doesn't rank
+ * "dogecoin" above tag matches; pre-eval starting point, tune on `dev`.
+ */
 export const KEYWORD_SEARCH_OPTIONS: SearchOptions = {
   boost: { ...KEYWORD_BOOSTS },
+  weights: { fuzzy: 0.45, prefix: 0.2 },
   prefix: (term) => term.length >= 3,
   fuzzy: (term) => (term.length >= 5 ? 1 : false),
   combineWith: "OR",

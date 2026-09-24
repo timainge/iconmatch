@@ -75,3 +75,22 @@ export interface Manifest {
   };
   files: ManifestFiles;
 }
+
+/** One ranked search result (spec §7.1). JSON-safe wire type. */
+export interface IconMatch {
+  id: string;
+  name: string;
+  label: string;
+  set: string;
+  /** Fused score, for ranking only. */
+  score: number;
+  /** 0..1 (spec §7.2); use this for thresholds. */
+  confidence: number;
+  /** Variant that will be rendered (after fallback). */
+  variant: VariantName;
+  availableVariants: VariantName[];
+  matchedOn: { keyword: boolean; vector: boolean; remote?: boolean };
+  isFallback?: boolean;
+  /** Set when isFallback: the character the glyph shows. */
+  fallbackLetter?: string;
+}
