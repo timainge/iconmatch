@@ -5,11 +5,11 @@ description: Take the next unfinished item from docs/progress.md and carry it th
 
 Run one iteration of the build loop. If $ARGUMENTS names a specific checklist item, work on that one instead of the next. Follow `CLAUDE.md` (definition of done, anti-gaming rules) throughout.
 
-1. **Pick.** Read `docs/progress.md` and choose the first unchecked item that isn't `BLOCKED`.
-   - If the previous milestone's items are all ticked but `docs/audits/M<n>.md` doesn't exist or has open gaps, run `/audit M<n>` first. That is this iteration's work.
-   - If the item is a **HUMAN CHECKPOINT**, write `docs/checkpoints/M<n>.md` (for M3: headline test-split numbers, dev numbers, threshold sweep, failing groups, and the 10–15 eval labels most worth a human look). Commit it, send a push notification if the PushNotification tool is available, then **end the loop** and report. Don't start later milestones.
-   - If every item is done or blocked, report what's blocked and why, then end the loop without changes.
-   - "End the loop" means: in `/loop` dynamic mode, call ScheduleWakeup with `stop: true`. Otherwise, just finish.
+1. **Pick.** Read `docs/progress.md` and choose the first unchecked item that is available: not `BLOCKED`, and not tagged `WAITS: eval/REVIEWED` unless that file exists.
+   - If the previous milestone's items are all ticked (ignoring waiting items) but `docs/audits/M<n>.md` doesn't exist or has open gaps, run `/audit M<n>` first, unless that milestone's audit item is itself waiting. That is this iteration's work.
+   - If the item is a **SOFT CHECKPOINT**, write `docs/checkpoints/M<n>.md`. For M3, include provisional dev and test numbers, the threshold sweep, failing groups, the 10–15 eval labels most worth a human look, and how to resume: review, then create `eval/REVIEWED`. Send a push notification if the PushNotification tool is available, tick the item, commit, and **continue** with the next available item on the next iteration.
+   - When `eval/REVIEWED` has just appeared, the first `WAITS` item (re-baseline) comes before anything else.
+   - If nothing is available, report what's blocked or waiting and why, then end the loop without changes. "End the loop" means: in `/loop` dynamic mode, call ScheduleWakeup with `stop: true`. Otherwise, just finish.
 2. **Orient.** Read the spec sections the item cites (and §10, §11.1 and §14), plus `DECISIONS.md`. List the MUSTs this item touches. MUSTs are non-negotiable. For a SHOULD, you may deviate if you record why.
 3. **Check the ground truth.** Before relying on a package's layout, metadata or API, inspect it in `node_modules` or its source. Record the finding in `DECISIONS.md`.
 4. **Scope.** If the item won't fit one focused commit (a rough guide: under ~400 changed lines excluding fixtures), split it into sub-items in `docs/progress.md` and take the first one.

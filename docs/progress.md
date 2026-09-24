@@ -1,6 +1,6 @@
 # Progress
 
-Checklist derived from `docs/plan.md` §11. The spec is the source of truth for _what_; this file tracks _where we are_. Split items as needed; mark blocked items `- [ ] BLOCKED: <reason>`. Each milestone ends with an audit (`/audit`, spec §11.1); gaps come back here as `AUDIT:` items.
+Checklist derived from `docs/plan.md` §11. The spec is the source of truth for _what_; this file tracks _where we are_. Split items as needed; mark blocked items `- [ ] BLOCKED: <reason>`. Each milestone ends with an audit (`/audit`, spec §11.1); gaps come back here as `AUDIT:` items. Items tagged `WAITS: eval/REVIEWED` are skipped until the human creates that file (soft checkpoint, spec §14); all other work continues.
 
 ## M1: Ingest + keyword search
 
@@ -38,9 +38,10 @@ Checklist derived from `docs/plan.md` §11. The spec is the source of truth for 
 
 - [ ] Draft ≥120 eval queries (incl. ≥10 no-match) with stratified dev/test split (§9.1) — flag for human review
 - [ ] `iconmatch-eval`: Hit@1/3/5, MRR, fallback P/R, per-group; unknown-id check; `--split`; JSON output + `--compare baseline` (§9.4)
-- [ ] Results table for configs 1–3 + `minConfidence` sweep → `eval/results/<date>.md`
+- [ ] Provisional results table for configs 1–3 + `minConfidence` sweep → `eval/results/<date>.md`
 - [ ] Audit M3 (§11.1)
-- [ ] **HUMAN CHECKPOINT: write `docs/checkpoints/M3.md`, stop and report baseline numbers before M4** (resume: human ticks this and creates `eval/REVIEWED`)
+- [ ] **SOFT CHECKPOINT:** write `docs/checkpoints/M3.md` (provisional numbers, failing groups, labels to review), notify the human, tick this, and continue
+- [ ] Re-baseline on the reviewed eval set; choose default `minConfidence` from the dev sweep — WAITS: eval/REVIEWED
 
 ## M4: Enrichment
 
@@ -48,15 +49,16 @@ Checklist derived from `docs/plan.md` §11. The spec is the source of truth for 
 - [ ] Text enrichment: prompts, zod schema, retries, jsonl cache, `--limit`, concurrency/backoff
 - [ ] Local LLM runtime: install/start Ollama (or LM Studio), pull models, record timings in DECISIONS.md
 - [ ] Run text enrichment over full catalog
-- [ ] Vision enrichment: resvg render, `visionFor: sparse|all`
-- [ ] Eval configs 4–5
-- [ ] Audit M4 (§11.1)
+- [ ] Vision enrichment: resvg render, `visionFor: sparse|all`; run over sparse icons
+- [ ] Eval configs 4–5 with deltas against baseline — WAITS: eval/REVIEWED
+- [ ] Audit M4 (§11.1) — WAITS: eval/REVIEWED
 
 ## M5: Package
 
-- [ ] Query expansion hook + eval config 6/7
+- [ ] Query expansion hook + README example (no eval)
 - [ ] `package` stage: manifest, licenses, size report
 - [ ] README with examples + Tabler MIT notice + brand trademark note; publish-ready `package.json` with subpath exports
 - [ ] CI: build with `--enrich none` on 200-icon subset (workflow file only; never pushed)
 - [ ] `npm pack --dry-run` contents check; per-composition size report
-- [ ] Audit M5 (§11.1)
+- [ ] Eval configs 6–7 (query expansion, int8 vs float32) and final results on the test split vs the acceptance bar — WAITS: eval/REVIEWED
+- [ ] Audit M5 (§11.1) — WAITS: eval/REVIEWED

@@ -3,10 +3,15 @@
 cd "${CLAUDE_PROJECT_DIR:-.}" || exit 0
 echo "## Open plan items (docs/progress.md)"
 if [ -s docs/progress.md ]; then
-  grep -nE '^\s*[-*] \[ \]' docs/progress.md | grep -v 'BLOCKED' | head -12 || true
+  grep -nE '^\s*[-*] \[ \]' docs/progress.md | grep -v 'BLOCKED' | grep -v 'WAITS:' | head -12 || true
   grep -qE '^\s*[-*] \[ \]' docs/progress.md || echo "(no unchecked items)"
   blocked=$(grep -nE '^\s*[-*] \[ \].*BLOCKED' docs/progress.md)
   [ -n "$blocked" ] && printf '\n## Blocked\n%s\n' "$blocked"
+  waiting=$(grep -nE '^\s*[-*] \[ \].*WAITS:' docs/progress.md)
+  if [ -n "$waiting" ]; then
+    if [ -e eval/REVIEWED ]; then printf '\n## Waiting items now available (eval/REVIEWED exists)\n%s\n' "$waiting"
+    else printf '\n## Waiting on eval/REVIEWED (skip these)\n%s\n' "$waiting"; fi
+  fi
 else
   echo "(docs/progress.md missing or empty)"
 fi

@@ -21,7 +21,7 @@ Core is **composable primitives**, not one monolith (spec §7.0): data sources, 
 | `docs/progress.md`         | agent | Working checklist. Tick items, split big ones, add discovered tasks, mark `BLOCKED: <reason>`.                         |
 | `DECISIONS.md`             | agent | Every SHOULD deviation, open choice and verified external fact, with a one-line reason. Newest last.                   |
 | `docs/audits/M<n>.md`      | agent | Milestone evidence against spec §11.1.                                                                                 |
-| `docs/checkpoints/M<n>.md` | agent | Handoff reports for a human checkpoint.                                                                                |
+| `docs/checkpoints/M<n>.md` | agent | Handoff reports for a human checkpoint (soft or hard).                                                                 |
 | `eval/queries.json`        | both  | Agent drafts it. Frozen once the human creates `eval/REVIEWED`. After that, label doubts go in `eval/label-issues.md`. |
 
 ## Operating mode: autonomous dark factory
@@ -30,11 +30,10 @@ Work runs lights-out, with no human in the loop, driven by `/loop /next`. Each `
 
 - **Don't ask; decide.** Make the conservative, reversible choice, record it in `DECISIONS.md`, and keep going. For spec §13 questions, use the defaults stated there.
 - **Verify facts, don't assume them.** Inspect installed packages (`node_modules/...`) or source before relying on file layouts, metadata fields or model ids. Record what you found and where in `DECISIONS.md`.
-- **Blockers don't stop the loop.** Mark the item `BLOCKED: <reason>`, also block anything that truly depends on it, and take the next unblocked item. Stop the loop only when nothing unblocked is left or a checkpoint is reached.
+- **Blockers don't stop the loop.** Mark the item `BLOCKED: <reason>`, also block anything that truly depends on it, and take the next available item. Stop the loop only when every remaining item is done, `BLOCKED` or waiting.
 - **Local tooling is allowed.** You may install npm packages, download Hugging Face models, and install and run a local LLM runtime for M4 (`brew install ollama`, `ollama serve`, `ollama pull`, or LM Studio). See spec §14.
-- **Human checkpoints** (stop the loop, write `docs/checkpoints/M<n>.md`, send a push notification if the tool is available):
-  - After M3: the baseline eval numbers, with the drafted eval set flagged for review. The human resumes the loop by ticking the checkpoint item and creating `eval/REVIEWED`.
-  - Anything that costs money, needs secrets, or is outward-facing or irreversible (push, publish, deleting data outside `build/` and `cache/`).
+- **Soft checkpoint after M3** (eval review). Write `docs/checkpoints/M3.md` and send a push notification if the tool is available, then **keep going**. Items tagged `WAITS: eval/REVIEWED` are skipped until the human creates that file. Until then, all eval numbers are provisional: never cite them in the README or treat them as meeting the acceptance bar.
+- **Hard checkpoints** (stop and report): anything that costs money, needs secrets, or is outward-facing or irreversible (push, publish, deleting data outside `build/` and `cache/`).
 - **No Ollama in CI or default-tier tests.** Enrichment tests use recorded fixtures. The default tier never touches the network.
 
 ## Definition of done (per checklist item)
@@ -54,7 +53,7 @@ Work runs lights-out, with no human in the loop, driven by `/loop /next`. Each `
 
 These form an observe, orient/decide, act loop:
 
-- **SessionStart** (`observe.sh`): shows open and blocked checklist items, checkpoints, the eval review state, and git state.
+- **SessionStart** (`observe.sh`): shows open, blocked and waiting checklist items, checkpoints, the eval review state, and git state.
 - **PreToolUse** (`guard.sh`): blocks edits to human-owned files, `git push`, `npm publish`, destructive git, `--no-verify` and `--amend`. It runs `npm run check` before every `git commit` and denies the commit if it fails. A human-directed session can set `ICONMATCH_ALLOW_PROTECTED=1` to edit protected files.
 - **PostToolUse** (`act.sh`): auto-formats edits and feeds ESLint errors back to you.
 - **Stop** (`verify.sh`): blocks stopping while `npm run check` fails (only when code files are uncommitted).
@@ -63,8 +62,8 @@ If a hook blocks you, fix the cause. Don't work around the hook.
 
 ## Running unsupervised
 
-- **Headless (preferred for long runs):** `caffeinate -i scripts/factory.sh 30` runs one fresh `claude -p "/next"` per item, logs to `.factory/logs/`, and stops at a checkpoint, when nothing is unblocked, on a dirty tree, or after two iterations without a commit.
-- **Interactive:** `claude --permission-mode bypassPermissions`, then `/loop /next`. `/next` ends the loop itself at checkpoints.
+- **Headless (preferred for long runs):** `caffeinate -i scripts/factory.sh 30` runs one fresh `claude -p "/next"` per item, logs to `.factory/logs/`, and stops when nothing is available (all done, blocked or waiting), on a dirty tree, or after two iterations without a commit.
+- **Interactive:** `claude --permission-mode bypassPermissions`, then `/loop /next`. `/next` ends the loop itself when nothing is available.
 
 ## Skills
 

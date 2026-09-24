@@ -13,3 +13,7 @@ Brands included (flagged), outline only (no filled), no model download in the br
 ## 2026-09-24 — Autonomous-loop verification setup
 
 Added the eval dev/test split, the two test tiers, per-milestone acceptance criteria + audits, and guard hooks (commit gate on `npm run check`, protected spec/eval files). This lets the loop run lights-out without tuning on its own report set or committing red.
+
+## 2026-09-24 — M3 is a soft checkpoint
+
+Owner decision. After M3 the loop writes the checkpoint report, notifies, and continues. Items that tune on or report eval numbers are tagged `WAITS: eval/REVIEWED` and skipped until the owner reviews the eval set, so unattended runs don't idle and no tuning happens on unreviewed labels.
