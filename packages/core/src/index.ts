@@ -61,11 +61,14 @@ export {
   createIconMatcher,
   DEFAULT_LIMIT,
   DEFAULT_MIN_CONFIDENCE,
+  DEFAULT_REMOTE_TIMEOUT_MS,
+  IconMatchTimeoutError,
   resolveVariant,
 } from "./matcher.js";
 export type {
   IconMatcher,
   IconMatcherParts,
+  RemoteSearch,
   SearchOptions,
 } from "./matcher.js";
 export {

@@ -34,6 +34,16 @@ export interface IconMatcherParts {
   vectors?: VectorArtifact;
   /** Embeds text queries. Lazy-loading embedders load on the first `search()`. */
   embedder?: Embedder;
+  /**
+   * Server-side search (e.g. hybrid on a server with the model). Used in
+   * place of local vector search; on rejection or timeout, `search()` falls
+   * back to local keyword results (spec §7.0).
+   */
+  remoteSearch?: RemoteSearch;
+  /** Longest wait for `remoteSearch`. Default `DEFAULT_REMOTE_TIMEOUT_MS`. */
+  remoteTimeoutMs?: number;
+  /** Called when `remoteSearch` rejects or times out. */
+  onRemoteError?: (error: unknown) => void;
   /** Checked against `embedder` and `vectors` (model, dims) at construction. */
   manifest?: Pick<Manifest, "embedding">;
   /** SVG bodies, e.g. `svgsFromArtifact(await loadSvgs(src))` or a remote fetch. */
@@ -88,6 +98,48 @@ export interface IconMatcher {
 }
 
 export const DEFAULT_LIMIT = 10;
+
+/** Default `remoteTimeoutMs`. */
+export const DEFAULT_REMOTE_TIMEOUT_MS = 1500;
+
+/** Ranked results from a server; `signal` aborts when the matcher stops waiting. */
+export type RemoteSearch = (
+  query: string,
+  options: { limit: number; signal: AbortSignal },
+) => Promise<IconMatch[]>;
+
+/** Thrown (and passed to `onRemoteError`) when `remoteSearch` exceeds its timeout. */
+export class IconMatchTimeoutError extends Error {
+  override name = "IconMatchTimeoutError";
+  constructor(readonly timeoutMs: number) {
+    super(`remoteSearch did not answer within ${String(timeoutMs)} ms`);
+  }
+}
+
+/** Runs `task`, rejecting with IconMatchTimeoutError (and aborting it) after `ms`. */
+function withTimeout<T>(
+  task: (signal: AbortSignal) => Promise<T>,
+  ms: number,
+): Promise<T> {
+  const controller = new AbortController();
+  return new Promise<T>((resolve, reject) => {
+    const timer = setTimeout(() => {
+      const error = new IconMatchTimeoutError(ms);
+      controller.abort(error);
+      reject(error);
+    }, ms);
+    task(controller.signal).then(
+      (value) => {
+        clearTimeout(timer);
+        resolve(value);
+      },
+      (error: unknown) => {
+        clearTimeout(timer);
+        reject(error instanceof Error ? error : new Error(String(error)));
+      },
+    );
+  });
+}
 
 /** Provisional; the default is chosen from the eval threshold sweep (spec §7.2 step 5, §9.3). */
 export const DEFAULT_MIN_CONFIDENCE = 0.5;
@@ -172,7 +224,7 @@ export function createIconMatcher(
 
   const matcher: IconMatcher = {
     async search(query, options = {}) {
-      if (!keyword && !semantic) {
+      if (!keyword && !semantic && !parts.remoteSearch) {
         throw new IconMatchCapabilityError("search", "keywordIndex");
       }
       const limit = options.limit ?? DEFAULT_LIMIT;
@@ -182,45 +234,83 @@ export function createIconMatcher(
             includeGlyphs,
           })
         : [];
+      const keywordById = new Map(keywordHits.map((h) => [h.id, h]));
+
+      // The second ranking: remote search in place of local vectors (spec §7.0).
+      let remote: Map<string, IconMatch> | undefined;
       let sims: Float32Array | undefined;
-      let vectorIds: string[] = [];
-      if (semantic && query.trim() !== "") {
+      let secondIds: string[] = [];
+      if (parts.remoteSearch && query.trim() !== "") {
+        try {
+          const results = await withTimeout(
+            (signal) =>
+              parts.remoteSearch?.(query, { limit: KEYWORD_TOP_K, signal }) ??
+              Promise.resolve([]),
+            parts.remoteTimeoutMs ?? DEFAULT_REMOTE_TIMEOUT_MS,
+          );
+          remote = new Map(
+            results
+              .filter((r) => !r.isFallback && !glyphs.has(r.id))
+              .map((r) => [r.id, r]),
+          );
+          secondIds = [...remote.keys()];
+        } catch (error) {
+          parts.onRemoteError?.(error);
+          if (!keyword) throw error;
+        }
+      } else if (semantic && query.trim() !== "") {
         const [q] = await semantic.embedder.embed([query.trim()], "query");
         if (q) {
           sims = semantic.vector.similarities(q);
-          vectorIds = semantic.vector
+          secondIds = semantic.vector
             .search(q, { limit: VECTOR_TOP_K, exclude: glyphs })
             .map((h) => h.id);
         }
       }
 
-      const keywordById = new Map(keywordHits.map((h) => [h.id, h]));
-      const inVector = new Set(vectorIds);
+      const inSecond = new Set(secondIds);
       const fused = fuse([
         { ids: keywordHits.map((h) => h.id) },
-        { ids: vectorIds },
+        { ids: secondIds },
       ]);
       const matches = fused.flatMap(({ id, score }) => {
-        const entry = byId.get(id);
-        if (!entry) return [];
         const kw = keywordById.get(id);
+        const r = remote?.get(id);
+        const entry = byId.get(id);
+        if (!entry) {
+          // A remote-only icon unknown to this catalog: trust the server's fields.
+          return r
+            ? [
+                {
+                  ...r,
+                  score,
+                  matchedOn: {
+                    keyword: false,
+                    vector: r.matchedOn.vector,
+                    remote: true,
+                  },
+                },
+              ]
+            : [];
+        }
         const row = rowOf.get(id);
-        const confidence =
-          sims && row !== undefined
+        const confidence = r
+          ? Math.max(r.confidence, kw?.confidence ?? 0)
+          : sims && row !== undefined
             ? hybridConfidence(sims[row] ?? 0, kw !== undefined)
             : (kw?.confidence ?? 0);
-        return [
-          toMatch(
-            entry,
-            {
-              score,
-              confidence,
-              keyword: kw !== undefined,
-              vector: inVector.has(id),
-            },
-            options.variant,
-          ),
-        ];
+        const match = toMatch(
+          entry,
+          {
+            score,
+            confidence,
+            keyword: kw !== undefined,
+            vector: r ? r.matchedOn.vector : inSecond.has(id),
+          },
+          options.variant,
+        );
+        if (remote) match.matchedOn.remote = r !== undefined;
+        return [match];
       });
       return matches.sort(compareMatches(options.variant)).slice(0, limit);
     },
