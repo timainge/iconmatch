@@ -3,5 +3,8 @@
   "version": "0.0.0",
   "type": "module",
   "private": true,
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "iconmatch": "0.0.0"
+  }
 }

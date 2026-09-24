@@ -5,7 +5,7 @@ Checklist derived from `docs/plan.md` §11. The spec is the source of truth for 
 ## M1: Ingest + keyword search
 
 - [x] Test infrastructure: vitest config, `ICONMATCH_SLOW_TESTS` gating helper, deterministic fake `Embedder`, fixture layout (§10)
-- [ ] Adapter interface + types (§6.1)
+- [x] Adapter interface + types (§6.1)
 - [ ] Tabler adapter: SVGs from `@iconify-json/tabler`, outline only (drop `-filled`), include + flag brands, mark letter/number glyphs, skip deprecated, log counts; locate tag/category source and record in DECISIONS.md
 - [ ] `ingest` → `build/catalog.json` + `build/svgs.json`
 - [ ] `index` → MiniSearch keyword index with field boosts, fuzzy/prefix, stopwords, plural folding
