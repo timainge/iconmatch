@@ -13,6 +13,7 @@ import {
   type ResolvedConfig,
 } from "./config.js";
 import { runEmbed } from "./embed.js";
+import { formatSizes, runPackage } from "./package.js";
 import { createProvider, type EnrichmentProvider } from "./enrich/provider.js";
 import { readBuildEnrichments, runEnrichStage } from "./enrich/stage.js";
 import { ingest, writeIngest } from "./ingest.js";
@@ -25,7 +26,7 @@ Stages:
   enrich    LLM enrichment (--mode none|text|vision) -> build/enrichments.json
   embed     build/catalog.json -> build/vectors.bin + vector-ids.json
   index     build/catalog.json -> build/keyword-index.json
-  package   (not implemented yet: M5)
+  package   build/ -> packages/core/data/ + manifest.json + licenses, size report
   all       every implemented stage, in order
 
 Options:
@@ -145,13 +146,25 @@ const STAGES = {
       `embed: ${String(meta.count)} × ${String(meta.dims)} ${meta.quantisation} (${meta.model})`,
     );
   },
+  async package(config: ResolvedConfig, io: CliIo) {
+    const { manifest, sizes } = await runPackage(
+      config.buildDir,
+      config.packageDir,
+      {
+        enrich: config.enrich,
+      },
+    );
+    io.log(
+      `package: ${String(manifest.sets.reduce((n, s) => n + s.count, 0))} icons, enrichment ${manifest.enrichment?.mode ?? "none"} -> ${config.packageDir}\n${formatSizes(sizes)}`,
+    );
+  },
   async index(config: ResolvedConfig, io: CliIo) {
     const enrichments = await readBuildEnrichments(config.buildDir);
     io.log(`index: -> ${await runIndex(config.buildDir, enrichments)}`);
   },
 } as const;
 
-const PENDING = new Set(["package"]);
+const PENDING = new Set<string>();
 const ORDER = ["ingest", "enrich", "embed", "index", "package"] as const;
 
 /** Runs the CLI; returns the process exit code. */

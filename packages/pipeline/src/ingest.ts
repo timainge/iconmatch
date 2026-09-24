@@ -7,7 +7,22 @@ import { rawIconProblems } from "./adapters/types.js";
 export interface IngestResult {
   catalog: CatalogEntry[];
   svgs: SvgArtifact;
+  /** Per-set metadata for the manifest (spec §6.6, §8). */
+  sets?: SetInfo[];
 }
+
+export interface SetInfo {
+  id: string;
+  version: string;
+  license: string;
+  attributionRequired: boolean;
+  count: number;
+  /** Licence text to ship in `data/licenses/<id>.txt` (spec §8). */
+  licenseText?: string;
+}
+
+/** Per-set metadata written next to the catalog, read by the `package` stage. */
+export const SETS_FILE = "sets.json";
 
 /** "arrow-bar-to-down" -> "Arrow bar to down". Brands drop the prefix. */
 export function humanise(name: string, brand = false): string {
@@ -44,9 +59,11 @@ export async function ingest(
   const catalog: CatalogEntry[] = [];
   const svgs: SvgArtifact = {};
   const problems: string[] = [];
+  const sets: SetInfo[] = [];
 
   for (const adapter of adapters) {
     const icons = await adapter.load();
+    const before = catalog.length;
     for (const icon of icons) {
       if (icon.deprecated) continue;
       const entry = toEntry(adapter, icon);
@@ -62,6 +79,16 @@ export async function ingest(
         entry.variants.map((v) => [v, icon.variants[v]]),
       );
     }
+    const set: SetInfo = {
+      id: adapter.id,
+      version: adapter.version ?? "unknown",
+      license: adapter.license.spdx,
+      attributionRequired: adapter.license.attributionRequired,
+      count: catalog.length - before,
+    };
+    const text = await adapter.licenseText?.();
+    if (text !== undefined) set.licenseText = text;
+    sets.push(set);
   }
   if (problems.length > 0) {
     throw new Error(
@@ -72,7 +99,7 @@ export async function ingest(
   catalog.sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
   const sortedSvgs: SvgArtifact = {};
   for (const { id } of catalog) sortedSvgs[id] = svgs[id] ?? {};
-  return { catalog, svgs: sortedSvgs };
+  return { catalog, svgs: sortedSvgs, sets };
 }
 
 /** Writes `catalog.json` and `svgs.json` to `outDir`. Byte-stable for equal input. */
@@ -87,5 +114,21 @@ export async function writeIngest(
   };
   await writeFile(paths.catalog, JSON.stringify(result.catalog) + "\n");
   await writeFile(paths.svgs, JSON.stringify(result.svgs) + "\n");
+  if (result.sets) {
+    const sets = result.sets.map((set) => {
+      const copy = { ...set };
+      delete copy.licenseText;
+      return copy;
+    });
+    await writeFile(
+      join(outDir, SETS_FILE),
+      JSON.stringify(sets, null, 2) + "\n",
+    );
+    for (const s of result.sets) {
+      if (s.licenseText === undefined) continue;
+      await mkdir(join(outDir, "licenses"), { recursive: true });
+      await writeFile(join(outDir, "licenses", `${s.id}.txt`), s.licenseText);
+    }
+  }
   return paths;
 }

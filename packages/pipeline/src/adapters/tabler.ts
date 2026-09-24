@@ -196,6 +196,8 @@ export function createTablerAdapter(
       attributionRequired: false,
     },
     variants,
+    licenseText: () =>
+      readFile(packageFile("@tabler/icons", "LICENSE"), "utf8"),
     async load() {
       const source = await (options.source ?? readTablerSource)();
       const { icons, stats } = tablerIcons(source, options);

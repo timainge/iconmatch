@@ -15,6 +15,8 @@ export interface IconSetAdapter {
   /** Variants this set supports, in preference order. First is the default. */
   variants: VariantName[];
   load(): Promise<RawIcon[]>;
+  /** The set's licence text, shipped in `data/licenses/` (spec §8). */
+  licenseText?(): Promise<string>;
 }
 
 /** SVG inner markup plus its viewBox size. */

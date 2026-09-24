@@ -11,3 +11,4 @@ eval/results/*.tmp
 CLAUDE.local.md
 .claude/settings.local.json
 .factory/
+packages/core/data/

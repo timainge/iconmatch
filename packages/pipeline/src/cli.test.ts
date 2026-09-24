@@ -37,6 +37,7 @@ const CONFIG = `export default {
     id: "demo",
     license: { spdx: "MIT", url: "https://example.com", attributionRequired: false },
     variants: ["outline"],
+    licenseText: async () => "MIT demo licence",
     load: async () => [
       { name: "heart", variants: { outline: { body: "<path/>", width: 24, height: 24 } }, tags: ["love"], categories: ["shapes"] },
     ],
@@ -60,7 +61,7 @@ describe("iconmatch-build main()", () => {
     expect(err).toEqual([]);
   });
 
-  it("'all' runs implemented stages in order and reports pending ones", async () => {
+  it("'all' runs every stage in order, ending with package", async () => {
     await writeFile(join(dir, "c.config.ts"), CONFIG);
     expect(
       await main(["all", "--config", "c.config.ts", "--build-dir", "b"], io),
@@ -90,9 +91,7 @@ describe("iconmatch-build main()", () => {
     expect(out.at(-1)).toBe("embed: 1 × 8 float32 (fake/hash-embedder)");
   });
 
-  it("fails clearly on pending stages, unknown stages, missing args and a missing --config", async () => {
-    expect(await main(["package"], io)).toBe(1);
-    expect(err.pop()).toBe('Stage "package" is not implemented yet.');
+  it("fails clearly on unknown stages, missing args and a missing --config", async () => {
     expect(await main(["bogus"], io)).toBe(2);
     expect(err.pop()).toMatch(/^Unknown stage: bogus/);
     expect(await main([], io)).toBe(2);

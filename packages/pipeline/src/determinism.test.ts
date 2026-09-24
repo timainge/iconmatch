@@ -33,7 +33,11 @@ async function build(
   }
   await runEmbed(dir, { embedder });
   const hashes: Record<string, string> = {};
-  for (const f of (await readdir(dir)).sort()) {
+  const files = (await readdir(dir, { recursive: true, withFileTypes: true }))
+    .filter((d) => d.isFile())
+    .map((d) => join(d.parentPath, d.name).slice(dir.length + 1))
+    .sort();
+  for (const f of files) {
     hashes[f] = createHash("sha256")
       .update(await readFile(join(dir, f)))
       .digest("hex");
@@ -48,6 +52,8 @@ describe("determinism", () => {
     expect(Object.keys(a)).toEqual([
       "catalog.json",
       "embed-meta.json",
+      "licenses/tabler.txt",
+      "sets.json",
       "svgs.json",
       "vector-ids.json",
       "vectors.bin",

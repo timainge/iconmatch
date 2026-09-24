@@ -35,7 +35,7 @@ Checklist derived from `docs/plan.md` §11. The spec is the source of truth for 
 - [x] `npm run bench`: warm query + embedding latency vs §7.5 targets
 - [x] Audit M2 (§11.1): see `docs/audits/M2.md`
 - [x] AUDIT: test that keyword and vector rankings each contribute at most 50 ids to fusion (§7.2 steps 2–3)
-- [ ] AUDIT: BLOCKED: needs packaged data from the M5 `package` stage. Test `examples/server` `createServer()` with defaults (packagedSource + transformers embedder, unloaded until first search) (§7.7)
+- [ ] AUDIT: (unblocked by the `package` stage; slow tier: build + package the real data first) Test `examples/server` `createServer()` with defaults (packagedSource + transformers embedder, unloaded until first search) (§7.7)
 
 ## M3: Eval harness
 
@@ -63,7 +63,7 @@ Checklist derived from `docs/plan.md` §11. The spec is the source of truth for 
 ## M5: Package
 
 - [x] Query expansion hook + README example (no eval): hook in core, example in `examples/query-expansion/` (README item must include it)
-- [ ] `package` stage (unblocks the M2 AUDIT server-defaults test): manifest (from `build/embed-meta.json`), licenses, size report; data excluding SVGs is ~4.55 MB vs the 4 MB §6.6 target: reduce (e.g. drop glyph vectors, trim index) or record the overage
+- [x] `package` stage: manifest (from `build/embed-meta.json`), licenses, size report; excluding-SVGs overage (4.55 MB vs 4 MB) recorded in DECISIONS.md
 - [ ] README with examples (incl. the query-expansion example from `examples/query-expansion/`) + Tabler MIT notice + brand trademark note (§6.1.3) + note that keyword-only quality is lower (§7.2.7); publish-ready `package.json` with subpath exports
 - [ ] CI: build with `--enrich none` on 200-icon subset (workflow file only; never pushed)
 - [ ] `npm pack --dry-run` contents check; per-composition size report
