@@ -47,3 +47,31 @@ export interface Embedder {
   modelId: string;
   embed(texts: string[], kind: "query" | "document"): Promise<Float32Array[]>;
 }
+
+/** Artifact file names inside a data directory (spec §6.6). */
+export interface ManifestFiles {
+  catalog: string;
+  svgs: string;
+  vectors: string;
+  vectorIds: string;
+  keywordIndex: string;
+}
+
+/** `manifest.json` (spec §6.6). */
+export interface Manifest {
+  schemaVersion: number;
+  builtAt: string;
+  sets: { id: string; version: string; license: string; count: number }[];
+  embedding?: {
+    model: string;
+    dims: number;
+    quantisation: "int8" | "float32";
+    queryPrefix: string;
+  };
+  enrichment?: {
+    mode: "text" | "vision" | "none";
+    model?: string;
+    promptVersion?: string;
+  };
+  files: ManifestFiles;
+}

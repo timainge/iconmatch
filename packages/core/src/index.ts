@@ -1,9 +1,27 @@
-export const SCHEMA_VERSION = 1;
+export {
+  assertSafeFileName,
+  fetchSource,
+  IconMatchDataError,
+  memorySource,
+} from "./data/source.js";
+export type { DataSource, FetchSourceOptions } from "./data/source.js";
+export {
+  DEFAULT_FILES,
+  loadCatalog,
+  loadKeywordIndex,
+  loadManifest,
+  loadSvgs,
+  MANIFEST_FILE,
+  SCHEMA_VERSION,
+} from "./data/loaders.js";
+export type { LoadOptions } from "./data/loaders.js";
 
 export { VARIANT_NAMES } from "./types.js";
 export type {
   CatalogEntry,
   Embedder,
+  Manifest,
+  ManifestFiles,
   SvgArtifact,
   SvgBody,
   VariantName,

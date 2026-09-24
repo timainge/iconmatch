@@ -9,7 +9,7 @@ Checklist derived from `docs/plan.md` §11. The spec is the source of truth for 
 - [x] Tabler adapter: SVGs from `@iconify-json/tabler`, outline only (drop `-filled`), include + flag brands, mark letter/number glyphs, skip deprecated, log counts; locate tag/category source and record in DECISIONS.md
 - [x] `ingest` → `build/catalog.json` + `build/svgs.json`
 - [x] `index` → MiniSearch keyword index with field boosts, fuzzy/prefix, stopwords, plural folding
-- [ ] Core primitives: `DataSource` (fetch, memory, `iconmatch/node` fs/packaged), per-artifact loaders, subpath exports (§7.0)
+- [x] Core primitives: `DataSource` (fetch, memory, `iconmatch/node` fs/packaged), per-artifact loaders, subpath exports (§7.0)
 - [ ] Runtime: `createIconMatcher(parts)` with capability errors, keyword-only `search()`, `get()`, query normalisation
 - [ ] `renderSvg`/`svg()` output per §7.6 + snapshot tests
 - [ ] Lettered fallback: `letterFallback()`, verify `square-letter-*`/`square-number-*` ids, exclude glyphs from ranking (§7.4)
@@ -21,7 +21,7 @@ Checklist derived from `docs/plan.md` §11. The spec is the source of truth for 
 ## M2: Vectors + hybrid
 
 - [ ] Shared query prefix constant; `iconmatch/embedder-transformers` subpath (lazy model load, model location, `localOnly`), optional peer dep
-- [ ] `embed` → int8 `vectors.bin` + `vector-ids.json` (float32 flag)
+- [ ] `embed` → int8 `vectors.bin` + `vector-ids.json` (float32 flag); add the `loadVectors` loader for this format (deferred from the M1 core-primitives item)
 - [ ] Cosine (int8/float32), RRF fuse, confidence, tie-breaks, fallback
 - [ ] `searchByEmbedding` with dims validation; embedder/manifest mismatch error
 - [ ] `remoteSearch` part: timeout, fallback to local keyword on failure
