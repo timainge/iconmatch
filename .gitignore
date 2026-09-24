@@ -1,0 +1,12 @@
+node_modules/
+dist/
+coverage/
+build/
+packages/pipeline/cache/
+eval/results/*.tmp
+.env
+.env.*
+*.log
+.DS_Store
+CLAUDE.local.md
+.claude/settings.local.json

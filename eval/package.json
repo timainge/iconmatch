@@ -1,0 +1,7 @@
+{
+  "name": "@iconmatch/eval",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "license": "MIT"
+}
