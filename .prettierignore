@@ -6,3 +6,4 @@ packages/pipeline/cache
 package-lock.json
 docs/plan.md
 fixtures/tabler-200
+fixtures/reference-vectors

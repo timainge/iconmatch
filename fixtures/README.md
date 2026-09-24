@@ -17,3 +17,7 @@ why in the commit message:
   A default-tier test fails when the committed files drift from the installed
   Tabler packages or the keyword index options. Load it in tests with
   `loadTabler200()` from `test-support/tabler-200.ts`.
+- `reference-vectors/`: `npm run fixtures:vectors`
+  (`packages/pipeline/scripts/make-reference-vectors.ts`, real model, q8).
+  Checked by the slow tier; regenerate only when the model or dtype changes
+  on purpose.

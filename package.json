@@ -9,7 +9,8 @@
     "format:check": "prettier --check .",
     "check": "npm run typecheck && npm run lint && npm run format:check && npm test",
     "test:slow": "ICONMATCH_SLOW_TESTS=1 vitest run",
-    "fixtures": "tsx packages/pipeline/scripts/make-fixtures.ts"
+    "fixtures": "tsx packages/pipeline/scripts/make-fixtures.ts",
+    "fixtures:vectors": "tsx packages/pipeline/scripts/make-reference-vectors.ts"
   },
   "license": "UNLICENSED",
   "type": "module",
