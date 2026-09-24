@@ -89,11 +89,13 @@ describe("iconmatch-eval", () => {
   it("runs configs 1–3 on dev and writes JSON results with per-group metrics and a sweep", async () => {
     io = freshIo();
     expect(await main(args(), io)).toBe(0);
-    expect(out.map((l) => l.split(" ")[0])).toEqual([
-      "keyword",
-      "vector",
-      "baseline",
-    ]);
+    // No enriched builds at the default paths here, so configs 4–5 are skipped.
+    expect(out.filter((l) => l.includes("skipped (no build in"))).toHaveLength(
+      2,
+    );
+    expect(
+      out.filter((l) => !l.includes("skipped")).map((l) => l.split(" ")[0]),
+    ).toEqual(["keyword", "vector", "baseline"]);
     const result = JSON.parse(
       await readFile(join(outDir, "2026-09-24-baseline.json"), "utf8"),
     ) as ConfigResult;
@@ -190,6 +192,28 @@ describe("iconmatch-eval", () => {
       await readFile(join(outDir, "2026-09-24-baseline-test.json"), "utf8"),
     ) as ConfigResult;
     expect(test.split).toBe("test");
+  });
+
+  it("runs enriched configs 4–5 from their own build dirs and tabulates deltas vs baseline", async () => {
+    io = freshIo();
+    const code = await main(
+      args("--table", "--data-text", dataDir, "--data-vision", dataDir),
+      io,
+    );
+    expect(code).toBe(0);
+    expect(
+      out.filter((l) => !l.startsWith("table")).map((l) => l.split(" ")[0]),
+    ).toEqual(["keyword", "vector", "baseline", "text", "vision"]);
+    const md = await readFile(join(outDir, "2026-09-24.md"), "utf8");
+    expect(md).toMatch(/\| text \| \d+ \|/);
+    expect(md).toContain("## Δ vs baseline (dev)");
+    // Same data dir as baseline here, so the deltas are zero.
+    expect(md).toMatch(/\| text \| \+0\.000 \| \+0\.000 \| \+0\.000 \|/);
+    io = freshIo();
+    expect(
+      await main(args("--config", "text", "--data-text", "/nonexistent"), io),
+    ).toBe(1);
+    expect(err[0]).toMatch(/text: no build in/);
   });
 
   it("rejects unknown configs and splits", async () => {

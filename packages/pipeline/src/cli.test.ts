@@ -71,7 +71,7 @@ describe("iconmatch-build main()", () => {
       .filter((s, i, a) => a.indexOf(s) === i);
     expect(stages).toEqual(["ingest", "enrich", "embed", "index", "package"]);
     expect(out).toContain(
-      "enrich: none, 0 enrichments -> build/enrichments.json",
+      `enrich: none, 0 enrichments -> ${join(dir, "b", "enrichments.json")}`,
     );
     expect(out).toContain("embed: 1 × 8 int8 (fake/hash-embedder)");
     for (const f of [

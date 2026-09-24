@@ -1,5 +1,5 @@
 import { existsSync } from "node:fs";
-import { dirname, resolve } from "node:path";
+import { dirname, join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { parseArgs } from "node:util";
 import type { Embedder } from "iconmatch";
@@ -132,7 +132,7 @@ const STAGES = {
         io.error(`  ${f.id}: ${f.error}`);
     }
     io.log(
-      `enrich: ${mode}, ${String(written)} enrichments -> build/enrichments.json`,
+      `enrich: ${mode}, ${String(written)} enrichments -> ${join(config.buildDir, "enrichments.json")}`,
     );
   },
   async embed(config: ResolvedConfig, io: CliIo) {

@@ -9,7 +9,7 @@ export default tseslint.config(
       "coverage",
       "node_modules",
       "build",
-      "build-ci",
+      "build-*",
       "packages/core/data",
       "packages/pipeline/cache",
     ],

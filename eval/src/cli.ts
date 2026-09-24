@@ -1,3 +1,4 @@
+import { existsSync } from "node:fs";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { homedir } from "node:os";
 import { dirname, join, resolve } from "node:path";
@@ -33,18 +34,28 @@ import {
 } from "./queries.js";
 
 /** Spec §9.3 configurations available so far (enrichment configs arrive in M4). */
+/**
+ * Spec §9.3 configurations. `data` picks the build directory: the base one
+ * (`--data`, no enrichment) or an enriched build (`--data-text`, `--data-vision`).
+ */
 export const CONFIGS = {
-  keyword: { keyword: true, vector: false },
-  vector: { keyword: false, vector: true },
-  baseline: { keyword: true, vector: true },
+  keyword: { keyword: true, vector: false, data: "base" },
+  vector: { keyword: false, vector: true, data: "base" },
+  baseline: { keyword: true, vector: true, data: "base" },
+  text: { keyword: true, vector: true, data: "text" },
+  vision: { keyword: true, vector: true, data: "vision" },
 } as const;
 export type ConfigName = keyof typeof CONFIGS;
 
 const USAGE = `Usage: iconmatch-eval [options]
 
-  --config <name>        keyword | vector | baseline (hybrid, no enrichment); repeatable; default all
+  --config <name>        keyword | vector | baseline (hybrid, no enrichment) | text (hybrid + text
+                         enrichment) | vision (hybrid + text + vision); repeatable; default all
+                         (enriched configs are skipped when their build dir is missing)
   --split <dev|test|all> which queries to score (default dev; tune on dev only)
   --data <dir>           build directory (default ./build)
+  --data-text <dir>      build with text enrichment (default ./build-text)
+  --data-vision <dir>    build with text + vision enrichment (default ./build-vision)
   --queries <file>       eval set (default eval/queries.json)
   --out <dir>            results directory (default eval/results)
   --min-confidence <n>   fallback threshold for every config (default: the library's,
@@ -115,11 +126,13 @@ const today = () => {
   return `${String(d.getFullYear())}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 };
 
+type Parts = Required<
+  Pick<IconMatcherParts, "catalog" | "keywordIndex" | "vectors" | "embedder">
+>;
+
 export async function runConfig(
   config: ConfigName,
-  parts: Required<
-    Pick<IconMatcherParts, "catalog" | "keywordIndex" | "vectors" | "embedder">
-  >,
+  parts: Parts,
   queries: EvalQuery[],
 ): Promise<QueryRun[]> {
   const c = CONFIGS[config];
@@ -149,6 +162,8 @@ export async function main(argv: string[], io: EvalIo): Promise<number> {
         config: { type: "string", multiple: true },
         split: { type: "string", default: "dev" },
         data: { type: "string", default: "build" },
+        "data-text": { type: "string", default: "build-text" },
+        "data-vision": { type: "string", default: "build-vision" },
         queries: { type: "string" },
         out: { type: "string" },
         "min-confidence": { type: "string" },
@@ -166,8 +181,8 @@ export async function main(argv: string[], io: EvalIo): Promise<number> {
     io.log(USAGE);
     return 0;
   }
-  const configs = (values.config ?? Object.keys(CONFIGS)) as ConfigName[];
-  const unknown = configs.filter((c) => !(c in CONFIGS));
+  const requested = (values.config ?? Object.keys(CONFIGS)) as ConfigName[];
+  const unknown = requested.filter((c) => !(c in CONFIGS));
   if (unknown.length > 0 || !["dev", "test", "all"].includes(values.split)) {
     io.error(
       `Unknown config or split: ${[...unknown, values.split].join(", ")}\n\n${USAGE}`,
@@ -178,7 +193,21 @@ export async function main(argv: string[], io: EvalIo): Promise<number> {
     io.error(`--compare only supports "baseline"`);
     return 2;
   }
-  const dataDir = resolve(io.cwd, values.data);
+  const dataDirs = {
+    base: resolve(io.cwd, values.data),
+    text: resolve(io.cwd, values["data-text"]),
+    vision: resolve(io.cwd, values["data-vision"]),
+  } as const;
+  const dataDir = dataDirs.base;
+  const configs: ConfigName[] = [];
+  for (const c of requested) {
+    const dir = dataDirs[CONFIGS[c].data];
+    if (existsSync(join(dir, "catalog.json"))) configs.push(c);
+    else if (values.config) {
+      io.error(`${c}: no build in ${dir}`);
+      return 1;
+    } else io.log(`${c}: skipped (no build in ${dir})`);
+  }
   const outDir = values.out
     ? resolve(io.cwd, values.out)
     : fileURLToPath(new URL("../results/", import.meta.url));
@@ -195,9 +224,8 @@ export async function main(argv: string[], io: EvalIo): Promise<number> {
     : QUERIES_FILE;
   const source = fsSource(dataDir);
   const manifest = await readBuildManifest(dataDir);
-  const [catalog, keywordIndex, set] = await Promise.all([
+  const [catalog, set] = await Promise.all([
     loadCatalog(source, { manifest }),
-    loadKeywordIndex(source, { manifest }),
     readEvalSet(queriesFile),
   ]);
   const problems = evalSetProblems(set, new Set(catalog.map((e) => e.id)));
@@ -207,7 +235,6 @@ export async function main(argv: string[], io: EvalIo): Promise<number> {
     );
     return 1;
   }
-  const vectors = await loadVectors(source, manifest);
   const embedder =
     io.createEmbedder?.(manifest) ??
     createTransformersEmbedder({
@@ -228,10 +255,28 @@ export async function main(argv: string[], io: EvalIo): Promise<number> {
     .then((t) => JSON.parse(t) as Baseline)
     .catch(() => ({}));
   let regressions = 0;
-  const parts = { catalog, keywordIndex, vectors, embedder };
+  const loaded = new Map<string, Promise<Parts>>();
+  const partsFor = (config: ConfigName): Promise<Parts> => {
+    const dir = dataDirs[CONFIGS[config].data];
+    let p = loaded.get(dir);
+    if (!p) {
+      p = (async () => {
+        const src = fsSource(dir);
+        const m = await readBuildManifest(dir);
+        return {
+          catalog: await loadCatalog(src, { manifest: m }),
+          keywordIndex: await loadKeywordIndex(src, { manifest: m }),
+          vectors: await loadVectors(src, m),
+          embedder,
+        };
+      })();
+      loaded.set(dir, p);
+    }
+    return p;
+  };
 
   for (const config of configs) {
-    const runs = await runConfig(config, parts, queries);
+    const runs = await runConfig(config, await partsFor(config), queries);
     const threshold = thresholdFor(config);
     const result = toResult(config, values.split, date, threshold, runs);
     await writeFile(
@@ -249,7 +294,10 @@ export async function main(argv: string[], io: EvalIo): Promise<number> {
       const dev =
         values.split === "dev"
           ? m
-          : report(await runConfig(config, parts, devQueries), threshold);
+          : report(
+              await runConfig(config, await partsFor(config), devQueries),
+              threshold,
+            );
       const base = baseline[config];
       if (values.compare !== undefined) {
         if (!base) io.log(`  ${config}: no baseline entry`);
@@ -278,7 +326,7 @@ export async function main(argv: string[], io: EvalIo): Promise<number> {
           split,
           date,
           thresholdFor(config),
-          await runConfig(config, parts, qs),
+          await runConfig(config, await partsFor(config), qs),
         );
         bySplit[split].push(r);
         const suffix = split === "dev" ? "" : `-${split}`;

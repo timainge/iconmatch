@@ -8,4 +8,4 @@ docs/plan.md
 fixtures/tabler-200
 fixtures/reference-vectors
 eval/results
-build-ci
+build-*

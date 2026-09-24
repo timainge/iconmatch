@@ -56,7 +56,40 @@ export function resultsMarkdown(options: {
           .join(" | ")} |`,
     ),
   ];
-  const base = dev.find((r) => r.config === "baseline") ?? dev[0];
+  const baseline = dev.find((r) => r.config === "baseline");
+  const others = dev.filter(
+    (r) => r !== baseline && r.config !== "keyword" && r.config !== "vector",
+  );
+  if (baseline && others.length > 0) {
+    const d = (n: number) => `${n >= 0 ? "+" : ""}${n.toFixed(3)}`;
+    lines.push(
+      "",
+      "## Δ vs baseline (dev)",
+      "",
+      "| config | ΔHit@1 | ΔHit@3 | ΔMRR | Δ fallback R |",
+      "| --- | --- | --- | --- | --- |",
+      ...others.map(
+        (r) =>
+          `| ${r.config} | ${d(r.report.hit1 - baseline.report.hit1)} | ${d(r.report.hit3 - baseline.report.hit3)} | ${d(r.report.mrr - baseline.report.mrr)} | ${d(r.report.fallback.recall - baseline.report.fallback.recall)} |`,
+      ),
+    );
+    for (const r of others) {
+      lines.push(
+        "",
+        `### Per group Δ Hit@3 (dev, ${r.config} − baseline)`,
+        "",
+        "| group | baseline | " + r.config + " | Δ |",
+        "| --- | --- | --- | --- |",
+        ...Object.entries(r.report.perGroup)
+          .filter(([, m]) => m.n > 0)
+          .map(([g, m]) => {
+            const b = baseline.report.perGroup[g]?.hit3 ?? 0;
+            return `| ${g} | ${b.toFixed(3)} | ${m.hit3.toFixed(3)} | ${d(m.hit3 - b)} |`;
+          }),
+      );
+    }
+  }
+  const base = baseline ?? dev[0];
   if (base) {
     lines.push(
       "",
