@@ -6,6 +6,7 @@ import type {
   ManifestFiles,
   SvgArtifact,
 } from "../types.js";
+import { decodeVectors, type VectorArtifact } from "../vectors.js";
 import { IconMatchDataError, type DataSource } from "./source.js";
 
 export const SCHEMA_VERSION = 1;
@@ -99,4 +100,33 @@ export async function loadSvgs(
   const svgs = await readJson(source, file);
   if (!isRecord(svgs)) throw new IconMatchDataError(file, "is not an SVG map");
   return svgs as SvgArtifact;
+}
+
+/**
+ * Loads `vectors.bin` + `vector-ids.json`. Needs the manifest for dims and
+ * quantisation (spec §6.6).
+ */
+export async function loadVectors(
+  source: DataSource,
+  manifest: Pick<Manifest, "files" | "embedding">,
+): Promise<VectorArtifact> {
+  const { embedding, files } = manifest;
+  if (!embedding) {
+    throw new IconMatchDataError(
+      MANIFEST_FILE,
+      "has no embedding section, so vectors cannot be loaded",
+    );
+  }
+  const ids = await readJson(source, files.vectorIds);
+  if (!Array.isArray(ids) || !ids.every((id) => typeof id === "string")) {
+    throw new IconMatchDataError(files.vectorIds, "is not an array of ids");
+  }
+  const buffer = await source.read(files.vectors);
+  try {
+    return decodeVectors(buffer, ids, embedding.dims, embedding.quantisation);
+  } catch (cause) {
+    throw new IconMatchDataError(files.vectors, (cause as Error).message, {
+      cause,
+    });
+  }
 }

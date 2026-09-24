@@ -7,8 +7,10 @@ import {
   loadKeywordIndex,
   loadManifest,
   loadSvgs,
+  loadVectors,
   SCHEMA_VERSION,
 } from "./loaders.js";
+import { encodeVectors } from "../vectors.js";
 import { IconMatchDataError, memorySource, type DataSource } from "./source.js";
 
 const heart: CatalogEntry = {
@@ -113,5 +115,41 @@ describe("loaders", () => {
     await expect(
       loadManifest(memorySource({ "manifest.json": "[]" })),
     ).rejects.toThrow("is not a manifest object");
+  });
+});
+
+describe("loadVectors", () => {
+  const embedding = {
+    model: "m",
+    dims: 2,
+    quantisation: "float32" as const,
+    queryPrefix: "q: ",
+  };
+  const m = { ...manifest, embedding };
+  const vectors = [new Float32Array([0.6, 0.8]), new Float32Array([1, 0])];
+  const src = memorySource({
+    "vectors.bin": encodeVectors(vectors, 2, "float32"),
+    "vector-ids.json": JSON.stringify(["t:a", "t:b"]),
+  });
+
+  it("decodes vectors using the manifest's dims and quantisation", async () => {
+    const art = await loadVectors(src, m);
+    expect(art.ids).toEqual(["t:a", "t:b"]);
+    expect(Array.from(art.data)).toEqual([
+      0.6000000238418579, 0.800000011920929, 1, 0,
+    ]);
+  });
+
+  it("fails clearly without an embedding section, bad ids or a size mismatch", async () => {
+    await expect(loadVectors(src, manifest)).rejects.toThrow(
+      "has no embedding section",
+    );
+    const badIds = memorySource({ "vector-ids.json": "[1]" });
+    await expect(loadVectors(badIds, m)).rejects.toThrow(
+      "vector-ids.json: is not an array of ids",
+    );
+    await expect(
+      loadVectors(src, { ...m, embedding: { ...embedding, dims: 3 } }),
+    ).rejects.toThrow(/vectors\.bin: vectors\.bin is 16 bytes; expected 24/);
   });
 });

@@ -6,6 +6,7 @@ import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { createFakeEmbedder } from "../../../test-support/fake-embedder.js";
 import { main, type CliIo } from "./cli.js";
 import { DEFAULT_CONFIG, resolveConfig } from "./config.js";
 
@@ -18,7 +19,12 @@ beforeEach(async () => {
   dir = await mkdtemp(join(tmpdir(), "iconmatch-cli-"));
   out = [];
   err = [];
-  io = { cwd: dir, log: (m) => out.push(m), error: (m) => err.push(m) };
+  io = {
+    cwd: dir,
+    log: (m) => out.push(m),
+    error: (m) => err.push(m),
+    createEmbedder: () => createFakeEmbedder({ dims: 8 }),
+  };
 });
 afterEach(async () => {
   await rm(dir, { recursive: true, force: true });
@@ -59,20 +65,32 @@ describe("iconmatch-build main()", () => {
     expect(
       await main(["all", "--config", "c.config.ts", "--build-dir", "b"], io),
     ).toBe(0);
-    expect(out.map((l) => l.split(":")[0])).toEqual([
-      "ingest",
-      "enrich",
-      "embed",
-      "index",
-      "package",
-    ]);
-    expect(out[1]).toBe("enrich: skipped (not implemented yet)");
-    expect(existsSync(join(dir, "b", "keyword-index.json"))).toBe(true);
+    const stages = out
+      .map((l) => l.split(":")[0])
+      .filter((s, i, a) => a.indexOf(s) === i);
+    expect(stages).toEqual(["ingest", "enrich", "embed", "index", "package"]);
+    expect(out).toContain("enrich: skipped (not implemented yet)");
+    expect(out).toContain("embed: 1 × 8 int8 (fake/hash-embedder)");
+    for (const f of [
+      "keyword-index.json",
+      "vectors.bin",
+      "vector-ids.json",
+      "embed-meta.json",
+    ]) {
+      expect(existsSync(join(dir, "b", f)), f).toBe(true);
+    }
+  });
+
+  it("--float32 stores float32 vectors", async () => {
+    await writeFile(join(dir, "iconmatch.config.ts"), CONFIG);
+    expect(await main(["ingest"], io)).toBe(0);
+    expect(await main(["embed", "--float32"], io)).toBe(0);
+    expect(out.at(-1)).toBe("embed: 1 × 8 float32 (fake/hash-embedder)");
   });
 
   it("fails clearly on pending stages, unknown stages, missing args and a missing --config", async () => {
-    expect(await main(["embed"], io)).toBe(1);
-    expect(err.pop()).toBe('Stage "embed" is not implemented yet.');
+    expect(await main(["package"], io)).toBe(1);
+    expect(err.pop()).toBe('Stage "package" is not implemented yet.');
     expect(await main(["bogus"], io)).toBe(2);
     expect(err.pop()).toMatch(/^Unknown stage: bogus/);
     expect(await main([], io)).toBe(2);
@@ -93,7 +111,11 @@ describe("resolveConfig", () => {
     expect(c.sets.map((s) => s.id)).toEqual(["tabler"]);
     expect(c.buildDir).toBe("build");
     expect(c.enrich).toEqual({ ...DEFAULT_CONFIG.enrich, mode: "text" });
-    expect(c.embed.model).toBe("Xenova/bge-small-en-v1.5");
+    expect(c.embed).toMatchObject({
+      model: "Xenova/bge-small-en-v1.5",
+      quantisation: "int8",
+    });
+    expect(c.embed.cacheDir).toMatch(/\.cache[\\/]iconmatch[\\/]models$/);
   });
 });
 

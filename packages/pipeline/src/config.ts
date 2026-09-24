@@ -1,3 +1,6 @@
+import { homedir } from "node:os";
+import { join } from "node:path";
+import { DEFAULT_EMBEDDING_MODEL } from "iconmatch";
 import type { IconSetAdapter } from "./adapters/types.js";
 import { createTablerAdapter } from "./adapters/tabler.js";
 
@@ -24,6 +27,11 @@ export interface IconmatchConfig {
   embed?: {
     model?: string;
     quantisation?: "int8" | "float32";
+    /** Hub id (default), mirror URL or local directory (spec §7.5). */
+    modelLocation?: string;
+    localOnly?: boolean;
+    /** Model download cache; default `~/.cache/iconmatch/models`. */
+    cacheDir?: string;
   };
 }
 
@@ -32,7 +40,13 @@ export interface ResolvedConfig {
   buildDir: string;
   packageDir: string;
   enrich: Required<NonNullable<IconmatchConfig["enrich"]>>;
-  embed: Required<NonNullable<IconmatchConfig["embed"]>>;
+  embed: Required<
+    Pick<
+      NonNullable<IconmatchConfig["embed"]>,
+      "model" | "quantisation" | "localOnly" | "cacheDir"
+    >
+  > &
+    Pick<NonNullable<IconmatchConfig["embed"]>, "modelLocation">;
 }
 
 /** Identity helper for type-checked config files. */
@@ -54,8 +68,10 @@ export const DEFAULT_CONFIG: Omit<ResolvedConfig, "sets"> = {
     cacheFile: "packages/pipeline/cache/enrichment.jsonl",
   },
   embed: {
-    model: "Xenova/bge-small-en-v1.5",
+    model: DEFAULT_EMBEDDING_MODEL,
     quantisation: "int8",
+    localOnly: false,
+    cacheDir: join(homedir(), ".cache", "iconmatch", "models"),
   },
 };
 

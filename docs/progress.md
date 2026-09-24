@@ -22,7 +22,7 @@ Checklist derived from `docs/plan.md` §11. The spec is the source of truth for 
 ## M2: Vectors + hybrid
 
 - [x] Shared query prefix constant; `iconmatch/embedder-transformers` subpath (lazy model load, model location, `localOnly`), optional peer dep
-- [ ] `embed` → int8 `vectors.bin` + `vector-ids.json` (float32 flag); the embed stage must use `embeddingInput`/the shared embedder, and extend `query-prefix.test.ts` to assert the build imports the shared module (§11.1 M2); add the `loadVectors` loader for this format (deferred from the M1 core-primitives item)
+- [x] `embed` → int8 `vectors.bin` + `vector-ids.json` (float32 flag); the embed stage must use `embeddingInput`/the shared embedder, and extend `query-prefix.test.ts` to assert the build imports the shared module (§11.1 M2); add the `loadVectors` loader for this format (deferred from the M1 core-primitives item)
 - [ ] Cosine (int8/float32), RRF fuse, confidence, tie-breaks, fallback
 - [ ] `searchByEmbedding` with dims validation; embedder/manifest mismatch error
 - [ ] `remoteSearch` part: timeout, fallback to local keyword on failure
@@ -57,7 +57,7 @@ Checklist derived from `docs/plan.md` §11. The spec is the source of truth for 
 ## M5: Package
 
 - [ ] Query expansion hook + README example (no eval)
-- [ ] `package` stage: manifest, licenses, size report
+- [ ] `package` stage: manifest (from `build/embed-meta.json`), licenses, size report; data excluding SVGs is ~4.55 MB vs the 4 MB §6.6 target: reduce (e.g. drop glyph vectors, trim index) or record the overage
 - [ ] README with examples + Tabler MIT notice + brand trademark note (§6.1.3) + note that keyword-only quality is lower (§7.2.7); publish-ready `package.json` with subpath exports
 - [ ] CI: build with `--enrich none` on 200-icon subset (workflow file only; never pushed)
 - [ ] `npm pack --dry-run` contents check; per-composition size report

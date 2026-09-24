@@ -39,3 +39,13 @@ it("the runtime embedder takes query text from the shared module", () => {
   expect(src).toMatch(/from "\.\.\/embedding\.js"/);
   expect(src).toContain("embeddingInput(");
 });
+
+it("the build embeds through the shared embedder module", () => {
+  const cli = readFileSync(join(repo, "packages/pipeline/src/cli.ts"), "utf8");
+  expect(cli).toMatch(/from "iconmatch\/embedder-transformers"/);
+  const embed = readFileSync(
+    join(repo, "packages/pipeline/src/embed.ts"),
+    "utf8",
+  );
+  expect(embed).toContain('"document"');
+});

@@ -2,11 +2,17 @@ import { existsSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { parseArgs } from "node:util";
+import type { Embedder } from "iconmatch";
+import {
+  createTransformersEmbedder,
+  type TransformersEmbedderOptions,
+} from "iconmatch/embedder-transformers";
 import {
   resolveConfig,
   type IconmatchConfig,
   type ResolvedConfig,
 } from "./config.js";
+import { runEmbed } from "./embed.js";
 import { ingest, writeIngest } from "./ingest.js";
 import { runIndex } from "./index.js";
 
@@ -15,7 +21,7 @@ const USAGE = `Usage: iconmatch-build <stage> [options]
 Stages:
   ingest    icon sets -> build/catalog.json + build/svgs.json
   enrich    (not implemented yet: M4)
-  embed     (not implemented yet: M2)
+  embed     build/catalog.json -> build/vectors.bin + vector-ids.json
   index     build/catalog.json -> build/keyword-index.json
   package   (not implemented yet: M5)
   all       every implemented stage, in order
@@ -23,6 +29,7 @@ Stages:
 Options:
   --config <file>     config file (default ./iconmatch.config.ts if present)
   --build-dir <dir>   override the config's buildDir
+  --float32           embed: store float32 vectors instead of int8
   -h, --help          show this help
 `;
 
@@ -30,6 +37,19 @@ export interface CliIo {
   cwd: string;
   log: (message: string) => void;
   error: (message: string) => void;
+  /** Test seam: replaces the transformers.js embedder for `embed`. */
+  createEmbedder?: (config: ResolvedConfig) => Embedder;
+}
+
+function transformersEmbedder(config: ResolvedConfig): Embedder {
+  const options: TransformersEmbedderOptions = {
+    model: config.embed.model,
+    localOnly: config.embed.localOnly,
+    cacheDir: config.embed.cacheDir,
+  };
+  if (config.embed.modelLocation !== undefined)
+    options.modelLocation = config.embed.modelLocation;
+  return createTransformersEmbedder(options);
 }
 
 const defaultIo: CliIo = {
@@ -65,12 +85,23 @@ const STAGES = {
       `ingest: ${String(result.catalog.length)} icons -> ${paths.catalog}, ${paths.svgs}`,
     );
   },
+  async embed(config: ResolvedConfig, io: CliIo) {
+    const embedder = (io.createEmbedder ?? transformersEmbedder)(config);
+    const meta = await runEmbed(config.buildDir, {
+      embedder,
+      quantisation: config.embed.quantisation,
+      log: io.log,
+    });
+    io.log(
+      `embed: ${String(meta.count)} × ${String(meta.dims)} ${meta.quantisation} (${meta.model})`,
+    );
+  },
   async index(config: ResolvedConfig, io: CliIo) {
     io.log(`index: -> ${await runIndex(config.buildDir)}`);
   },
 } as const;
 
-const PENDING = new Set(["enrich", "embed", "package"]);
+const PENDING = new Set(["enrich", "package"]);
 const ORDER = ["ingest", "enrich", "embed", "index", "package"] as const;
 
 /** Runs the CLI; returns the process exit code. */
@@ -86,6 +117,7 @@ export async function main(
       options: {
         config: { type: "string" },
         "build-dir": { type: "string" },
+        float32: { type: "boolean" },
         help: { type: "boolean", short: "h" },
       },
     });
@@ -119,6 +151,7 @@ export async function main(
       values["build-dir"] ?? resolve(root, resolved.buildDir),
     );
     resolved.packageDir = resolve(root, resolved.packageDir);
+    if (values.float32 === true) resolved.embed.quantisation = "float32";
     const stages = stage === "all" ? ORDER : [stage];
     for (const s of stages) {
       if (s in STAGES) await STAGES[s as keyof typeof STAGES](resolved, io);

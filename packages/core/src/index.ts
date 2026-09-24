@@ -11,6 +11,7 @@ export {
   loadKeywordIndex,
   loadManifest,
   loadSvgs,
+  loadVectors,
   MANIFEST_FILE,
   SCHEMA_VERSION,
 } from "./data/loaders.js";
@@ -77,3 +78,10 @@ export {
   embeddingInput,
   QUERY_PREFIX,
 } from "./embedding.js";
+export {
+  decodeVectors,
+  encodeVectors,
+  quantiseInt8,
+  vectorsByteLength,
+} from "./vectors.js";
+export type { Quantisation, VectorArtifact } from "./vectors.js";
