@@ -27,7 +27,7 @@ Checklist derived from `docs/plan.md` §11. The spec is the source of truth for 
 - [x] `searchByEmbedding` with dims validation; embedder/manifest mismatch error
 - [x] `remoteSearch` part: timeout, fallback to local keyword on failure
 - [x] Table-driven test over partial part combinations
-- [ ] `examples/server`: `handle(Request)` for search/best/icons, tested in-process (§7.7)
+- [x] `examples/server`: `handle(Request)` for search/best/icons, tested in-process (§7.7)
 - [ ] `examples/browser-client`: remote search + SVG provider + review/override flow; works with remote down
 - [ ] `examples/local-full`: fs source + local model, `localOnly`; slow-tier real-model test
 - [ ] Determinism test (ingest + embed twice → identical hashes)

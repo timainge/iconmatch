@@ -70,7 +70,10 @@ export type {
   IconMatcherParts,
   RemoteSearch,
   SearchOptions,
+  SvgOptions,
 } from "./matcher.js";
+export { renderSvg, svgsFromArtifact } from "./svg.js";
+export type { RenderSvgOptions, SvgProvider } from "./svg.js";
 export {
   DEFAULT_FALLBACK_ICON,
   fallbackCharacter,

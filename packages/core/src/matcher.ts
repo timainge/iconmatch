@@ -228,8 +228,11 @@ export function createIconMatcher(
         throw new IconMatchCapabilityError("search", "keywordIndex");
       }
       const limit = options.limit ?? DEFAULT_LIMIT;
+      // No letters or digits: nothing to match, and nothing worth embedding.
+      const normalised = normaliseQuery(query);
+      if (normalised === "") return [];
       const keywordHits = keyword
-        ? keyword.search(normaliseQuery(query), {
+        ? keyword.search(normalised, {
             limit: KEYWORD_TOP_K,
             includeGlyphs,
           })
@@ -240,7 +243,7 @@ export function createIconMatcher(
       let remote: Map<string, IconMatch> | undefined;
       let sims: Float32Array | undefined;
       let secondIds: string[] = [];
-      if (parts.remoteSearch && query.trim() !== "") {
+      if (parts.remoteSearch) {
         try {
           const results = await withTimeout(
             (signal) =>
@@ -258,7 +261,7 @@ export function createIconMatcher(
           parts.onRemoteError?.(error);
           if (!keyword) throw error;
         }
-      } else if (semantic && query.trim() !== "") {
+      } else if (semantic) {
         const [q] = await semantic.embedder.embed([query.trim()], "query");
         if (q) {
           sims = semantic.vector.similarities(q);

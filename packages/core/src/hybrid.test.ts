@@ -155,7 +155,7 @@ describe("hybrid search", () => {
     );
   });
 
-  it("does not embed an empty query", async () => {
+  it("does not embed an empty or punctuation-only query", async () => {
     const embedder = createFakeEmbedder({ dims: 64 });
     const m = await createIconMatcher({
       catalog,
@@ -164,6 +164,7 @@ describe("hybrid search", () => {
       embedder,
     });
     expect(await m.search("   ")).toEqual([]);
+    expect(await m.search("!!! ???")).toEqual([]);
     expect(embedder.calls).toEqual([]);
   });
 
