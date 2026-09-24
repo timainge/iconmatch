@@ -13,6 +13,8 @@ import {
   type ResolvedConfig,
 } from "./config.js";
 import { runEmbed } from "./embed.js";
+import { createProvider, type EnrichmentProvider } from "./enrich/provider.js";
+import { readBuildEnrichments, runEnrichStage } from "./enrich/stage.js";
 import { ingest, writeIngest } from "./ingest.js";
 import { runIndex } from "./index.js";
 
@@ -20,7 +22,7 @@ const USAGE = `Usage: iconmatch-build <stage> [options]
 
 Stages:
   ingest    icon sets -> build/catalog.json + build/svgs.json
-  enrich    (not implemented yet: M4)
+  enrich    LLM enrichment (--mode text|none; vision not yet) -> build/enrichments.json
   embed     build/catalog.json -> build/vectors.bin + vector-ids.json
   index     build/catalog.json -> build/keyword-index.json
   package   (not implemented yet: M5)
@@ -30,6 +32,9 @@ Options:
   --config <file>     config file (default ./iconmatch.config.ts if present)
   --build-dir <dir>   override the config's buildDir
   --float32           embed: store float32 vectors instead of int8
+  --mode <mode>       enrich: text | none (default from config)
+  --limit <n>         enrich: process at most n uncached icons
+  --model <name>      enrich: override the text model
   -h, --help          show this help
 `;
 
@@ -39,6 +44,12 @@ export interface CliIo {
   error: (message: string) => void;
   /** Test seam: replaces the transformers.js embedder for `embed`. */
   createEmbedder?: (config: ResolvedConfig) => Embedder;
+  /** Test seam: replaces the configured enrichment provider. */
+  createProvider?: (config: ResolvedConfig) => EnrichmentProvider;
+}
+
+interface StageOptions {
+  limit?: number;
 }
 
 function transformersEmbedder(config: ResolvedConfig): Embedder {
@@ -85,9 +96,42 @@ const STAGES = {
       `ingest: ${String(result.catalog.length)} icons -> ${paths.catalog}, ${paths.svgs}`,
     );
   },
+  async enrich(config: ResolvedConfig, io: CliIo, opts: StageOptions) {
+    const mode = config.enrich.mode;
+    if (mode === "vision")
+      throw new Error("enrich --mode vision is not implemented yet");
+    const provider =
+      mode === "text"
+        ? (io.createProvider?.(config) ??
+          createProvider({
+            provider: config.enrich.provider,
+            baseUrl: config.enrich.baseUrl,
+            model: config.enrich.textModel,
+          }))
+        : undefined;
+    const { written, stats } = await runEnrichStage(config.buildDir, {
+      mode,
+      cacheFile: config.enrich.cacheFile,
+      concurrency: config.enrich.concurrency,
+      log: io.log,
+      ...(provider && { provider }),
+      ...(opts.limit !== undefined && { limit: opts.limit }),
+    });
+    if (stats) {
+      io.log(
+        `enrich: ${String(stats.enriched)} new, ${String(stats.cached)} cached, ${String(stats.failed.length)} failed, ${String(stats.skippedByLimit)} left by --limit`,
+      );
+      for (const f of stats.failed.slice(0, 5))
+        io.error(`  ${f.id}: ${f.error}`);
+    }
+    io.log(
+      `enrich: ${mode}, ${String(written)} enrichments -> build/enrichments.json`,
+    );
+  },
   async embed(config: ResolvedConfig, io: CliIo) {
     const embedder = (io.createEmbedder ?? transformersEmbedder)(config);
     const meta = await runEmbed(config.buildDir, {
+      enrichments: await readBuildEnrichments(config.buildDir),
       embedder,
       quantisation: config.embed.quantisation,
       log: io.log,
@@ -97,11 +141,12 @@ const STAGES = {
     );
   },
   async index(config: ResolvedConfig, io: CliIo) {
-    io.log(`index: -> ${await runIndex(config.buildDir)}`);
+    const enrichments = await readBuildEnrichments(config.buildDir);
+    io.log(`index: -> ${await runIndex(config.buildDir, enrichments)}`);
   },
 } as const;
 
-const PENDING = new Set(["enrich", "package"]);
+const PENDING = new Set(["package"]);
 const ORDER = ["ingest", "enrich", "embed", "index", "package"] as const;
 
 /** Runs the CLI; returns the process exit code. */
@@ -118,6 +163,9 @@ export async function main(
         config: { type: "string" },
         "build-dir": { type: "string" },
         float32: { type: "boolean" },
+        mode: { type: "string" },
+        limit: { type: "string" },
+        model: { type: "string" },
         help: { type: "boolean", short: "h" },
       },
     });
@@ -152,9 +200,24 @@ export async function main(
     );
     resolved.packageDir = resolve(root, resolved.packageDir);
     if (values.float32 === true) resolved.embed.quantisation = "float32";
+    if (values.mode !== undefined) {
+      if (!["none", "text", "vision"].includes(values.mode))
+        throw new Error(`Unknown --mode ${values.mode}`);
+      resolved.enrich.mode = values.mode as ResolvedConfig["enrich"]["mode"];
+    }
+    if (values.model !== undefined) resolved.enrich.textModel = values.model;
+    resolved.enrich.cacheFile = resolve(root, resolved.enrich.cacheFile);
+    const opts: StageOptions = {};
+    if (values.limit !== undefined) {
+      const n = Number(values.limit);
+      if (!Number.isInteger(n) || n < 0)
+        throw new Error(`--limit must be a non-negative integer`);
+      opts.limit = n;
+    }
     const stages = stage === "all" ? ORDER : [stage];
     for (const s of stages) {
-      if (s in STAGES) await STAGES[s as keyof typeof STAGES](resolved, io);
+      if (s in STAGES)
+        await STAGES[s as keyof typeof STAGES](resolved, io, opts);
       else io.log(`${s}: skipped (not implemented yet)`);
     }
     return 0;

@@ -69,7 +69,9 @@ describe("iconmatch-build main()", () => {
       .map((l) => l.split(":")[0])
       .filter((s, i, a) => a.indexOf(s) === i);
     expect(stages).toEqual(["ingest", "enrich", "embed", "index", "package"]);
-    expect(out).toContain("enrich: skipped (not implemented yet)");
+    expect(out).toContain(
+      "enrich: none, 0 enrichments -> build/enrichments.json",
+    );
     expect(out).toContain("embed: 1 × 8 int8 (fake/hash-embedder)");
     for (const f of [
       "keyword-index.json",
