@@ -23,7 +23,7 @@ Checklist derived from `docs/plan.md` §11. The spec is the source of truth for 
 
 - [x] Shared query prefix constant; `iconmatch/embedder-transformers` subpath (lazy model load, model location, `localOnly`), optional peer dep
 - [x] `embed` → int8 `vectors.bin` + `vector-ids.json` (float32 flag); the embed stage must use `embeddingInput`/the shared embedder, and extend `query-prefix.test.ts` to assert the build imports the shared module (§11.1 M2); add the `loadVectors` loader for this format (deferred from the M1 core-primitives item)
-- [ ] Cosine (int8/float32), RRF fuse, confidence, tie-breaks, fallback
+- [x] Cosine (int8/float32), RRF fuse, confidence, tie-breaks, fallback
 - [ ] `searchByEmbedding` with dims validation; embedder/manifest mismatch error
 - [ ] `remoteSearch` part: timeout, fallback to local keyword on failure
 - [ ] Table-driven test over partial part combinations

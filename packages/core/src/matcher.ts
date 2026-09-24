@@ -2,14 +2,18 @@ import type MiniSearch from "minisearch";
 import { IconMatchCapabilityError } from "./errors.js";
 import { letterFallback, type FallbackOptions } from "./fallback.js";
 import type { KeywordDocument } from "./keyword-index.js";
-import {
-  createKeywordSearcher,
-  KEYWORD_TOP_K,
-  type KeywordHit,
-} from "./keyword.js";
+import { fuse, hybridConfidence } from "./fuse.js";
+import { createKeywordSearcher, KEYWORD_TOP_K } from "./keyword.js";
 import { normaliseQuery } from "./query.js";
 import { renderSvg, type RenderSvgOptions, type SvgProvider } from "./svg.js";
-import type { CatalogEntry, IconMatch, VariantName } from "./types.js";
+import type {
+  CatalogEntry,
+  Embedder,
+  IconMatch,
+  VariantName,
+} from "./types.js";
+import { createVectorSearcher, VECTOR_TOP_K } from "./vector.js";
+import type { VectorArtifact } from "./vectors.js";
 import { resolveVariant } from "./variant.js";
 
 export { resolveVariant };
@@ -18,6 +22,10 @@ export { resolveVariant };
 export interface IconMatcherParts {
   catalog: CatalogEntry[];
   keywordIndex?: MiniSearch<KeywordDocument>;
+  /** Icon vectors (`loadVectors`). With `embedder`, text search is hybrid. */
+  vectors?: VectorArtifact;
+  /** Embeds text queries. Lazy-loading embedders load on the first `search()`. */
+  embedder?: Embedder;
   /** SVG bodies, e.g. `svgsFromArtifact(await loadSvgs(src))` or a remote fetch. */
   svgs?: SvgProvider;
   /** Include letter/number glyphs in ranked results. Default false (spec §7.2 step 8). */
@@ -68,7 +76,12 @@ export const DEFAULT_MIN_CONFIDENCE = 0.5;
 
 function toMatch(
   entry: CatalogEntry,
-  hit: KeywordHit,
+  scored: {
+    score: number;
+    confidence: number;
+    keyword: boolean;
+    vector: boolean;
+  },
   variant?: VariantName,
 ): IconMatch {
   return {
@@ -76,11 +89,11 @@ function toMatch(
     name: entry.name,
     label: entry.label,
     set: entry.set,
-    score: hit.score,
-    confidence: hit.confidence,
+    score: scored.score,
+    confidence: scored.confidence,
     variant: resolveVariant(entry, variant),
     availableVariants: [...entry.variants],
-    matchedOn: { keyword: true, vector: false },
+    matchedOn: { keyword: scored.keyword, vector: scored.vector },
   };
 }
 
@@ -102,28 +115,74 @@ export function createIconMatcher(
   parts: IconMatcherParts,
 ): Promise<IconMatcher> {
   const byId = new Map(parts.catalog.map((e) => [e.id, e]));
+  const includeGlyphs = parts.includeGlyphs ?? false;
+  const glyphs = new Set(
+    includeGlyphs ? [] : parts.catalog.filter((e) => e.glyph).map((e) => e.id),
+  );
   const keyword = parts.keywordIndex
     ? createKeywordSearcher(parts.catalog, parts.keywordIndex)
     : undefined;
+  const vector = parts.vectors
+    ? createVectorSearcher(parts.vectors)
+    : undefined;
+  const rowOf = new Map(parts.vectors?.ids.map((id, r) => [id, r]));
+  // Text queries reach vectors only through an embedder.
+  const semantic =
+    vector && parts.embedder ? { vector, embedder: parts.embedder } : undefined;
 
   const matcher: IconMatcher = {
-    search(query, options = {}) {
-      if (!keyword)
-        return Promise.reject(
-          new IconMatchCapabilityError("search", "keywordIndex"),
-        );
+    async search(query, options = {}) {
+      if (!keyword && !semantic) {
+        throw new IconMatchCapabilityError("search", "keywordIndex");
+      }
       const limit = options.limit ?? DEFAULT_LIMIT;
-      const hits = keyword.search(normaliseQuery(query), {
-        limit: KEYWORD_TOP_K,
-        includeGlyphs: parts.includeGlyphs ?? false,
+      const keywordHits = keyword
+        ? keyword.search(normaliseQuery(query), {
+            limit: KEYWORD_TOP_K,
+            includeGlyphs,
+          })
+        : [];
+      let sims: Float32Array | undefined;
+      let vectorIds: string[] = [];
+      if (semantic && query.trim() !== "") {
+        const [q] = await semantic.embedder.embed([query.trim()], "query");
+        if (q) {
+          sims = semantic.vector.similarities(q);
+          vectorIds = semantic.vector
+            .search(q, { limit: VECTOR_TOP_K, exclude: glyphs })
+            .map((h) => h.id);
+        }
+      }
+
+      const keywordById = new Map(keywordHits.map((h) => [h.id, h]));
+      const inVector = new Set(vectorIds);
+      const fused = fuse([
+        { ids: keywordHits.map((h) => h.id) },
+        { ids: vectorIds },
+      ]);
+      const matches = fused.flatMap(({ id, score }) => {
+        const entry = byId.get(id);
+        if (!entry) return [];
+        const kw = keywordById.get(id);
+        const row = rowOf.get(id);
+        const confidence =
+          sims && row !== undefined
+            ? hybridConfidence(sims[row] ?? 0, kw !== undefined)
+            : (kw?.confidence ?? 0);
+        return [
+          toMatch(
+            entry,
+            {
+              score,
+              confidence,
+              keyword: kw !== undefined,
+              vector: inVector.has(id),
+            },
+            options.variant,
+          ),
+        ];
       });
-      const matches = hits.flatMap((h) => {
-        const entry = byId.get(h.id);
-        return entry ? [toMatch(entry, h, options.variant)] : [];
-      });
-      return Promise.resolve(
-        matches.sort(compareMatches(options.variant)).slice(0, limit),
-      );
+      return matches.sort(compareMatches(options.variant)).slice(0, limit);
     },
     async best(query, options = {}) {
       const [top] = await matcher.search(query, { ...options, limit: 1 });

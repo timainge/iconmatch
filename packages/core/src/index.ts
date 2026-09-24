@@ -85,3 +85,16 @@ export {
   vectorsByteLength,
 } from "./vectors.js";
 export type { Quantisation, VectorArtifact } from "./vectors.js";
+export {
+  createVectorSearcher,
+  IconMatchDimensionError,
+  VECTOR_TOP_K,
+} from "./vector.js";
+export type { VectorHit, VectorSearcher } from "./vector.js";
+export {
+  fuse,
+  hybridConfidence,
+  KEYWORD_CONFIDENCE_BUMP,
+  RRF_K,
+} from "./fuse.js";
+export type { FusedHit, Ranking } from "./fuse.js";
