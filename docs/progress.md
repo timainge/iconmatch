@@ -41,7 +41,7 @@ Checklist derived from `docs/plan.md` §11. The spec is the source of truth for 
 
 - [x] Draft ≥120 eval queries (incl. ≥10 no-match) with stratified dev/test split (§9.1) — flag for human review
 - [x] `iconmatch-eval`: Hit@1/3/5, MRR, fallback P/R, per-group; unknown-id check; `--split`; JSON output + `--compare baseline` (§9.4)
-- [ ] Provisional results table for configs 1–3 + `minConfidence` sweep → `eval/results/<date>.md`
+- [x] Provisional results table for configs 1–3 + `minConfidence` sweep → `eval/results/<date>.md`
 - [ ] Audit M3 (§11.1)
 - [ ] **SOFT CHECKPOINT:** write `docs/checkpoints/M3.md` (provisional numbers, failing groups, labels to review), notify the human, tick this, and continue
 - [ ] Re-baseline on the reviewed eval set; choose default `minConfidence` from the dev sweep — WAITS: eval/REVIEWED

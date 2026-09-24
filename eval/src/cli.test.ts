@@ -174,6 +174,24 @@ describe("iconmatch-eval", () => {
     expect(err[0]).toContain('"broken": unknown id tabler:does-not-exist');
   });
 
+  it("--table writes a dev/test results table with the sweep, marked provisional", async () => {
+    io = freshIo();
+    expect(await main(args("--table"), io)).toBe(0);
+    const md = await readFile(join(outDir, "2026-09-24.md"), "utf8");
+    expect(md).toContain("# Eval results 2026-09-24 (PROVISIONAL)");
+    expect(md).toContain("## Dev (tuning split)");
+    expect(md).toContain("## Test (reporting split)");
+    for (const c of ["keyword", "vector", "baseline"])
+      expect(md).toMatch(new RegExp(`\\| ${c} \\| \\d+ \\|`));
+    expect(md).toContain("## `minConfidence` sweep (dev)");
+    expect(md.match(/^\| 0\.[3-8]\d \|/gm)).toHaveLength(11);
+    expect(md).toContain("## Per group (dev, baseline)");
+    const test = JSON.parse(
+      await readFile(join(outDir, "2026-09-24-baseline-test.json"), "utf8"),
+    ) as ConfigResult;
+    expect(test.split).toBe("test");
+  });
+
   it("rejects unknown configs and splits", async () => {
     io = freshIo();
     expect(await main(args("--config", "enriched"), io)).toBe(2);

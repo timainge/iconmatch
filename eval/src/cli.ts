@@ -1,6 +1,6 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { homedir } from "node:os";
-import { join, resolve } from "node:path";
+import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseArgs } from "node:util";
 import {
@@ -16,6 +16,7 @@ import {
 import { createTransformersEmbedder } from "iconmatch/embedder-transformers";
 import { fsSource } from "iconmatch/node";
 import { readBuildManifest } from "../../packages/pipeline/src/build-manifest.js";
+import { resultsMarkdown } from "./markdown.js";
 import {
   compare,
   report,
@@ -48,7 +49,33 @@ const USAGE = `Usage: iconmatch-eval [options]
   --min-confidence <n>   fallback threshold (default ${String(DEFAULT_MIN_CONFIDENCE)})
   --compare baseline     print deltas vs <out>/baseline.json; exit 1 on a dev Hit@3/MRR drop > 0.02
   --update-baseline      write this run's dev numbers into <out>/baseline.json
+  --table                also run every config on dev and test and write <out>/<date>.md (spec §9.3)
 `;
+
+function toResult(
+  config: ConfigName,
+  split: string,
+  date: string,
+  threshold: number,
+  runs: QueryRun[],
+): ConfigResult {
+  return {
+    config,
+    split,
+    date,
+    minConfidence: threshold,
+    report: report(runs, threshold),
+    sweep: thresholdSweep(runs),
+    queries: runs.map((r) => ({
+      query: r.query.query,
+      group: r.query.group,
+      split: r.query.split,
+      ranked: r.ranked.slice(0, 5),
+      topConfidence: r.topConfidence,
+      firstHit: r.ranked.findIndex((id) => r.query.acceptable.includes(id)) + 1,
+    })),
+  };
+}
 
 export interface EvalIo {
   cwd: string;
@@ -125,6 +152,7 @@ export async function main(argv: string[], io: EvalIo): Promise<number> {
         "min-confidence": { type: "string" },
         compare: { type: "string" },
         "update-baseline": { type: "boolean" },
+        table: { type: "boolean" },
         help: { type: "boolean", short: "h" },
       },
     }));
@@ -198,23 +226,7 @@ export async function main(argv: string[], io: EvalIo): Promise<number> {
 
   for (const config of configs) {
     const runs = await runConfig(config, parts, queries);
-    const result: ConfigResult = {
-      config,
-      split: values.split,
-      date,
-      minConfidence: threshold,
-      report: report(runs, threshold),
-      sweep: thresholdSweep(runs),
-      queries: runs.map((r) => ({
-        query: r.query.query,
-        group: r.query.group,
-        split: r.query.split,
-        ranked: r.ranked.slice(0, 5),
-        topConfidence: r.topConfidence,
-        firstHit:
-          r.ranked.findIndex((id) => r.query.acceptable.includes(id)) + 1,
-      })),
-    };
+    const result = toResult(config, values.split, date, threshold, runs);
     await writeFile(
       join(outDir, `${date}-${config}.json`),
       JSON.stringify(result, null, 2) + "\n",
@@ -248,6 +260,44 @@ export async function main(argv: string[], io: EvalIo): Promise<number> {
   }
   if (values["update-baseline"] === true)
     await writeFile(baselineFile, JSON.stringify(baseline, null, 2) + "\n");
+
+  if (values.table === true) {
+    const bySplit = { dev: [] as ConfigResult[], test: [] as ConfigResult[] };
+    for (const split of ["dev", "test"] as const) {
+      const qs = set.queries.filter((q) => q.split === split);
+      for (const config of configs) {
+        const r = toResult(
+          config,
+          split,
+          date,
+          threshold,
+          await runConfig(config, parts, qs),
+        );
+        bySplit[split].push(r);
+        const suffix = split === "dev" ? "" : `-${split}`;
+        await writeFile(
+          join(outDir, `${date}-${config}${suffix}.json`),
+          JSON.stringify(r, null, 2) + "\n",
+        );
+      }
+    }
+    const reviewed = await readFile(join(dirname(QUERIES_FILE), "REVIEWED"))
+      .then(() => true)
+      .catch(() => false);
+    const file = join(outDir, `${date}.md`);
+    await writeFile(
+      file,
+      resultsMarkdown({
+        date,
+        reviewed,
+        ...bySplit,
+        notes: [
+          `Model \`${manifest.embedding?.model ?? "none"}\` (${manifest.embedding?.quantisation ?? "-"}), ${String(catalog.length)} icons, enrichment: none. Configs: keyword = 1, vector = 2, baseline = 3 (hybrid, no enrichment); 4–7 arrive with M4/M5.`,
+        ],
+      }),
+    );
+    io.log(`table: ${file}`);
+  }
   if (regressions > 0) {
     io.error(
       `${String(regressions)} regression(s) beyond ${String(0.02)} on dev`,
