@@ -44,18 +44,21 @@ export const CONFIGS = {
   baseline: { keyword: true, vector: true, data: "base" },
   text: { keyword: true, vector: true, data: "text" },
   vision: { keyword: true, vector: true, data: "vision" },
+  float32: { keyword: true, vector: true, data: "float32" },
 } as const;
 export type ConfigName = keyof typeof CONFIGS;
 
 const USAGE = `Usage: iconmatch-eval [options]
 
   --config <name>        keyword | vector | baseline (hybrid, no enrichment) | text (hybrid + text
-                         enrichment) | vision (hybrid + text + vision); repeatable; default all
+                         enrichment) | vision (hybrid + text + vision) | float32 (baseline with
+                         float32 vectors); repeatable; default all
                          (enriched configs are skipped when their build dir is missing)
   --split <dev|test|all> which queries to score (default dev; tune on dev only)
   --data <dir>           build directory (default ./build)
   --data-text <dir>      build with text enrichment (default ./build-text)
   --data-vision <dir>    build with text + vision enrichment (default ./build-vision)
+  --data-float32 <dir>   baseline build with float32 vectors (default ./build-float32)
   --queries <file>       eval set (default eval/queries.json)
   --out <dir>            results directory (default eval/results)
   --min-confidence <n>   fallback threshold for every config (default: the library's,
@@ -164,6 +167,7 @@ export async function main(argv: string[], io: EvalIo): Promise<number> {
         data: { type: "string", default: "build" },
         "data-text": { type: "string", default: "build-text" },
         "data-vision": { type: "string", default: "build-vision" },
+        "data-float32": { type: "string", default: "build-float32" },
         queries: { type: "string" },
         out: { type: "string" },
         "min-confidence": { type: "string" },
@@ -197,6 +201,7 @@ export async function main(argv: string[], io: EvalIo): Promise<number> {
     base: resolve(io.cwd, values.data),
     text: resolve(io.cwd, values["data-text"]),
     vision: resolve(io.cwd, values["data-vision"]),
+    float32: resolve(io.cwd, values["data-float32"]),
   } as const;
   const dataDir = dataDirs.base;
   const configs: ConfigName[] = [];

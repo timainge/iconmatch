@@ -89,9 +89,9 @@ describe("iconmatch-eval", () => {
   it("runs configs 1–3 on dev and writes JSON results with per-group metrics and a sweep", async () => {
     io = freshIo();
     expect(await main(args(), io)).toBe(0);
-    // No enriched builds at the default paths here, so configs 4–5 are skipped.
+    // No enriched/float32 builds at the default paths here, so configs 4, 5 and 7 are skipped.
     expect(out.filter((l) => l.includes("skipped (no build in"))).toHaveLength(
-      2,
+      3,
     );
     expect(
       out.filter((l) => !l.includes("skipped")).map((l) => l.split(" ")[0]),
@@ -197,13 +197,21 @@ describe("iconmatch-eval", () => {
   it("runs enriched configs 4–5 from their own build dirs and tabulates deltas vs baseline", async () => {
     io = freshIo();
     const code = await main(
-      args("--table", "--data-text", dataDir, "--data-vision", dataDir),
+      args(
+        "--table",
+        "--data-text",
+        dataDir,
+        "--data-vision",
+        dataDir,
+        "--data-float32",
+        dataDir,
+      ),
       io,
     );
     expect(code).toBe(0);
     expect(
       out.filter((l) => !l.startsWith("table")).map((l) => l.split(" ")[0]),
-    ).toEqual(["keyword", "vector", "baseline", "text", "vision"]);
+    ).toEqual(["keyword", "vector", "baseline", "text", "vision", "float32"]);
     const md = await readFile(join(outDir, "2026-09-24.md"), "utf8");
     expect(md).toMatch(/\| text \| \d+ \|/);
     expect(md).toContain("## Δ vs baseline (dev)");

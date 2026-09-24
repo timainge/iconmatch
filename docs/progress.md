@@ -70,5 +70,6 @@ Checklist derived from `docs/plan.md` §11. The spec is the source of truth for 
 - [x] `matcher.attributions()` + `attributionRequired` per set in the manifest (§8 MUST; found while writing the README)
 - [x] CI: build with `--enrich none` on 200-icon subset (workflow file only; never pushed)
 - [x] `npm pack --dry-run` contents check; per-composition size report
-- [ ] Eval configs 6–7 (query expansion, int8 vs float32) and final results on the test split vs the acceptance bar — WAITS: eval/REVIEWED
+- [x] Eval config 7: int8 vs float32 on the baseline — WAITS: eval/REVIEWED (equivalent; int8 kept)
+- [ ] Eval config 6 (query expansion via the Ollama example) and final results table on the test split vs the acceptance bar, after the Enrichment v2 decision — WAITS: eval/REVIEWED
 - [ ] Audit M5 (§11.1) — WAITS: eval/REVIEWED
