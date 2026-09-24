@@ -1,7 +1,11 @@
 import { describe, expect, it } from "vitest";
 import { buildKeywordIndex } from "./keyword-index.js";
 import { fallbackCharacter, glyphId, letterFallback } from "./fallback.js";
-import { createIconMatcher, DEFAULT_MIN_CONFIDENCE } from "./matcher.js";
+import {
+  createIconMatcher,
+  DEFAULT_KEYWORD_MIN_CONFIDENCE,
+  DEFAULT_MIN_CONFIDENCE,
+} from "./matcher.js";
 import type { CatalogEntry } from "./types.js";
 
 function entry(name: string, extra: Partial<CatalogEntry> = {}): CatalogEntry {
@@ -126,12 +130,14 @@ describe("matcher.best()", () => {
     });
   });
 
-  it("falls back when the top confidence is below minConfidence", async () => {
-    expect(DEFAULT_MIN_CONFIDENCE).toBe(0.5);
+  it("falls back when a keyword-only top confidence is below keywordMinConfidence", async () => {
+    // Chosen from the reviewed eval's dev sweep (DECISIONS.md).
+    expect(DEFAULT_MIN_CONFIDENCE).toBe(0.6);
+    expect(DEFAULT_KEYWORD_MIN_CONFIDENCE).toBe(0.5);
     const strict = await createIconMatcher({
       catalog,
       keywordIndex,
-      minConfidence: 1.01,
+      keywordMinConfidence: 1.01,
     });
     expect((await strict.best("Heart")).isFallback).toBe(true);
     // "Heart misc" covers half the query terms, so confidence 0.5 < 0.6. The
@@ -139,7 +145,7 @@ describe("matcher.best()", () => {
     const m = await createIconMatcher({
       catalog,
       keywordIndex,
-      minConfidence: 0.6,
+      keywordMinConfidence: 0.6,
     });
     const [top] = await m.search("Heart misc");
     expect(top).toMatchObject({ id: "tabler:heart", confidence: 0.5 });
@@ -147,6 +153,17 @@ describe("matcher.best()", () => {
       id: "tabler:category",
       isFallback: true,
     });
+  });
+
+  it("uses keywordMinConfidence, not minConfidence, for keyword-only searches", async () => {
+    // Keyword-only "Heart misc" has confidence 0.5: kept at the keyword default…
+    const m = await createIconMatcher({
+      catalog,
+      keywordIndex,
+      minConfidence: 0.99,
+    });
+    expect((await m.best("Heart misc")).id).toBe("tabler:heart");
+    // …and minConfidence applies once semantic ranking takes part (hybrid.test.ts).
   });
 
   it("passes fallbackShape and fallbackIcon through", async () => {

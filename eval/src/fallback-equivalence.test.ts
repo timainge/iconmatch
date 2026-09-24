@@ -33,6 +33,7 @@ describe("eval fallback inference matches best()", () => {
       const matcher = await createIconMatcher({
         catalog: parts.catalog,
         minConfidence,
+        keywordMinConfidence: minConfidence,
         ...(c.keyword && { keywordIndex: parts.keywordIndex }),
         ...(c.vector && { vectors: parts.vectors, embedder: parts.embedder }),
       });

@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 import { parseArgs } from "node:util";
 import {
   createIconMatcher,
+  DEFAULT_KEYWORD_MIN_CONFIDENCE,
   DEFAULT_MIN_CONFIDENCE,
   loadCatalog,
   loadKeywordIndex,
@@ -46,7 +47,8 @@ const USAGE = `Usage: iconmatch-eval [options]
   --data <dir>           build directory (default ./build)
   --queries <file>       eval set (default eval/queries.json)
   --out <dir>            results directory (default eval/results)
-  --min-confidence <n>   fallback threshold (default ${String(DEFAULT_MIN_CONFIDENCE)})
+  --min-confidence <n>   fallback threshold for every config (default: the library's,
+                         ${String(DEFAULT_MIN_CONFIDENCE)} with vectors, ${String(DEFAULT_KEYWORD_MIN_CONFIDENCE)} keyword-only)
   --compare baseline     print deltas vs <out>/baseline.json; exit 1 on a dev Hit@3/MRR drop > 0.02
   --update-baseline      write this run's dev numbers into <out>/baseline.json
   --table                also run every config on dev and test and write <out>/<date>.md (spec §9.3)
@@ -180,19 +182,23 @@ export async function main(argv: string[], io: EvalIo): Promise<number> {
   const outDir = values.out
     ? resolve(io.cwd, values.out)
     : fileURLToPath(new URL("../results/", import.meta.url));
-  const threshold =
+  // Mirror best(): keyword-only configs use the keyword threshold.
+  const thresholdFor = (config: ConfigName) =>
     values["min-confidence"] !== undefined
       ? Number(values["min-confidence"])
-      : DEFAULT_MIN_CONFIDENCE;
+      : CONFIGS[config].vector
+        ? DEFAULT_MIN_CONFIDENCE
+        : DEFAULT_KEYWORD_MIN_CONFIDENCE;
 
+  const queriesFile = values.queries
+    ? resolve(io.cwd, values.queries)
+    : QUERIES_FILE;
   const source = fsSource(dataDir);
   const manifest = await readBuildManifest(dataDir);
   const [catalog, keywordIndex, set] = await Promise.all([
     loadCatalog(source, { manifest }),
     loadKeywordIndex(source, { manifest }),
-    readEvalSet(
-      values.queries ? resolve(io.cwd, values.queries) : QUERIES_FILE,
-    ),
+    readEvalSet(queriesFile),
   ]);
   const problems = evalSetProblems(set, new Set(catalog.map((e) => e.id)));
   if (problems.length > 0) {
@@ -226,6 +232,7 @@ export async function main(argv: string[], io: EvalIo): Promise<number> {
 
   for (const config of configs) {
     const runs = await runConfig(config, parts, queries);
+    const threshold = thresholdFor(config);
     const result = toResult(config, values.split, date, threshold, runs);
     await writeFile(
       join(outDir, `${date}-${config}.json`),
@@ -270,7 +277,7 @@ export async function main(argv: string[], io: EvalIo): Promise<number> {
           config,
           split,
           date,
-          threshold,
+          thresholdFor(config),
           await runConfig(config, parts, qs),
         );
         bySplit[split].push(r);
@@ -281,7 +288,8 @@ export async function main(argv: string[], io: EvalIo): Promise<number> {
         );
       }
     }
-    const reviewed = await readFile(join(dirname(QUERIES_FILE), "REVIEWED"))
+    // The review marker sits next to the eval set that was scored.
+    const reviewed = await readFile(join(dirname(queriesFile), "REVIEWED"))
       .then(() => true)
       .catch(() => false);
     const file = join(outDir, `${date}.md`);

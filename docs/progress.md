@@ -45,7 +45,7 @@ Checklist derived from `docs/plan.md` §11. The spec is the source of truth for 
 - [x] Audit M3 (§11.1): see `docs/audits/M3.md`
 - [x] AUDIT: test that the eval's inferred fallback equals `matcher.best().isFallback` for every query (fixture, several thresholds)
 - [x] **SOFT CHECKPOINT:** write `docs/checkpoints/M3.md` (provisional numbers, failing groups, labels to review), notify the human, tick this, and continue
-- [ ] Re-baseline on the reviewed eval set; choose default `minConfidence` from the dev sweep — WAITS: eval/REVIEWED
+- [x] Re-baseline on the reviewed eval set; choose default `minConfidence` from the dev sweep — WAITS: eval/REVIEWED
 
 ## M4: Enrichment
 

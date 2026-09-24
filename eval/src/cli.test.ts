@@ -100,7 +100,7 @@ describe("iconmatch-eval", () => {
     expect(result).toMatchObject({
       config: "baseline",
       split: "dev",
-      minConfidence: 0.5,
+      minConfidence: 0.6,
     });
     expect(result.report.n).toBe(7 * 12);
     expect(result.report.hit5).toBeGreaterThan(0);

@@ -5,12 +5,12 @@ const f = (n: number) => n.toFixed(3);
 const pct = (n: number) => n.toFixed(2);
 
 function row(label: string, m: Metrics): string {
-  return `| ${label} | ${String(m.n)} | ${f(m.hit1)} | ${f(m.hit3)} | ${f(m.hit5)} | ${f(m.mrr)} | ${pct(m.fallback.precision)} | ${pct(m.fallback.recall)} |`;
+  return `| ${label} | ${String(m.n)} | ${f(m.hit1)} | ${f(m.hit3)} | ${f(m.hit5)} | ${f(m.mrr)} | ${m.fallback.threshold.toFixed(2)} | ${pct(m.fallback.precision)} | ${pct(m.fallback.recall)} |`;
 }
 
 const HEADER = [
-  "| config | n | Hit@1 | Hit@3 | Hit@5 | MRR | fallback P | fallback R |",
-  "| --- | --- | --- | --- | --- | --- | --- | --- |",
+  "| config | n | Hit@1 | Hit@3 | Hit@5 | MRR | minConfidence | fallback P | fallback R |",
+  "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
 ];
 
 /** Spec §9.3 results table: configs × splits, the dev threshold sweep and per-group numbers. */
@@ -22,7 +22,6 @@ export function resultsMarkdown(options: {
   notes?: string[];
 }): string {
   const { date, reviewed, dev, test } = options;
-  const threshold = dev[0]?.minConfidence ?? 0;
   const lines = [
     `# Eval results ${date}${reviewed ? "" : " (PROVISIONAL)"}`,
     "",
@@ -30,7 +29,7 @@ export function resultsMarkdown(options: {
       ? "Eval set reviewed (`eval/REVIEWED`)."
       : "**Provisional:** the eval set has not been reviewed yet (`eval/REVIEWED` is missing). Don't cite these numbers or judge the acceptance bar on them.",
     "",
-    `Fallback P/R at \`minConfidence\` = ${String(threshold)}. Hit@k and MRR are over queries with acceptable ids; fallback metrics are over all queries.`,
+    "Fallback P/R use each config's default `minConfidence` (column; keyword-only configs use the keyword threshold). Hit@k and MRR are over queries with acceptable ids; fallback metrics are over all queries.",
     ...(options.notes ?? []).map((n) => `\n${n}`),
     "",
     "## Dev (tuning split)",

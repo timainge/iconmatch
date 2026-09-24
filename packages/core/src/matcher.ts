@@ -62,10 +62,17 @@ export interface IconMatcherParts {
   /** Include letter/number glyphs in ranked results. Default false (spec §7.2 step 8). */
   includeGlyphs?: boolean;
   /**
-   * Below this top-result confidence, `best()` returns the lettered fallback.
-   * Default `DEFAULT_MIN_CONFIDENCE` (provisional until chosen from the eval).
+   * Below this top-result confidence, `best()` returns the lettered fallback,
+   * when semantic ranking (vectors or remote search) took part.
+   * Default `DEFAULT_MIN_CONFIDENCE`, chosen from the eval (spec §9.3).
    */
   minConfidence?: number;
+  /**
+   * Threshold for searches that ran keyword-only (no embedder/vectors, or
+   * remote search failed). Keyword confidence is on a different scale.
+   * Default `DEFAULT_KEYWORD_MIN_CONFIDENCE`.
+   */
+  keywordMinConfidence?: number;
   fallbackShape?: FallbackOptions["fallbackShape"];
   fallbackIcon?: string;
 }
@@ -137,6 +144,8 @@ interface QueryRanking {
   rankings: string[][];
   candidates: Map<string, Candidate>;
   remoteUsed: boolean;
+  /** Vectors or remote search contributed a ranking. */
+  semantic: boolean;
 }
 
 /** Default `remoteTimeoutMs`. */
@@ -181,8 +190,14 @@ function withTimeout<T>(
   });
 }
 
-/** Provisional; the default is chosen from the eval threshold sweep (spec §7.2 step 5, §9.3). */
-export const DEFAULT_MIN_CONFIDENCE = 0.5;
+/**
+ * Chosen from the reviewed eval's dev sweep (spec §7.2 step 5, §9.3): the
+ * hybrid threshold with the best fallback F1 (see DECISIONS.md).
+ */
+export const DEFAULT_MIN_CONFIDENCE = 0.6;
+
+/** Keyword-only counterpart of `DEFAULT_MIN_CONFIDENCE`, from the same sweep. */
+export const DEFAULT_KEYWORD_MIN_CONFIDENCE = 0.5;
 
 function toMatch(
   entry: CatalogEntry,
@@ -327,99 +342,113 @@ export function createIconMatcher(
       rankings: [keywordHits.map((h) => h.id), secondIds],
       candidates,
       remoteUsed: remote !== undefined,
+      semantic: sims !== undefined || remote !== undefined,
+    };
+  }
+
+  async function searchDetailed(
+    query: string,
+    options: SearchOptions,
+  ): Promise<{ matches: IconMatch[]; semantic: boolean }> {
+    if (!keyword && !semantic && !parts.remoteSearch) {
+      throw new IconMatchCapabilityError("search", "keywordIndex");
+    }
+    const limit = options.limit ?? DEFAULT_LIMIT;
+    // No letters or digits: nothing to match, and nothing worth embedding.
+    if (normaliseQuery(query) === "") return { matches: [], semantic: false };
+
+    // Query expansion (spec §7.3): the original plus each expansion, the
+    // original weighted ×2 in the fusion. A failing expander is ignored.
+    const expansions = parts.expandQuery
+      ? (
+          await parts.expandQuery(query).catch((error: unknown) => {
+            parts.onExpandError?.(error);
+            return [];
+          })
+        )
+          .map((q) => q.trim())
+          .filter(
+            (q) => q !== "" && q.toLowerCase() !== query.trim().toLowerCase(),
+          )
+      : [];
+    const ranked = [
+      {
+        weight: expansions.length > 0 ? EXPANSION_ORIGINAL_WEIGHT : 1,
+        result: await rankQuery(query),
+      },
+      ...(await Promise.all(
+        expansions.map(async (q) => ({
+          weight: 1,
+          result: await rankQuery(q),
+        })),
+      )),
+    ];
+
+    const fused = fuse(
+      ranked.flatMap(({ weight, result }) =>
+        result.rankings.map((ids) => ({ ids, weight })),
+      ),
+    );
+    const remoteUsed = ranked.some(({ result }) => result.remoteUsed);
+    const matches = fused.flatMap(({ id, score }) => {
+      let hit: Candidate | undefined;
+      for (const { result } of ranked) {
+        const c = result.candidates.get(id);
+        if (!c) continue;
+        hit = hit ? mergeCandidates(hit, c) : c;
+      }
+      if (!hit) return [];
+      const entry = byId.get(id);
+      if (!entry) {
+        // A remote-only icon unknown to this catalog: trust the server's fields.
+        const r = hit.remote;
+        return r
+          ? [
+              {
+                ...r,
+                score,
+                matchedOn: {
+                  keyword: false,
+                  vector: r.matchedOn.vector,
+                  remote: true,
+                },
+              },
+            ]
+          : [];
+      }
+      const match = toMatch(
+        entry,
+        {
+          score,
+          confidence: hit.confidence,
+          keyword: hit.keyword,
+          vector: hit.vector,
+        },
+        options.variant,
+      );
+      if (remoteUsed) match.matchedOn.remote = hit.remote !== undefined;
+      return [match];
+    });
+    return {
+      matches: matches.sort(compareMatches(options.variant)).slice(0, limit),
+      semantic: ranked.some(({ result }) => result.semantic),
     };
   }
 
   const matcher: IconMatcher = {
     async search(query, options = {}) {
-      if (!keyword && !semantic && !parts.remoteSearch) {
-        throw new IconMatchCapabilityError("search", "keywordIndex");
-      }
-      const limit = options.limit ?? DEFAULT_LIMIT;
-      // No letters or digits: nothing to match, and nothing worth embedding.
-      if (normaliseQuery(query) === "") return [];
-
-      // Query expansion (spec §7.3): the original plus each expansion, the
-      // original weighted ×2 in the fusion. A failing expander is ignored.
-      const expansions = parts.expandQuery
-        ? (
-            await parts.expandQuery(query).catch((error: unknown) => {
-              parts.onExpandError?.(error);
-              return [];
-            })
-          )
-            .map((q) => q.trim())
-            .filter(
-              (q) => q !== "" && q.toLowerCase() !== query.trim().toLowerCase(),
-            )
-        : [];
-      const ranked = [
-        {
-          weight: expansions.length > 0 ? EXPANSION_ORIGINAL_WEIGHT : 1,
-          result: await rankQuery(query),
-        },
-        ...(await Promise.all(
-          expansions.map(async (q) => ({
-            weight: 1,
-            result: await rankQuery(q),
-          })),
-        )),
-      ];
-
-      const fused = fuse(
-        ranked.flatMap(({ weight, result }) =>
-          result.rankings.map((ids) => ({ ids, weight })),
-        ),
-      );
-      const remoteUsed = ranked.some(({ result }) => result.remoteUsed);
-      const matches = fused.flatMap(({ id, score }) => {
-        let hit: Candidate | undefined;
-        for (const { result } of ranked) {
-          const c = result.candidates.get(id);
-          if (!c) continue;
-          hit = hit ? mergeCandidates(hit, c) : c;
-        }
-        if (!hit) return [];
-        const entry = byId.get(id);
-        if (!entry) {
-          // A remote-only icon unknown to this catalog: trust the server's fields.
-          const r = hit.remote;
-          return r
-            ? [
-                {
-                  ...r,
-                  score,
-                  matchedOn: {
-                    keyword: false,
-                    vector: r.matchedOn.vector,
-                    remote: true,
-                  },
-                },
-              ]
-            : [];
-        }
-        const match = toMatch(
-          entry,
-          {
-            score,
-            confidence: hit.confidence,
-            keyword: hit.keyword,
-            vector: hit.vector,
-          },
-          options.variant,
-        );
-        if (remoteUsed) match.matchedOn.remote = hit.remote !== undefined;
-        return [match];
-      });
-      return matches.sort(compareMatches(options.variant)).slice(0, limit);
+      return (await searchDetailed(query, options)).matches;
     },
     async best(query, options = {}) {
-      const [top] = await matcher.search(query, { ...options, limit: 1 });
-      if (
-        top &&
-        top.confidence >= (parts.minConfidence ?? DEFAULT_MIN_CONFIDENCE)
-      )
-        return top;
+      const { matches, semantic } = await searchDetailed(query, {
+        ...options,
+        limit: 1,
+      });
+      const [top] = matches;
+      const threshold = semantic
+        ? (parts.minConfidence ?? DEFAULT_MIN_CONFIDENCE)
+        : (parts.keywordMinConfidence ?? DEFAULT_KEYWORD_MIN_CONFIDENCE);
+      if (top && top.confidence >= threshold) return top;
       const fallback: FallbackOptions = {};
       if (parts.fallbackShape) fallback.fallbackShape = parts.fallbackShape;
       if (parts.fallbackIcon) fallback.fallbackIcon = parts.fallbackIcon;

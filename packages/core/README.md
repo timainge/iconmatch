@@ -145,7 +145,7 @@ Only `catalog` is required. A method whose part is missing throws `IconMatchCapa
 
 ### Confidence and fallback
 
-`confidence` (0–1) is the icon's cosine similarity to the query, plus 0.1 when it also matched on keywords. `best()` returns the lettered glyph (`square-letter-*`/`square-number-*`, or `category` when the label has no usable letter or digit) when the top confidence is below `minConfidence`. The default `minConfidence` is provisional until it's chosen from the evaluation; set your own if you rely on fallbacks.
+`confidence` (0–1) is the icon's cosine similarity to the query, plus 0.1 when it also matched on keywords. `best()` returns the lettered glyph (`square-letter-*`/`square-number-*`, or `category` when the label has no usable letter or digit) when the top confidence is below the threshold: `minConfidence` (default **0.60**) when semantic ranking took part, or `keywordMinConfidence` (default **0.50**) when the search ran keyword-only, since keyword confidence is on a different scale. Both defaults were chosen on the evaluation's tuning split; set your own if fallbacks matter to you.
 
 **Keyword-only use** (no vectors or embedder, e.g. a browser with the server down) ranks by keyword match alone and derives confidence from term coverage. Its quality is noticeably lower than hybrid search, especially for abstract labels.
 
