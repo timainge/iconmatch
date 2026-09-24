@@ -33,7 +33,9 @@ Checklist derived from `docs/plan.md` §11. The spec is the source of truth for 
 - [x] Determinism test (ingest + embed twice → identical hashes)
 - [x] Slow-tier reference-vector test for the real model (§11.1)
 - [x] `npm run bench`: warm query + embedding latency vs §7.5 targets
-- [ ] Audit M2 (§11.1)
+- [x] Audit M2 (§11.1): see `docs/audits/M2.md`
+- [ ] AUDIT: test that keyword and vector rankings each contribute at most 50 ids to fusion (§7.2 steps 2–3)
+- [ ] AUDIT: BLOCKED: needs packaged data from the M5 `package` stage. Test `examples/server` `createServer()` with defaults (packagedSource + transformers embedder, unloaded until first search) (§7.7)
 
 ## M3: Eval harness
 
@@ -57,7 +59,7 @@ Checklist derived from `docs/plan.md` §11. The spec is the source of truth for 
 ## M5: Package
 
 - [ ] Query expansion hook + README example (no eval)
-- [ ] `package` stage: manifest (from `build/embed-meta.json`), licenses, size report; data excluding SVGs is ~4.55 MB vs the 4 MB §6.6 target: reduce (e.g. drop glyph vectors, trim index) or record the overage
+- [ ] `package` stage (unblocks the M2 AUDIT server-defaults test): manifest (from `build/embed-meta.json`), licenses, size report; data excluding SVGs is ~4.55 MB vs the 4 MB §6.6 target: reduce (e.g. drop glyph vectors, trim index) or record the overage
 - [ ] README with examples + Tabler MIT notice + brand trademark note (§6.1.3) + note that keyword-only quality is lower (§7.2.7); publish-ready `package.json` with subpath exports
 - [ ] CI: build with `--enrich none` on 200-icon subset (workflow file only; never pushed)
 - [ ] `npm pack --dry-run` contents check; per-composition size report
