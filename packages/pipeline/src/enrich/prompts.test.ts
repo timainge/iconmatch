@@ -10,7 +10,7 @@ import { parseModelEnrichment } from "./schema.js";
 
 describe("prompts (spec §6.3)", () => {
   it("is versioned", () => {
-    expect(PROMPT_VERSION).toMatch(/^text-v\d+$/);
+    expect(PROMPT_VERSION).toBe("text-v2");
   });
 
   it("states the task, literal descriptions, metaphors, lowercase concepts and JSON-only", () => {
@@ -18,6 +18,11 @@ describe("prompts (spec §6.3)", () => {
     expect(SYSTEM_PROMPT).toMatch(/No speculation/);
     expect(SYSTEM_PROMPT).toMatch(/metaphorical uses/);
     expect(SYSTEM_PROMPT).toMatch(/lowercase, 1 to 3 words/);
+    // v2: specific category names, generic words banned, no colours.
+    expect(SYSTEM_PROMPT).toMatch(
+      /Never use generic words such as design, technology, symbol/,
+    );
+    expect(SYSTEM_PROMPT).toMatch(/no colours/i);
     expect(SYSTEM_PROMPT).toMatch(/JSON only/);
   });
 

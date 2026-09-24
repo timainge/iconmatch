@@ -2,17 +2,21 @@ import type { CatalogEntry } from "iconmatch";
 import type { ChatMessage } from "./provider.js";
 
 /** Bump whenever the system prompt, few-shots or user template change. */
-export const PROMPT_VERSION = "text-v1";
+export const PROMPT_VERSION = "text-v2";
 
-/** Spec §6.3 prompt requirements 1–4. */
+/**
+ * Spec §6.3 prompt requirements 1–4. v2 (after configs 4–5 showed v1's
+ * generic concepts hurt ranking): concepts must be specific category names a
+ * person would type, generic words are banned, and colours are never mentioned.
+ */
 export const SYSTEM_PROMPT = `You label icons so they can be found when someone searches for a category name in a personal organisation app (for example "Dog grooming", "Super contributions", "Kids' ski gear").
 
-For each icon you get its name, tags and category. Reply with JSON only, matching the given schema:
-- "description": one literal sentence (max 160 characters) saying what the icon clearly shows, based only on its name and tags. No speculation.
-- "concepts": 5 to 15 things this icon could stand for, lowercase, 1 to 3 words each. Include common metaphorical uses (lightbulb -> idea, anchor -> stability) and everyday category names a person might type. Leave out anything the icon would not plausibly represent.
+Each icon is a black outline drawing with no colour. You get its name, tags and category. Reply with JSON only, matching the given schema:
+- "description": one literal sentence (max 160 characters) saying what the icon clearly shows, based only on its name and tags. No speculation and no colours.
+- "concepts": 5 to 12 category names, lowercase, 1 to 3 words each, that a person might give a list, budget, folder or project in their own life, for which this icon would be a good, recognisable choice. Prefer specific everyday terms ("home insurance", "retirement savings", "dog walking", "tax return") and common metaphorical uses (lightbulb -> ideas, anchor -> stability). Never use generic words such as design, technology, symbol, icon, graphic, element, interface, data, information, concept, object or shape.
 - "domains": 1 to 5 broad areas such as "finance", "pets", "sport", "home", "health", "work".
 
-Interface and action glyphs (arrows, carets, toolbar symbols) get few everyday concepts; don't invent categories for them.`;
+Interface and action glyphs (arrows, carets, toolbar symbols) get only the few everyday uses they really have; don't invent categories for them.`;
 
 export interface IconInput {
   name: string;
@@ -46,13 +50,13 @@ export const FEW_SHOTS: {
       description: "A piggy bank with a coin slot on its back.",
       concepts: [
         "savings",
-        "money box",
-        "super",
-        "retirement fund",
-        "budget",
+        "super contributions",
+        "retirement savings",
         "pocket money",
         "rainy day fund",
-        "investing",
+        "kids' savings",
+        "budget",
+        "emergency fund",
       ],
       domains: ["finance", "family"],
     },
@@ -67,14 +71,12 @@ export const FEW_SHOTS: {
     reply: {
       description: "A ship's anchor with a ring at the top and curved flukes.",
       concepts: [
-        "stability",
         "boating",
         "sailing",
-        "marina",
-        "harbour",
-        "cruise",
-        "security",
-        "grounding",
+        "cruise holiday",
+        "marina fees",
+        "fishing trips",
+        "stability",
       ],
       domains: ["travel", "sport", "wellbeing"],
     },
@@ -120,13 +122,21 @@ export function textMessages(icon: IconInput): ChatMessage[] {
   ];
 }
 
-/** Bump whenever the vision prompt changes. */
-export const VISION_PROMPT_VERSION = "vision-v1";
+/** Bump whenever the vision prompt changes (it derives from SYSTEM_PROMPT). */
+export const VISION_PROMPT_VERSION = "vision-v2";
+
+const TEXT_DESCRIPTION_RULE =
+  '"description": one literal sentence (max 160 characters) saying what the icon clearly shows, based only on its name and tags. No speculation and no colours.';
+if (!SYSTEM_PROMPT.includes(TEXT_DESCRIPTION_RULE)) {
+  throw new Error(
+    "prompts.ts: VISION_SYSTEM_PROMPT's replace target is missing from SYSTEM_PROMPT",
+  );
+}
 
 /** Vision variant (spec §6.3): the description is what is visibly drawn in the image. */
 export const VISION_SYSTEM_PROMPT = SYSTEM_PROMPT.replace(
-  '"description": one literal sentence (max 160 characters) saying what the icon clearly shows, based only on its name and tags. No speculation.',
-  '"description": one literal sentence (max 160 characters) describing only what is visibly drawn in the attached image (a black line drawing on white). No speculation, no colours.',
+  TEXT_DESCRIPTION_RULE,
+  '"description": one literal sentence (max 160 characters) describing only what is visibly drawn in the attached image. No speculation and no colours.',
 );
 
 /** Few-shot turns (text) followed by the icon with its rendered image. */

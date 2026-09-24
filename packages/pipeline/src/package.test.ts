@@ -15,6 +15,7 @@ import { fsSource } from "iconmatch/node";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { createFakeEmbedder } from "../../../test-support/fake-embedder.js";
 import { runEmbed } from "./embed.js";
+import { PROMPT_VERSION } from "./enrich/prompts.js";
 import { BUILD_ENRICHMENTS_FILE } from "./enrich/stage.js";
 import { ingest, writeIngest } from "./ingest.js";
 import { runIndex } from "./index.js";
@@ -152,7 +153,7 @@ describe("runPackage (spec §6.6, §8)", () => {
     expect(text.manifest.enrichment).toEqual({
       mode: "text",
       model: "qwen2.5:7b-instruct",
-      promptVersion: "text-v1",
+      promptVersion: PROMPT_VERSION,
     });
     await writeFile(join(build, BUILD_ENRICHMENTS_FILE), "{}\n");
     expect(
