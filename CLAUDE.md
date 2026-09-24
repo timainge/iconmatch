@@ -4,7 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-iconmatch: semantic icon matching for user-defined categories. TypeScript, ESM, npm workspaces (`packages/core` = published runtime library, `packages/pipeline` = build CLI, `eval`). Core must run in Node 20+ **and** browsers. Node-only code in `packages/core/src` goes only in `*.node.ts` loaders, and ESLint enforces this.
+iconmatch: semantic icon matching for user-defined categories. TypeScript, ESM, npm workspaces (`packages/core` = published runtime library, `packages/pipeline` = build CLI, `eval`). Core must run in Node 20+ **and** browsers. Node-only code in `packages/core/src` goes only in `*.node.ts` loaders, and `@huggingface/transformers` only in `src/embedders/`. ESLint enforces both.
+
+Core is **composable primitives**, not one monolith (spec §7.0): data sources, per-artifact loaders, keyword/vector searchers, fusion, embedders, SVG providers, rendering and the lettered fallback. Each takes its dependencies as arguments and never fetches, reads files or loads a model on its own. Deployments (server, browser client, Tauri-style local-full) are thin compositions in `examples/`. v1 is Tabler, outline only, with brand icons included.
 
 - `npm run check`: typecheck + lint + format check + default-tier tests. Must be green before any commit.
 - `npm test -- <pattern>`: run a subset of tests.
@@ -58,6 +60,11 @@ These form an observe, orient/decide, act loop:
 - **Stop** (`verify.sh`): blocks stopping while `npm run check` fails (only when code files are uncommitted).
 
 If a hook blocks you, fix the cause. Don't work around the hook.
+
+## Running unsupervised
+
+- **Headless (preferred for long runs):** `caffeinate -i scripts/factory.sh 30` runs one fresh `claude -p "/next"` per item, logs to `.factory/logs/`, and stops at a checkpoint, when nothing is unblocked, on a dirty tree, or after two iterations without a commit.
+- **Interactive:** `claude --permission-mode bypassPermissions`, then `/loop /next`. `/next` ends the loop itself at checkpoints.
 
 ## Skills
 

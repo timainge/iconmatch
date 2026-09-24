@@ -21,9 +21,37 @@ export default tseslint.config(
     },
   },
   { files: ["*.js"], ...tseslint.configs.disableTypeChecked },
-  // Core must stay browser-safe (spec §10): Node built-ins only in *.node.ts loaders.
+  // Core must stay browser-safe and light (spec §7.0, §10): Node built-ins only in
+  // *.node.ts loaders; transformers.js only in the embedders/ subpath.
   {
     files: ["packages/core/src/**/*.ts"],
+    ignores: [
+      "packages/core/src/**/*.node.ts",
+      "packages/core/src/**/*.test.ts",
+    ],
+    rules: {
+      "no-restricted-imports": [
+        "error",
+        {
+          patterns: [
+            {
+              regex:
+                "^(node:|fs$|path$|os$|crypto$|url$|module$|child_process$)",
+              message:
+                "Core is browser-safe; move Node-only code to a *.node.ts loader.",
+            },
+            {
+              regex: "^@huggingface/transformers",
+              message:
+                "Only packages/core/src/embedders/ may import transformers.js (optional subpath).",
+            },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    files: ["packages/core/src/embedders/**/*.ts"],
     ignores: [
       "packages/core/src/**/*.node.ts",
       "packages/core/src/**/*.test.ts",

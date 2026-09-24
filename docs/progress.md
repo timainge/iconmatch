@@ -6,21 +6,29 @@ Checklist derived from `docs/plan.md` §11. The spec is the source of truth for 
 
 - [ ] Test infrastructure: vitest config, `ICONMATCH_SLOW_TESTS` gating helper, deterministic fake `Embedder`, fixture layout (§10)
 - [ ] Adapter interface + types (§6.1)
-- [ ] Tabler adapter: SVGs from `@iconify-json/tabler`, fold `-filled`, skip brand/deprecated, log counts; locate tag/category source and record in DECISIONS.md
+- [ ] Tabler adapter: SVGs from `@iconify-json/tabler`, outline only (drop `-filled`), include + flag brands, mark letter/number glyphs, skip deprecated, log counts; locate tag/category source and record in DECISIONS.md
 - [ ] `ingest` → `build/catalog.json` + `build/svgs.json`
 - [ ] `index` → MiniSearch keyword index with field boosts, fuzzy/prefix, stopwords, plural folding
-- [ ] Runtime: `createIconMatcher`, keyword-only `search()`, `get()`, query normalisation
-- [ ] `svg()` output per §7.6 + snapshot tests
+- [ ] Core primitives: `DataSource` (fetch, memory, `iconmatch/node` fs/packaged), per-artifact loaders, subpath exports (§7.0)
+- [ ] Runtime: `createIconMatcher(parts)` with capability errors, keyword-only `search()`, `get()`, query normalisation
+- [ ] `renderSvg`/`svg()` output per §7.6 + snapshot tests
+- [ ] Lettered fallback: `letterFallback()`, verify `square-letter-*`/`square-number-*` ids, exclude glyphs from ranking (§7.4)
+- [ ] Browser bundle test: default entry has no Node built-ins or transformers (esbuild)
 - [ ] Build CLI (`iconmatch-build`) + `iconmatch.config.ts`
 - [ ] 200-icon fixture subset committed for tests (§10)
 - [ ] Audit M1 (§11.1)
 
 ## M2: Vectors + hybrid
 
-- [ ] Shared query prefix constant; embedder wrapper (lazy-loaded)
+- [ ] Shared query prefix constant; `iconmatch/embedder-transformers` subpath (lazy model load, model location, `localOnly`), optional peer dep
 - [ ] `embed` → int8 `vectors.bin` + `vector-ids.json` (float32 flag)
 - [ ] Cosine (int8/float32), RRF fuse, confidence, tie-breaks, fallback
 - [ ] `searchByEmbedding` with dims validation; embedder/manifest mismatch error
+- [ ] `remoteSearch` part: timeout, fallback to local keyword on failure
+- [ ] Table-driven test over partial part combinations
+- [ ] `examples/server`: `handle(Request)` for search/best/icons, tested in-process (§7.7)
+- [ ] `examples/browser-client`: remote search + SVG provider + review/override flow; works with remote down
+- [ ] `examples/local-full`: fs source + local model, `localOnly`; slow-tier real-model test
 - [ ] Determinism test (ingest + embed twice → identical hashes)
 - [ ] Slow-tier reference-vector test for the real model (§11.1)
 - [ ] `npm run bench`: warm query + embedding latency vs §7.5 targets
@@ -48,7 +56,7 @@ Checklist derived from `docs/plan.md` §11. The spec is the source of truth for 
 
 - [ ] Query expansion hook + eval config 6/7
 - [ ] `package` stage: manifest, licenses, size report
-- [ ] README with examples + Tabler MIT notice; publish-ready `package.json`
+- [ ] README with examples + Tabler MIT notice + brand trademark note; publish-ready `package.json` with subpath exports
 - [ ] CI: build with `--enrich none` on 200-icon subset (workflow file only; never pushed)
-- [ ] Browser bundle smoke test (esbuild `platform: browser`) + `npm pack --dry-run` contents check
+- [ ] `npm pack --dry-run` contents check; per-composition size report
 - [ ] Audit M5 (§11.1)

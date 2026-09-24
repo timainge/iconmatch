@@ -10,3 +10,4 @@ eval/results/*.tmp
 .DS_Store
 CLAUDE.local.md
 .claude/settings.local.json
+.factory/
