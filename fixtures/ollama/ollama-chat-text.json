@@ -1,0 +1,26 @@
+{
+  "source": "synthetic",
+  "note": "Shape from docs/api.md (POST /api/chat, stream false, format = JSON schema). Replace with a real recording once Ollama runs locally.",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:11434/api/chat",
+    "body": {
+      "model": "qwen2.5:7b-instruct"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "model": "qwen2.5:7b-instruct",
+      "created_at": "2026-09-25T00:00:00Z",
+      "message": {
+        "role": "assistant",
+        "content": "{\"description\": \"A heart shape outline.\", \"concepts\": [\"love\", \"health\", \"favourites\", \"relationships\", \"dating\", \"wellbeing\", \"charity\"], \"domains\": [\"relationships\", \"health\"]}"
+      },
+      "done_reason": "stop",
+      "done": true,
+      "total_duration": 812000000,
+      "eval_count": 64
+    }
+  }
+}

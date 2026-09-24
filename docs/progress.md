@@ -49,9 +49,9 @@ Checklist derived from `docs/plan.md` §11. The spec is the source of truth for 
 
 ## M4: Enrichment
 
-- [ ] Enrichment provider interface (Ollama + OpenAI-compatible/LM Studio), tested on recorded fixtures (§14)
+- [x] Enrichment provider interface (Ollama + OpenAI-compatible/LM Studio), tested on recorded fixtures (§14)
 - [ ] Text enrichment: prompts, zod schema, retries, jsonl cache, `--limit`, concurrency/backoff
-- [ ] Local LLM runtime: install/start Ollama (or LM Studio), pull models, record timings in DECISIONS.md
+- [ ] Local LLM runtime: install/start Ollama (or LM Studio), pull models, record timings in DECISIONS.md; replace the synthetic `fixtures/ollama/*.json` with real recordings
 - [ ] Run text enrichment over full catalog
 - [ ] Vision enrichment: resvg render, `visionFor: sparse|all`; run over sparse icons
 - [ ] Eval configs 4–5 with deltas against baseline — WAITS: eval/REVIEWED

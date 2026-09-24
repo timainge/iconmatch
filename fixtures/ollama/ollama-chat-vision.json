@@ -1,0 +1,22 @@
+{
+  "source": "synthetic",
+  "note": "As above, vision model; the request carries base64 PNG images on the user message.",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:11434/api/chat",
+    "body": {
+      "model": "qwen2.5vl:7b"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "model": "qwen2.5vl:7b",
+      "message": {
+        "role": "assistant",
+        "content": "{\"description\": \"A heart shape outline.\", \"concepts\": [\"love\", \"health\", \"favourites\", \"relationships\", \"dating\", \"wellbeing\", \"charity\"], \"domains\": [\"relationships\", \"health\"]}"
+      },
+      "done": true
+    }
+  }
+}

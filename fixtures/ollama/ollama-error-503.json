@@ -1,0 +1,15 @@
+{
+  "source": "synthetic",
+  "note": "Server busy / loading model.",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:11434/api/chat",
+    "body": {}
+  },
+  "response": {
+    "status": 503,
+    "body": {
+      "error": "server busy, please try again"
+    }
+  }
+}

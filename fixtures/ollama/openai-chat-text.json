@@ -1,0 +1,29 @@
+{
+  "source": "synthetic",
+  "note": "OpenAI-compatible chat completions shape (LM Studio /v1/chat/completions).",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:1234/v1/chat/completions",
+    "body": {
+      "model": "qwen2.5-7b-instruct"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "id": "chatcmpl-1",
+      "object": "chat.completion",
+      "model": "qwen2.5-7b-instruct",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"description\": \"A heart shape outline.\", \"concepts\": [\"love\", \"health\", \"favourites\", \"relationships\", \"dating\", \"wellbeing\", \"charity\"], \"domains\": [\"relationships\", \"health\"]}"
+          },
+          "finish_reason": "stop"
+        }
+      ]
+    }
+  }
+}
