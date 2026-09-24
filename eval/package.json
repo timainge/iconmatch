@@ -6,6 +6,10 @@
   "license": "MIT",
   "dependencies": {
     "@iconmatch/pipeline": "0.0.0",
-    "iconmatch": "0.0.0"
+    "iconmatch": "0.0.0",
+    "tsx": "^4.23.15"
+  },
+  "bin": {
+    "iconmatch-eval": "bin/iconmatch-eval.js"
   }
 }

@@ -19,13 +19,13 @@ export default tseslint.config(
     languageOptions: {
       parserOptions: {
         projectService: {
-          allowDefaultProject: ["*.js", "packages/*/bin/*.js"],
+          allowDefaultProject: ["*.js", "packages/*/bin/*.js", "eval/bin/*.js"],
         },
       },
     },
   },
   {
-    files: ["*.js", "packages/*/bin/*.js"],
+    files: ["*.js", "packages/*/bin/*.js", "eval/bin/*.js"],
     ...tseslint.configs.disableTypeChecked,
   },
   // Core must stay browser-safe and light (spec §7.0, §10): Node built-ins only in

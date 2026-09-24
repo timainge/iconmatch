@@ -6,6 +6,7 @@ import {
   loadKeywordIndex,
   loadManifest,
   loadVectors,
+  type Manifest,
 } from "iconmatch";
 
 /** Spec §7.5 targets (Node, M-series Mac). Reported, not gated. */
@@ -52,12 +53,18 @@ export interface BenchReport {
 export async function runBench(
   source: DataSource,
   embedder: Embedder,
-  options: { queries?: string[]; rounds?: number; now?: () => number } = {},
+  options: {
+    queries?: string[];
+    rounds?: number;
+    now?: () => number;
+    /** Defaults to the source's manifest.json. */
+    manifest?: Manifest;
+  } = {},
 ): Promise<BenchReport> {
   const now = options.now ?? (() => performance.now());
   const queries = options.queries ?? BENCH_QUERIES;
   const rounds = options.rounds ?? 20;
-  const manifest = await loadManifest(source);
+  const manifest = options.manifest ?? (await loadManifest(source));
   const [catalog, keywordIndex, vectors] = await Promise.all([
     loadCatalog(source, { manifest }),
     loadKeywordIndex(source, { manifest }),
