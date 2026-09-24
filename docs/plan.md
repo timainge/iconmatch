@@ -1,6 +1,8 @@
 # Spec: `iconmatch` — semantic icon matching for user-defined categories
 
 > Working name `iconmatch`; rename freely. This document is the source of truth for the build. Where it says **MUST**, treat it as a requirement; **SHOULD** is a strong default you may deviate from with a written reason in `DECISIONS.md`.
+>
+> The build is carried out by an autonomous agent loop (§14). This file is **human-owned**: the agent never edits it. If the agent finds the spec wrong, ambiguous or contradictory, it picks the most conservative reading, records it in `DECISIONS.md` under a `SPEC-QUESTION` heading, and keeps going.
 
 ## 1. Problem
 
@@ -101,7 +103,7 @@ iconmatch/
   README.md
 ```
 
-Use pnpm workspaces. TypeScript strict mode. Vitest for tests.
+Use npm workspaces (`packages/*`, `eval`). TypeScript strict mode. Vitest for tests.
 
 ## 6. Build pipeline
 
@@ -389,6 +391,13 @@ interface EvalQuery {
 
 The agent drafts the set and the acceptable ids by browsing the catalog, then flags it for human review. The eval set is versioned; don't tune on it and then report on it without noting that.
 
+Because tuning is done by an agent, the set MUST be split to keep reported numbers honest:
+
+- Each query carries `split: "dev" | "test"`, about 70/30 and stratified by `group` (fallback queries included in both).
+- All tuning (boosts, confidence formula, `minConfidence`, prompts) uses `dev` only. Headline numbers and the acceptance bar are reported on `test`.
+- Every acceptable id MUST exist in the current catalog; the eval CLI fails loudly on unknown ids.
+- Once a human has reviewed the set (signalled by the file `eval/REVIEWED`), the agent MUST NOT edit `eval/queries.json`. Suspected labelling errors go in `eval/label-issues.md` for the human.
+
 ### 9.2 Metrics
 
 - Hit@1, Hit@3, Hit@5 (any acceptable id in top k)
@@ -412,7 +421,20 @@ Also output a threshold sweep for `minConfidence` (0.3–0.8, step 0.05) showing
 
 **Acceptance bar for v1 (best config):** Hit@3 ≥ 0.70 on non-fallback queries; fallback recall ≥ 0.6 at the chosen threshold. If not met, report what's failing by group rather than tuning blindly.
 
+### 9.4 Regression discipline
+
+- `iconmatch-eval` writes machine-readable results to `eval/results/<date>-<config>.json` next to the markdown table, and `eval/results/baseline.json` holds the most recent accepted numbers per config.
+- `iconmatch-eval --compare baseline` prints deltas and exits non-zero if dev Hit@3 or MRR drops by more than 0.02 for any config that was run.
+- Any change to ranking, indexing, embedding text, enrichment prompts or confidence MUST be followed by an eval run on `dev`. A regression beyond the tolerance is either fixed or accepted with a `DECISIONS.md` entry and a baseline update in the same commit.
+
 ## 10. Testing
+
+Tests run in two tiers so the default loop stays fast and offline-safe:
+
+- **Default** (`npm test`, part of `npm run check`): no network, no model downloads, no Ollama, finishes in well under a minute. Uses a deterministic fake `Embedder` (hash-based, correct dims) and small committed fixtures (a ~200-icon catalog subset, recorded Ollama responses).
+- **Slow** (`npm run test:slow`, sets `ICONMATCH_SLOW_TESTS=1`): may download the real embedding model (cached outside the repo) and run the real pipeline. Tests in this tier are skipped unless the env var is set. Run them at each milestone audit and whenever embedding code changes.
+
+Core stays browser-safe: `packages/core/src` MUST NOT import `node:*` modules or Node-only packages, except in files named `*.node.ts` that are only reached via a runtime check or a conditional export. ESLint enforces this.
 
 - Unit: RRF, cosine (int8 and float32), query normalisation, variant fallback, manifest/embedder mismatch error, zod enrichment validation.
 - Adapter: Tabler adapter folds `-filled` correctly; counts are within expected ranges; no brand icons by default.
@@ -430,6 +452,33 @@ Also output a threshold sweep for `minConfidence` (0.3–0.8, step 0.05) showing
 
 Stop and report after M3 with the baseline numbers before starting M4.
 
+### 11.1 Milestone acceptance (verification)
+
+A milestone is done only when every checklist item is ticked **and** a milestone audit has confirmed the criteria below, with evidence (test names, command output, numbers) written to `docs/audits/M<n>.md`. `npm run check` must be green throughout.
+
+- **M1**
+  - Adapter test proves `-filled` folding, no `brand-*` by default, no deprecated icons, and counts within ranges (outline concepts 4,500–6,000; with filled 800–1,300).
+  - `iconmatch-build ingest` and `index` run from a clean checkout and produce the §6.2/§6.5 files.
+  - Keyword `search()` returns a plausible top 3 for a smoke set ("dog", "heart", "money", "car", "calendar"), asserted in a test against the fixture catalog.
+  - `svg()` snapshot tests cover 3 icons × 2 variants, plus `title` and variant fallback.
+- **M2**
+  - The query prefix exists in exactly one module and is imported by both build and runtime (checked by a test).
+  - Slow tier: real-model embedding of a fixed sentence matches a committed reference vector (cosine ≥ 0.999). The determinism test passes.
+  - Tests prove that `searchByEmbedding`, `get` and `svg` never load the model (spy on the lazy loader), and that wrong dims or a wrong `modelId` throw clear errors.
+  - `npm run bench` reports warm query latency and embedding latency against the §7.5 targets. Reported, not gated.
+- **M3**
+  - `eval/queries.json` has ≥120 queries, ≥10 fallback queries, every group from §9.1, and a dev/test split. Every id resolves.
+  - `eval/results/<date>.md` holds configs 1–3 and the threshold sweep; `baseline.json` is written.
+  - `docs/checkpoints/M3.md` summarises the numbers, failing groups, and the queries most worth a human look.
+- **M4**
+  - Enrichment tests (zod rejection, retry, cache hit by `inputHash`, `--limit`) pass on recorded fixtures.
+  - Configs 4–5 are in the results table with deltas against the baseline.
+- **M5**
+  - `npm pack --dry-run` in `packages/core` lists only the intended files. Data size is within §6.6 targets or the overage is recorded.
+  - Core bundles for `platform: "browser"` (esbuild) without Node built-ins.
+  - A CI workflow file runs `npm run check` and the 200-icon `--enrich none` build. It is written but not pushed.
+  - The README examples are type-checked or executed by a test.
+
 ## 12. Future (explicitly out of scope for v1)
 
 - Second set (Lucide as a near-sibling style, or Phosphor for 6 weights). Requires cross-set dedup by concept and a style-compatibility decision.
@@ -439,7 +488,20 @@ Stop and report after M3 with the baseline numbers before starting M4.
 
 ## 13. Open questions for the human
 
-1. Include brand icons at all? Default is no.
-2. Is the filled variant needed at launch, or only outline?
-3. Browser use: acceptable to fetch a ~30 MB embedding model on first query, or must browser use rely on `searchByEmbedding` with server-side embedding?
-4. Fallback: neutral glyph from the set, or lettered badge in the app?
+The agent proceeds on the stated default for each question and records it in `DECISIONS.md`. The human may override a default at any checkpoint.
+
+1. Include brand icons at all? **Default: no** (configurable, off).
+2. Is the filled variant needed at launch, or only outline? **Default: ship both.** Outline is the default variant.
+3. Browser use: acceptable to fetch a ~30 MB embedding model on first query, or must browser use rely on `searchByEmbedding` with server-side embedding? **Default: support both.** `embedder: "auto"` lazy-fetches in the browser, and the README documents the server-side `searchByEmbedding` path as the lighter option.
+4. Fallback: neutral glyph from the set, or lettered badge in the app? **Default: neutral glyph** (`tabler:category`), with `isFallback` exposed so the app can draw a badge instead.
+
+## 14. Autonomous execution
+
+The build is driven by an agent running `/next` in a loop (see `CLAUDE.md`). Constraints the loop MUST respect:
+
+- **Progress** lives in `docs/progress.md`, **judgement calls** in `DECISIONS.md`, **milestone evidence** in `docs/audits/`, and **human handoffs** in `docs/checkpoints/`.
+- **Every commit is green.** `npm run check` passes before each commit. Tests and lint rules are never weakened to get there.
+- **Human checkpoints:** after M3 (baseline numbers and eval set review), and before any outward-facing or irreversible action (push, publish, deleting data outside `build/` and `cache/`).
+- **Blockers don't stop the loop.** A blocked item is marked `BLOCKED: <reason>` and the loop moves on to the next unblocked item. Later work that truly depends on it is also marked blocked. Local, free resources count as available: npm packages, Hugging Face model downloads, and local LLM runtimes.
+- **Local LLM runtime for M4:** the agent MAY install and start one itself: `brew install ollama`, then `ollama serve` in the background, then `ollama pull` of the configured models. LM Studio (`lms` CLI, OpenAI-compatible server on `:1234`) is an accepted alternative. The enrichment client talks to one small provider interface with an Ollama implementation and an OpenAI-compatible implementation, selected in `iconmatch.config.ts`. It MUST still be written and tested against recorded fixtures first, and the runtime is only needed for real enrichment runs. It is a blocker only if installation fails or the machine can't run a 7–8B model at a usable speed (record timings in `DECISIONS.md`).
+- **External facts** (package contents, metadata locations, model ids) are verified by inspecting the installed package or source, never assumed. The finding and its source go in `DECISIONS.md`.

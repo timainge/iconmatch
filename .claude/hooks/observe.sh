@@ -1,13 +1,20 @@
 #!/usr/bin/env bash
-# SessionStart (Observe): surface current plan + repo state as context.
+# SessionStart (Observe): surface current plan, blockers, checkpoints and repo state as context.
 cd "${CLAUDE_PROJECT_DIR:-.}" || exit 0
 echo "## Open plan items (docs/progress.md)"
 if [ -s docs/progress.md ]; then
-  grep -nE '^\s*[-*] \[ \]' docs/progress.md | head -20 || true
+  grep -nE '^\s*[-*] \[ \]' docs/progress.md | grep -v 'BLOCKED' | head -12 || true
   grep -qE '^\s*[-*] \[ \]' docs/progress.md || echo "(no unchecked items)"
+  blocked=$(grep -nE '^\s*[-*] \[ \].*BLOCKED' docs/progress.md)
+  [ -n "$blocked" ] && printf '\n## Blocked\n%s\n' "$blocked"
 else
   echo "(docs/progress.md missing or empty)"
 fi
+echo
+echo "## Checkpoints"
+ls docs/checkpoints/*.md 2>/dev/null || echo "(none written)"
+[ -e eval/REVIEWED ] && echo "eval/REVIEWED present: eval set is human-reviewed and frozen"
+grep -c 'SPEC-QUESTION' DECISIONS.md 2>/dev/null | sed 's/^/Open SPEC-QUESTION entries in DECISIONS.md: /'
 echo
 echo "## Git state"
 git status --short --branch 2>/dev/null | head -20

@@ -3,7 +3,16 @@ import tseslint from "typescript-eslint";
 import prettier from "eslint-config-prettier";
 
 export default tseslint.config(
-  { ignores: ["dist", "coverage", "node_modules"] },
+  {
+    ignores: [
+      "dist",
+      "coverage",
+      "node_modules",
+      "build",
+      "packages/core/data",
+      "packages/pipeline/cache",
+    ],
+  },
   js.configs.recommended,
   ...tseslint.configs.strictTypeChecked,
   {
@@ -12,5 +21,28 @@ export default tseslint.config(
     },
   },
   { files: ["*.js"], ...tseslint.configs.disableTypeChecked },
+  // Core must stay browser-safe (spec §10): Node built-ins only in *.node.ts loaders.
+  {
+    files: ["packages/core/src/**/*.ts"],
+    ignores: [
+      "packages/core/src/**/*.node.ts",
+      "packages/core/src/**/*.test.ts",
+    ],
+    rules: {
+      "no-restricted-imports": [
+        "error",
+        {
+          patterns: [
+            {
+              regex:
+                "^(node:|fs$|path$|os$|crypto$|url$|module$|child_process$)",
+              message:
+                "Core is browser-safe; move Node-only code to a *.node.ts loader.",
+            },
+          ],
+        },
+      ],
+    },
+  },
   prettier,
 );
