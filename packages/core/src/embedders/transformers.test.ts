@@ -18,6 +18,8 @@ function fakeModule(opts: { failFirst?: boolean } = {}) {
     allowLocalModels: true,
     allowRemoteModels: true,
     cacheDir: null,
+    useFSCache: true,
+    useBrowserCache: true,
   } as unknown as Env;
   const loadModule = () => {
     calls.imports++;
@@ -153,6 +155,19 @@ describe("configureEnv", () => {
       allowRemoteModels: false,
       cacheDir: "/tmp/c",
     });
+  });
+
+  it("offline from a local directory reads only that directory, never the model cache", () => {
+    const e = env();
+    configureEnv(e, { modelLocation: "/app/models", localOnly: true });
+    expect(e).toMatchObject({ useFSCache: false, useBrowserCache: false });
+    // Online, or offline from the Hub cache, the cache stays on.
+    const online = env();
+    configureEnv(online, { modelLocation: "/app/models" });
+    expect(online).toMatchObject({ useFSCache: true, useBrowserCache: true });
+    const cached = env();
+    configureEnv(cached, { localOnly: true, cacheDir: "/tmp/c" });
+    expect(cached).toMatchObject({ useFSCache: true, useBrowserCache: true });
   });
 
   it("leaves the Hub defaults alone when no location is given", () => {

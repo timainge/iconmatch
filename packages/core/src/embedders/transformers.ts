@@ -44,13 +44,17 @@ type EnvKey =
   | "localModelPath"
   | "allowLocalModels"
   | "allowRemoteModels"
-  | "cacheDir";
+  | "cacheDir"
+  | "useFSCache"
+  | "useBrowserCache";
 const ENV_KEYS: readonly EnvKey[] = [
   "remoteHost",
   "localModelPath",
   "allowLocalModels",
   "allowRemoteModels",
   "cacheDir",
+  "useFSCache",
+  "useBrowserCache",
 ];
 const envDefaults = new WeakMap<
   object,
@@ -79,13 +83,21 @@ export function configureEnv(
   }
   Object.assign(env, defaults);
   const location = options.modelLocation;
-  if (location !== undefined && /^https?:\/\//.test(location)) {
+  const isUrl = location !== undefined && /^https?:\/\//.test(location);
+  if (isUrl) {
     env.remoteHost = location.endsWith("/") ? location : `${location}/`;
   } else if (location !== undefined) {
     env.localModelPath = location;
     env.allowLocalModels = true;
   }
   if (options.localOnly === true) env.allowRemoteModels = false;
+  // transformers.js checks its cache before localModelPath, so a cached copy
+  // would shadow (or stand in for) the directory. Offline from a directory
+  // means that directory only.
+  if (options.localOnly === true && location !== undefined && !isUrl) {
+    env.useFSCache = false;
+    env.useBrowserCache = false;
+  }
   if (options.cacheDir !== undefined) env.cacheDir = options.cacheDir;
 }
 

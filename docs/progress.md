@@ -60,7 +60,7 @@ Checklist derived from `docs/plan.md` §11. The spec is the source of truth for 
 - [x] Eval configs 4–5 with deltas against baseline — WAITS: eval/REVIEWED (result: enrichment regresses; not adopted)
 - [x] Enrichment v2 (discovered): make enrichment beat baseline on dev or keep it off. Candidates: `text-v2` prompt (specific everyday concepts, fewer generic domains, no colours), lower `concepts` boost / drop `domains` from document text; tune on dev only, compare with `--compare baseline` (entries `text`, `vision`), report test once (result: text-v2 +0.055 dev MRR but test Hit@3 0.758 → 0.606; not adopted, packaged defaults stay unenriched)
 - [x] Audit M4 (§11.1) — WAITS: eval/REVIEWED (17/17 met; 1 gap in M2 code)
-- [ ] AUDIT: `local-full` isn't hermetic: with `localOnly` + local `modelLocation`, transformers.js still reads its default fs cache, so an empty `modelDir` doesn't fail (slow test "refuses to download…" fails); disable the fs/browser caches in that mode + default-tier test (see `docs/audits/M4.md` G1)
+- [x] AUDIT: `local-full` isn't hermetic: with `localOnly` + local `modelLocation`, transformers.js still reads its default fs cache, so an empty `modelDir` doesn't fail (slow test "refuses to download…" fails); disable the fs/browser caches in that mode + default-tier test (see `docs/audits/M4.md` G1)
 
 ## M5: Package
 
