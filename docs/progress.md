@@ -73,7 +73,7 @@ Checklist derived from `docs/plan.md` §11. The spec is the source of truth for 
 - [x] `npm pack --dry-run` contents check; per-composition size report
 - [x] Eval config 7: int8 vs float32 on the baseline — WAITS: eval/REVIEWED (equivalent; int8 kept)
 - [x] Eval config 6 (query expansion via the Ollama example) and final results table on the test split vs the acceptance bar, after the Enrichment v2 decision — WAITS: eval/REVIEWED (expansion not adopted; baseline test Hit@3 0.758 meets the bar, fallback R 0.20 does not)
-- [ ] Confidence calibration (discovered, dev-only tuning): test fallback recall 0.20 < 0.60 bar. Try no +0.1 bump for partial-word keyword matches and/or a margin/percentile confidence; re-sweep `minConfidence` on dev, report test once
+- [x] Confidence calibration (discovered, dev-only tuning): test fallback recall 0.20 < 0.60 bar. Try no +0.1 bump for partial-word keyword matches and/or a margin/percentile confidence; re-sweep `minConfidence` on dev, report test once (result: no change; current formula dev AUC 0.989, no variant separates better; test gap is dev/test difference on 5 queries)
 - [ ] Expansion confidence (discovered): score confidence on the original query only (expansions still add candidates); re-run configs 6/baseline-expansion on dev
 - [ ] README: now that the eval is reviewed, replace the "provisional `minConfidence`" wording and state the final test numbers and acceptance verdict (after the calibration item)
 - [ ] Audit M5 (§11.1) — WAITS: eval/REVIEWED

@@ -308,3 +308,24 @@ What fails, by group (test, baseline), per §9.3 rather than blind tuning:
 Test has only 5 fallback queries (dev: 9, recall 0.78 at the same threshold), so a single query moves test recall by 0.20.
 
 The cause is calibration, not threshold choice. bge-small cosines for unrelated icons sit at 0.55–0.72, overlapping true matches, and the +0.1 keyword bump lifts accidental lexical hits (trekking, lifebuoy) past any usable threshold. Raising `minConfidence` on test would be tuning on test. Next step, a discovered item tuned on dev only: a calibrated confidence, e.g. no bump for partial-word keyword matches, or a margin/percentile against the query's own score distribution.
+
+## 2026-09-25 — Confidence calibration: no change (dev gives no evidence for one)
+
+I dumped each query's top result from the baseline build: cosine, whether it matched on keyword, exact vs prefix/fuzzy term coverage, and the query's cosine distribution over the catalog. I compared confidence variants on **dev only**. The script lived in scratch and isn't committed.
+
+Separation is measured threshold-free as the AUC of "top confidence of queries that should fall back" vs "top confidence of queries with an acceptable icon":
+
+| variant                                                | dev AUC       |
+| ------------------------------------------------------ | ------------- |
+| current (`cos + 0.1` if keyword-matched)               | 0.989         |
+| bump × query-term coverage (exact 1, prefix/fuzzy 0.5) | 0.990         |
+| bump only when every term matches exactly              | 0.983         |
+| no bump                                                | 0.980         |
+| z-score vs the query's catalog cosines                 | 0.959         |
+| margin over the 10th / 50th cosine                     | 0.907 / 0.926 |
+
+Best-F1 thresholds differ by a single dev query (bump × coverage 0.889 at 0.59, current 0.857 at 0.637). The per-threshold curves show coverage scaling only shifts confidences down; it doesn't separate better.
+
+On dev, the current formula already separates almost perfectly, so there's nothing principled to tune there. The test-split failure (fallback R 0.20) is a dev/test difference: test AUC is 0.885 for both current and coverage-scaled, reported once, not tuned. It rests on 5 test fallback queries, with no-match concepts closer to real icons (Pottery → plant, Llama trekking → trekking).
+
+**Decision:** keep the §7.2 formula and `minConfidence` 0.60. The v1 acceptance bar stays **not met on fallback recall** (Hit@3 met), reported by group in `eval/results/2026-09-25.md` and the "Config 6…" entry. Real improvement needs more eval evidence, e.g. more no-match queries in a future eval revision (the human's call; `eval/queries.json` is frozen), or a stronger embedding model. Both are out of scope for this loop.
