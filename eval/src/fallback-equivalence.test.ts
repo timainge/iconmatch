@@ -25,6 +25,9 @@ describe("eval fallback inference matches best()", () => {
       keywordIndex: await loadKeywordIndex(source),
       vectors: await loadVectors(source, manifest),
       embedder: createFakeEmbedder({ dims: 32 }),
+      // Deterministic stand-in for config 6's recorded expansions.
+      expandQuery: (q: string) =>
+        Promise.resolve(["heart", q.split(" ")[0] ?? q]),
     };
     const queries = (await readEvalSet()).queries;
     const runs = await runConfig(config, parts, queries);
@@ -36,6 +39,7 @@ describe("eval fallback inference matches best()", () => {
         keywordMinConfidence: minConfidence,
         ...(c.keyword && { keywordIndex: parts.keywordIndex }),
         ...(c.vector && { vectors: parts.vectors, embedder: parts.embedder }),
+        ...(c.expand && { expandQuery: parts.expandQuery }),
       });
       const mismatches: string[] = [];
       for (const run of runs) {

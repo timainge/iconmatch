@@ -18,6 +18,12 @@ import {
 import { createTransformersEmbedder } from "iconmatch/embedder-transformers";
 import { fsSource } from "iconmatch/node";
 import { readBuildManifest } from "../../packages/pipeline/src/build-manifest.js";
+import { ollamaExpander } from "../../examples/query-expansion/ollama-expander.js";
+import {
+  readExpansions,
+  resolveExpansions,
+  writeExpansions,
+} from "./expansions.js";
 import { resultsMarkdown } from "./markdown.js";
 import {
   compare,
@@ -33,32 +39,43 @@ import {
   type EvalQuery,
 } from "./queries.js";
 
-/** Spec §9.3 configurations available so far (enrichment configs arrive in M4). */
 /**
  * Spec §9.3 configurations. `data` picks the build directory: the base one
  * (`--data`, no enrichment) or an enriched build (`--data-text`, `--data-vision`).
+ * `expand` runs search with the recorded query expansions (config 6).
  */
 export const CONFIGS = {
-  keyword: { keyword: true, vector: false, data: "base" },
-  vector: { keyword: false, vector: true, data: "base" },
-  baseline: { keyword: true, vector: true, data: "base" },
-  text: { keyword: true, vector: true, data: "text" },
-  vision: { keyword: true, vector: true, data: "vision" },
-  float32: { keyword: true, vector: true, data: "float32" },
+  keyword: { keyword: true, vector: false, data: "base", expand: false },
+  vector: { keyword: false, vector: true, data: "base", expand: false },
+  baseline: { keyword: true, vector: true, data: "base", expand: false },
+  text: { keyword: true, vector: true, data: "text", expand: false },
+  vision: { keyword: true, vector: true, data: "vision", expand: false },
+  expansion: { keyword: true, vector: true, data: "vision", expand: true },
+  "baseline-expansion": {
+    keyword: true,
+    vector: true,
+    data: "base",
+    expand: true,
+  },
+  float32: { keyword: true, vector: true, data: "float32", expand: false },
 } as const;
 export type ConfigName = keyof typeof CONFIGS;
 
 const USAGE = `Usage: iconmatch-eval [options]
 
   --config <name>        keyword | vector | baseline (hybrid, no enrichment) | text (hybrid + text
-                         enrichment) | vision (hybrid + text + vision) | float32 (baseline with
-                         float32 vectors); repeatable; default all
-                         (enriched configs are skipped when their build dir is missing)
+                         enrichment) | vision (hybrid + text + vision) | expansion (vision + query
+                         expansion) | baseline-expansion (baseline + query expansion) | float32
+                         (baseline with float32 vectors); repeatable; default all
+                         (configs are skipped when their build dir or expansions are missing)
   --split <dev|test|all> which queries to score (default dev; tune on dev only)
   --data <dir>           build directory (default ./build)
   --data-text <dir>      build with text enrichment (default ./build-text)
   --data-vision <dir>    build with text + vision enrichment (default ./build-vision)
   --data-float32 <dir>   baseline build with float32 vectors (default ./build-float32)
+  --expansions <file>    recorded query expansions (default eval/expansions.json)
+  --expander ollama      fetch missing expansions with examples/query-expansion (Ollama at
+                         --ollama-url, model --expander-model) and record them
   --queries <file>       eval set (default eval/queries.json)
   --out <dir>            results directory (default eval/results)
   --min-confidence <n>   fallback threshold for every config (default: the library's,
@@ -98,6 +115,11 @@ export interface EvalIo {
   log: (m: string) => void;
   error: (m: string) => void;
   createEmbedder?: (manifest: Manifest) => Embedder;
+  /** Live expander for `--expander` (default: the Ollama example). */
+  createExpander?: (options: {
+    baseUrl: string;
+    model: string;
+  }) => (query: string) => Promise<string[]>;
   /** Date stamp for result files (default: today, local). */
   date?: string;
 }
@@ -131,7 +153,8 @@ const today = () => {
 
 type Parts = Required<
   Pick<IconMatcherParts, "catalog" | "keywordIndex" | "vectors" | "embedder">
->;
+> &
+  Pick<IconMatcherParts, "expandQuery">;
 
 export async function runConfig(
   config: ConfigName,
@@ -143,7 +166,9 @@ export async function runConfig(
     catalog: parts.catalog,
     ...(c.keyword && { keywordIndex: parts.keywordIndex }),
     ...(c.vector && { vectors: parts.vectors, embedder: parts.embedder }),
+    ...(c.expand && parts.expandQuery && { expandQuery: parts.expandQuery }),
   });
+  if (c.expand && !parts.expandQuery) throw new Error(`${config}: no expander`);
   const runs: QueryRun[] = [];
   for (const query of queries) {
     const results = await matcher.search(query.query, { limit: 50 });
@@ -168,6 +193,10 @@ export async function main(argv: string[], io: EvalIo): Promise<number> {
         "data-text": { type: "string", default: "build-text" },
         "data-vision": { type: "string", default: "build-vision" },
         "data-float32": { type: "string", default: "build-float32" },
+        expansions: { type: "string" },
+        expander: { type: "string" },
+        "expander-model": { type: "string", default: "qwen2.5:7b-instruct" },
+        "ollama-url": { type: "string", default: "http://127.0.0.1:11434" },
         queries: { type: "string" },
         out: { type: "string" },
         "min-confidence": { type: "string" },
@@ -193,6 +222,10 @@ export async function main(argv: string[], io: EvalIo): Promise<number> {
     );
     return 2;
   }
+  if (values.expander !== undefined && values.expander !== "ollama") {
+    io.error(`--expander only supports "ollama"`);
+    return 2;
+  }
   if (values.compare !== undefined && values.compare !== "baseline") {
     io.error(`--compare only supports "baseline"`);
     return 2;
@@ -204,14 +237,33 @@ export async function main(argv: string[], io: EvalIo): Promise<number> {
     float32: resolve(io.cwd, values["data-float32"]),
   } as const;
   const dataDir = dataDirs.base;
+  const expansionsFile = values.expansions
+    ? resolve(io.cwd, values.expansions)
+    : fileURLToPath(new URL("../expansions.json", import.meta.url));
+  const recorded = await readExpansions(expansionsFile);
+  const live =
+    values.expander === "ollama"
+      ? {
+          name: `ollama:${values["expander-model"]}`,
+          expand: (io.createExpander ?? ollamaExpander)({
+            baseUrl: values["ollama-url"],
+            model: values["expander-model"],
+          }),
+        }
+      : undefined;
   const configs: ConfigName[] = [];
   for (const c of requested) {
     const dir = dataDirs[CONFIGS[c].data];
-    if (existsSync(join(dir, "catalog.json"))) configs.push(c);
+    const why = !existsSync(join(dir, "catalog.json"))
+      ? `no build in ${dir}`
+      : CONFIGS[c].expand && !recorded && !live
+        ? `no expansions in ${expansionsFile} and no --expander`
+        : undefined;
+    if (!why) configs.push(c);
     else if (values.config) {
-      io.error(`${c}: no build in ${dir}`);
+      io.error(`${c}: ${why}`);
       return 1;
-    } else io.log(`${c}: skipped (no build in ${dir})`);
+    } else io.log(`${c}: skipped (${why})`);
   }
   const outDir = values.out
     ? resolve(io.cwd, values.out)
@@ -252,6 +304,28 @@ export async function main(argv: string[], io: EvalIo): Promise<number> {
     (q) => values.split === "all" || q.split === values.split,
   );
   const devQueries = set.queries.filter((q) => q.split === "dev");
+  let expandQuery: Parts["expandQuery"];
+  if (configs.some((c) => CONFIGS[c].expand)) {
+    let resolved;
+    try {
+      resolved = await resolveExpansions(
+        set.queries.map((q) => q.query),
+        recorded,
+        live,
+      );
+    } catch (e) {
+      io.error(`expansions: ${(e as Error).message}`);
+      return 1;
+    }
+    if (resolved.fetched > 0) {
+      await writeExpansions(expansionsFile, resolved.file);
+      io.log(
+        `expansions: fetched ${String(resolved.fetched)} with ${resolved.file.expander}, recorded in ${expansionsFile}`,
+      );
+    }
+    const map = resolved.file.expansions;
+    expandQuery = (q) => Promise.resolve(map[q] ?? []);
+  }
   const date = io.date ?? today();
   await mkdir(outDir, { recursive: true });
 
@@ -273,6 +347,7 @@ export async function main(argv: string[], io: EvalIo): Promise<number> {
           keywordIndex: await loadKeywordIndex(src, { manifest: m }),
           vectors: await loadVectors(src, m),
           embedder,
+          ...(expandQuery && { expandQuery }),
         };
       })();
       loaded.set(dir, p);
@@ -353,7 +428,7 @@ export async function main(argv: string[], io: EvalIo): Promise<number> {
         reviewed,
         ...bySplit,
         notes: [
-          `Model \`${manifest.embedding?.model ?? "none"}\` (${manifest.embedding?.quantisation ?? "-"}), ${String(catalog.length)} icons, enrichment: none. Configs: keyword = 1, vector = 2, baseline = 3 (hybrid, no enrichment); 4–7 arrive with M4/M5.`,
+          `Model \`${manifest.embedding?.model ?? "none"}\` (${manifest.embedding?.quantisation ?? "-"}), ${String(catalog.length)} icons. Configs (spec §9.3): keyword = 1, vector = 2, baseline = 3 (hybrid, no enrichment), text = 4, vision = 5 (text + vision), expansion = 6 (5 + query expansion), float32 = 7 (baseline with float32 vectors); baseline-expansion = 3 + query expansion.`,
         ],
       }),
     );

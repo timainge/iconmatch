@@ -273,3 +273,38 @@ Over all 111 queries, text-v2 Hit@3 is 0.694 vs 0.739 and MRR 0.655 vs 0.656. Th
 ## 2026-09-25 — `localOnly` + local `modelLocation` turns off the transformers.js caches (audit M4 G1)
 
 Verified in `node_modules/@huggingface/transformers` 4.3.0, `src/utils/hub.js` `loadResourceFile`: the cache (`env.useFSCache` → `env.cacheDir`, default `node_modules/@huggingface/transformers/.cache/`; `env.useBrowserCache` in browsers) is checked **before** `env.localModelPath`. The pipeline's `embed` stage runs without a `cacheDir`, so it fills that default cache, and from then on `local-full` loaded the model even from an empty `modelDir`. `configureEnv` now sets `useFSCache = false` and `useBrowserCache = false` when `localOnly` is combined with a local directory, so an offline app reads only its bundled model. Both keys are restored per embedder like the others. Online use and offline-from-the-Hub-cache (`localOnly` without a location) keep the caches. Test: `transformers.test.ts` "offline from a local directory reads only that directory, never the model cache"; the slow test "refuses to download when the model is not in modelDir" passes again with the default cache present.
+
+## 2026-09-25 — Config 6 (query expansion) and the final results vs the acceptance bar
+
+**Config 6.** Spec §9.3 defines it as "(5) + query expansion". Config 5 isn't adopted, so the eval also runs expansion on the shipped baseline:
+
+- `expansion` = vision build + expansion (the spec's literal config 6).
+- `baseline-expansion` = config 3 + expansion.
+
+Expansions come from the README's `examples/query-expansion` Ollama hook (`qwen2.5:7b-instruct`, temperature 0). They're recorded once for all 125 queries in **`eval/expansions.json`** (`--expander ollama` fetches missing ones, about 80 s), so config 6 reruns offline and deterministically. A query without a recorded expansion fails the run instead of silently searching unexpanded. Expansion configs are skipped when there's no file and no `--expander`.
+
+| config (threshold 0.60) | dev Hit@3 | dev MRR | dev fallback R | test Hit@3 | test MRR | test fallback R |
+| ----------------------- | --------- | ------- | -------------- | ---------- | -------- | --------------- |
+| baseline (3)            | 0.731     | 0.639   | 0.78           | 0.758      | 0.698    | 0.20            |
+| baseline-expansion      | 0.731     | 0.632   | 0.56           | 0.727      | 0.659    | 0.00            |
+| expansion (6)           | 0.679     | 0.560   | 0.33           | 0.727      | 0.660    | 0.00            |
+
+Expansion doesn't improve ranking, and it wrecks fallback. Per icon, confidence is the **max** over the original and expanded texts (DECISIONS "Query expansion hook"). A concrete expansion ("Pottery" → vase, wheel…) finds some icon above 0.60, so nothing falls back. Expansion stays an opt-in hook with no default, and the README example is unchanged. Scoring confidence on the original query only (expansions still add candidates to the ranking) is a follow-up item, tuned on dev.
+
+**Acceptance bar (spec §9.3), shipped config = baseline (3), on test:**
+
+- **Hit@3 0.758 ≥ 0.70: met.**
+- **Fallback recall 0.20 < 0.60: not met.**
+
+No config meets both; the table's "Acceptance bar (test)" section shows each one.
+
+What fails, by group (test, baseline), per §9.3 rather than blind tuning:
+
+- **no-match:** recall 0.25. Pottery 0.615, Turtle care 0.636 and Llama trekking 0.716 (→ trekking, keyword bump) get plausible-looking icons. Only Taxidermy (0.571) falls back.
+- **vague:** Life (0.688 → lifebuoy, keyword bump) and Things (0.678) don't fall back. Misc (0.553) falls back although its label accepts `category`/`dots`.
+- **abstract:** Hit@3 0.50 (Budget, Goals, Contracts miss).
+- **home-life:** Hit@3 0.67 (Utilities, Chores miss).
+
+Test has only 5 fallback queries (dev: 9, recall 0.78 at the same threshold), so a single query moves test recall by 0.20.
+
+The cause is calibration, not threshold choice. bge-small cosines for unrelated icons sit at 0.55–0.72, overlapping true matches, and the +0.1 keyword bump lifts accidental lexical hits (trekking, lifebuoy) past any usable threshold. Raising `minConfidence` on test would be tuning on test. Next step, a discovered item tuned on dev only: a calibrated confidence, e.g. no bump for partial-word keyword matches, or a margin/percentile against the query's own score distribution.

@@ -13,6 +13,27 @@ const HEADER = [
   "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
 ];
 
+/** Spec §9.3 acceptance bar for v1. */
+export const ACCEPTANCE = { hit3: 0.7, fallbackRecall: 0.6 } as const;
+
+/** Each config's test numbers against the acceptance bar. */
+function acceptance(test: ConfigResult[]): string[] {
+  if (test.length === 0) return [];
+  const mark = (ok: boolean) => (ok ? "yes" : "**no**");
+  return [
+    "",
+    `### Acceptance bar (test): Hit@3 ≥ ${ACCEPTANCE.hit3.toFixed(2)}, fallback R ≥ ${ACCEPTANCE.fallbackRecall.toFixed(2)} at the config's threshold`,
+    "",
+    "| config | Hit@3 | Hit@3 met | fallback R | fallback R met | both |",
+    "| --- | --- | --- | --- | --- | --- |",
+    ...test.map((r) => {
+      const hit = r.report.hit3 >= ACCEPTANCE.hit3;
+      const rec = r.report.fallback.recall >= ACCEPTANCE.fallbackRecall;
+      return `| ${r.config} | ${f(r.report.hit3)} | ${mark(hit)} | ${pct(r.report.fallback.recall)} | ${mark(rec)} | ${mark(hit && rec)} |`;
+    }),
+  ];
+}
+
 /** Spec §9.3 results table: configs × splits, the dev threshold sweep and per-group numbers. */
 export function resultsMarkdown(options: {
   date: string;
@@ -41,6 +62,7 @@ export function resultsMarkdown(options: {
     "",
     ...HEADER,
     ...test.map((r) => row(r.config, r.report)),
+    ...acceptance(test),
     "",
     "## `minConfidence` sweep (dev)",
     "",
@@ -89,11 +111,16 @@ export function resultsMarkdown(options: {
       );
     }
   }
-  const base = baseline ?? dev[0];
-  if (base) {
+  // Spec §9.3: when the bar isn't met, report what's failing by group.
+  for (const [split, results] of [
+    ["dev", dev],
+    ["test", test],
+  ] as const) {
+    const base = results.find((r) => r.config === "baseline") ?? results[0];
+    if (!base) continue;
     lines.push(
       "",
-      `## Per group (dev, ${base.config})`,
+      `## Per group (${split}, ${base.config})`,
       "",
       ...HEADER.map((h, i) => (i === 0 ? h.replace("config", "group") : h)),
       ...Object.entries(base.report.perGroup).map(([g, m]) => row(g, m)),

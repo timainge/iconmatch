@@ -82,6 +82,8 @@ const args = (...extra: string[]) => [
   queriesFile,
   "--out",
   outDir,
+  "--expansions",
+  join(outDir, "expansions.json"),
   ...extra,
 ];
 
@@ -89,10 +91,14 @@ describe("iconmatch-eval", () => {
   it("runs configs 1–3 on dev and writes JSON results with per-group metrics and a sweep", async () => {
     io = freshIo();
     expect(await main(args(), io)).toBe(0);
-    // No enriched/float32 builds at the default paths here, so configs 4, 5 and 7 are skipped.
+    // No enriched/float32 builds at the default paths and no recorded
+    // expansions here, so configs 4–7 and baseline-expansion are skipped.
     expect(out.filter((l) => l.includes("skipped (no build in"))).toHaveLength(
-      3,
+      4,
     );
+    expect(
+      out.filter((l) => l.includes("skipped (no expansions in")),
+    ).toHaveLength(1);
     expect(
       out.filter((l) => !l.includes("skipped")).map((l) => l.split(" ")[0]),
     ).toEqual(["keyword", "vector", "baseline"]);
@@ -185,9 +191,14 @@ describe("iconmatch-eval", () => {
     expect(md).toContain("## Test (reporting split)");
     for (const c of ["keyword", "vector", "baseline"])
       expect(md).toMatch(new RegExp(`\\| ${c} \\| \\d+ \\|`));
+    expect(md).toContain("### Acceptance bar (test): Hit@3 ≥ 0.70");
+    expect(md).toMatch(
+      /\| baseline \| \d\.\d{3} \| (yes|\*\*no\*\*) \| \d\.\d{2} \| (yes|\*\*no\*\*) \| (yes|\*\*no\*\*) \|/,
+    );
     expect(md).toContain("## `minConfidence` sweep (dev)");
     expect(md.match(/^\| 0\.[3-8]\d \|/gm)).toHaveLength(11);
     expect(md).toContain("## Per group (dev, baseline)");
+    expect(md).toContain("## Per group (test, baseline)");
     const test = JSON.parse(
       await readFile(join(outDir, "2026-09-24-baseline-test.json"), "utf8"),
     ) as ConfigResult;
@@ -210,7 +221,9 @@ describe("iconmatch-eval", () => {
     );
     expect(code).toBe(0);
     expect(
-      out.filter((l) => !l.startsWith("table")).map((l) => l.split(" ")[0]),
+      out
+        .filter((l) => !l.startsWith("table") && !l.includes("skipped"))
+        .map((l) => l.split(" ")[0]),
     ).toEqual(["keyword", "vector", "baseline", "text", "vision", "float32"]);
     const md = await readFile(join(outDir, "2026-09-24.md"), "utf8");
     expect(md).toMatch(/\| text \| \d+ \|/);
@@ -224,9 +237,68 @@ describe("iconmatch-eval", () => {
     expect(err[0]).toMatch(/text: no build in/);
   });
 
+  it("config 6: --expander fetches and records expansions, which then change the ranking offline", async () => {
+    const qs = await fixtureQueries();
+    const fallbackQuery = qs.find((q) => q.acceptable.length === 0)?.query;
+    const asked: string[] = [];
+    io = freshIo();
+    io.createExpander = (o) => {
+      expect(o).toEqual({
+        baseUrl: "http://127.0.0.1:11434",
+        model: "qwen2.5:7b-instruct",
+      });
+      return (q) => {
+        asked.push(q);
+        return Promise.resolve(q === fallbackQuery ? ["eye heart"] : []);
+      };
+    };
+    expect(
+      await main(
+        args("--config", "baseline-expansion", "--expander", "ollama"),
+        io,
+      ),
+    ).toBe(0);
+    // Every query in the set (dev and test) is expanded once and recorded.
+    expect(asked).toHaveLength(qs.length);
+    expect(out[0]).toMatch(/expansions: fetched 126 with ollama:qwen2\.5/);
+    const recorded = JSON.parse(
+      await readFile(join(outDir, "expansions.json"), "utf8"),
+    ) as { expander: string; expansions: Record<string, string[]> };
+    expect(recorded.expander).toBe("ollama:qwen2.5:7b-instruct");
+    const top = async (config: string) =>
+      (
+        JSON.parse(
+          await readFile(join(outDir, `2026-09-24-${config}.json`), "utf8"),
+        ) as ConfigResult
+      ).queries.find((q) => q.query === fallbackQuery)?.ranked[0];
+    expect(await top("baseline-expansion")).toBe("tabler:eye-heart");
+
+    // Offline rerun from the recorded file: no live calls, same result.
+    io = freshIo();
+    io.createExpander = () => () => Promise.reject(new Error("offline"));
+    expect(
+      await main(
+        args("--config", "baseline-expansion", "--config", "baseline"),
+        io,
+      ),
+    ).toBe(0);
+    expect(await top("baseline-expansion")).toBe("tabler:eye-heart");
+    expect(await top("baseline")).not.toBe("tabler:eye-heart");
+    await rm(join(outDir, "expansions.json"));
+  });
+
+  it("an explicit expansion config without expansions fails", async () => {
+    io = freshIo();
+    expect(await main(args("--config", "baseline-expansion"), io)).toBe(1);
+    expect(err[0]).toMatch(
+      /baseline-expansion: no expansions in .* and no --expander/,
+    );
+  });
+
   it("rejects unknown configs and splits", async () => {
     io = freshIo();
     expect(await main(args("--config", "enriched"), io)).toBe(2);
     expect(await main(args("--split", "train"), io)).toBe(2);
+    expect(await main(args("--expander", "openai"), io)).toBe(2);
   });
 });
