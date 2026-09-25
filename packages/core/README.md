@@ -125,7 +125,7 @@ const matcher = await createIconMatcher({
 console.log(await matcher.search("Admin", { limit: 5 }));
 ```
 
-The expander used above (`examples/query-expansion/ollama-expander.ts` in the repository) calls a local Ollama model; any chat API works.
+The expander used above (`examples/query-expansion/ollama-expander.ts` in the repository) calls a local Ollama model; any chat API works. Each icon keeps its best confidence across the original and expanded queries, so expansion raises confidences: pair it with a higher `minConfidence` (0.65 worked best on the eval's tuning split). On the eval it didn't improve ranking, so treat it as an option to try on your own labels.
 
 ## API
 
@@ -148,6 +148,16 @@ Only `catalog` is required. A method whose part is missing throws `IconMatchCapa
 `confidence` (0–1) is the icon's cosine similarity to the query, plus 0.1 when it also matched on keywords. `best()` returns the lettered glyph (`square-letter-*`/`square-number-*`, or `category` when the label has no usable letter or digit) when the top confidence is below the threshold: `minConfidence` (default **0.60**) when semantic ranking took part, or `keywordMinConfidence` (default **0.50**) when the search ran keyword-only, since keyword confidence is on a different scale. Both defaults were chosen on the evaluation's tuning split; set your own if fallbacks matter to you.
 
 **Keyword-only use** (no vectors or embedder, e.g. a browser with the server down) ranks by keyword match alone and derives confidence from term coverage. Its quality is noticeably lower than hybrid search, especially for abstract labels.
+
+### Evaluation
+
+Measured on the repository's reviewed eval set (`eval/results/2026-09-25.md`), held-out test split: 33 category names that have a suitable icon and 5 that don't. Packaged data, default thresholds:
+
+- **Hybrid search:** Hit@3 0.758 (an acceptable icon in the top 3), MRR 0.698.
+- **Keyword-only:** Hit@3 0.606.
+- **Fallback:** fallback recall 0.20 at `minConfidence` 0.60. Most names with no suitable icon (e.g. "Pottery", "Llama trekking") still get a plausible-looking icon rather than the lettered glyph, while names that have one rarely fall back by mistake. If an unrelated icon is worse than a letter for your app, raise `minConfidence`.
+
+The v1 target was Hit@3 ≥ 0.70 and fallback recall ≥ 0.60; the first is met, the second isn't.
 
 ## Brand icons
 

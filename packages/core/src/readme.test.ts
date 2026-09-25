@@ -37,7 +37,44 @@ describe("packages/core/README.md", () => {
     );
   });
 
-  it("cites no eval numbers while they're provisional", async () => {
-    expect(await readme()).not.toMatch(/Hit@\d|MRR/);
+  it("cites only reviewed eval numbers, matching the committed test-split results", async () => {
+    const text = await readme();
+    // Numbers are allowed only once the eval set is reviewed (spec §14).
+    await expect(readFile(`${root}eval/REVIEWED`)).resolves.toBeDefined();
+    const date = /eval\/results\/(\d{4}-\d{2}-\d{2})\.md/.exec(text)?.[1];
+    expect(date).toBeDefined();
+    const result = async (config: string) =>
+      (
+        JSON.parse(
+          await readFile(
+            `${root}eval/results/${date ?? ""}-${config}-test.json`,
+            "utf8",
+          ),
+        ) as {
+          minConfidence: number;
+          report: {
+            n: number;
+            hit3: number;
+            mrr: number;
+            fallback: { recall: number };
+          };
+        }
+      ).report;
+    const hybrid = await result("baseline");
+    const keyword = await result("keyword");
+    expect(text).toContain(
+      `**Hybrid search:** Hit@3 ${hybrid.hit3.toFixed(3)} (an acceptable icon in the top 3), MRR ${hybrid.mrr.toFixed(3)}.`,
+    );
+    expect(text).toContain(
+      `**Keyword-only:** Hit@3 ${keyword.hit3.toFixed(3)}.`,
+    );
+    expect(text).toContain(
+      `fallback recall ${hybrid.fallback.recall.toFixed(2)} at \`minConfidence\` 0.60`,
+    );
+    expect(text).toContain(
+      `test split: ${String(hybrid.n)} category names that have a suitable icon`,
+    );
+    // Every Hit@k / MRR figure in the README is one of those checked above.
+    expect(text.match(/(?:Hit@\d|MRR) \d\.\d+/g)).toHaveLength(3);
   });
 });

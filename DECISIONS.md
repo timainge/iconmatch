@@ -338,3 +338,13 @@ I tried scoring each icon's confidence against the **original** query only: its 
 - max: best fallback F1 **0.80** at 0.65 (P 1.00 / R 0.67).
 
 Expansion-found icons often score low against the literal text, so correct answers fall back. **Decision:** keep the max (no code change). Expansion simply shifts confidences up, so the `expandQuery` doc comment now says to pair it with a higher `minConfidence` (0.65 on dev). The default stays 0.60, since the library ships no expander. The trial code was reverted and `eval/results` left as committed.
+
+## 2026-09-25 — README states the reviewed eval results
+
+`packages/core/README.md` gains an "Evaluation" subsection with the test-split numbers for the packaged defaults:
+
+- hybrid Hit@3 0.758 / MRR 0.698;
+- keyword-only Hit@3 0.606;
+- fallback recall 0.20 at 0.60, with what that means for users.
+
+It states plainly that the v1 bar is met on Hit@3 and not on fallback recall. The query-expansion section notes that expansion raises confidences (pair it with `minConfidence` ≈ 0.65) and didn't improve ranking on the eval. The old test "cites no eval numbers while they're provisional" is replaced: numbers are allowed only with `eval/REVIEWED` present, and each quoted figure must equal the committed `eval/results/<date>-{baseline,keyword}-test.json` (the date is read from the README's link). Any other Hit@k/MRR figure fails the test. A changed digit was confirmed to fail it.
