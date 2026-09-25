@@ -58,7 +58,7 @@ Checklist derived from `docs/plan.md` §11. The spec is the source of truth for 
 - [x] Vision enrichment (b): `--mode vision` in runner/stage (`visionFor: sparse|all`, vision model for selected icons, text for the rest)
 - [x] Vision enrichment (c): after the text run finishes, time `qwen2.5vl:7b`, record a real vision fixture, and run `enrich --mode vision` over the 655 sparse icons
 - [x] Eval configs 4–5 with deltas against baseline — WAITS: eval/REVIEWED (result: enrichment regresses; not adopted)
-- [ ] Enrichment v2 (discovered): make enrichment beat baseline on dev or keep it off. Candidates: `text-v2` prompt (specific everyday concepts, fewer generic domains, no colours), lower `concepts` boost / drop `domains` from document text; tune on dev only, compare with `--compare baseline` (entries `text`, `vision`), report test once
+- [x] Enrichment v2 (discovered): make enrichment beat baseline on dev or keep it off. Candidates: `text-v2` prompt (specific everyday concepts, fewer generic domains, no colours), lower `concepts` boost / drop `domains` from document text; tune on dev only, compare with `--compare baseline` (entries `text`, `vision`), report test once (result: text-v2 +0.055 dev MRR but test Hit@3 0.758 → 0.606; not adopted, packaged defaults stay unenriched)
 - [ ] Audit M4 (§11.1) — WAITS: eval/REVIEWED
 
 ## M5: Package

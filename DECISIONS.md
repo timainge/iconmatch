@@ -256,3 +256,16 @@ Dev experiments reusing the text-v1 metadata (hybrid Hit@3/MRR at 0.60; this scr
 ## 2026-09-25 — Config 7: int8 vs float32
 
 `build-float32/` = baseline data with `embed --float32` (vectors.bin 7.93 MB vs 2.00 MB int8). New eval config `float32` (`--data-float32`, default `./build-float32`). Hybrid results: **test identical** (Hit@3 0.758, MRR 0.698, fallback P/R 0.50/0.20); dev Hit@1/Hit@3 identical (0.526/0.731), Hit@5 0.756 vs 0.769 and MRR 0.637 vs 0.639 (float32 marginally lower, noise). Per-vector int8 is equivalent in accuracy, so it stays the default at a quarter of the size; the §6.4 "global scale" alternative isn't pursued, since per-vector scales cost only 4 bytes per icon.
+
+## 2026-09-25 — Enrichment v2: text-v2 helps dev, hurts test; not adopted
+
+The full text-v2 run (4,868 icons, 0 failures) was re-embedded and re-indexed into `build-text/`, which is config 4's default `--data-text`. The v1 build moved to `build-text-v1/`. `build/` stays unenriched, and so do the packaged defaults (`enrich.mode: "none"`).
+
+| hybrid @0.60  | Hit@1 | Hit@3 | MRR   | fallback P/R |
+| ------------- | ----- | ----- | ----- | ------------ |
+| dev baseline  | 0.526 | 0.731 | 0.639 | 0.88 / 0.78  |
+| dev text-v2   | 0.615 | 0.731 | 0.694 | 0.89 / 0.89  |
+| test baseline | 0.636 | 0.758 | 0.698 | 0.50 / 0.20  |
+| test text-v2  | 0.424 | 0.606 | 0.562 | 0.33 / 0.20  |
+
+Over all 111 queries, text-v2 Hit@3 is 0.694 vs 0.739 and MRR 0.655 vs 0.656. The dev gains (Paperwork, Retirement, Board games, Video games, Admin) come from categories the v2 few-shots and prompt examples resemble. The test losses (Music practice, Moving house, Insurance, Woodworking, Repairs, Vet visits, Doctor appointments, Apple devices, Zoom calls, Ideas) show LLM concepts still pull plausible but wrong icons ahead of the literal match. Dev Hit@3 didn't move while held-out quality dropped by 0.15, which reads as prompt overfitting to the dev split's flavour rather than a real improvement. **Decision:** don't adopt. The `text` entry in `baseline.json` now holds text-v2's dev numbers, so any later attempt is compared with the best enriched run. Vision-v2 isn't run: vision replaces only 655 sparse icons on top of text, and text-v2 itself doesn't generalise. Further enrichment work, such as using concepts only as a keyword-side tiebreak rather than a ranked RRF input, is left for after v1.
