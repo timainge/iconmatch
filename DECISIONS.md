@@ -329,3 +329,12 @@ Best-F1 thresholds differ by a single dev query (bump × coverage 0.889 at 0.59,
 On dev, the current formula already separates almost perfectly, so there's nothing principled to tune there. The test-split failure (fallback R 0.20) is a dev/test difference: test AUC is 0.885 for both current and coverage-scaled, reported once, not tuned. It rests on 5 test fallback queries, with no-match concepts closer to real icons (Pottery → plant, Llama trekking → trekking).
 
 **Decision:** keep the §7.2 formula and `minConfidence` 0.60. The v1 acceptance bar stays **not met on fallback recall** (Hit@3 met), reported by group in `eval/results/2026-09-25.md` and the "Config 6…" entry. Real improvement needs more eval evidence, e.g. more no-match queries in a future eval revision (the human's call; `eval/queries.json` is frozen), or a stronger embedding model. Both are out of scope for this loop.
+
+## 2026-09-25 — Expansion confidence: keep the max; expansion wants `minConfidence` ≈ 0.65
+
+I tried scoring each icon's confidence against the **original** query only: its original candidate confidence, or its original cosine (+ keyword bump) for icons found only through an expansion. Expansions still added candidates. On dev (baseline-expansion), ranking is identical. Fallback at 0.60 moves from P 1.00 / R 0.56 to P 0.58 / R 0.78, but across the full sweep the original-only variant separates worse:
+
+- original-only: best fallback F1 **0.667** at 0.60.
+- max: best fallback F1 **0.80** at 0.65 (P 1.00 / R 0.67).
+
+Expansion-found icons often score low against the literal text, so correct answers fall back. **Decision:** keep the max (no code change). Expansion simply shifts confidences up, so the `expandQuery` doc comment now says to pair it with a higher `minConfidence` (0.65 on dev). The default stays 0.60, since the library ships no expander. The trial code was reverted and `eval/results` left as committed.

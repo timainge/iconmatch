@@ -47,7 +47,9 @@ export interface IconMatcherParts {
   onRemoteError?: (error: unknown) => void;
   /**
    * Optional query expansion (spec §7.3), e.g. an LLM returning 2–3 concrete
-   * objects for an abstract label. The library ships no LLM.
+   * objects for an abstract label. The library ships no LLM. Each icon keeps
+   * its best confidence over the query texts, so expansion raises confidences:
+   * pair it with a higher `minConfidence` (0.65 on the eval's tuning split).
    */
   expandQuery?: (query: string) => Promise<string[]>;
   /** Called when `expandQuery` rejects; search continues without expansions. */
