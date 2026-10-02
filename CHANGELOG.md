@@ -4,6 +4,11 @@ All notable changes to the published packages. Versions follow [semver](https://
 
 ## Unreleased
 
+- **Choice learning:** `createChoiceMemory()`, the `choices` matcher part and `matcher.recordChoice(query, iconId)`. Exact repeats return the user's pick first; with an embedder, picks for similar names rank higher. `IconMatch.matchedOn.choice` marks them.
+- **Embedding model profiles:** `EMBEDDING_PROFILES` / `findEmbeddingProfile()` (pooling and prefixes per model). The transformers embedder applies its model's profile and needs an explicit `profile` for unregistered models. The manifest may record `embedding.pooling` and `embedding.documentPrefix`.
+- **Per-set neutral fallback:** `manifest.sets[].fallbackIcon`; the matcher defaults `fallbackIcon` to it.
+- **New package `@iconmatch/lucide`:** Lucide icon data with Lucide-style lettered fallback glyphs.
+
 - Root README rewritten as the project landing page; package README links back to the repository, eval results and this changelog.
 
 ## @iconmatch/core 0.1.0 — 2026-10-03

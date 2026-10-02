@@ -527,3 +527,21 @@ The transformers embedder looks up its model's profile and applies its pooling a
 nomic's layer-norm step only applies when truncating Matryoshka dimensions; the full 768 dims use mean pooling and normalisation per its card.
 
 **Skipped:** `minishlab/potion-base-8M` and `potion-retrieval-32M` (model2vec static embeddings). Their ONNX graphs take token ids plus offsets (an EmbeddingBag), not the transformer inputs transformers.js's `feature-extraction` pipeline feeds. Supporting them needs a custom Embedder (tokenizer plus a lookup table, about 30 MB fp32), recorded as a future option for browser-side semantic search.
+
+## 2026-10-03 — P4: choice learning API
+
+`packages/core/src/choices.ts`: `createChoiceMemory(saved?)` is an in-memory, browser-safe store of `{ query (normalised), iconId, count, seq, vector?, model? }` entries. `export()` gives plain JSON (vectors rounded to 4 decimals) that the app persists anywhere; core stores and sends nothing. Its methods:
+
+- `exact(query)`: the latest choice first.
+- `similar(vector, model, minCosine)`: same-model vectors only, one entry per icon, most similar first.
+- `forget(query)`.
+
+**Matcher.** `choices` part, `choiceSimilarity` option (default `DEFAULT_CHOICE_SIMILARITY` 0.85, provisional until it's tuned on the paraphrase set), and `recordChoice(query, iconId)`. The latter needs `choices` (else `IconMatchCapabilityError`), rejects unknown ids, and embeds the query when local vectors and an embedder are present. In `search()`:
+
+- An **exact repeat** (same normalised query) puts the chosen icon(s) first, latest first, at confidence 1, so `best()` never falls back on a remembered choice.
+- Icons chosen for **similar** past queries (cosine ≥ `choiceSimilarity` against the current query's embedding) join RRF as one more ranking at weight `CHOICE_RANK_WEIGHT` = 2. They keep their own confidence (computed from the query's cosine when not otherwise a candidate), so similarity is no free pass past the threshold.
+- Choices for glyphs or unknown ids are ignored, and `matchedOn.choice` marks learned results.
+
+Without a `choices` part nothing changes: dev `--compare baseline` is +0.000 for keyword and baseline. The browser-client example seeds the memory from saved choices, records every pick, and exposes `exportChoices()`; it's exact-repeat only, since it has no local vectors (tested, including a reload with the remote down). The package README has a type-checked "Learning from choices" example.
+
+(These records belong to commit 788469f; a combined command was blocked by the guard and the follow-up chain stopped early, so they're added in the next commit.)

@@ -112,8 +112,8 @@ The owner asked to try, in order: more no-match queries in a new eval revision, 
 
 ## P4: Choice learning (spec §15.4)
 
-- [ ] `ChoiceProvider` + `createChoiceMemory` + matcher `choices` part (exact + embedding-neighbour match, extra RRF ranking, confidence floor)
-- [ ] browser-client example persists and reuses choices; README section
+- [x] `ChoiceProvider` + `createChoiceMemory` + matcher `choices` part (exact + embedding-neighbour match, extra RRF ranking, confidence floor)
+- [x] browser-client example persists and reuses choices; README section
 - [ ] Choice eval: exact repeats, no-regression with populated memory; paraphrase set draft for generalisation (provisional)
 - [ ] Paraphrase generalisation numbers — WAITS: eval/choices/REVIEWED
 - [ ] Audit P4
