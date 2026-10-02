@@ -556,3 +556,91 @@ The build is driven by an agent running `/next` in a loop (see `CLAUDE.md`). Con
 - **Blockers don't stop the loop.** A blocked item is marked `BLOCKED: <reason>` and the loop moves on to the next unblocked item. Later work that truly depends on it is also marked blocked. Local, free resources count as available: npm packages, Hugging Face model downloads, and local LLM runtimes.
 - **Local LLM runtime for M4:** the agent MAY install and start one itself: `brew install ollama`, then `ollama serve` in the background, then `ollama pull` of the configured models. LM Studio (`lms` CLI, OpenAI-compatible server on `:1234`) is an accepted alternative. The enrichment client talks to one small provider interface with an Ollama implementation and an OpenAI-compatible implementation, selected in `iconmatch.config.ts`. It MUST still be written and tested against recorded fixtures first, and the runtime is only needed for real enrichment runs. It is a blocker only if installation fails or the machine can't run a 7–8B model at a usable speed (record timings in `DECISIONS.md`).
 - **External facts** (package contents, metadata locations, model ids) are verified by inspecting the installed package or source, never assumed. The finding and its source go in `DECISIONS.md`.
+
+## 15. Post-v1 work (v0.2+)
+
+> Added 2026-10-03 by the agent at the owner's direction ("improve the README, then a second icon set, eval with alternative embedding models, choice-learning and metadata enrichment, vision model review, icon generation"). Where this section conflicts with §2 non-goals or §12, this section wins. Earlier sections are otherwise unchanged and still apply (MUST/SHOULD, eval discipline §9, testing tiers §10, autonomy rules §14).
+
+Work proceeds in the order below. Each subsection becomes checklist items in `docs/progress.md` under a `P<n>` heading and ends with a short audit (`docs/audits/P<n>.md`) against its acceptance list. Releases to npm stay a hard checkpoint: the agent prepares the version, changelog and tag; publishing needs the owner's 2FA.
+
+### 15.1 P1: README
+
+- The root `README.md` is the GitHub landing page. It MUST cover:
+  - what the library does and who it's for, with a short real example (query → icons, with confidence and fallback);
+  - install;
+  - the three deployment shapes (server, browser client, offline desktop) with a one-line "when to use";
+  - how it works (pipeline and ranking, one diagram);
+  - the reviewed eval results (headline numbers with a link to the results table);
+  - limitations (English only; abstract labels; brand trademarks);
+  - development commands and repository layout;
+  - licences.
+- `packages/core/README.md` stays the npm-facing usage document. Both READMEs MUST quote only numbers from committed, reviewed results, checked by a test as today. Code shown in either README MUST be type-checked (the `examples/readme/` mechanism).
+- Acceptance: both READMEs render correctly on GitHub and npm (relative links resolve from each location), the test guards pass, and the root README links to npm, the release and the eval results.
+
+### 15.2 P2: Second icon set — Lucide
+
+- **Choice:** Lucide (ISC). Same 24px grid, 2px stroke and round caps/joins as Tabler, so it's the near-sibling style §12 asked for. Phosphor is deferred: its six weights and different proportions are a separate style decision.
+- **Style compatibility decision:** sets are **not mixed** in one ranked result list by default. A deployment picks one set; cross-set results are opt-in (`sets` filter / combined data), and are labelled by `set`. Because sets aren't mixed by default, cross-set concept dedup is not required for P2. If a combined mode ships, it MUST collapse near-duplicate concepts (same normalised name) to the deployment's preferred set.
+- **Adapter** (§6.1 interface, unchanged): SVG bodies from `@iconify-json/lucide`; tags from Lucide's own metadata (the agent MUST locate the authoritative source, e.g. `lucide-static` `tags.json`, and categories if any packaged source exists, and record it in `DECISIONS.md`); aliases and deprecated icons skipped; licence text copied (§8).
+- **Fallback:** Lucide has no letter/number glyphs. The fallback MUST still be a glyph in a compatible style. Preferred approach: compose Lucide's `square` (or `circle`) frame with stroke-drawn letter paths in the same 2px style. Reusing Tabler's MIT letter strokes is acceptable with attribution, or the agent draws its own. A neutral glyph is used when no character applies. Record the approach.
+- **Packaging:** the data for each set must be loadable on its own. `@iconmatch/core` keeps shipping Tabler data, so v0.1 users aren't broken. Lucide data ships as `@iconmatch/lucide`, a data-only package with the same artifact layout and manifest, plus a `packagedSource` equivalent. Each set's data stays within the §6.6 size targets or the overage is recorded.
+- **Eval:** a Lucide-labelled copy of the reviewed eval queries (`eval/lucide/queries.json`): same queries, groups and splits; acceptable ids drafted from Lucide's catalog by browsing, never from matcher output. Numbers are provisional until the owner creates `eval/lucide/REVIEWED`; items that report Lucide acceptance numbers wait on it. Lucide's threshold is chosen on its own dev split.
+- **Acceptance:** adapter tests (counts, aliases skipped, licence); fixture subset and CI build; fallback glyph tests for a–z/0–9; `@iconmatch/lucide` pack check; Lucide eval table (provisional or reviewed) with the acceptance bar reported.
+
+### 15.3 P3: Alternative embedding model families
+
+- **Model profiles:** core gains a registry of embedding model profiles, one module and the single home of model text conventions. Each profile gives the id, dims, pooling (`mean` | `cls`), query prefix and document prefix. The build and runtime MUST both use the profile, so the §6.4 "defined once" rule extends to every model. The manifest records pooling and both prefixes, and the transformers embedder applies the profile's pooling. bge-small stays the default; its outputs MUST be bit-identical to v0.1, verified against the committed reference vectors.
+- **Candidates**, each verified on the Hub (ONNX weights, card conventions) before use:
+  - gte-small/base (mean, no prefix);
+  - nomic-embed-text-v1.5 (mean, `search_query:`/`search_document:`);
+  - snowflake-arctic-embed-xs/s/m (CLS, query prefix);
+  - mxbai-embed-xsmall (CLS);
+  - all-MiniLM-L6-v2 (reference floor);
+  - a static (model2vec/potion) model, as a candidate for browser-side semantic search without a transformer, if it can run through an Embedder.
+- **Selection:** on the reviewed v2 **dev** split: ranking (Hit@3/MRR), fallback separation (AUC and best F1 at the model's own threshold), plus size and warm latency. Test is reported once for the chosen model. A model is adopted only if it beats bge-small on dev without regressing test. Otherwise it's recorded and bge-small stays.
+- **Acceptance:** profile tests (prefix/pooling per model, the bge-small reference unchanged); comparison table in `eval/models/`; decision recorded.
+
+### 15.4 P4: Choice learning
+
+- **Purpose:** an app records which icon its user picked for a category name; later searches for the same or similar names prefer it (§12 "per-app learning").
+- **API (core, browser-safe, no storage of its own):**
+  - `ChoiceProvider`: `{ lookup(query): Promise<{ iconId; weight }[]> }`.
+  - `createChoiceMemory(entries?)`: an in-memory implementation with JSON `export()`/`import()`, so apps persist it wherever they like.
+  - A `choices` matcher part.
+  - Matching is on the normalised query (§7.2.1). When vectors and an embedder are present, it also matches past queries whose embedding cosine to the current query is ≥ a threshold (default chosen on dev data, and recorded).
+  - Learned icons enter fusion as an extra ranking (configurable weight). Confidence for an exact repeat is at least the recorded choice's, so a remembered choice never falls back.
+- **Privacy:** choices stay in the app; nothing is sent anywhere by core.
+- **Eval:** simulated, without touching reviewed labels:
+  - (a) exact repeats return the chosen icon at rank 1;
+  - (b) generalisation, measured on a drafted paraphrase set (`eval/choices/paraphrases.json`: one paraphrase per dev query, held out by query). Its numbers are provisional until the owner reviews it (`eval/choices/REVIEWED`);
+  - (c) no regression for unrelated queries (dev Hit@3/MRR within tolerance with a populated memory).
+- **Acceptance:** unit tests for the provider, fusion and confidence floor; example composition (browser-client) persisting choices; eval report.
+
+### 15.5 P5: Metadata enrichment v3
+
+- Motivation: text/vision enrichment (configs 4–5) hurt test ranking, because the same LLM concepts fed both rankings and RRF double-counted them (`DECISIONS.md`).
+- Variants to evaluate on v2 dev, keeping the v1 trust model (source tags authoritative):
+  1. **Keyword-side only:** enrichment concepts go into the keyword index at a low boost and are *not* embedded.
+  2. **Tie-break only:** concepts only re-rank icons that are already within the top-k of the unenriched ranking.
+  3. **Learned concepts:** choice-memory exports (P4), aggregated across real usage the owner provides, become per-icon concepts at build time, with the source recorded in the enrichment record. This uses no synthetic data. If no real usage data exists yet, variant 3 is implemented and tested on fixtures and marked `WAITS: real choice data`.
+- Adopt a variant only on dev evidence without a test regression. Otherwise record and keep `enrich: none`.
+- **Acceptance:** results table with deltas against the baseline (as §9.3); decision recorded.
+
+### 15.6 P6: Vision model review
+
+- **Purpose:** a local vision model (Ollama, e.g. `qwen2.5vl:7b`) judges whether a rendered icon suits a category name. It is used:
+  1. to measure agreement with the human-reviewed labels;
+  2. to flag likely label errors into `eval/label-issues.md` (never editing reviewed sets);
+  3. to pre-screen candidates for new eval queries and generated icons (P7).
+- **Judge:** given the 256×256 render (§6.3) and the query, it answers JSON `{ "fits": boolean, "confidence": 0..1, "reason": string }`, validated with zod and cached by hash (render + query + prompt version + model), as with enrichment. Prompts are versioned in `prompts.ts`. Default-tier tests use recorded fixtures.
+- **Measurement:** on v2 dev ∪ test top-5 candidates per query: agreement with human labels (accuracy, Cohen's κ, precision/recall of "fits"). Report the judge's quality honestly; P7 may use it only as a pre-filter if κ ≥ 0.4, else a human reviews every generated icon.
+- **Acceptance:** judge module with fixture tests; agreement report; label-issue suggestions appended (not applied).
+
+### 15.7 P7: Icon generation (experimental)
+
+- Supersedes the §2 non-goal "generating new icons". Generation is **build-time only and opt-in**; the runtime library still ships no model or LLM (§7.3 rule extends).
+- **Purpose:** for concepts the set lacks (no-match queries such as "Beekeeping", "Pottery"), produce candidate icons in the set's style, so a maintainer can approve them into a separate `generated` set.
+- **Generator:** a local LLM writes SVG with few-shot examples from the target set (24×24 viewBox, `stroke="currentColor"`, 2px stroke, round caps/joins, no fills or text, only path/line/circle/rect/polyline/ellipse). Each candidate is validated: it parses, stays within bounds, passes a style lint (stroke-only, element whitelist, path complexity limit) and renders. Valid candidates are scored by the P6 judge ("depicts X" and "matches this style", against reference icons).
+- **CLI:** `iconmatch-build generate --concept "<name>" [--n N]` writes candidates and a static HTML review gallery to `build/generated/`. Approved icons are recorded in `generated/approved.json` (human action) with their prompt, model and approval, and packaged as a separate set, `generated` (MIT, `attributionRequired: false`, flagged `generated: true` in the catalog), opt-in for deployments.
+- **Honesty:** report the acceptance rate (judge and human) per concept; a low rate is a valid outcome. Generated icons never enter the eval's acceptable labels without human review.
+- **Acceptance:** validator/lint unit tests; generation on recorded fixtures in the default tier; a run over the v2 no-match concepts with gallery and rates; packaging path tested with a fixture approval file.

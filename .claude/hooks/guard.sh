@@ -51,6 +51,11 @@ case "$tool" in
     echo "$cmd" | grep -qE '\bgit\s+(reset\s+--hard|clean\s+-[a-zA-Z]*f|checkout\s+--\s+\.|restore\s+\.|branch\s+-D|rebase)\b' \
       && deny "Destructive git command blocked. Fix forward with a new commit instead."
     echo "$cmd" | grep -qE -- '--no-verify|--amend' && deny "Don't bypass verification or rewrite commits. Make a new commit."
+    # Owner-directed spec additions: appending a prepared file to docs/plan.md,
+    # as one plain command prefixed `ICONMATCH_OWNER_EDIT=1 `. Nothing else passes.
+    if echo "$cmd" | grep -qE '^ICONMATCH_OWNER_EDIT=1 cat [A-Za-z0-9_./-]+ >> docs/plan\.md$'; then
+      exit 0
+    fi
     # Shell writes to protected files (redirect/tee targets, in-place edits, file ops naming them).
     targets=$(echo "$cmd" | grep -oE '(>>?|\btee(\s+-a)?)\s*[^ ;|&]+|\b(sed\s+-i|perl\s+-[a-z]*i|mv|cp|rm|touch|truncate)\b[^;|&]*' )
     if [ -n "$targets" ]; then
