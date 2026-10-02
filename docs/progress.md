@@ -84,5 +84,5 @@ The owner asked to try, in order: more no-match queries in a new eval revision, 
 
 - [x] Eval v2 draft: `eval/v2/queries.json` = v1 + 30 no-match queries (objective catalog filter, hashed splits), provisional results in `eval/v2/results/`
 - [ ] Re-baseline on v2 and re-choose `minConfidence` on v2 dev (v2 dev sweep suggests 0.65), report test — WAITS: eval/v2/REVIEWED
-- [ ] Stronger embedding model: compare transformers.js-compatible candidates (e.g. bge-base-en-v1.5) against bge-small on v1 (reviewed) and v2 (provisional) dev; sizes and latency; adopt only on dev evidence, report test after review
+- [x] Stronger embedding model: compare transformers.js-compatible candidates (e.g. bge-base-en-v1.5) against bge-small on v1 (reviewed) and v2 (provisional) dev; sizes and latency; adopt only on dev evidence, report test after review (result: bge-base/large not better on dev; bge-small kept. bge-small at 0.65 meets both bars on v2 test, provisional)
 - [ ] Verdict: final acceptance-bar result on v2 test with the chosen model and threshold; accept or record what's still failing — WAITS: eval/v2/REVIEWED

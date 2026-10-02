@@ -7,6 +7,7 @@
     "packages/*/src",
     "packages/*/scripts",
     "eval/src",
+    "eval/models",
     "examples",
     "test-support",
     "*.config.ts"

@@ -370,3 +370,22 @@ Provisional run (current model, `iconmatch-eval --queries eval/v2/queries.json -
 The v2 dev sweep peaks at 0.65 (P 0.88 / R 0.93). Most test no-match queries score 0.59–0.64, just above 0.60. Re-choosing `minConfidence` on v2 dev waits for the owner's review. Label doubts seen in that run (Embroidery/Quilting → `needle-thread`, Lacrosse → `cricket`, instruments → music, compounds such as Bookbinding) are in `eval/label-issues.md` for the review, not edited.
 
 The guard hook now also protects `eval/v*/REVIEWED`, and `eval/v*/queries.json` once that revision is reviewed.
+
+## 2026-10-02 — Stronger embedding model: bge-base and bge-large don't beat bge-small; not adopted
+
+Candidates were the larger models of the same family, verified on the Hub:
+
+- `Xenova/bge-base-en-v1.5`: 768-d, sha `4d6cd88e…`.
+- `Xenova/bge-large-en-v1.5`: 1024-d, sha `dfeef607…`.
+
+Both ship `onnx/model_quantized.onnx`, and their cards use mean pooling and the same bge query prefix, so the shared `QUERY_PREFIX` applies and no core change was needed. Each was built from the shipped config with only `embed.model` changed (`eval/models/bge-{base,large}.config.ts` → `build-bge-*/`, own package dir) and evaluated on v1 (reviewed) and v2 (provisional); results are in `eval/models/results/`.
+
+| model (hybrid, no enrichment) | data (MB) | model (MB, q8 dir) | dev Hit@3 | dev MRR | v2 dev fallback AUC | v2 dev best F1 (threshold) | test Hit@3 | v2 test fallback R / P at that threshold |
+| ----------------------------- | --------- | ------------------ | --------- | ------- | ------------------- | -------------------------- | ---------- | ---------------------------------------- |
+| bge-small (shipped)           | 6.31      | ~35                | 0.731     | 0.639   | 0.971               | 0.903 (0.65)               | **0.758**  | **0.71 / 0.83**                          |
+| bge-base                      | 8.30      | ~114               | 0.692     | 0.595   | 0.982               | 0.885 (0.66)               | 0.667      | 0.71 / 0.71                              |
+| bge-large                     | 9.62      | ~337               | 0.744     | 0.613   | 0.968               | 0.867 (0.69)               | 0.576      | 0.79 / 0.79                              |
+
+Embedding the catalog takes 15 s / 45 s / 2 min 11 s. On dev, neither larger model is better on ranking (MRR is lower for both; bge-large Hit@3 +0.013) or on fallback F1. The test numbers, reported once after choosing on dev, agree: both lose ranking quality. **Decision:** keep bge-small. I didn't try other families (gte, nomic, mxbai, arctic): they need a model-specific query prefix or CLS pooling, which is a core change; left as an option.
+
+The more useful finding: with bge-small at **0.65**, the threshold the v2 dev sweep picks, v2 **test** meets both halves of the §9.3 bar: Hit@3 0.758 and fallback recall 0.71 (10/14), with 2 of 33 wrong fallbacks. That is provisional until `eval/v2/REVIEWED`; changing `DEFAULT_MIN_CONFIDENCE` is the WAITS re-baseline item.
