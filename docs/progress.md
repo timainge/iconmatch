@@ -86,3 +86,55 @@ The owner asked to try, in order: more no-match queries in a new eval revision, 
 - [x] Re-baseline on v2 and re-choose `minConfidence` on v2 dev (v2 dev sweep suggests 0.65), report test — WAITS: eval/v2/REVIEWED (done: 0.65, dev F1 0.903; keyword stays 0.50)
 - [x] Stronger embedding model: compare transformers.js-compatible candidates (e.g. bge-base-en-v1.5) against bge-small on v1 (reviewed) and v2 (provisional) dev; sizes and latency; adopt only on dev evidence, report test after review (result: bge-base/large not better on dev; bge-small kept. bge-small at 0.65 meets both bars on v2 test, provisional)
 - [x] Verdict: final acceptance-bar result on v2 test with the chosen model and threshold; accept or record what's still failing — WAITS: eval/v2/REVIEWED (done: hybrid test Hit@3 0.758, fallback R 0.71 at 0.65; bar met)
+
+## P1: README (spec §15.1)
+
+- [x] Root README as the GitHub landing page (all §15.1 points), numbers test-guarded, code type-checked
+- [x] Package README pass: relative links valid on npm, link back to repo/eval; release notes/CHANGELOG started
+- [x] Audit P1
+
+## P2: Second icon set — Lucide (spec §15.2)
+
+- [ ] Verify Lucide sources (`@iconify-json/lucide`, `lucide-static` tags, categories source, aliases/deprecated, licence) and record in DECISIONS.md
+- [ ] Lucide adapter + fixture subset + adapter tests
+- [ ] Lucide lettered fallback (frame + stroke letters) with tests for a–z/0–9
+- [ ] Set selection in the pipeline config and `@iconmatch/lucide` data package (manifest, packagedSource, pack check, sizes)
+- [ ] Lucide eval set draft (`eval/lucide/queries.json`, labels by catalog browsing) + provisional results; flag for owner review
+- [ ] Lucide threshold + acceptance bar on Lucide test — WAITS: eval/lucide/REVIEWED
+- [ ] Audit P2
+
+## P3: Alternative embedding model families (spec §15.3)
+
+- [ ] Model profile registry (prefix/pooling per model) used by build and runtime; manifest fields; bge-small reference unchanged
+- [ ] Verify candidates on the Hub; build + eval each on v2 dev (ranking, fallback AUC/F1, size, latency); test once for the chosen one
+- [ ] Decision: adopt or keep bge-small
+- [ ] Audit P3
+
+## P4: Choice learning (spec §15.4)
+
+- [ ] `ChoiceProvider` + `createChoiceMemory` + matcher `choices` part (exact + embedding-neighbour match, extra RRF ranking, confidence floor)
+- [ ] browser-client example persists and reuses choices; README section
+- [ ] Choice eval: exact repeats, no-regression with populated memory; paraphrase set draft for generalisation (provisional)
+- [ ] Paraphrase generalisation numbers — WAITS: eval/choices/REVIEWED
+- [ ] Audit P4
+
+## P5: Metadata enrichment v3 (spec §15.5)
+
+- [ ] Variant 1 (keyword-side only) and 2 (tie-break only) implemented behind config; eval on v2 dev with deltas
+- [ ] Variant 3 (learned concepts from choice exports) implemented on fixtures — real-data run WAITS: real choice data
+- [ ] Decision recorded; test reported once for any adopted variant
+- [ ] Audit P5
+
+## P6: Vision model review (spec §15.6)
+
+- [ ] Judge module (prompt, zod schema, cache, recorded fixtures)
+- [ ] Agreement run on v2 top-5 candidates vs human labels (accuracy, κ, P/R); label-issue suggestions appended
+- [ ] Audit P6
+
+## P7: Icon generation, experimental (spec §15.7)
+
+- [ ] SVG validator + style lint (unit tests)
+- [ ] Generator (few-shot local LLM) + `generate` CLI + HTML gallery; fixture-tested
+- [ ] Run over v2 no-match concepts; judge + acceptance rates reported
+- [ ] `generated` set packaging from an approval file (fixture-tested)
+- [ ] Audit P7
