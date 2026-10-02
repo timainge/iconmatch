@@ -1,4 +1,4 @@
-import type { CatalogEntry, SvgArtifact, SvgBody } from "iconmatch";
+import type { CatalogEntry, SvgArtifact, SvgBody } from "@iconmatch/core";
 import { renderPng } from "../render.js";
 import { appendEnrichment, readEnrichmentCache } from "./cache.js";
 import { PROMPT_VERSION, VISION_PROMPT_VERSION } from "./prompts.js";

@@ -1,4 +1,4 @@
-import type { CatalogEntry } from "iconmatch";
+import type { CatalogEntry } from "@iconmatch/core";
 import { describe, expect, it } from "vitest";
 import {
   loadRecording,

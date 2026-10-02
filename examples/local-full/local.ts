@@ -12,9 +12,9 @@ import {
   svgsFromArtifact,
   type Embedder,
   type IconMatcher,
-} from "iconmatch";
-import { createTransformersEmbedder } from "iconmatch/embedder-transformers";
-import { fsSource } from "iconmatch/node";
+} from "@iconmatch/core";
+import { createTransformersEmbedder } from "@iconmatch/core/embedder-transformers";
+import { fsSource } from "@iconmatch/core/node";
 
 export interface LocalOptions {
   /** Directory with manifest.json and every artifact (e.g. app resources). */

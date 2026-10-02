@@ -10,8 +10,8 @@ import {
   loadVectors,
   QUERY_PREFIX,
   svgsFromArtifact,
-} from "iconmatch";
-import { fsSource } from "iconmatch/node";
+} from "@iconmatch/core";
+import { fsSource } from "@iconmatch/core/node";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { createFakeEmbedder } from "../../../test-support/fake-embedder.js";
 import { runEmbed } from "./embed.js";

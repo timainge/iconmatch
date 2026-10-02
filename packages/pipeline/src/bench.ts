@@ -7,7 +7,7 @@ import {
   loadManifest,
   loadVectors,
   type Manifest,
-} from "iconmatch";
+} from "@iconmatch/core";
 
 /** Spec §7.5 targets (Node, M-series Mac). Reported, not gated. */
 export const TARGETS = { warmQueryMs: 30, embeddingMs: 50 } as const;

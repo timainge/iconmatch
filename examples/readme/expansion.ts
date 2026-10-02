@@ -1,5 +1,9 @@
-import { createIconMatcher, loadCatalog, loadKeywordIndex } from "iconmatch";
-import { packagedSource } from "iconmatch/node";
+import {
+  createIconMatcher,
+  loadCatalog,
+  loadKeywordIndex,
+} from "@iconmatch/core";
+import { packagedSource } from "@iconmatch/core/node";
 import { ollamaExpander } from "../query-expansion/ollama-expander.js";
 
 // Optional query expansion: ask any chat model for 2–3 concrete objects that

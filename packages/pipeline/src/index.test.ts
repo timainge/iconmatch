@@ -1,7 +1,7 @@
 import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { parseKeywordIndex, type CatalogEntry } from "iconmatch";
+import { parseKeywordIndex, type CatalogEntry } from "@iconmatch/core";
 import { afterEach, expect, it } from "vitest";
 import { runIndex } from "./index.js";
 

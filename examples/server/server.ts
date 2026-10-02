@@ -14,9 +14,9 @@ import {
   type DataSource,
   type Embedder,
   type VariantName,
-} from "iconmatch";
-import { createTransformersEmbedder } from "iconmatch/embedder-transformers";
-import { packagedSource } from "iconmatch/node";
+} from "@iconmatch/core";
+import { createTransformersEmbedder } from "@iconmatch/core/embedder-transformers";
+import { packagedSource } from "@iconmatch/core/node";
 
 export interface ServerOptions {
   /** Default: the data shipped in the package. */

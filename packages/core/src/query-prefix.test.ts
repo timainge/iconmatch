@@ -46,7 +46,7 @@ it("the runtime embedder takes query text from the shared module", () => {
 
 it("the build embeds through the shared embedder module", () => {
   const cli = readFileSync(join(repo, "packages/pipeline/src/cli.ts"), "utf8");
-  expect(cli).toMatch(/from "iconmatch\/embedder-transformers"/);
+  expect(cli).toMatch(/from "@iconmatch\/core\/embedder-transformers"/);
   const embed = readFileSync(
     join(repo, "packages/pipeline/src/embed.ts"),
     "utf8",

@@ -1,6 +1,6 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
-import type { CatalogEntry, SvgArtifact } from "iconmatch";
+import type { CatalogEntry, SvgArtifact } from "@iconmatch/core";
 import type { IconSetAdapter, RawIcon } from "./adapters/types.js";
 import { rawIconProblems } from "./adapters/types.js";
 

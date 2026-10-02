@@ -1,6 +1,6 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
-import type { CatalogEntry, SvgArtifact } from "iconmatch";
+import type { CatalogEntry, SvgArtifact } from "@iconmatch/core";
 import type { EnrichmentProvider } from "./provider.js";
 import {
   currentEnrichments,

@@ -1,4 +1,4 @@
-import type { SvgBody, VariantName } from "iconmatch";
+import type { SvgBody, VariantName } from "@iconmatch/core";
 
 export type { VariantName };
 

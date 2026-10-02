@@ -5,7 +5,7 @@ import {
   type CatalogEntry,
   type Embedder,
   type Quantisation,
-} from "iconmatch";
+} from "@iconmatch/core";
 
 /** Enrichment fields that feed the document text (spec §6.3, §6.4). */
 export interface DocumentEnrichment {

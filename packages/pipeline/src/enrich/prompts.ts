@@ -1,4 +1,4 @@
-import type { CatalogEntry } from "iconmatch";
+import type { CatalogEntry } from "@iconmatch/core";
 import type { ChatMessage } from "./provider.js";
 
 /** Bump whenever the system prompt, few-shots or user template change. */

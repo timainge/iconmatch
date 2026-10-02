@@ -1,4 +1,8 @@
-import { createIconMatcher, loadCatalog, loadKeywordIndex } from "iconmatch";
+import {
+  createIconMatcher,
+  loadCatalog,
+  loadKeywordIndex,
+} from "@iconmatch/core";
 import { expect, it } from "vitest";
 import { createFakeEmbedder } from "../../test-support/fake-embedder.js";
 import { tabler200FullSource } from "../../test-support/full-source.js";

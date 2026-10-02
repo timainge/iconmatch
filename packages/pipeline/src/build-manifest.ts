@@ -5,7 +5,7 @@ import {
   QUERY_PREFIX,
   SCHEMA_VERSION,
   type Manifest,
-} from "iconmatch";
+} from "@iconmatch/core";
 import { EMBED_META_FILE, type EmbedMeta } from "./embed.js";
 
 /**

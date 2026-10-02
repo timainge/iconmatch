@@ -1,5 +1,5 @@
 import { describe, expect, expectTypeOf, it } from "vitest";
-import { VARIANT_NAMES, type VariantName } from "iconmatch";
+import { VARIANT_NAMES, type VariantName } from "@iconmatch/core";
 import {
   normaliseTags,
   rawIconProblems,

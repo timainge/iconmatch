@@ -4,7 +4,7 @@ import {
   buildKeywordIndex,
   type CatalogEntry,
   type KeywordEnrichment,
-} from "iconmatch";
+} from "@iconmatch/core";
 
 /** Serialises the keyword index for a catalog (spec §6.5). */
 export function keywordIndexJson(

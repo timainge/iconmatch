@@ -1,6 +1,6 @@
 import { homedir } from "node:os";
 import { join } from "node:path";
-import { DEFAULT_EMBEDDING_MODEL } from "iconmatch";
+import { DEFAULT_EMBEDDING_MODEL } from "@iconmatch/core";
 import type { IconSetAdapter } from "./adapters/types.js";
 import { createTablerAdapter } from "./adapters/tabler.js";
 

@@ -4,7 +4,7 @@ import {
   buildKeywordIndex,
   type CatalogEntry,
   type SvgArtifact,
-} from "iconmatch";
+} from "@iconmatch/core";
 import type { IngestResult } from "./ingest.js";
 
 /** Size of the committed test fixture (spec §10). */

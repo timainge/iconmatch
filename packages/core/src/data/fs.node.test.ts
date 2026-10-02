@@ -2,7 +2,11 @@ import { mkdtemp, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, sep } from "node:path";
 import { afterEach, expect, it } from "vitest";
-import { fsSource, PACKAGED_DATA_DIR, packagedSource } from "iconmatch/node";
+import {
+  fsSource,
+  PACKAGED_DATA_DIR,
+  packagedSource,
+} from "@iconmatch/core/node";
 import { IconMatchDataError } from "./source.js";
 
 let dir: string | undefined;

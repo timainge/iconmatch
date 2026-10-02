@@ -6,9 +6,9 @@ import {
   loadSvgs,
   loadVectors,
   svgsFromArtifact,
-} from "iconmatch";
-import { createTransformersEmbedder } from "iconmatch/embedder-transformers";
-import { packagedSource } from "iconmatch/node";
+} from "@iconmatch/core";
+import { createTransformersEmbedder } from "@iconmatch/core/embedder-transformers";
+import { packagedSource } from "@iconmatch/core/node";
 
 // Node: everything from the data shipped in the package, plus the local model
 // (downloaded on the first text search, then cached).

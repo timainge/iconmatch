@@ -1,5 +1,5 @@
 import { beforeAll, expect, it } from "vitest";
-import { letterFallback, type CatalogEntry } from "iconmatch";
+import { letterFallback, type CatalogEntry } from "@iconmatch/core";
 import { createTablerAdapter } from "./adapters/tabler.js";
 import { ingest } from "./ingest.js";
 

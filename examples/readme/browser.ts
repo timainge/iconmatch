@@ -5,7 +5,7 @@ import {
   loadKeywordIndex,
   type IconMatch,
   type SvgBody,
-} from "iconmatch";
+} from "@iconmatch/core";
 
 // Browser: keyword index locally (~2.4 MB), semantic search and SVGs from your
 // server (see examples/server). No model download; works keyword-only if the

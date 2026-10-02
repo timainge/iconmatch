@@ -1,4 +1,4 @@
-import type { IconMatch, SvgBody } from "iconmatch";
+import type { IconMatch, SvgBody } from "@iconmatch/core";
 import { beforeAll, describe, expect, it } from "vitest";
 import { createFakeEmbedder } from "../../test-support/fake-embedder.js";
 import { tabler200FullSource } from "../../test-support/full-source.js";

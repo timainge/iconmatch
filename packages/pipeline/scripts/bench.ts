@@ -2,8 +2,8 @@
 // Needs a build dir with ingest, embed and index output (default ./build).
 import { homedir } from "node:os";
 import { join } from "node:path";
-import { createTransformersEmbedder } from "iconmatch/embedder-transformers";
-import { fsSource } from "iconmatch/node";
+import { createTransformersEmbedder } from "@iconmatch/core/embedder-transformers";
+import { fsSource } from "@iconmatch/core/node";
 import { formatReport, runBench } from "../src/bench.js";
 import { readBuildManifest } from "../src/build-manifest.js";
 

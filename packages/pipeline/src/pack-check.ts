@@ -4,7 +4,7 @@ import { join } from "node:path";
 import { promisify } from "node:util";
 import { gzipSync } from "node:zlib";
 
-/** Paths the published `iconmatch` tarball may contain (spec §11.1 M5). */
+/** Paths the published `@iconmatch/core` tarball may contain (spec §11.1 M5). */
 const ALLOWED = [
   /^package\.json$/,
   /^README\.md$/,
@@ -47,7 +47,14 @@ export async function packFiles(
 ): Promise<{ paths: string[]; size: number; unpackedSize: number }> {
   const { stdout } = await promisify(execFile)(
     "npm",
-    ["pack", "--dry-run", "--json", "--ignore-scripts", "-w", "iconmatch"],
+    [
+      "pack",
+      "--dry-run",
+      "--json",
+      "--ignore-scripts",
+      "-w",
+      "@iconmatch/core",
+    ],
     {
       cwd: repoRoot,
     },

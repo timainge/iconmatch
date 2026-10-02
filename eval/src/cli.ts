@@ -14,9 +14,9 @@ import {
   type Embedder,
   type IconMatcherParts,
   type Manifest,
-} from "iconmatch";
-import { createTransformersEmbedder } from "iconmatch/embedder-transformers";
-import { fsSource } from "iconmatch/node";
+} from "@iconmatch/core";
+import { createTransformersEmbedder } from "@iconmatch/core/embedder-transformers";
+import { fsSource } from "@iconmatch/core/node";
 import { readBuildManifest } from "../../packages/pipeline/src/build-manifest.js";
 import { ollamaExpander } from "../../examples/query-expansion/ollama-expander.js";
 import {

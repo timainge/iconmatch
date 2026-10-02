@@ -1,7 +1,7 @@
 import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { parseKeywordIndex } from "iconmatch";
+import { parseKeywordIndex } from "@iconmatch/core";
 import { afterEach, beforeEach, expect, it } from "vitest";
 import { createFakeEmbedder } from "../../../../test-support/fake-embedder.js";
 import {

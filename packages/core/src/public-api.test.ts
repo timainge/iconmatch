@@ -1,6 +1,6 @@
-import * as api from "iconmatch";
-import * as node from "iconmatch/node";
-import * as transformers from "iconmatch/embedder-transformers";
+import * as api from "@iconmatch/core";
+import * as node from "@iconmatch/core/node";
+import * as transformers from "@iconmatch/core/embedder-transformers";
 import { expect, it } from "vitest";
 
 // The primitives spec §7.0 names must be importable from the package entry

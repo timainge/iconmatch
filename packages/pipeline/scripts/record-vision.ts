@@ -2,7 +2,7 @@
 // Run: npx tsx --conditions=source packages/pipeline/scripts/record-vision.ts [sampleSize]
 import { readFile, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
-import type { CatalogEntry, SvgArtifact } from "iconmatch";
+import type { CatalogEntry, SvgArtifact } from "@iconmatch/core";
 import { resolveConfig } from "../src/config.js";
 import { createOllamaProvider, type Fetch } from "../src/enrich/provider.js";
 import { enrichVision, needsVision } from "../src/enrich/vision.js";

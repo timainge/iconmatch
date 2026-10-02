@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import type { CatalogEntry } from "iconmatch";
+import type { CatalogEntry } from "@iconmatch/core";
 import {
   PROMPT_VERSION,
   SYSTEM_PROMPT,

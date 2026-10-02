@@ -1,7 +1,7 @@
 import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { decodeVectors, type CatalogEntry } from "iconmatch";
+import { decodeVectors, type CatalogEntry } from "@iconmatch/core";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { createFakeEmbedder } from "../../../test-support/fake-embedder.js";
 import { documentText, runEmbed, type EmbedMeta } from "./embed.js";

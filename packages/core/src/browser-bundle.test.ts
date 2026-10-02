@@ -4,7 +4,7 @@ import { bundleForBrowser } from "../../../test-support/bundle.js";
 
 const entry = (file: string) => fileURLToPath(new URL(file, import.meta.url));
 
-// Spec §7.0 rule 1 / §11.1 M1: `import { createIconMatcher } from "iconmatch"`
+// Spec §7.0 rule 1 / §11.1 M1: `import { createIconMatcher } from "@iconmatch/core"`
 // bundles for the browser with no Node built-ins and no transformers.js.
 describe("browser bundle of the default entry", () => {
   it("contains no Node built-ins and no @huggingface/transformers", async () => {

@@ -4,8 +4,8 @@ import { writeFile } from "node:fs/promises";
 import { homedir } from "node:os";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { DEFAULT_EMBEDDING_MODEL } from "iconmatch";
-import { createTransformersEmbedder } from "iconmatch/embedder-transformers";
+import { DEFAULT_EMBEDDING_MODEL } from "@iconmatch/core";
+import { createTransformersEmbedder } from "@iconmatch/core/embedder-transformers";
 
 const cacheDir =
   process.env.ICONMATCH_MODEL_CACHE ??

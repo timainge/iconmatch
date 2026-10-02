@@ -2,11 +2,11 @@ import { existsSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { parseArgs } from "node:util";
-import type { Embedder } from "iconmatch";
+import type { Embedder } from "@iconmatch/core";
 import {
   createTransformersEmbedder,
   type TransformersEmbedderOptions,
-} from "iconmatch/embedder-transformers";
+} from "@iconmatch/core/embedder-transformers";
 import {
   resolveConfig,
   type IconmatchConfig,

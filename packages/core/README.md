@@ -10,7 +10,7 @@ Pick a sensible icon for a user-defined category ("Dog grooming", "Super contrib
 ## Install
 
 ```sh
-npm install iconmatch
+npm install @iconmatch/core
 # Only for local semantic search (Node or desktop), not needed in the browser:
 npm install @huggingface/transformers
 ```
@@ -28,9 +28,9 @@ import {
   loadSvgs,
   loadVectors,
   svgsFromArtifact,
-} from "iconmatch";
-import { createTransformersEmbedder } from "iconmatch/embedder-transformers";
-import { packagedSource } from "iconmatch/node";
+} from "@iconmatch/core";
+import { createTransformersEmbedder } from "@iconmatch/core/embedder-transformers";
+import { packagedSource } from "@iconmatch/core/node";
 
 // Node: everything from the data shipped in the package, plus the local model
 // (downloaded on the first text search, then cached).
@@ -58,7 +58,7 @@ console.log(
 
 ## Browser (no model download)
 
-Serve `node_modules/iconmatch/data/catalog.json` and `keyword-index.json` as static files, and run a small server for semantic search and SVGs (a framework-agnostic reference is in `examples/server` in the repository).
+Serve `node_modules/@iconmatch/core/data/catalog.json` and `keyword-index.json` as static files, and run a small server for semantic search and SVGs (a framework-agnostic reference is in `examples/server` in the repository).
 
 <!-- example: examples/readme/browser.ts -->
 
@@ -70,7 +70,7 @@ import {
   loadKeywordIndex,
   type IconMatch,
   type SvgBody,
-} from "iconmatch";
+} from "@iconmatch/core";
 
 // Browser: keyword index locally (~2.4 MB), semantic search and SVGs from your
 // server (see examples/server). No model download; works keyword-only if the
@@ -99,7 +99,7 @@ console.log(suggestion.id, alternatives.length);
 
 ## Offline desktop apps
 
-Bundle `data/` and the model directory (`Xenova/bge-small-en-v1.5/…`), then use `fsSource(dataDir)` from `iconmatch/node` and `createTransformersEmbedder({ modelLocation: modelDir, localOnly: true })`. The model loads on the first text search only; `searchByEmbedding`, `get` and `svg` never load it.
+Bundle `data/` and the model directory (`Xenova/bge-small-en-v1.5/…`), then use `fsSource(dataDir)` from `@iconmatch/core/node` and `createTransformersEmbedder({ modelLocation: modelDir, localOnly: true })`. The model loads on the first text search only; `searchByEmbedding`, `get` and `svg` never load it.
 
 ## Query expansion (optional)
 
@@ -108,8 +108,12 @@ Short abstract labels ("Admin", "Misc", "Life") embed poorly. `expandQuery` lets
 <!-- example: examples/readme/expansion.ts -->
 
 ```ts
-import { createIconMatcher, loadCatalog, loadKeywordIndex } from "iconmatch";
-import { packagedSource } from "iconmatch/node";
+import {
+  createIconMatcher,
+  loadCatalog,
+  loadKeywordIndex,
+} from "@iconmatch/core";
+import { packagedSource } from "@iconmatch/core/node";
 import { ollamaExpander } from "../query-expansion/ollama-expander.js";
 
 // Optional query expansion: ask any chat model for 2–3 concrete objects that
@@ -128,15 +132,15 @@ The expander used above (`examples/query-expansion/ollama-expander.ts` in the re
 
 ## API
 
-| Primitive                                                                                            | Purpose                                                                     |
-| ---------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| `fetchSource(url)`, `memorySource(files)`; `fsSource(dir)`, `packagedSource()` from `iconmatch/node` | Where artifacts come from                                                   |
-| `loadManifest`, `loadCatalog`, `loadKeywordIndex`, `loadVectors`, `loadSvgs`                         | Load one artifact each                                                      |
-| `createIconMatcher(parts)`                                                                           | `search`, `best`, `searchByEmbedding`, `get`, `svg` over the parts you pass |
-| `createKeywordSearcher`, `createVectorSearcher`, `fuse`, `hybridConfidence`                          | Lower-level ranking pieces                                                  |
-| `renderSvg(body, opts)`, `svgsFromArtifact(svgs)`                                                    | SVG strings from JSON-safe bodies                                           |
-| `letterFallback(label, catalog)`                                                                     | The lettered glyph on its own                                               |
-| `createTransformersEmbedder` from `iconmatch/embedder-transformers`                                  | Local embedder (optional peer dependency)                                   |
+| Primitive                                                                                                  | Purpose                                                                     |
+| ---------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `fetchSource(url)`, `memorySource(files)`; `fsSource(dir)`, `packagedSource()` from `@iconmatch/core/node` | Where artifacts come from                                                   |
+| `loadManifest`, `loadCatalog`, `loadKeywordIndex`, `loadVectors`, `loadSvgs`                               | Load one artifact each                                                      |
+| `createIconMatcher(parts)`                                                                                 | `search`, `best`, `searchByEmbedding`, `get`, `svg` over the parts you pass |
+| `createKeywordSearcher`, `createVectorSearcher`, `fuse`, `hybridConfidence`                                | Lower-level ranking pieces                                                  |
+| `renderSvg(body, opts)`, `svgsFromArtifact(svgs)`                                                          | SVG strings from JSON-safe bodies                                           |
+| `letterFallback(label, catalog)`                                                                           | The lettered glyph on its own                                               |
+| `createTransformersEmbedder` from `@iconmatch/core/embedder-transformers`                                  | Local embedder (optional peer dependency)                                   |
 
 `matcher.attributions()` lists the icon sets whose licence requires visible credit (none for Tabler, which is MIT); it needs the `manifest` part.
 

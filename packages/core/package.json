@@ -1,5 +1,5 @@
 {
-  "name": "iconmatch",
+  "name": "@iconmatch/core",
   "version": "0.1.0",
   "description": "Semantic icon matching for user-defined categories: hybrid keyword + vector search over Tabler icons, with a lettered fallback.",
   "keywords": [

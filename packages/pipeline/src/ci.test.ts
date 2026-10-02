@@ -2,8 +2,8 @@ import { mkdtemp, readFile, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { loadCatalog, loadManifest } from "iconmatch";
-import { fsSource } from "iconmatch/node";
+import { loadCatalog, loadManifest } from "@iconmatch/core";
+import { fsSource } from "@iconmatch/core/node";
 import { expect, it } from "vitest";
 import { createFakeEmbedder } from "../../../test-support/fake-embedder.js";
 import { main } from "./cli.js";
@@ -57,7 +57,7 @@ it("the CI workflow runs check, the subset build and a pack dry-run", async () =
   expect(yml).toContain(
     "npx iconmatch-build all --config iconmatch.ci.config.ts --mode none",
   );
-  expect(yml).toContain("npm pack --dry-run -w iconmatch");
+  expect(yml).toContain("npm pack --dry-run -w @iconmatch/core");
   // No Ollama in CI (CLAUDE.md, spec §10): no run step mentions it.
   expect(yml).not.toMatch(/run:.*ollama/i);
 });

@@ -26,4 +26,4 @@ jobs:
           key: iconmatch-models-${{ hashFiles('package-lock.json') }}
       - run: npx iconmatch-build all --config iconmatch.ci.config.ts --mode none
       - run: test -s build-ci/package/manifest.json && test -s build-ci/package/vectors.bin
-      - run: npm run build && npm pack --dry-run -w iconmatch
+      - run: npm run build && npm pack --dry-run -w @iconmatch/core

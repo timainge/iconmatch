@@ -3,7 +3,7 @@
 // Needs a local Ollama with the configured text model (see DECISIONS.md).
 import { readFile, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
-import type { CatalogEntry, SvgArtifact } from "iconmatch";
+import type { CatalogEntry, SvgArtifact } from "@iconmatch/core";
 import { resolveConfig } from "../src/config.js";
 import { createOllamaProvider, type Fetch } from "../src/enrich/provider.js";
 import { enrichText } from "../src/enrich/text.js";

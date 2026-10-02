@@ -1,4 +1,4 @@
-import type { CatalogEntry } from "iconmatch";
+import type { CatalogEntry } from "@iconmatch/core";
 import { describe, expect, it } from "vitest";
 import { loadRecording, replayFetch } from "../../../../test-support/replay.js";
 import { createTablerAdapter } from "../adapters/tabler.js";

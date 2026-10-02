@@ -1,5 +1,5 @@
 import { Resvg } from "@resvg/resvg-js";
-import { renderSvg, type SvgBody, type VariantName } from "iconmatch";
+import { renderSvg, type SvgBody, type VariantName } from "@iconmatch/core";
 
 /** Vision input size (spec §6.3). */
 export const RENDER_SIZE = 256;

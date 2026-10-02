@@ -1,4 +1,4 @@
-import type { CatalogEntry } from "iconmatch";
+import type { CatalogEntry } from "@iconmatch/core";
 import {
   iconInput,
   VISION_PROMPT_VERSION,

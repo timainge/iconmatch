@@ -4,7 +4,7 @@ Semantic icon matching for user-defined categories. The published library and it
 
 | Path                | What                                                                        |
 | ------------------- | --------------------------------------------------------------------------- |
-| `packages/core`     | The `iconmatch` library (published)                                         |
+| `packages/core`     | The `@iconmatch/core` library (published)                                   |
 | `packages/pipeline` | `iconmatch-build`: ingest → enrich → embed → index → package                |
 | `eval`              | `iconmatch-eval` and the evaluation set                                     |
 | `examples`          | Reference compositions: server, browser client, local-full, query expansion |

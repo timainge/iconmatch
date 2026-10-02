@@ -1,5 +1,5 @@
 /**
- * `iconmatch/embedder-transformers`: a local Embedder on transformers.js
+ * `@iconmatch/core/embedder-transformers`: a local Embedder on transformers.js
  * (spec §7.0, §7.5). The only module that imports `@huggingface/transformers`,
  * an optional peer dependency, and only when the first text is embedded.
  */

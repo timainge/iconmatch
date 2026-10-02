@@ -12,7 +12,7 @@ import {
   type IconMatcher,
   type SvgBody,
   type SvgOptions,
-} from "iconmatch";
+} from "@iconmatch/core";
 
 export type Fetch = (
   url: string,

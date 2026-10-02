@@ -425,3 +425,17 @@ The owner asked to push, make `timainge/iconmatch` public, and publish `iconmatc
 The browser example's leftover `minConfidence: 0.5` (from before the 0.65 re-tune) is removed, so it uses the documented default.
 
 **Name check (2026-10-02/03).** `iconmatch` is unclaimed on npm. Name collisions are only an unrelated Python screen-icon detector on GitHub and "Icon Match" puzzle games on Google Play. No trademark turned up in a web search (not a formal search). The closest product is Semantic Icons (`semantic-icons`: its own ~3,000-icon set, hosted Voyage embeddings, paid generation), a different approach from matching category names to Tabler with a local model.
+
+## 2026-10-03 — Package renamed to `@iconmatch/core`
+
+The npm registry refused the unscoped name `iconmatch`: "Package name too similar to existing package picomatch". Its typo-squatting check would very likely refuse `icon-match` and similar variants too. The owner chose **`@iconmatch/core`** under an `iconmatch` npm organisation, over npm's suggested `@timainge/iconmatch`. It matches the existing `@iconmatch/pipeline`/`@iconmatch/eval` workspace names and leaves room for future set packages.
+
+Changes:
+
+- **Import specifiers:** every `iconmatch`, `iconmatch/node` and `iconmatch/embedder-transformers` specifier is now `@iconmatch/core`, `@iconmatch/core/node` and `@iconmatch/core/embedder-transformers`, across source, tests, examples and READMEs.
+- **Dependencies:** workspace dependency entries are renamed.
+- **Workspace flags:** `-w` flags in CI, the root `build` script and the pack check are renamed.
+- **Install docs:** the README install line and the `node_modules/@iconmatch/core/data` path are updated.
+- **Unchanged:** the model cache stays at `~/.cache/iconmatch/models` (a bulk rewrite briefly changed it; caught by tests and restored), the private repo-root package keeps the name `iconmatch`, and the project and bin names (`iconmatch-build`, `iconmatch-eval`) stay.
+
+Clean-install check repeated with `iconmatch-core-0.1.0.tgz`: README quick start runs, browser bundle 86 KB. Publishing needs the `iconmatch` org on npmjs.com (owner action) and then a scoped public publish (`--access public`).

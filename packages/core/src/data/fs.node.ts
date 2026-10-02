@@ -24,12 +24,12 @@ export function fsSource(dir: string): DataSource {
   };
 }
 
-/** Directory holding the artifacts shipped inside the `iconmatch` package. */
+/** Directory holding the artifacts shipped inside the `@iconmatch/core` package. */
 export const PACKAGED_DATA_DIR = fileURLToPath(
   new URL("../../data/", import.meta.url),
 );
 
-/** Reads the artifacts shipped inside the `iconmatch` package (Node only). */
+/** Reads the artifacts shipped inside the `@iconmatch/core` package (Node only). */
 export function packagedSource(): DataSource {
   return fsSource(PACKAGED_DATA_DIR);
 }
