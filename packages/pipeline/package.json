@@ -7,7 +7,7 @@
   "dependencies": {
     "@iconify-json/lucide": "^1.2.138",
     "@iconify-json/tabler": "^1.2.40",
-    "@iconmatch/core": "^0.1.0",
+    "@iconmatch/core": "^0.2.0",
     "@resvg/resvg-js": "^2.6.2",
     "@tabler/icons": "^3.48.0",
     "lucide-static": "^1.50.0",

@@ -45,9 +45,9 @@
     "prepack": "npm run build"
   },
   "peerDependencies": {
-    "@iconmatch/core": "^0.1.0"
+    "@iconmatch/core": "^0.2.0"
   },
   "devDependencies": {
-    "@iconmatch/core": "^0.1.0"
+    "@iconmatch/core": "^0.2.0"
   }
 }

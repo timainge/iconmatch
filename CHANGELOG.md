@@ -2,7 +2,9 @@
 
 All notable changes to the published packages. Versions follow [semver](https://semver.org); while below 1.0, minor versions may change the API.
 
-## Unreleased
+## @iconmatch/core 0.2.0 and @iconmatch/lucide 0.1.0 — 2026-10-03
+
+New in core (0.x: minor versions may change the API, see "Embedding model profiles"):
 
 - **Choice learning:** `createChoiceMemory()`, the `choices` matcher part and `matcher.recordChoice(query, iconId)`. Exact repeats return the user's pick first; with an embedder, picks for similar names rank higher. `IconMatch.matchedOn.choice` marks them.
 - **Embedding model profiles:** `EMBEDDING_PROFILES` / `findEmbeddingProfile()` (pooling and prefixes per model). The transformers embedder applies its model's profile and needs an explicit `profile` for unregistered models. The manifest may record `embedding.pooling` and `embedding.documentPrefix`.
@@ -11,7 +13,6 @@ All notable changes to the published packages. Versions follow [semver](https://
 - **Confidence:** the +0.1 keyword bump now needs a keyword hit on a source field (label, name, tags, categories); matches on enrichment text alone don't earn it. No change for the packaged (unenriched) data.
 - **Pipeline (experimental):** `iconmatch-build generate` drafts icons for missing concepts with a local LLM, validates and normalises them to the set's stroke style, and builds a review gallery; approved icons form an opt-in `generated` set. A vision judge (`iconmatch-eval --judge`) measures how well a local vision model agrees with the eval labels.
 - **Pipeline:** `enrich.applyTo` (`both` | `index` | `embed`) and learned concepts from users' choice exports (`enrich.learnedFrom`, `enrich.learnedMinUsers`).
-
 - Root README rewritten as the project landing page; package README links back to the repository, eval results and this changelog.
 
 ## @iconmatch/core 0.1.0 — 2026-10-03
