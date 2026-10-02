@@ -147,9 +147,11 @@ export const EXPANSION_ORIGINAL_WEIGHT = 2;
 
 /**
  * Default `choiceSimilarity`: past queries at least this similar (embedding
- * cosine) lend their chosen icon a ranking. See DECISIONS.md (spec §15.4).
+ * cosine) lend their chosen icon a ranking. Chosen on dev in the choice eval
+ * (`eval/choices/`, spec §15.4): the best paraphrase gain whose unseen
+ * queries lose at most 0.02 Hit@3/MRR. Measured with bge-small.
  */
-export const DEFAULT_CHOICE_SIMILARITY = 0.85;
+export const DEFAULT_CHOICE_SIMILARITY = 0.7;
 
 /** RRF weight of the ranking built from similar past choices. */
 export const CHOICE_RANK_WEIGHT = 2;

@@ -1,0 +1,702 @@
+{
+  "version": 1,
+  "status": "draft, awaiting human review (see eval/choices/REVIEWED)",
+  "basedOn": "eval/v2/queries.json dev queries with acceptable icons; acceptable ids are the original's (the paraphrase names the same category)",
+  "items": [
+    {
+      "original": "Car servicing",
+      "paraphrase": "Car service and repairs",
+      "group": "concrete",
+      "acceptable": [
+        "tabler:car",
+        "tabler:tool",
+        "tabler:tools",
+        "tabler:car-garage",
+        "tabler:engine"
+      ],
+      "part": "tune"
+    },
+    {
+      "original": "Laundry",
+      "paraphrase": "Washing clothes",
+      "group": "concrete",
+      "acceptable": [
+        "tabler:wash-machine",
+        "tabler:wash",
+        "tabler:hanger",
+        "tabler:shirt"
+      ],
+      "part": "report"
+    },
+    {
+      "original": "Coffee",
+      "paraphrase": "Coffee beans",
+      "group": "concrete",
+      "acceptable": ["tabler:coffee", "tabler:cup"],
+      "part": "tune"
+    },
+    {
+      "original": "Gym",
+      "paraphrase": "Gym membership",
+      "group": "concrete",
+      "acceptable": [
+        "tabler:barbell",
+        "tabler:dumbbell",
+        "tabler:weight",
+        "tabler:stretching"
+      ],
+      "part": "tune"
+    },
+    {
+      "original": "Houseplants",
+      "paraphrase": "Indoor plants",
+      "group": "concrete",
+      "acceptable": [
+        "tabler:plant",
+        "tabler:plant-2",
+        "tabler:leaf",
+        "tabler:seedling",
+        "tabler:flower"
+      ],
+      "part": "report"
+    },
+    {
+      "original": "Recipes",
+      "paraphrase": "Cooking recipes",
+      "group": "concrete",
+      "acceptable": [
+        "tabler:chef-hat",
+        "tabler:tools-kitchen-2",
+        "tabler:soup"
+      ],
+      "part": "tune"
+    },
+    {
+      "original": "Fuel",
+      "paraphrase": "Petrol",
+      "group": "concrete",
+      "acceptable": ["tabler:gas-station"],
+      "part": "report"
+    },
+    {
+      "original": "Travel",
+      "paraphrase": "Trips",
+      "group": "concrete",
+      "acceptable": [
+        "tabler:plane",
+        "tabler:luggage",
+        "tabler:world",
+        "tabler:map"
+      ],
+      "part": "tune"
+    },
+    {
+      "original": "Summer holidays",
+      "paraphrase": "Summer vacation",
+      "group": "concrete",
+      "acceptable": [
+        "tabler:beach",
+        "tabler:sun",
+        "tabler:plane",
+        "tabler:luggage"
+      ],
+      "part": "tune"
+    },
+    {
+      "original": "Camping",
+      "paraphrase": "Camping trips",
+      "group": "concrete",
+      "acceptable": ["tabler:tent", "tabler:campfire"],
+      "part": "tune"
+    },
+    {
+      "original": "Movies",
+      "paraphrase": "Films to watch",
+      "group": "concrete",
+      "acceptable": ["tabler:movie", "tabler:device-tv", "tabler:ticket"],
+      "part": "tune"
+    },
+    {
+      "original": "Pizza nights",
+      "paraphrase": "Pizza Fridays",
+      "group": "concrete",
+      "acceptable": ["tabler:pizza"],
+      "part": "tune"
+    },
+    {
+      "original": "Baby stuff",
+      "paraphrase": "Baby things",
+      "group": "concrete",
+      "acceptable": [
+        "tabler:baby-carriage",
+        "tabler:baby-bottle",
+        "tabler:diaper"
+      ],
+      "part": "tune"
+    },
+    {
+      "original": "Cat food",
+      "paraphrase": "Cat supplies",
+      "group": "concrete",
+      "acceptable": ["tabler:cat", "tabler:paw"],
+      "part": "report"
+    },
+    {
+      "original": "Garden",
+      "paraphrase": "Gardening",
+      "group": "concrete",
+      "acceptable": [
+        "tabler:plant",
+        "tabler:flower",
+        "tabler:garden-cart",
+        "tabler:lawn-mower",
+        "tabler:shovel",
+        "tabler:leaf"
+      ],
+      "part": "tune"
+    },
+    {
+      "original": "Birthday party",
+      "paraphrase": "Birthday celebrations",
+      "group": "concrete",
+      "acceptable": [
+        "tabler:cake",
+        "tabler:balloon",
+        "tabler:gift",
+        "tabler:confetti"
+      ],
+      "part": "tune"
+    },
+    {
+      "original": "Swimming lessons",
+      "paraphrase": "Swim classes",
+      "group": "concrete",
+      "acceptable": ["tabler:swimming", "tabler:pool"],
+      "part": "report"
+    },
+    {
+      "original": "Moving house",
+      "paraphrase": "Relocation",
+      "group": "concrete",
+      "acceptable": [
+        "tabler:truck",
+        "tabler:box",
+        "tabler:package",
+        "tabler:home"
+      ],
+      "part": "report"
+    },
+    {
+      "original": "Super contributions",
+      "paraphrase": "Superannuation",
+      "group": "abstract",
+      "acceptable": [
+        "tabler:pig-money",
+        "tabler:moneybag",
+        "tabler:coin",
+        "tabler:cash",
+        "tabler:building-bank",
+        "tabler:report-money"
+      ],
+      "part": "report"
+    },
+    {
+      "original": "Tax",
+      "paraphrase": "Tax return",
+      "group": "abstract",
+      "acceptable": [
+        "tabler:receipt-tax",
+        "tabler:file-invoice",
+        "tabler:calculator",
+        "tabler:percentage"
+      ],
+      "part": "report"
+    },
+    {
+      "original": "Subscriptions",
+      "paraphrase": "Monthly subscriptions",
+      "group": "abstract",
+      "acceptable": [
+        "tabler:credit-card",
+        "tabler:calendar-repeat",
+        "tabler:repeat"
+      ],
+      "part": "report"
+    },
+    {
+      "original": "Savings",
+      "paraphrase": "Savings account",
+      "group": "abstract",
+      "acceptable": ["tabler:pig-money", "tabler:coin", "tabler:moneybag"],
+      "part": "tune"
+    },
+    {
+      "original": "Investments",
+      "paraphrase": "Share portfolio",
+      "group": "abstract",
+      "acceptable": [
+        "tabler:trending-up",
+        "tabler:chart-line",
+        "tabler:chart-pie",
+        "tabler:coin"
+      ],
+      "part": "report"
+    },
+    {
+      "original": "Loans",
+      "paraphrase": "Personal loan",
+      "group": "abstract",
+      "acceptable": ["tabler:building-bank", "tabler:cash", "tabler:coin"],
+      "part": "tune"
+    },
+    {
+      "original": "Donations",
+      "paraphrase": "Charity giving",
+      "group": "abstract",
+      "acceptable": ["tabler:heart-handshake", "tabler:gift", "tabler:coin"],
+      "part": "report"
+    },
+    {
+      "original": "Passwords",
+      "paraphrase": "Logins and passwords",
+      "group": "abstract",
+      "acceptable": ["tabler:key", "tabler:lock", "tabler:password"],
+      "part": "tune"
+    },
+    {
+      "original": "Legal",
+      "paraphrase": "Legal documents",
+      "group": "abstract",
+      "acceptable": ["tabler:gavel", "tabler:scale", "tabler:file-text"],
+      "part": "report"
+    },
+    {
+      "original": "Paperwork",
+      "paraphrase": "Documents to file",
+      "group": "abstract",
+      "acceptable": ["tabler:file-text", "tabler:files", "tabler:folder"],
+      "part": "report"
+    },
+    {
+      "original": "Emails to answer",
+      "paraphrase": "Inbox to clear",
+      "group": "abstract",
+      "acceptable": ["tabler:mail", "tabler:inbox"],
+      "part": "tune"
+    },
+    {
+      "original": "Meetings",
+      "paraphrase": "Work meetings",
+      "group": "abstract",
+      "acceptable": [
+        "tabler:users",
+        "tabler:calendar-event",
+        "tabler:presentation"
+      ],
+      "part": "tune"
+    },
+    {
+      "original": "Health insurance",
+      "paraphrase": "Private health cover",
+      "group": "abstract",
+      "acceptable": [
+        "tabler:shield-heart",
+        "tabler:first-aid-kit",
+        "tabler:shield-check"
+      ],
+      "part": "tune"
+    },
+    {
+      "original": "Retirement",
+      "paraphrase": "Retirement planning",
+      "group": "abstract",
+      "acceptable": [
+        "tabler:pig-money",
+        "tabler:coin",
+        "tabler:beach",
+        "tabler:rocking-chair"
+      ],
+      "part": "tune"
+    },
+    {
+      "original": "Ski training",
+      "paraphrase": "Ski lessons",
+      "group": "hobbies",
+      "acceptable": [
+        "tabler:ski-jumping",
+        "tabler:snowflake",
+        "tabler:mountain",
+        "tabler:snowboarding"
+      ],
+      "part": "report"
+    },
+    {
+      "original": "Knitting",
+      "paraphrase": "Knitting projects",
+      "group": "hobbies",
+      "acceptable": ["tabler:yarn", "tabler:needle-thread", "tabler:sock"],
+      "part": "tune"
+    },
+    {
+      "original": "Chess club",
+      "paraphrase": "Chess",
+      "group": "hobbies",
+      "acceptable": ["tabler:chess", "tabler:chess-knight"],
+      "part": "report"
+    },
+    {
+      "original": "Board games",
+      "paraphrase": "Tabletop games",
+      "group": "hobbies",
+      "acceptable": ["tabler:dice", "tabler:puzzle", "tabler:chess"],
+      "part": "tune"
+    },
+    {
+      "original": "Video games",
+      "paraphrase": "Gaming",
+      "group": "hobbies",
+      "acceptable": ["tabler:device-gamepad", "tabler:device-gamepad-2"],
+      "part": "report"
+    },
+    {
+      "original": "Fishing trips",
+      "paraphrase": "Fishing",
+      "group": "hobbies",
+      "acceptable": ["tabler:fish", "tabler:fish-hook"],
+      "part": "report"
+    },
+    {
+      "original": "Tennis",
+      "paraphrase": "Tennis lessons",
+      "group": "hobbies",
+      "acceptable": ["tabler:ball-tennis"],
+      "part": "report"
+    },
+    {
+      "original": "Yoga",
+      "paraphrase": "Yoga classes",
+      "group": "hobbies",
+      "acceptable": ["tabler:yoga"],
+      "part": "tune"
+    },
+    {
+      "original": "Running",
+      "paraphrase": "Jogging",
+      "group": "hobbies",
+      "acceptable": ["tabler:run"],
+      "part": "tune"
+    },
+    {
+      "original": "Hiking",
+      "paraphrase": "Bushwalking",
+      "group": "hobbies",
+      "acceptable": [
+        "tabler:mountain",
+        "tabler:walk",
+        "tabler:trekking",
+        "tabler:backpack"
+      ],
+      "part": "report"
+    },
+    {
+      "original": "Woodworking",
+      "paraphrase": "Carpentry",
+      "group": "hobbies",
+      "acceptable": ["tabler:hammer", "tabler:tool", "tabler:tools"],
+      "part": "tune"
+    },
+    {
+      "original": "Sewing",
+      "paraphrase": "Sewing projects",
+      "group": "hobbies",
+      "acceptable": [
+        "tabler:needle-thread",
+        "tabler:needle",
+        "tabler:scissors"
+      ],
+      "part": "tune"
+    },
+    {
+      "original": "Home brewing",
+      "paraphrase": "Brewing beer",
+      "group": "hobbies",
+      "acceptable": ["tabler:beer", "tabler:bottle", "tabler:barrel"],
+      "part": "tune"
+    },
+    {
+      "original": "Snowboarding",
+      "paraphrase": "Snowboard trip",
+      "group": "hobbies",
+      "acceptable": ["tabler:snowboarding"],
+      "part": "tune"
+    },
+    {
+      "original": "Home build",
+      "paraphrase": "Building a house",
+      "group": "home-life",
+      "acceptable": [
+        "tabler:home",
+        "tabler:building-cottage",
+        "tabler:crane",
+        "tabler:hammer"
+      ],
+      "part": "report"
+    },
+    {
+      "original": "Medical",
+      "paraphrase": "Health",
+      "group": "home-life",
+      "acceptable": [
+        "tabler:stethoscope",
+        "tabler:first-aid-kit",
+        "tabler:pill",
+        "tabler:heartbeat",
+        "tabler:report-medical"
+      ],
+      "part": "tune"
+    },
+    {
+      "original": "Dentist",
+      "paraphrase": "Dental check-ups",
+      "group": "home-life",
+      "acceptable": ["tabler:dental"],
+      "part": "report"
+    },
+    {
+      "original": "Kids",
+      "paraphrase": "Children",
+      "group": "home-life",
+      "acceptable": [
+        "tabler:mood-kid",
+        "tabler:baby-carriage",
+        "tabler:horse-toy"
+      ],
+      "part": "report"
+    },
+    {
+      "original": "Electricity",
+      "paraphrase": "Power bill",
+      "group": "home-life",
+      "acceptable": ["tabler:bolt", "tabler:plug", "tabler:bulb"],
+      "part": "report"
+    },
+    {
+      "original": "Water bill",
+      "paraphrase": "Water rates",
+      "group": "home-life",
+      "acceptable": ["tabler:droplet", "tabler:file-invoice"],
+      "part": "report"
+    },
+    {
+      "original": "Internet",
+      "paraphrase": "Broadband",
+      "group": "home-life",
+      "acceptable": ["tabler:wifi", "tabler:world", "tabler:router"],
+      "part": "report"
+    },
+    {
+      "original": "Phone plan",
+      "paraphrase": "Mobile plan",
+      "group": "home-life",
+      "acceptable": ["tabler:device-mobile", "tabler:phone"],
+      "part": "tune"
+    },
+    {
+      "original": "Rent",
+      "paraphrase": "Rental payments",
+      "group": "home-life",
+      "acceptable": ["tabler:home", "tabler:key", "tabler:building"],
+      "part": "tune"
+    },
+    {
+      "original": "Pets",
+      "paraphrase": "Pet care",
+      "group": "home-life",
+      "acceptable": ["tabler:paw", "tabler:dog", "tabler:cat"],
+      "part": "report"
+    },
+    {
+      "original": "Vet visits",
+      "paraphrase": "Vet appointments",
+      "group": "home-life",
+      "acceptable": [
+        "tabler:paw",
+        "tabler:dog",
+        "tabler:cat",
+        "tabler:stethoscope",
+        "tabler:first-aid-kit"
+      ],
+      "part": "report"
+    },
+    {
+      "original": "Pharmacy",
+      "paraphrase": "Prescriptions",
+      "group": "home-life",
+      "acceptable": [
+        "tabler:pill",
+        "tabler:pills",
+        "tabler:prescription",
+        "tabler:capsule"
+      ],
+      "part": "report"
+    },
+    {
+      "original": "Doctor appointments",
+      "paraphrase": "GP visits",
+      "group": "home-life",
+      "acceptable": [
+        "tabler:stethoscope",
+        "tabler:calendar-event",
+        "tabler:nurse"
+      ],
+      "part": "report"
+    },
+    {
+      "original": "Recycling",
+      "paraphrase": "Recycling bins",
+      "group": "home-life",
+      "acceptable": ["tabler:recycle", "tabler:trash"],
+      "part": "report"
+    },
+    {
+      "original": "Netflix",
+      "paraphrase": "Netflix shows",
+      "group": "brands",
+      "acceptable": ["tabler:brand-netflix"],
+      "part": "tune"
+    },
+    {
+      "original": "Spotify",
+      "paraphrase": "Spotify playlists",
+      "group": "brands",
+      "acceptable": ["tabler:brand-spotify"],
+      "part": "report"
+    },
+    {
+      "original": "YouTube",
+      "paraphrase": "YouTube videos",
+      "group": "brands",
+      "acceptable": ["tabler:brand-youtube"],
+      "part": "tune"
+    },
+    {
+      "original": "Amazon orders",
+      "paraphrase": "Amazon purchases",
+      "group": "brands",
+      "acceptable": [
+        "tabler:brand-amazon",
+        "tabler:package",
+        "tabler:truck-delivery"
+      ],
+      "part": "tune"
+    },
+    {
+      "original": "Google Drive",
+      "paraphrase": "Google Drive files",
+      "group": "brands",
+      "acceptable": ["tabler:brand-google-drive"],
+      "part": "report"
+    },
+    {
+      "original": "PayPal",
+      "paraphrase": "PayPal payments",
+      "group": "brands",
+      "acceptable": ["tabler:brand-paypal"],
+      "part": "report"
+    },
+    {
+      "original": "Uber rides",
+      "paraphrase": "Uber trips",
+      "group": "brands",
+      "acceptable": ["tabler:brand-uber", "tabler:car"],
+      "part": "tune"
+    },
+    {
+      "original": "Steam games",
+      "paraphrase": "Steam library",
+      "group": "brands",
+      "acceptable": ["tabler:brand-steam", "tabler:device-gamepad"],
+      "part": "tune"
+    },
+    {
+      "original": "Slack",
+      "paraphrase": "Slack messages",
+      "group": "brands",
+      "acceptable": ["tabler:brand-slack"],
+      "part": "tune"
+    },
+    {
+      "original": "Dropbox",
+      "paraphrase": "Dropbox files",
+      "group": "brands",
+      "acceptable": ["tabler:brand-dropbox"],
+      "part": "report"
+    },
+    {
+      "original": "Zoom calls",
+      "paraphrase": "Zoom meetings",
+      "group": "brands",
+      "acceptable": ["tabler:brand-zoom", "tabler:video"],
+      "part": "report"
+    },
+    {
+      "original": "Stuff to sort",
+      "paraphrase": "Things to sort out",
+      "group": "vague",
+      "acceptable": [
+        "tabler:box",
+        "tabler:archive",
+        "tabler:inbox",
+        "tabler:category"
+      ],
+      "part": "report"
+    },
+    {
+      "original": "Other",
+      "paraphrase": "Others",
+      "group": "vague",
+      "acceptable": ["tabler:dots", "tabler:category"],
+      "part": "tune"
+    },
+    {
+      "original": "Random",
+      "paraphrase": "Random stuff",
+      "group": "vague",
+      "acceptable": ["tabler:dice", "tabler:arrows-shuffle"],
+      "part": "report"
+    },
+    {
+      "original": "Admin",
+      "paraphrase": "Admin tasks",
+      "group": "vague",
+      "acceptable": [
+        "tabler:settings",
+        "tabler:clipboard-list",
+        "tabler:file-text",
+        "tabler:briefcase"
+      ],
+      "part": "tune"
+    },
+    {
+      "original": "Important",
+      "paraphrase": "Very important",
+      "group": "vague",
+      "acceptable": ["tabler:star", "tabler:alert-circle", "tabler:flag"],
+      "part": "tune"
+    },
+    {
+      "original": "Personal",
+      "paraphrase": "Personal stuff",
+      "group": "vague",
+      "acceptable": ["tabler:user"],
+      "part": "report"
+    },
+    {
+      "original": "Later",
+      "paraphrase": "For later",
+      "group": "vague",
+      "acceptable": ["tabler:clock", "tabler:hourglass"],
+      "part": "report"
+    }
+  ]
+}

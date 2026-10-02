@@ -556,3 +556,23 @@ Eight candidates from five families were each built from the shipped Tabler data
 - **Latency:** all embed a query in under 10 ms warm (bge-small 1.8 ms), so it doesn't decide anything.
 
 **Decision:** no candidate beats bge-small on dev, so per §15.3 nothing is adopted and test isn't consulted. bge-small's reported test numbers stand (v2: Hit@3 0.758, fallback R 0.71). The profile registry stays, so trying a model is a config change (`embed.model`) plus a rebuild.
+
+## 2026-10-03 — P4: choice-learning eval; `choiceSimilarity` 0.70
+
+**Paraphrase set** (`eval/choices/paraphrases.json`, provisional until `eval/choices/REVIEWED`): one hand-written paraphrase per v2 dev query with acceptable icons (78). The acceptable ids are the original's. Items are split by SHA-256 into a tune half and a report half (39 each). The paraphrases were written before any choice-eval run.
+
+**Eval** (`iconmatch-eval --choices`, `eval/src/choice-eval.ts`). A remembered choice is the query's `ideal`, else its first acceptable icon.
+
+- **Tuning (dev only):** the memory holds the tune half's choices. The threshold is the one with the best tune-half paraphrase MRR among those whose _unseen_ dev queries (the report half's originals) lose ≤ 0.02 Hit@3 and MRR.
+- **Reporting:** the memory holds every dev choice; report the held-out paraphrases and the never-remembered v2 test queries.
+
+A first version tuned on paraphrase gain alone and picked 0.65. That run, and one where the eval's base parts still carried the recorded query expansions (fixed: the choice eval now gets plain hybrid parts), showed similar-query choices leaking into unrelated searches, hence the dev no-harm constraint.
+
+**Results (provisional, bge-small):**
+
+- **Exact repeats:** 78/78 at rank 1.
+- **Sweep 0.50–0.95:** ≤ 0.60 lets choices leak badly into unseen queries (MRR 0.616 → 0.387–0.536). 0.65 costs 0.026 Hit@3. **0.70 is chosen** and becomes `DEFAULT_CHOICE_SIMILARITY` (was a provisional 0.85, which gains much less: tune MRR 0.765 vs 0.976).
+- **Held-out paraphrases:** Hit@1 0.513 → 0.897, Hit@3 0.564 → 0.923, MRR 0.567 → 0.912.
+- **Never-remembered v2 test queries:** Hit@3 0.758 → 0.788, MRR 0.698 → 0.733, fallback recall 0.71 → 0.71.
+
+The threshold depends on the embedding model's cosine scale; it was measured with bge-small.

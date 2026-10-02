@@ -24,6 +24,11 @@ import {
   resolveExpansions,
   writeExpansions,
 } from "./expansions.js";
+import {
+  choiceEvalMarkdown,
+  readParaphrases,
+  runChoiceEval,
+} from "./choice-eval.js";
 import { resultsMarkdown } from "./markdown.js";
 import {
   compare,
@@ -76,7 +81,9 @@ const USAGE = `Usage: iconmatch-eval [options]
   --expansions <file>    recorded query expansions (default eval/expansions.json)
   --expander ollama      fetch missing expansions with examples/query-expansion (Ollama at
                          --ollama-url, model --expander-model) and record them
-  --queries <file>       eval set (default eval/queries.json)
+  --choices              run the choice-learning eval (spec §15.4) on the base build instead
+  --paraphrases <file>   paraphrase set for --choices (default eval/choices/paraphrases.json)
+  --queries <file>       eval set (default eval/v2/queries.json)
   --out <dir>            results directory (default eval/results)
   --min-confidence <n>   fallback threshold for every config (default: the library's,
                          ${String(DEFAULT_MIN_CONFIDENCE)} with vectors, ${String(DEFAULT_KEYWORD_MIN_CONFIDENCE)} keyword-only)
@@ -194,6 +201,8 @@ export async function main(argv: string[], io: EvalIo): Promise<number> {
         "data-vision": { type: "string", default: "build-vision" },
         "data-float32": { type: "string", default: "build-float32" },
         expansions: { type: "string" },
+        choices: { type: "boolean" },
+        paraphrases: { type: "string" },
         expander: { type: "string" },
         "expander-model": { type: "string", default: "qwen2.5:7b-instruct" },
         "ollama-url": { type: "string", default: "http://127.0.0.1:11434" },
@@ -375,6 +384,41 @@ export async function main(argv: string[], io: EvalIo): Promise<number> {
     }
     return p;
   };
+
+  if (values.choices === true) {
+    const file = values.paraphrases
+      ? resolve(io.cwd, values.paraphrases)
+      : fileURLToPath(new URL("../choices/paraphrases.json", import.meta.url));
+    // Plain hybrid parts: no query expansion, whatever else was loaded.
+    const { catalog, keywordIndex, vectors, embedder } =
+      await partsFor("baseline");
+    const result = await runChoiceEval({
+      parts: { catalog, keywordIndex, vectors, embedder },
+      remembered: set.queries.filter(
+        (q) => q.split === "dev" && q.acceptable.length > 0,
+      ),
+      paraphrases: await readParaphrases(file),
+      unrelated: set.queries.filter((q) => q.split === "test"),
+      thresholds: [0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95],
+    });
+    const reviewed = await readFile(join(dirname(file), "REVIEWED"))
+      .then(() => true)
+      .catch(() => false);
+    const choiceOut = join(dirname(file), "results");
+    await mkdir(choiceOut, { recursive: true });
+    await writeFile(
+      join(choiceOut, `${date}.json`),
+      JSON.stringify(result, null, 2) + "\n",
+    );
+    await writeFile(
+      join(choiceOut, `${date}.md`),
+      choiceEvalMarkdown(result, { date, reviewed }),
+    );
+    io.log(
+      `choices: exact repeats ${result.exactRepeatTop1.toFixed(3)}, choiceSimilarity ${result.chosenThreshold.toFixed(2)} -> ${join(choiceOut, `${date}.md`)}`,
+    );
+    return 0;
+  }
 
   for (const config of configs) {
     const runs = await runConfig(config, await partsFor(config), queries);
