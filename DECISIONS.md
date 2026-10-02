@@ -348,3 +348,25 @@ Expansion-found icons often score low against the literal text, so correct answe
 - fallback recall 0.20 at 0.60, with what that means for users.
 
 It states plainly that the v1 bar is met on Hit@3 and not on fallback recall. The query-expansion section notes that expansion raises confidences (pair it with `minConfidence` ≈ 0.65) and didn't improve ranking on the eval. The old test "cites no eval numbers while they're provisional" is replaced: numbers are allowed only with `eval/REVIEWED` present, and each quoted figure must equal the committed `eval/results/<date>-{baseline,keyword}-test.json` (the date is read from the README's link). Any other Hit@k/MRR figure fails the test. A changed digit was confirmed to fail it.
+
+## 2026-10-02 — Eval v2: 30 more no-match queries (owner-directed revision)
+
+The owner asked for more no-match queries in a new revision of the eval set, because v1's test fallback recall rests on 5 queries. **`eval/v2/queries.json`** (version 2) is v1 **unchanged** (same queries, labels and splits) plus 30 `no-match` queries. v1 stays frozen and reproducible (`eval/queries.json`, `eval/results/`); v2 has its own results (`eval/v2/results/`) and its own review marker (`eval/v2/REVIEWED`, which only the owner creates; the eval CLI already looks for `REVIEWED` next to the queries file).
+
+How the queries were drafted (fixed before any matcher run, so the set isn't shaped by rankings):
+
+1. **Candidates:** 83 realistic category names across crafts, sports, pets, food, home, admin, music and health, written as one ordered list (kept in session scratch).
+2. **Objective filter:** drop a candidate when any non-generic word's root (suffixes -ing/-es/-s stripped), or an extra stem listed with it, prefixes a word in any icon's name, tags, categories or label. Generic words: club, care, making, lessons, projects, rescue, tank, appointments, shows, collecting, league, duty, cleaning, farming, farm, sanctuary, forms, readings, healing, consultant, tiles. The rule was tightened twice before any matcher run: first from per-query stems to all content words, after "Guinea pig"/`pig`, "Duck eggs"/`eggs` and "Goat milking"/`milk` slipped through; then from 5-letter prefixes to suffix-stripped roots.
+3. **Selection:** the first 30 survivors in list order (53 survived).
+4. **Splits:** v1's rule within the new batch (SHA-256 order, first 30% to test), giving 9 test and 21 dev.
+
+No-match totals: 42, with 13 test and 29 dev; fallback queries overall: 44, with 14 test.
+
+Provisional run (current model, `iconmatch-eval --queries eval/v2/queries.json --out eval/v2/results --table`): Hit@k unchanged (no new queries have acceptable ids). Baseline fallback at 0.60:
+
+- dev: P 0.95 / R 0.67;
+- test: P 0.67 / R **0.14**, so v1's test miss is not small-sample noise.
+
+The v2 dev sweep peaks at 0.65 (P 0.88 / R 0.93). Most test no-match queries score 0.59–0.64, just above 0.60. Re-choosing `minConfidence` on v2 dev waits for the owner's review. Label doubts seen in that run (Embroidery/Quilting → `needle-thread`, Lacrosse → `cricket`, instruments → music, compounds such as Bookbinding) are in `eval/label-issues.md` for the review, not edited.
+
+The guard hook now also protects `eval/v*/REVIEWED`, and `eval/v*/queries.json` once that revision is reviewed.

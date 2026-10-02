@@ -1,0 +1,878 @@
+{
+  "config": "float32",
+  "split": "test",
+  "date": "2026-10-02",
+  "minConfidence": 0.6,
+  "report": {
+    "n": 33,
+    "hit1": 0.6363636363636364,
+    "hit3": 0.7575757575757576,
+    "hit5": 0.7575757575757576,
+    "mrr": 0.6983525733525733,
+    "fallback": {
+      "threshold": 0.6,
+      "precision": 0.6666666666666666,
+      "recall": 0.14285714285714285,
+      "truePositives": 2,
+      "falsePositives": 1,
+      "falseNegatives": 12
+    },
+    "perGroup": {
+      "abstract": {
+        "n": 6,
+        "hit1": 0.3333333333333333,
+        "hit3": 0.5,
+        "hit5": 0.5,
+        "mrr": 0.41534391534391535,
+        "fallback": {
+          "threshold": 0.6,
+          "precision": 1,
+          "recall": 1,
+          "truePositives": 0,
+          "falsePositives": 0,
+          "falseNegatives": 0
+        }
+      },
+      "brands": {
+        "n": 4,
+        "hit1": 0.75,
+        "hit3": 1,
+        "hit5": 1,
+        "mrr": 0.8333333333333333,
+        "fallback": {
+          "threshold": 0.6,
+          "precision": 1,
+          "recall": 1,
+          "truePositives": 0,
+          "falsePositives": 0,
+          "falseNegatives": 0
+        }
+      },
+      "concrete": {
+        "n": 8,
+        "hit1": 0.875,
+        "hit3": 0.875,
+        "hit5": 0.875,
+        "mrr": 0.8802083333333334,
+        "fallback": {
+          "threshold": 0.6,
+          "precision": 1,
+          "recall": 1,
+          "truePositives": 0,
+          "falsePositives": 0,
+          "falseNegatives": 0
+        }
+      },
+      "hobbies": {
+        "n": 6,
+        "hit1": 1,
+        "hit3": 1,
+        "hit5": 1,
+        "mrr": 1,
+        "fallback": {
+          "threshold": 0.6,
+          "precision": 1,
+          "recall": 1,
+          "truePositives": 0,
+          "falsePositives": 0,
+          "falseNegatives": 0
+        }
+      },
+      "home-life": {
+        "n": 6,
+        "hit1": 0.3333333333333333,
+        "hit3": 0.6666666666666666,
+        "hit5": 0.6666666666666666,
+        "mrr": 0.5297619047619048,
+        "fallback": {
+          "threshold": 0.6,
+          "precision": 1,
+          "recall": 1,
+          "truePositives": 0,
+          "falsePositives": 0,
+          "falseNegatives": 0
+        }
+      },
+      "no-match": {
+        "n": 0,
+        "hit1": 0,
+        "hit3": 0,
+        "hit5": 0,
+        "mrr": 0,
+        "fallback": {
+          "threshold": 0.6,
+          "precision": 1,
+          "recall": 0.15384615384615385,
+          "truePositives": 2,
+          "falsePositives": 0,
+          "falseNegatives": 11
+        }
+      },
+      "vague": {
+        "n": 3,
+        "hit1": 0.3333333333333333,
+        "hit3": 0.3333333333333333,
+        "hit5": 0.3333333333333333,
+        "mrr": 0.3333333333333333,
+        "fallback": {
+          "threshold": 0.6,
+          "precision": 0,
+          "recall": 0,
+          "truePositives": 0,
+          "falsePositives": 1,
+          "falseNegatives": 1
+        }
+      }
+    }
+  },
+  "sweep": [
+    {
+      "threshold": 0.3,
+      "precision": 1,
+      "recall": 0,
+      "truePositives": 0,
+      "falsePositives": 0,
+      "falseNegatives": 14
+    },
+    {
+      "threshold": 0.35,
+      "precision": 1,
+      "recall": 0,
+      "truePositives": 0,
+      "falsePositives": 0,
+      "falseNegatives": 14
+    },
+    {
+      "threshold": 0.4,
+      "precision": 1,
+      "recall": 0,
+      "truePositives": 0,
+      "falsePositives": 0,
+      "falseNegatives": 14
+    },
+    {
+      "threshold": 0.45,
+      "precision": 1,
+      "recall": 0,
+      "truePositives": 0,
+      "falsePositives": 0,
+      "falseNegatives": 14
+    },
+    {
+      "threshold": 0.5,
+      "precision": 1,
+      "recall": 0,
+      "truePositives": 0,
+      "falsePositives": 0,
+      "falseNegatives": 14
+    },
+    {
+      "threshold": 0.55,
+      "precision": 1,
+      "recall": 0,
+      "truePositives": 0,
+      "falsePositives": 0,
+      "falseNegatives": 14
+    },
+    {
+      "threshold": 0.6,
+      "precision": 0.6666666666666666,
+      "recall": 0.14285714285714285,
+      "truePositives": 2,
+      "falsePositives": 1,
+      "falseNegatives": 12
+    },
+    {
+      "threshold": 0.65,
+      "precision": 0.8333333333333334,
+      "recall": 0.7142857142857143,
+      "truePositives": 10,
+      "falsePositives": 2,
+      "falseNegatives": 4
+    },
+    {
+      "threshold": 0.7,
+      "precision": 0.55,
+      "recall": 0.7857142857142857,
+      "truePositives": 11,
+      "falsePositives": 9,
+      "falseNegatives": 3
+    },
+    {
+      "threshold": 0.75,
+      "precision": 0.4117647058823529,
+      "recall": 1,
+      "truePositives": 14,
+      "falsePositives": 20,
+      "falseNegatives": 0
+    },
+    {
+      "threshold": 0.8,
+      "precision": 0.3783783783783784,
+      "recall": 1,
+      "truePositives": 14,
+      "falsePositives": 23,
+      "falseNegatives": 0
+    }
+  ],
+  "queries": [
+    {
+      "query": "Bike maintenance",
+      "group": "concrete",
+      "split": "test",
+      "ranked": [
+        "tabler:bike",
+        "tabler:bike-off",
+        "tabler:car-garage",
+        "tabler:brand-zwift",
+        "tabler:unicycle"
+      ],
+      "topConfidence": 0.7317451596260071,
+      "firstHit": 1
+    },
+    {
+      "query": "Groceries",
+      "group": "concrete",
+      "split": "test",
+      "ranked": [
+        "tabler:shopping-cart",
+        "tabler:brand-walmart",
+        "tabler:shopping-cart-off",
+        "tabler:paper-bag",
+        "tabler:paper-bag-off"
+      ],
+      "topConfidence": 0.780616557598114,
+      "firstHit": 1
+    },
+    {
+      "query": "Dog grooming",
+      "group": "concrete",
+      "split": "test",
+      "ranked": [
+        "tabler:razor",
+        "tabler:dog",
+        "tabler:razor-electric",
+        "tabler:paw",
+        "tabler:paw-off"
+      ],
+      "topConfidence": 0.6986486077308655,
+      "firstHit": 1
+    },
+    {
+      "query": "Books to read",
+      "group": "concrete",
+      "split": "test",
+      "ranked": [
+        "tabler:book",
+        "tabler:book-2",
+        "tabler:book-off",
+        "tabler:books",
+        "tabler:books-off"
+      ],
+      "topConfidence": 0.7076956391334533,
+      "firstHit": 1
+    },
+    {
+      "query": "Photography",
+      "group": "concrete",
+      "split": "test",
+      "ranked": [
+        "tabler:macro",
+        "tabler:photo-sensor",
+        "tabler:tilt-shift",
+        "tabler:camera-question",
+        "tabler:photo-sensor-3"
+      ],
+      "topConfidence": 0.8061151266098022,
+      "firstHit": 24
+    },
+    {
+      "query": "Music practice",
+      "group": "concrete",
+      "split": "test",
+      "ranked": [
+        "tabler:music",
+        "tabler:file-music",
+        "tabler:music-check",
+        "tabler:music-code",
+        "tabler:music-off"
+      ],
+      "topConfidence": 0.6903100967407226,
+      "firstHit": 1
+    },
+    {
+      "query": "Bills",
+      "group": "concrete",
+      "split": "test",
+      "ranked": [
+        "tabler:file-invoice",
+        "tabler:receipt",
+        "tabler:receipt-2",
+        "tabler:folder-dollar",
+        "tabler:invoice"
+      ],
+      "topConfidence": 0.7852830052375793,
+      "firstHit": 1
+    },
+    {
+      "query": "Wedding planning",
+      "group": "concrete",
+      "split": "test",
+      "ranked": [
+        "tabler:confetti",
+        "tabler:confetti-off",
+        "tabler:photo-heart",
+        "tabler:rings",
+        "tabler:timeline"
+      ],
+      "topConfidence": 0.6997628569602966,
+      "firstHit": 1
+    },
+    {
+      "query": "Insurance",
+      "group": "abstract",
+      "split": "test",
+      "ranked": [
+        "tabler:car-crash",
+        "tabler:shield-dollar",
+        "tabler:shield-heart",
+        "tabler:user-shield",
+        "tabler:ambulance"
+      ],
+      "topConfidence": 0.7385300755500793,
+      "firstHit": 3
+    },
+    {
+      "query": "Budget",
+      "group": "abstract",
+      "split": "test",
+      "ranked": [
+        "tabler:bell-dollar",
+        "tabler:clock-dollar",
+        "tabler:calendar-dollar",
+        "tabler:device-desktop-dollar",
+        "tabler:folder-dollar"
+      ],
+      "topConfidence": 0.7473453044891357,
+      "firstHit": 21
+    },
+    {
+      "query": "Mortgage",
+      "group": "abstract",
+      "split": "test",
+      "ranked": [
+        "tabler:home-dollar",
+        "tabler:building-bank",
+        "tabler:home-search",
+        "tabler:home-down",
+        "tabler:pig-money"
+      ],
+      "topConfidence": 0.6692354083061218,
+      "firstHit": 1
+    },
+    {
+      "query": "Work",
+      "group": "abstract",
+      "split": "test",
+      "ranked": [
+        "tabler:briefcase",
+        "tabler:briefcase-2",
+        "tabler:subtask",
+        "tabler:chisel",
+        "tabler:building-estate"
+      ],
+      "topConfidence": 0.7374825239181518,
+      "firstHit": 1
+    },
+    {
+      "query": "Contracts",
+      "group": "abstract",
+      "split": "test",
+      "ranked": [
+        "tabler:contract",
+        "tabler:writing",
+        "tabler:writing-off",
+        "tabler:contrast",
+        "tabler:premium-rights"
+      ],
+      "topConfidence": 0.8615763545036316,
+      "firstHit": 0
+    },
+    {
+      "query": "Goals",
+      "group": "abstract",
+      "split": "test",
+      "ranked": [
+        "tabler:businessplan",
+        "tabler:currency",
+        "tabler:target-arrow",
+        "tabler:play-football",
+        "tabler:currency-off"
+      ],
+      "topConfidence": 0.7372334361076355,
+      "firstHit": 9
+    },
+    {
+      "query": "Birdwatching",
+      "group": "hobbies",
+      "split": "test",
+      "ranked": [
+        "tabler:binoculars",
+        "tabler:canary",
+        "tabler:device-watch-search",
+        "tabler:feather-off",
+        "tabler:stopwatch"
+      ],
+      "topConfidence": 0.7202751040458679,
+      "firstHit": 1
+    },
+    {
+      "query": "Golf",
+      "group": "hobbies",
+      "split": "test",
+      "ranked": [
+        "tabler:golf",
+        "tabler:golf-off",
+        "tabler:disc-golf",
+        "tabler:tournament",
+        "tabler:ball-football"
+      ],
+      "topConfidence": 0.8653841376304626,
+      "firstHit": 1
+    },
+    {
+      "query": "Astronomy",
+      "group": "hobbies",
+      "split": "test",
+      "ranked": [
+        "tabler:telescope",
+        "tabler:galaxy",
+        "tabler:telescope-off",
+        "tabler:camera-moon",
+        "tabler:brand-astro"
+      ],
+      "topConfidence": 0.8478798627853393,
+      "firstHit": 1
+    },
+    {
+      "query": "Painting",
+      "group": "hobbies",
+      "split": "test",
+      "ranked": [
+        "tabler:paint",
+        "tabler:cube-3d-sphere",
+        "tabler:brush",
+        "tabler:cube-3d-sphere-off",
+        "tabler:palette"
+      ],
+      "topConfidence": 0.7358243465423584,
+      "firstHit": 1
+    },
+    {
+      "query": "Horse riding",
+      "group": "hobbies",
+      "split": "test",
+      "ranked": [
+        "tabler:horse",
+        "tabler:horse-toy",
+        "tabler:horseshoe",
+        "tabler:snowboarding",
+        "tabler:dragon"
+      ],
+      "topConfidence": 0.8247267961502075,
+      "firstHit": 1
+    },
+    {
+      "query": "Wine tasting",
+      "group": "hobbies",
+      "split": "test",
+      "ranked": [
+        "tabler:glass",
+        "tabler:glass-full",
+        "tabler:barrel",
+        "tabler:bottle",
+        "tabler:grape"
+      ],
+      "topConfidence": 0.6784338116645813,
+      "firstHit": 1
+    },
+    {
+      "query": "School stuff",
+      "group": "home-life",
+      "split": "test",
+      "ranked": [
+        "tabler:school",
+        "tabler:school-bell",
+        "tabler:school-off",
+        "tabler:bell-school",
+        "tabler:books"
+      ],
+      "topConfidence": 0.8079004645347595,
+      "firstHit": 1
+    },
+    {
+      "query": "Cleaning",
+      "group": "home-life",
+      "split": "test",
+      "ranked": [
+        "tabler:toilet-paper",
+        "tabler:wash",
+        "tabler:bleach",
+        "tabler:bleach-chlorine",
+        "tabler:toilet-paper-off"
+      ],
+      "topConfidence": 0.8372206449508667,
+      "firstHit": 2
+    },
+    {
+      "query": "Repairs",
+      "group": "home-life",
+      "split": "test",
+      "ranked": [
+        "tabler:car-garage",
+        "tabler:hammer",
+        "tabler:http-patch",
+        "tabler:device-screen",
+        "tabler:restore"
+      ],
+      "topConfidence": 0.728767192363739,
+      "firstHit": 2
+    },
+    {
+      "query": "Utilities",
+      "group": "home-life",
+      "split": "test",
+      "ranked": [
+        "tabler:car-suv",
+        "tabler:file-power",
+        "tabler:battery-eco",
+        "tabler:outlet",
+        "tabler:solar-electricity"
+      ],
+      "topConfidence": 0.6289145112037658,
+      "firstHit": 28
+    },
+    {
+      "query": "Car registration",
+      "group": "home-life",
+      "split": "test",
+      "ranked": [
+        "tabler:car",
+        "tabler:car-door",
+        "tabler:car-off",
+        "tabler:car-crash",
+        "tabler:car-crane"
+      ],
+      "topConfidence": 0.7242107152938843,
+      "firstHit": 1
+    },
+    {
+      "query": "Chores",
+      "group": "home-life",
+      "split": "test",
+      "ranked": [
+        "tabler:ironing-off",
+        "tabler:exercise-ball",
+        "tabler:ironing-1",
+        "tabler:folder-root",
+        "tabler:wash-off"
+      ],
+      "topConfidence": 0.695327877998352,
+      "firstHit": 7
+    },
+    {
+      "query": "GitHub stuff",
+      "group": "brands",
+      "split": "test",
+      "ranked": [
+        "tabler:brand-github",
+        "tabler:brand-github-copilot",
+        "tabler:brand-slack",
+        "tabler:brand-git",
+        "tabler:clef-staff"
+      ],
+      "topConfidence": 0.826649284362793,
+      "firstHit": 1
+    },
+    {
+      "query": "Apple devices",
+      "group": "brands",
+      "split": "test",
+      "ranked": [
+        "tabler:device-ipad",
+        "tabler:device-imac",
+        "tabler:brand-apple",
+        "tabler:device-ipad-horizontal",
+        "tabler:device-airpods"
+      ],
+      "topConfidence": 0.8222596406936645,
+      "firstHit": 3
+    },
+    {
+      "query": "Airbnb stays",
+      "group": "brands",
+      "split": "test",
+      "ranked": [
+        "tabler:brand-airbnb",
+        "tabler:freeze-column",
+        "tabler:brand-couchsurfing",
+        "tabler:brand-booking",
+        "tabler:bed-off"
+      ],
+      "topConfidence": 0.7935039162635803,
+      "firstHit": 1
+    },
+    {
+      "query": "Discord",
+      "group": "brands",
+      "split": "test",
+      "ranked": [
+        "tabler:brand-discord",
+        "tabler:calendar-x",
+        "tabler:message-circle-question",
+        "tabler:affiliate",
+        "tabler:cloud-cancel"
+      ],
+      "topConfidence": 0.8158547639846802,
+      "firstHit": 1
+    },
+    {
+      "query": "Misc",
+      "group": "vague",
+      "split": "test",
+      "ranked": [
+        "tabler:shopping-cart-exclamation",
+        "tabler:receipt-yuan",
+        "tabler:receipt-yen",
+        "tabler:receipt-euro",
+        "tabler:receipt-bitcoin"
+      ],
+      "topConfidence": 0.5536350607872009,
+      "firstHit": 0
+    },
+    {
+      "query": "Life",
+      "group": "vague",
+      "split": "test",
+      "ranked": [
+        "tabler:lifebuoy",
+        "tabler:jacket",
+        "tabler:health-recognition",
+        "tabler:growth",
+        "tabler:dragon"
+      ],
+      "topConfidence": 0.6874691605567932,
+      "firstHit": 0
+    },
+    {
+      "query": "Things",
+      "group": "vague",
+      "split": "test",
+      "ranked": [
+        "tabler:building-warehouse",
+        "tabler:info-small",
+        "tabler:pin",
+        "tabler:devices-2",
+        "tabler:nut"
+      ],
+      "topConfidence": 0.6776426196098327,
+      "firstHit": 0
+    },
+    {
+      "query": "Ideas",
+      "group": "vague",
+      "split": "test",
+      "ranked": [
+        "tabler:bulb",
+        "tabler:thinking-medium",
+        "tabler:thinking-low",
+        "tabler:thinking-high",
+        "tabler:notes"
+      ],
+      "topConfidence": 0.7432240009307861,
+      "firstHit": 1
+    },
+    {
+      "query": "Pottery",
+      "group": "no-match",
+      "split": "test",
+      "ranked": [
+        "tabler:plant",
+        "tabler:garden-cart",
+        "tabler:layout",
+        "tabler:plant-2",
+        "tabler:teapot"
+      ],
+      "topConfidence": 0.6147598028182983,
+      "firstHit": 0
+    },
+    {
+      "query": "Taxidermy",
+      "group": "no-match",
+      "split": "test",
+      "ranked": [
+        "tabler:blade",
+        "tabler:needle",
+        "tabler:razor",
+        "tabler:aerial-lift",
+        "tabler:razor-electric"
+      ],
+      "topConfidence": 0.5701294541358948,
+      "firstHit": 0
+    },
+    {
+      "query": "Turtle care",
+      "group": "no-match",
+      "split": "test",
+      "ranked": [
+        "tabler:heart-handshake",
+        "tabler:disabled",
+        "tabler:smoking",
+        "tabler:bandage",
+        "tabler:emergency-bed"
+      ],
+      "topConfidence": 0.6364613533020019,
+      "firstHit": 0
+    },
+    {
+      "query": "Llama trekking",
+      "group": "no-match",
+      "split": "test",
+      "ranked": [
+        "tabler:trekking",
+        "tabler:mountain",
+        "tabler:mountain-off",
+        "tabler:tent",
+        "tabler:tent-off"
+      ],
+      "topConfidence": 0.7149501204490661,
+      "firstHit": 0
+    },
+    {
+      "query": "Quilting",
+      "group": "no-match",
+      "split": "test",
+      "ranked": [
+        "tabler:needle-thread",
+        "tabler:needle",
+        "tabler:brand-threads",
+        "tabler:yarn",
+        "tabler:ironing-2"
+      ],
+      "topConfidence": 0.7007088661193848,
+      "firstHit": 0
+    },
+    {
+      "query": "Glassblowing",
+      "group": "no-match",
+      "split": "test",
+      "ranked": [
+        "tabler:glass-champagne",
+        "tabler:glass-cocktail",
+        "tabler:glass-off",
+        "tabler:glass",
+        "tabler:glass-gin"
+      ],
+      "topConfidence": 0.6101341247558594,
+      "firstHit": 0
+    },
+    {
+      "query": "Lacrosse",
+      "group": "no-match",
+      "split": "test",
+      "ranked": [
+        "tabler:cricket",
+        "tabler:ball-american-football",
+        "tabler:rugby",
+        "tabler:ping-pong",
+        "tabler:ball-american-football-off"
+      ],
+      "topConfidence": 0.5954036712646484,
+      "firstHit": 0
+    },
+    {
+      "query": "Ferret care",
+      "group": "no-match",
+      "split": "test",
+      "ranked": [
+        "tabler:bandage",
+        "tabler:smoking",
+        "tabler:emergency-bed",
+        "tabler:dental",
+        "tabler:disabled"
+      ],
+      "topConfidence": 0.6356389284133911,
+      "firstHit": 0
+    },
+    {
+      "query": "Axolotl tank",
+      "group": "no-match",
+      "split": "test",
+      "ranked": [
+        "tabler:tank",
+        "tabler:scuba-diving-tank",
+        "tabler:barrel",
+        "tabler:barrel-off",
+        "tabler:test-pipe-2"
+      ],
+      "topConfidence": 0.6367622971534729,
+      "firstHit": 0
+    },
+    {
+      "query": "Pickling",
+      "group": "no-match",
+      "split": "test",
+      "ranked": [
+        "tabler:seedling",
+        "tabler:pick",
+        "tabler:guitar-pick",
+        "tabler:seedling-off",
+        "tabler:dumpling"
+      ],
+      "topConfidence": 0.6382586359977722,
+      "firstHit": 0
+    },
+    {
+      "query": "Fermentation",
+      "group": "no-match",
+      "split": "test",
+      "ranked": [
+        "tabler:bottle",
+        "tabler:wheat",
+        "tabler:milk",
+        "tabler:barrel",
+        "tabler:bottle-off"
+      ],
+      "topConfidence": 0.602654218673706,
+      "firstHit": 0
+    },
+    {
+      "query": "Gutter cleaning",
+      "group": "no-match",
+      "split": "test",
+      "ranked": [
+        "tabler:toilet-paper",
+        "tabler:bleach",
+        "tabler:wash",
+        "tabler:bleach-chlorine",
+        "tabler:plunger"
+      ],
+      "topConfidence": 0.7465534567832947,
+      "firstHit": 0
+    },
+    {
+      "query": "Mosaic tiles",
+      "group": "no-match",
+      "split": "test",
+      "ranked": [
+        "tabler:layout-2",
+        "tabler:layout-board",
+        "tabler:layout",
+        "tabler:layout-rows",
+        "tabler:layout-board-split"
+      ],
+      "topConfidence": 0.623870313167572,
+      "firstHit": 0
+    }
+  ]
+}

@@ -21,3 +21,17 @@ Source: provisional baseline run, `eval/results/2026-09-24-baseline*.json`.
 | Personal        | dev   | user                                  | folder-user, id, id-off                               | Consider `id`, `folder-user`                                                                                    |
 | Recipes         | dev   | chef-hat, tools-kitchen-2, soup       | cooker, whisk, salad                                  | Consider `cooker`, `whisk`                                                                                      |
 | Stuff to sort   | dev   | box, archive, inbox, category         | sort-ascending, sort-a-z, sort-descending             | Probably fine as is (literal "sort" ≠ a box of stuff); confirm                                                  |
+
+## Eval v2 (`eval/v2/queries.json`), noticed after the provisional run
+
+Source: `eval/v2/results/2026-10-02-baseline*.json` (current model, provisional). Only the 30 new no-match queries are listed; v1's issues above still apply to the v1 part of v2.
+
+| Query                             | Split | Current `acceptable` | Top result (confidence)             | Suggestion                                                                                   |
+| --------------------------------- | ----- | -------------------- | ----------------------------------- | -------------------------------------------------------------------------------------------- |
+| Embroidery                        | dev   | (none: no-match)     | needle-thread (0.731)               | Probably not a no-match: a needle and thread fits embroidery. Accept `needle-thread` or drop |
+| Quilting                          | test  | (none: no-match)     | needle-thread (0.700)               | Same as Embroidery                                                                           |
+| Lacrosse                          | test  | (none: no-match)     | cricket (0.595)                     | Confirm: a cricket bat isn't a lacrosse stick, but some would accept a generic sports icon   |
+| Bookbinding                       | dev   | (none: no-match)     | bookmark-edit (0.594)               | Compound word slipped the catalog filter; `book` might be acceptable                         |
+| Harp lessons, Bagpipes, Accordion | dev   | (none: no-match)     | school-bell, trowel, arrows-shuffle | Confirm: would a generic `music` icon be acceptable for an instrument?                       |
+| Woodturning                       | dev   | (none: no-match)     | wood (0.614)                        | Confirm: `wood` (a log) isn't a lathe, but is arguably acceptable                            |
+| Septic tank                       | dev   | (none: no-match)     | tank (0.703)                        | Probably fine: Tabler `tank` is a military tank                                              |

@@ -77,3 +77,12 @@ Checklist derived from `docs/plan.md` §11. The spec is the source of truth for 
 - [x] Expansion confidence (discovered): score confidence on the original query only (expansions still add candidates); re-run configs 6/baseline-expansion on dev (result: original-only scores worse, dev F1 0.667 vs 0.80; max kept, doc says use minConfidence ≈ 0.65 with expansion)
 - [x] README: now that the eval is reviewed, replace the "provisional `minConfidence`" wording and state the final test numbers and acceptance verdict (after the calibration item)
 - [x] Audit M5 (§11.1) — WAITS: eval/REVIEWED (14/14 met; acceptance bar: Hit@3 met, fallback recall not met, reported)
+
+## Post-v1: fallback recall (owner-directed, 2026-10-02)
+
+The owner asked to try, in order: more no-match queries in a new eval revision, a stronger embedding model, then accept the result.
+
+- [x] Eval v2 draft: `eval/v2/queries.json` = v1 + 30 no-match queries (objective catalog filter, hashed splits), provisional results in `eval/v2/results/`
+- [ ] Re-baseline on v2 and re-choose `minConfidence` on v2 dev (v2 dev sweep suggests 0.65), report test — WAITS: eval/v2/REVIEWED
+- [ ] Stronger embedding model: compare transformers.js-compatible candidates (e.g. bge-base-en-v1.5) against bge-small on v1 (reviewed) and v2 (provisional) dev; sizes and latency; adopt only on dev evidence, report test after review
+- [ ] Verdict: final acceptance-bar result on v2 test with the chosen model and threshold; accept or record what's still failing — WAITS: eval/v2/REVIEWED

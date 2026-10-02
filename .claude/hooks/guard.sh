@@ -19,6 +19,11 @@ protected_reason() { # $1 = repo-relative path or command text
     *eval/queries.json*)
       [ -e eval/REVIEWED ] || return 1
       echo "eval/queries.json has been human-reviewed (eval/REVIEWED exists). Put suspected label errors in eval/label-issues.md." ;;
+    *eval/v[0-9]*/REVIEWED*) echo "eval/v*/REVIEWED is the human's review signal for that eval revision. Only the human creates it." ;;
+    *eval/v[0-9]*/queries.json*)
+      rev=$(echo "$1" | grep -oE 'eval/v[0-9]+' | head -1)
+      [ -e "$rev/REVIEWED" ] || return 1
+      echo "$rev/queries.json has been human-reviewed ($rev/REVIEWED exists). Put suspected label errors in eval/label-issues.md." ;;
     *) return 1 ;;
   esac
 }

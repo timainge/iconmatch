@@ -1,3 +1,4 @@
+import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import { createTablerAdapter } from "../../packages/pipeline/src/adapters/tabler.js";
 import { ingest } from "../../packages/pipeline/src/ingest.js";
@@ -20,6 +21,32 @@ describe("eval/queries.json", () => {
     expect(new Set(set.queries.map((q) => q.group))).toEqual(
       new Set(REQUIRED_GROUPS),
     );
+  });
+});
+
+describe("eval/v2/queries.json", () => {
+  const v2File = fileURLToPath(new URL("../v2/queries.json", import.meta.url));
+
+  it("passes every §9.1 check against the installed Tabler catalog", async () => {
+    const [set, { catalog }] = await Promise.all([
+      readEvalSet(v2File),
+      ingest([createTablerAdapter({ log: () => undefined })]),
+    ]);
+    expect(evalSetProblems(set, new Set(catalog.map((e) => e.id)))).toEqual([]);
+  });
+
+  it("is v1 unchanged plus new no-match queries only", async () => {
+    const [v1, v2] = await Promise.all([readEvalSet(), readEvalSet(v2File)]);
+    expect(v2.version).toBe(2);
+    expect(v2.queries.slice(0, v1.queries.length)).toEqual(v1.queries);
+    const added = v2.queries.slice(v1.queries.length);
+    expect(added).toHaveLength(30);
+    for (const q of added) {
+      expect(q.group).toBe("no-match");
+      expect(q.acceptable).toEqual([]);
+    }
+    // Same split rule as v1, applied within the new batch: 30% to test.
+    expect(added.filter((q) => q.split === "test")).toHaveLength(9);
   });
 });
 
