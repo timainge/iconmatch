@@ -65,6 +65,8 @@ export {
   DEFAULT_MIN_CONFIDENCE,
   DEFAULT_REMOTE_TIMEOUT_MS,
   EXPANSION_ORIGINAL_WEIGHT,
+  DEFAULT_CHOICE_SIMILARITY,
+  CHOICE_RANK_WEIGHT,
   IconMatchTimeoutError,
   resolveVariant,
 } from "./matcher.js";
@@ -114,3 +116,5 @@ export {
   RRF_K,
 } from "./fuse.js";
 export type { FusedHit, Ranking } from "./fuse.js";
+export { createChoiceMemory } from "./choices.js";
+export type { ChoiceEntry, ChoiceMemory } from "./choices.js";

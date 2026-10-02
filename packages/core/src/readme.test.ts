@@ -19,6 +19,7 @@ describe("packages/core/README.md", () => {
       "examples/readme/quick-start.ts",
       "examples/readme/browser.ts",
       "examples/readme/expansion.ts",
+      "examples/readme/choices.ts",
     ]);
     expect(await syncReadme(text, root)).toBe(text);
   });

@@ -4,10 +4,12 @@
  * user review and override the suggested icon. It never downloads a model.
  */
 import {
+  createChoiceMemory,
   createIconMatcher,
   fetchSource,
   loadCatalog,
   loadKeywordIndex,
+  type ChoiceEntry,
   type IconMatch,
   type IconMatcher,
   type SvgBody,
@@ -32,6 +34,8 @@ export interface ClientOptions {
   apiUrl: string;
   /** Saves a reviewed choice. */
   persist: (choice: IconChoice) => void | Promise<void>;
+  /** Choices remembered earlier (`exportChoices()`), so repeats suggest the user's pick. */
+  choices?: ChoiceEntry[];
   fetch?: Fetch;
   remoteTimeoutMs?: number;
   onRemoteError?: (error: unknown) => void;
@@ -44,6 +48,8 @@ export interface IconClient {
   review(query: string, limit?: number): Promise<IconMatch[]>;
   /** Records the user's pick. Rejects ids not in the catalog. */
   choose(query: string, iconId: string): Promise<void>;
+  /** Remembered choices, to save (e.g. in localStorage) and pass back as `choices`. */
+  exportChoices(): ChoiceEntry[];
   svg(id: string, options?: SvgOptions): Promise<string>;
 }
 
@@ -69,9 +75,13 @@ export async function createIconClient(
     loadKeywordIndex(source),
   ]);
 
+  // Choice learning (spec §15.4): exact repeats only here, since the browser
+  // has no local vectors; the server's semantic search still applies.
+  const choices = createChoiceMemory(options.choices);
   const matcher: IconMatcher = await createIconMatcher({
     catalog,
     keywordIndex,
+    choices,
     remoteSearch: (q, { limit, signal }) =>
       getJson<IconMatch[]>(
         doFetch,
@@ -96,8 +106,10 @@ export async function createIconClient(
     review: (query, limit = 20) => matcher.search(query, { limit }),
     async choose(query, iconId) {
       if (!matcher.get(iconId)) throw new Error(`Unknown icon id: ${iconId}`);
+      await matcher.recordChoice(query, iconId);
       await options.persist({ query, iconId });
     },
+    exportChoices: () => choices.export(),
     svg: (id, svgOptions) => matcher.svg(id, svgOptions),
   };
 }

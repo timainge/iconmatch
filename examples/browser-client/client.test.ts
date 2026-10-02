@@ -89,6 +89,32 @@ describe("examples/browser-client", () => {
     expect(saved).toHaveLength(1);
   });
 
+  it("remembers picks: a repeat suggests the user's choice, also after a reload from exported choices", async () => {
+    const client = await createIconClient({
+      dataUrl: "/data/",
+      apiUrl: "/api",
+      fetch: network().doFetch,
+      persist: () => undefined,
+    });
+    const before = await client.suggest("Admin stuff");
+    const pick = before.id === "tabler:heart" ? "tabler:dog" : "tabler:heart";
+    await client.choose("Admin stuff", pick);
+    expect((await client.suggest("admin stuff")).id).toBe(pick);
+    const saved = JSON.parse(
+      JSON.stringify(client.exportChoices()),
+    ) as ReturnType<typeof client.exportChoices>;
+    expect(saved).toMatchObject([{ query: "admin stuff", iconId: pick }]);
+    // A fresh client (page reload), with the remote down, still honours it.
+    const reloaded = await createIconClient({
+      dataUrl: "/data/",
+      apiUrl: "/api",
+      fetch: network(true).doFetch,
+      persist: () => undefined,
+      choices: saved,
+    });
+    expect((await reloaded.suggest("Admin stuff")).id).toBe(pick);
+  });
+
   it("keeps working keyword-only when the remote is down", async () => {
     const errors: unknown[] = [];
     const client = await createIconClient({

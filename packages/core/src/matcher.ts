@@ -1,4 +1,5 @@
 import type MiniSearch from "minisearch";
+import type { ChoiceMemory } from "./choices.js";
 import {
   IconMatchCapabilityError,
   IconMatchModelMismatchError,
@@ -54,6 +55,17 @@ export interface IconMatcherParts {
   expandQuery?: (query: string) => Promise<string[]>;
   /** Called when `expandQuery` rejects; search continues without expansions. */
   onExpandError?: (error: unknown) => void;
+  /**
+   * Remembered user choices (spec §15.4), e.g. `createChoiceMemory(saved)`.
+   * An exact repeat of a query returns its chosen icon first; with an
+   * embedder, choices made for similar queries also rank higher.
+   */
+  choices?: ChoiceMemory;
+  /**
+   * Minimum query-to-query cosine for a past choice to count as similar.
+   * Default `DEFAULT_CHOICE_SIMILARITY`.
+   */
+  choiceSimilarity?: number;
   /**
    * Checked against `embedder` and `vectors` (model, dims) at construction;
    * its `sets` feed `attributions()`.
@@ -121,12 +133,26 @@ export interface IconMatcher {
   attributions(): Attribution[];
   /** Rendered `<svg>` string (spec §7.6). Needs the `svgs` part. */
   svg(id: string, options?: SvgOptions): Promise<string>;
+  /**
+   * Remembers that the user picked `iconId` for `query` (spec §15.4). Needs
+   * the `choices` part; embeds the query when an embedder is present.
+   */
+  recordChoice(query: string, iconId: string): Promise<void>;
 }
 
 export const DEFAULT_LIMIT = 10;
 
 /** RRF weight of the original query when expansions are fused (spec §7.3). */
 export const EXPANSION_ORIGINAL_WEIGHT = 2;
+
+/**
+ * Default `choiceSimilarity`: past queries at least this similar (embedding
+ * cosine) lend their chosen icon a ranking. See DECISIONS.md (spec §15.4).
+ */
+export const DEFAULT_CHOICE_SIMILARITY = 0.85;
+
+/** RRF weight of the ranking built from similar past choices. */
+export const CHOICE_RANK_WEIGHT = 2;
 
 interface Candidate {
   confidence: number;
@@ -152,6 +178,10 @@ interface QueryRanking {
   remoteUsed: boolean;
   /** Vectors or remote search contributed a ranking. */
   semantic: boolean;
+  /** The query's embedding, when local vectors ranked it. */
+  queryVector?: Float32Array;
+  /** Confidence of any icon for this query text, when local vectors scored every row. */
+  confidenceOf?: (id: string) => number;
 }
 
 /** Default `remoteTimeoutMs`. */
@@ -296,6 +326,7 @@ export function createIconMatcher(
     // The second ranking: remote search in place of local vectors (spec §7.0).
     let remote: Map<string, IconMatch> | undefined;
     let sims: Float32Array | undefined;
+    let queryVector: Float32Array | undefined;
     let secondIds: string[] = [];
     if (parts.remoteSearch) {
       try {
@@ -317,6 +348,7 @@ export function createIconMatcher(
       }
     } else if (semantic) {
       const [q] = await semantic.embedder.embed([query.trim()], "query");
+      queryVector = q;
       if (q) {
         sims = semantic.vector.similarities(q);
         secondIds = semantic.vector
@@ -344,11 +376,21 @@ export function createIconMatcher(
       if (r) c.remote = r;
       candidates.set(id, c);
     }
+    const allSims = sims;
     return {
       rankings: [keywordHits.map((h) => h.id), secondIds],
       candidates,
       remoteUsed: remote !== undefined,
       semantic: sims !== undefined || remote !== undefined,
+      ...(queryVector && { queryVector }),
+      ...(allSims && {
+        confidenceOf: (id: string) => {
+          const row = rowOf.get(id);
+          return row === undefined
+            ? 0
+            : hybridConfidence(allSims[row] ?? 0, keywordById.has(id));
+        },
+      }),
     };
   }
 
@@ -390,11 +432,41 @@ export function createIconMatcher(
       )),
     ];
 
-    const fused = fuse(
-      ranked.flatMap(({ weight, result }) =>
+    // Choice learning (spec §15.4): exact repeats come first; similar past
+    // queries' choices join the fusion as one more ranking.
+    const original = ranked[0]?.result;
+    const usable = (id: string) => byId.has(id) && !glyphs.has(id);
+    const exactIds = parts.choices
+      ? [
+          ...new Set(
+            parts.choices
+              .exact(normaliseQuery(query))
+              .map((e) => e.iconId)
+              .filter(usable),
+          ),
+        ]
+      : [];
+    const similarIds =
+      parts.choices && original?.queryVector && semantic
+        ? parts.choices
+            .similar(
+              original.queryVector,
+              semantic.embedder.modelId,
+              parts.choiceSimilarity ?? DEFAULT_CHOICE_SIMILARITY,
+            )
+            .map((e) => e.iconId)
+            .filter((id) => usable(id) && !exactIds.includes(id))
+        : [];
+    const chosen = new Set([...exactIds, ...similarIds]);
+
+    const fused = fuse([
+      ...ranked.flatMap(({ weight, result }) =>
         result.rankings.map((ids) => ({ ids, weight })),
       ),
-    );
+      ...(similarIds.length > 0
+        ? [{ ids: similarIds, weight: CHOICE_RANK_WEIGHT }]
+        : []),
+    ]);
     const remoteUsed = ranked.some(({ result }) => result.remoteUsed);
     const matches = fused.flatMap(({ id, score }) => {
       let hit: Candidate | undefined;
@@ -403,6 +475,12 @@ export function createIconMatcher(
         if (!c) continue;
         hit = hit ? mergeCandidates(hit, c) : c;
       }
+      if (!hit && chosen.has(id))
+        hit = {
+          confidence: original?.confidenceOf?.(id) ?? 0,
+          keyword: false,
+          vector: false,
+        };
       if (!hit) return [];
       const entry = byId.get(id);
       if (!entry) {
@@ -433,11 +511,32 @@ export function createIconMatcher(
         options.variant,
       );
       if (remoteUsed) match.matchedOn.remote = hit.remote !== undefined;
+      if (chosen.has(id)) match.matchedOn.choice = true;
       return [match];
     });
+    matches.sort(compareMatches(options.variant));
+    // An exact repeat returns the remembered icon(s) first, latest choice
+    // first, at full confidence, so best() never falls back on it.
+    const promoted = exactIds.flatMap((id): IconMatch[] => {
+      const entry = byId.get(id);
+      if (!entry) return [];
+      const existing = matches.find((m) => m.id === id);
+      const match =
+        existing ??
+        toMatch(
+          entry,
+          { score: 0, confidence: 1, keyword: false, vector: false },
+          options.variant,
+        );
+      match.confidence = 1;
+      match.matchedOn.choice = true;
+      return [match];
+    });
+    const rest = matches.filter((m) => !exactIds.includes(m.id));
     return {
-      matches: matches.sort(compareMatches(options.variant)).slice(0, limit),
-      semantic: ranked.some(({ result }) => result.semantic),
+      matches: [...promoted, ...rest].slice(0, limit),
+      semantic:
+        ranked.some(({ result }) => result.semantic) || promoted.length > 0,
     };
   }
 
@@ -515,6 +614,21 @@ export function createIconMatcher(
         render.strokeWidth = options.strokeWidth;
       if (options.title !== undefined) render.title = options.title;
       return renderSvg(body, render);
+    },
+    async recordChoice(query, iconId) {
+      if (!parts.choices)
+        throw new IconMatchCapabilityError("recordChoice", "choices");
+      if (!byId.has(iconId)) throw new Error(`Unknown icon id ${iconId}`);
+      const normalised = normaliseQuery(query);
+      if (normalised === "") return;
+      const [vector] = semantic
+        ? await semantic.embedder.embed([query.trim()], "query")
+        : [];
+      parts.choices.record({
+        query: normalised,
+        iconId,
+        ...(vector && semantic && { vector, model: semantic.embedder.modelId }),
+      });
     },
   };
   return Promise.resolve(matcher);

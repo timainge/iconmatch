@@ -104,7 +104,13 @@ export interface IconMatch {
   /** Variant that will be rendered (after fallback). */
   variant: VariantName;
   availableVariants: VariantName[];
-  matchedOn: { keyword: boolean; vector: boolean; remote?: boolean };
+  matchedOn: {
+    keyword: boolean;
+    vector: boolean;
+    remote?: boolean;
+    /** Ranked from a remembered user choice (spec §15.4). */
+    choice?: boolean;
+  };
   isFallback?: boolean;
   /** Set when isFallback: the character the glyph shows. */
   fallbackLetter?: string;

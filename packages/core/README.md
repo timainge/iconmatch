@@ -132,6 +132,43 @@ console.log(await matcher.search("Admin", { limit: 5 }));
 
 The expander used above (`examples/query-expansion/ollama-expander.ts` in the repository) calls a local Ollama model; any chat API works. Each icon keeps its best confidence across the original and expanded queries, so expansion raises confidences: pair it with a higher `minConfidence` (0.70 worked best on the eval's tuning split, and even then it falls back less often). On the eval it didn't improve ranking, so treat it as an option to try on your own labels.
 
+## Learning from choices
+
+When a user overrides a suggestion, record it: the next search for the same name returns their pick first (at full confidence, so `best()` never falls back on it). With an embedder, choices made for similar names (embedding cosine ≥ `choiceSimilarity`) also rank higher. The memory is plain JSON that your app stores wherever it likes; nothing is sent anywhere.
+
+<!-- example: examples/readme/choices.ts -->
+
+```ts
+import {
+  createChoiceMemory,
+  createIconMatcher,
+  loadCatalog,
+  loadKeywordIndex,
+  type ChoiceEntry,
+} from "@iconmatch/core";
+import { packagedSource } from "@iconmatch/core/node";
+
+// Choices your app saved earlier (e.g. from a database or localStorage).
+const saved: ChoiceEntry[] = [];
+
+const source = packagedSource();
+const choices = createChoiceMemory(saved);
+const matcher = await createIconMatcher({
+  catalog: await loadCatalog(source),
+  keywordIndex: await loadKeywordIndex(source),
+  choices,
+});
+
+// The user overrides the suggestion for "Admin" with a briefcase...
+await matcher.recordChoice("Admin", "tabler:briefcase");
+// ...so the next "Admin" (any case or spacing) suggests it straight away.
+console.log((await matcher.best("admin")).id); // tabler:briefcase
+
+// Persist the memory however you like; it's plain JSON.
+const toSave: ChoiceEntry[] = choices.export();
+console.log(JSON.stringify(toSave));
+```
+
 ## API
 
 | Primitive                                                                                                  | Purpose                                                                     |
@@ -142,6 +179,7 @@ The expander used above (`examples/query-expansion/ollama-expander.ts` in the re
 | `createKeywordSearcher`, `createVectorSearcher`, `fuse`, `hybridConfidence`                                | Lower-level ranking pieces                                                  |
 | `renderSvg(body, opts)`, `svgsFromArtifact(svgs)`                                                          | SVG strings from JSON-safe bodies                                           |
 | `letterFallback(label, catalog)`                                                                           | The lettered glyph on its own                                               |
+| `createChoiceMemory(saved)`, `matcher.recordChoice(query, iconId)`                                         | Remember user picks (see "Learning from choices")                           |
 | `createTransformersEmbedder` from `@iconmatch/core/embedder-transformers`                                  | Local embedder (optional peer dependency)                                   |
 
 `matcher.attributions()` lists the icon sets whose licence requires visible credit (none for Tabler, which is MIT); it needs the `manifest` part.
