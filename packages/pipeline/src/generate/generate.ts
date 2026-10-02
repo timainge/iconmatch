@@ -7,6 +7,7 @@
  */
 import type { SvgBody } from "@iconmatch/core";
 import type { ChatMessage, EnrichmentProvider } from "../enrich/provider.js";
+import { withBackoff, type RetryOptions } from "../enrich/runner.js";
 import { MAX_VALIDATION_RETRIES } from "../enrich/text.js";
 import { validateIcon, type LintLimits } from "./validate.js";
 
@@ -93,8 +94,13 @@ export async function generateCandidates(
     /** Sampling temperature; above 0 so the drafts differ. Default 0.8. */
     temperature?: number;
     limits?: LintLimits;
+    /** Backoff for retryable provider errors (network, 5xx), as in enrichment. */
+    retry?: RetryOptions;
+    sleep?: (ms: number) => Promise<void>;
   },
 ): Promise<Candidate[]> {
+  const sleep =
+    options.sleep ?? ((ms) => new Promise<void>((r) => setTimeout(r, ms)));
   const out: Candidate[] = [];
   for (let index = 1; index <= options.n; index++) {
     const messages = generateMessages(options.concept, options.examples);
@@ -104,12 +110,17 @@ export async function generateCandidates(
     let body: string | undefined;
     for (let attempt = 0; attempt <= MAX_VALIDATION_RETRIES; attempt++) {
       attempts++;
-      const reply = await provider.chat({
-        system: GENERATE_SYSTEM_PROMPT,
-        messages,
-        jsonSchema: GENERATE_JSON_SCHEMA,
-        temperature: options.temperature ?? 0.8,
-      });
+      const reply = await withBackoff(
+        () =>
+          provider.chat({
+            system: GENERATE_SYSTEM_PROMPT,
+            messages,
+            jsonSchema: GENERATE_JSON_SCHEMA,
+            temperature: options.temperature ?? 0.8,
+          }),
+        options.retry ?? {},
+        sleep,
+      );
       const svg = extractSvg(reply.content);
       raw = svg ?? reply.content;
       const result = svg

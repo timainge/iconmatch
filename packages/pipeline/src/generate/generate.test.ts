@@ -3,7 +3,11 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { main, type CliIo } from "../cli.js";
-import type { ChatRequest, EnrichmentProvider } from "../enrich/provider.js";
+import {
+  ProviderError,
+  type ChatRequest,
+  type EnrichmentProvider,
+} from "../enrich/provider.js";
 import {
   GENERATE_SYSTEM_PROMPT,
   galleryHtml,
@@ -62,6 +66,33 @@ describe("generateCandidates (spec §15.7)", () => {
     );
     expect(requests[0]?.system).toBe(GENERATE_SYSTEM_PROMPT);
     expect(requests[0]?.temperature).toBe(0.8);
+  });
+
+  it("backs off and retries a retryable provider error (e.g. the server was busy)", async () => {
+    let calls = 0;
+    const flaky: EnrichmentProvider = {
+      kind: "ollama",
+      model: "m",
+      chat: () =>
+        ++calls === 1
+          ? Promise.reject(new ProviderError("fetch failed", true))
+          : Promise.resolve({
+              content: JSON.stringify({ svg: VALID }),
+              model: "m",
+            }),
+    };
+    const sleeps: number[] = [];
+    const [c] = await generateCandidates(flaky, {
+      concept: "x",
+      examples: [example],
+      n: 1,
+      sleep: (ms) => {
+        sleeps.push(ms);
+        return Promise.resolve();
+      },
+    });
+    expect(c?.body).toBeDefined();
+    expect(sleeps).toEqual([1000]);
   });
 
   it("builds few-shot turns from the set's own icons, then the concept", () => {
@@ -180,5 +211,28 @@ describe("iconmatch-build generate", () => {
       await readFile(join(dir, "out", "generated", "index.html"), "utf8"),
     ).toContain("judge: fits (0.70) a bee hive");
     expect(await main(["generate"], io)).toBe(1);
+    // A concept whose calls fail hard is logged and skipped; the rest still run.
+    const failing: EnrichmentProvider = {
+      kind: "ollama",
+      model: "m",
+      chat: (req) =>
+        req.messages.at(-1)?.content === "Concept: Broken"
+          ? Promise.reject(new ProviderError("bad request", false, 400))
+          : Promise.resolve({
+              content: JSON.stringify({ svg: VALID }),
+              model: "m",
+            }),
+    };
+    out.length = 0;
+    io.createProvider = () => failing;
+    expect(
+      await main(
+        ["generate", "--concept", "Broken", "--concept", "Fine", "--n", "1"],
+        io,
+      ),
+    ).toBe(1);
+    expect(out).toContain("generate: Broken: failed: bad request");
+    expect(out).toContain("generate: Fine: 1/1 valid");
+    expect(out).toContain("ERR generate: failed for Broken");
   });
 });

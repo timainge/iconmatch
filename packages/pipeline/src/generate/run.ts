@@ -2,6 +2,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import type { CatalogEntry, SvgArtifact } from "@iconmatch/core";
 import type { EnrichmentProvider } from "../enrich/provider.js";
+import type { RetryOptions } from "../enrich/runner.js";
 import { runJudgements } from "../judge/judge.js";
 import {
   galleryHtml,
@@ -63,7 +64,13 @@ export async function runGenerate(options: {
   /** When given, valid candidates are judged ("depicts the concept"). */
   judge?: { provider: EnrichmentProvider; cacheFile: string };
   log?: (message: string) => void;
-}): Promise<{ candidates: StoredCandidate[]; outDir: string }> {
+  retry?: RetryOptions;
+  sleep?: (ms: number) => Promise<void>;
+}): Promise<{
+  candidates: StoredCandidate[];
+  outDir: string;
+  failed: string[];
+}> {
   const catalog = JSON.parse(
     await readFile(join(options.buildDir, "catalog.json"), "utf8"),
   ) as CatalogEntry[];
@@ -77,16 +84,25 @@ export async function runGenerate(options: {
   await mkdir(outDir, { recursive: true });
 
   const fresh: StoredCandidate[] = [];
+  const failed: string[] = [];
   for (const concept of options.concepts) {
-    const drafts = await generateCandidates(options.provider, {
-      concept,
-      examples,
-      n: options.n,
-    });
-    options.log?.(
-      `generate: ${concept}: ${String(drafts.filter((d) => d.body).length)}/${String(drafts.length)} valid`,
-    );
-    fresh.push(...drafts);
+    try {
+      const drafts = await generateCandidates(options.provider, {
+        concept,
+        examples,
+        n: options.n,
+        ...(options.retry && { retry: options.retry }),
+        ...(options.sleep && { sleep: options.sleep }),
+      });
+      options.log?.(
+        `generate: ${concept}: ${String(drafts.filter((d) => d.body).length)}/${String(drafts.length)} valid`,
+      );
+      fresh.push(...drafts);
+    } catch (e) {
+      // One concept's failure (e.g. the model server went away) doesn't lose the rest.
+      failed.push(concept);
+      options.log?.(`generate: ${concept}: failed: ${(e as Error).message}`);
+    }
   }
 
   if (options.judge) {
@@ -136,5 +152,5 @@ export async function runGenerate(options: {
     candidates: all.filter((c) => c.concept === concept),
   }));
   await writeFile(join(outDir, "index.html"), galleryHtml(rows, examples));
-  return { candidates: fresh, outDir };
+  return { candidates: fresh, outDir, failed };
 }

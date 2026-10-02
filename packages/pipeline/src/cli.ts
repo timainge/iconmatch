@@ -290,7 +290,7 @@ export async function main(
           baseUrl: resolved.enrich.baseUrl,
           model,
         });
-      const { candidates, outDir } = await runGenerate({
+      const { candidates, outDir, failed } = await runGenerate({
         buildDir: resolved.buildDir,
         concepts,
         n,
@@ -307,7 +307,9 @@ export async function main(
       io.log(
         `generate: ${String(valid)}/${String(candidates.length)} valid candidates -> ${join(outDir, "index.html")}`,
       );
-      return 0;
+      if (failed.length > 0)
+        io.error(`generate: failed for ${failed.join(", ")}`);
+      return failed.length > 0 ? 1 : 0;
     }
     const stages = stage === "all" ? ORDER : [stage];
     for (const s of stages) {
