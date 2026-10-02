@@ -1,0 +1,2391 @@
+[
+  {
+    "concept": "Beekeeping",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M3 16h18v-1H3v1z\"/><path d=\"M3 12h18v-1H3v1z\"/><path d=\"M3 8h18v-1H3v1z\"/><path d=\"M3 4h18v-1H3v1z\"/><path d=\"M9 18h3v-1H9v1z\"/><path d=\"M9 14h3v-1H9v1z\"/><path d=\"M9 10h3v-1H9v1z\"/><path d=\"M9 6h3v-1H9v1z\"/><circle cx=\"7\" cy=\"5\" r=\"1\"/><circle cx=\"17\" cy=\"5\" r=\"1\"/><path d=\"M15 18h-3v-1h3v1z\"/><path d=\"M15 14h-3v-1h3v1z\"/><path d=\"M15 10h-3v-1h3v1z\"/><path d=\"M15 6h-3v-1h3v1z\"/></g></svg>",
+    "problems": ["paths too complex (132 commands > 120)"],
+    "attempts": 3,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1"
+  },
+  {
+    "concept": "Beekeeping",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M14 21h4M2 3h4M2 13h4M2 19h4\"/><circle cx=\"12\" cy=\"12\" r=\"5\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M14 21h4M2 3h4M2 13h4M2 19h4\"/><circle cx=\"12\" cy=\"12\" r=\"5\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a recognizable object or symbol related to beekeeping."
+    }
+  },
+  {
+    "concept": "Beekeeping",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M13 17h5v-2h-5v2zM13 7h5v2h-5v-2zM13 11h5v2h-5v-2z\"/><circle cx=\"13\" cy=\"22\" r=\"2\"/><line x1=\"13\" y1=\"16\" x2=\"15\" y2=\"18\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M13 17h5v-2h-5v2zM13 7h5v2h-5v-2zM13 11h5v2h-5v-2z\"/><circle cx=\"13\" cy=\"22\" r=\"2\"/><line x1=\"13\" y1=\"16\" x2=\"15\" y2=\"18\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a recognizable object or symbol related to beekeeping."
+    }
+  },
+  {
+    "concept": "Beekeeping",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M11 7h2v12h-2z\"/><circle cx=\"11\" cy=\"14\" r=\"1\"/><path d=\"M14 7v12\"/><circle cx=\"17\" cy=\"14\" r=\"1\"/><path d=\"M20 7h2v12h-2z\"/><path d=\"M12 19l4-4-4-4\"/><path d=\"M12 19v-6m-2-2v-6m4-4v6\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M11 7h2v12h-2z\"/><circle cx=\"11\" cy=\"14\" r=\"1\"/><path d=\"M14 7v12\"/><circle cx=\"17\" cy=\"14\" r=\"1\"/><path d=\"M20 7h2v12h-2z\"/><path d=\"M12 19l4-4-4-4\"/><path d=\"M12 19v-6m-2-2v-6m4-4v6\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a recognizable object or symbol related to beekeeping."
+    }
+  },
+  {
+    "concept": "Pottery",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 3c3.314 0 6 2.686 6 6s-2.686 6-6 6-6-2.686-6-6 2.686-6 6-6zm0 16c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6z\"/><path d=\"M12 16v3\"/><path d=\"M12 13v-3\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 3c3.314 0 6 2.686 6 6s-2.686 6-6 6-6-2.686-6-6 2.686-6 6-6zm0 16c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6z\"/><path d=\"M12 16v3\"/><path d=\"M12 13v-3\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict pottery or any recognizable object from the category."
+    }
+  },
+  {
+    "concept": "Pottery",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M18 12h-4v4h-2v-8h-4v8h-2v-4h4v-2z\"/><path d=\"M14 12h4v4h2v-8h4v-2h-4v-4h-2v8h-4z\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M18 12h-4v4h-2v-8h-4v8h-2v-4h4v-2z\"/><path d=\"M14 12h4v4h2v-8h4v-2h-4v-4h-2v8h-4z\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict pottery or any recognizable object from the category."
+    }
+  },
+  {
+    "concept": "Pottery",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M11 14h2M11 16h2M11 18h2M11 20h2\"/><path d=\"M15 14h2M15 16h2M15 18h2M15 20h2\"/><path d=\"M19 14v2M19 16v2M19 18v2M19 20v2\"/><path d=\"M13 14v2M13 16v2M13 18v2M13 20v2\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M11 14h2M11 16h2M11 18h2M11 20h2\"/><path d=\"M15 14h2M15 16h2M15 18h2M15 20h2\"/><path d=\"M19 14v2M19 16v2M19 18v2M19 20v2\"/><path d=\"M13 14v2M13 16v2M13 18v2M13 20v2\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict pottery or any recognizable object from the category."
+    }
+  },
+  {
+    "concept": "Pottery",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M5 9h14M5 15h14\"/><path d=\"M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18zm-7-16a2 2 0 1 0 0 4 2 2 0 0 0 0-4z\"/><path d=\"M19 15l-4-4-4 4z\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M5 9h14M5 15h14\"/><path d=\"M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18zm-7-16a2 2 0 1 0 0 4 2 2 0 0 0 0-4z\"/><path d=\"M19 15l-4-4-4 4z\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict pottery or any recognizable object from the category."
+    }
+  },
+  {
+    "concept": "Origami",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M15.61 7.39a2 2 0 1 1 2.83 2.83L18 11l-6 6-6-6zm2.5 2.5L20 13l-5.5-5.5\"/><path d=\"M16.5 4v12m-6-2.5L12 16l-6-6 6-6\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M15.61 7.39a2 2 0 1 1 2.83 2.83L18 11l-6 6-6-6zm2.5 2.5L20 13l-5.5-5.5\"/><path d=\"M16.5 4v12m-6-2.5L12 16l-6-6 6-6\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": true,
+      "confidence": 0.95,
+      "reason": "The icon resembles a piece of origami, which fits the category name well."
+    }
+  },
+  {
+    "concept": "Origami",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M18 2h-3v14h3z\"/><path d=\"M10 20v-2h3v2h-3z\"/><path d=\"M8 12h2v2h-2z\"/><path d=\"M16 12h2v2h-2z\"/><path d=\"M12 14h2v2h-2z\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M18 2h-3v14h3z\"/><path d=\"M10 20v-2h3v2h-3z\"/><path d=\"M8 12h2v2h-2z\"/><path d=\"M16 12h2v2h-2z\"/><path d=\"M12 14h2v2h-2z\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": true,
+      "confidence": 0.95,
+      "reason": "The icon resembles a simple origami figure, which is a clear and recognizable representation of the category."
+    }
+  },
+  {
+    "concept": "Origami",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 10v4m-2-2h4m-4-2h4m-4-2h4m2-4h4\"/><path d=\"M17 14H7m10-4v8\"/><path d=\"M12 6v4m-2-2h4m-4-2h4m-4-2h4\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 10v4m-2-2h4m-4-2h4m-4-2h4m2-4h4\"/><path d=\"M17 14H7m10-4v8\"/><path d=\"M12 6v4m-2-2h4m-4-2h4m-4-2h4\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict origami, which typically involves paper folding, and instead appears to be a stylized letter or abstract shape."
+    }
+  },
+  {
+    "concept": "Origami",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M20 8h-4v4h4zm-4 8h-4v4h4zm0-8h-4v4h4z\"/><circle cx=\"12\" cy=\"12\" r=\"1\"/><path d=\"M12 16v-4h4v4h-4z\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M20 8h-4v4h4zm-4 8h-4v4h4zm0-8h-4v4h4z\"/><circle cx=\"12\" cy=\"12\" r=\"1\"/><path d=\"M12 16v-4h4v4h-4z\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": true,
+      "confidence": 0.95,
+      "reason": "The icon resembles a simple origami figure, which is a clear representation of the category."
+    }
+  },
+  {
+    "concept": "Taxidermy",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M14 3h2V1h-2zM14 15v2h2v-2h-2zM7 15v2h2v-2h-2zM11 3h2v2h-2V3zm4 12v2h2v-2h-2zM7 3h2v2h-2V3zm6 10h2v2h-2v-2zm4-12h2v2h-2V3z\"/><ellipse cx=\"14\" cy=\"14\" rx=\"4\" ry=\"2\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M14 3h2V1h-2zM14 15v2h2v-2h-2zM7 15v2h2v-2h-2zM11 3h2v2h-2V3zm4 12v2h2v-2h-2zM7 3h2v2h-2V3zm6 10h2v2h-2v-2zm4-12h2v2h-2V3z\"/><ellipse cx=\"14\" cy=\"14\" rx=\"4\" ry=\"2\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon resembles a camera, which is not a clear representation of taxidermy."
+    }
+  },
+  {
+    "concept": "Taxidermy",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 17l-5-5 5-5\"/><path d=\"M12 12l-5 5 5 5\"/><path d=\"M12 7c-4.41 0-8 3.59-8 8s3.59 8 8 8 8-3.59 8-8-3.59-8-8-8z\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 17l-5-5 5-5\"/><path d=\"M12 12l-5 5 5 5\"/><path d=\"M12 7c-4.41 0-8 3.59-8 8s3.59 8 8 8 8-3.59 8-8-3.59-8-8-8z\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon is a generic prohibition symbol and does not represent taxidermy."
+    }
+  },
+  {
+    "concept": "Taxidermy",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M10 21v-2a4 4 0 0 0-4-4H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2a4 4 0 0 0-4-4h-1a2 2 0 0 0-2 2zm-2-16h4v14h-4v-2h2v-2h-2v-2h2v-2h-2v-2zm6 0h4v14h-4v-2h2v-2h-2v-2h2v-2h-2v-2zm-6-10h2v2a2 2 0 0 1-2 2H16a2 2 0 0 1-2-2v-2z\"/><path d=\"M14 3h-4v2h4v2h-4v2h4v2h-4v2h4\"/><ellipse cx=\"14\" cy=\"8\" rx=\"2\" ry=\"2\"/></g></svg>",
+    "problems": ["101 coordinate(s) outside the 24×24 grid, e.g. (3, 31)"],
+    "attempts": 3,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1"
+  },
+  {
+    "concept": "Taxidermy",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M20 12H4v8h16v-8zm-4 0H8v8h8v-8zm-4 0H4v8h16v-8zM16 5v14H8V5h8zM12 13h-6v-3h6v3zM12 19h-6v-4h6v4z\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M20 12H4v8h16v-8zm-4 0H8v8h8v-8zm-4 0H4v8h16v-8zM16 5v14H8V5h8zM12 13h-6v-3h6v3zM12 19h-6v-4h6v4z\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon depicts a printer, which is not related to taxidermy."
+    }
+  },
+  {
+    "concept": "Falconry",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M11 18h2m-2-5v5m0-3v3m3-3h3\"/><path d=\"M11 10h2m-2-7v7m0-5v5m5-5h5\"/><circle cx=\"16\" cy=\"8\" r=\"4\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M11 18h2m-2-5v5m0-3v3m3-3h3\"/><path d=\"M11 10h2m-2-7v7m0-5v5m5-5h5\"/><circle cx=\"16\" cy=\"8\" r=\"4\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a recognizable object or symbol related to falconry."
+    }
+  },
+  {
+    "concept": "Falconry",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M10 15h4M10 11h4\"/><circle cx=\"12\" cy=\"12\" r=\"5\"/><path d=\"M12 3a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1zm10-4a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H14a1 1 0 0 1-1-1V14a1 1 0 0 1 1-1zm-8 4a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1z\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M10 15h4M10 11h4\"/><circle cx=\"12\" cy=\"12\" r=\"5\"/><path d=\"M12 3a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1zm10-4a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H14a1 1 0 0 1-1-1V14a1 1 0 0 1 1-1zm-8 4a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1z\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a recognizable object or symbol related to falconry."
+    }
+  },
+  {
+    "concept": "Falconry",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 21v-8m-2 4h4m-4-4v8m0-10V5h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-4h4\"/><path d=\"M11 7h2v12h-2zm5 0h2v12h-2zm-7 4h14v-8H4v8zm0-16v8h14V4H4z\"/></g></svg>",
+    "problems": ["1 coordinate(s) outside the 24×24 grid, e.g. (9, -5)"],
+    "attempts": 3,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1"
+  },
+  {
+    "concept": "Falconry",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M11 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2\"/><path d=\"M16 21v-2a4 4 0 0 1-4-4H9a4 4 0 0 1-4 4v2\"/><path d=\"M11 15v2a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-2\"/><path d=\"M16 15v2a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4v-2\"/><path d=\"M11 9v2a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-2\"/><path d=\"M16 9v2a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4v-2\"/><path d=\"M11 3v2a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-2\"/><path d=\"M16 3v2a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4v-2\"/><path d=\"M13 5h-2v14h2\"/><path d=\"M19 17h-2v-4h2\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M11 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2\"/><path d=\"M16 21v-2a4 4 0 0 1-4-4H9a4 4 0 0 1-4 4v2\"/><path d=\"M11 15v2a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-2\"/><path d=\"M16 15v2a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4v-2\"/><path d=\"M11 9v2a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-2\"/><path d=\"M16 9v2a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4v-2\"/><path d=\"M11 3v2a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-2\"/><path d=\"M16 3v2a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4v-2\"/><path d=\"M13 5h-2v14h2\"/><path d=\"M19 17h-2v-4h2\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a recognizable object or symbol related to falconry."
+    }
+  },
+  {
+    "concept": "Turtle care",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 21v-3a3 3 0 0 0-3-3H6a3 3 0 0 0-3 3v3\"/><circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M17 21v-5a3 3 0 0 0-3-3H9a3 3 0 0 0-3 3v5\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 21v-3a3 3 0 0 0-3-3H6a3 3 0 0 0-3 3v3\"/><circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M17 21v-5a3 3 0 0 0-3-3H9a3 3 0 0 0-3 3v5\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a turtle or any recognizable object related to turtle care."
+    }
+  },
+  {
+    "concept": "Turtle care",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 12l3-3m-3 3l3 3\"/><circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M12 9v10\"/><circle cx=\"8\" cy=\"12\" r=\"4\"/><path d=\"M8 9v10\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 12l3-3m-3 3l3 3\"/><circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M12 9v10\"/><circle cx=\"8\" cy=\"12\" r=\"4\"/><path d=\"M8 9v10\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a turtle or any recognizable object related to turtle care."
+    }
+  },
+  {
+    "concept": "Turtle care",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M14 4v4m0 8v4m-4-8h8m-4 0h-8m8 4h-4m-4 8h4m-8-4v-4m0-8v-4m8 8v-4m-8 4h8m4 0h-8\"/><circle cx=\"12\" cy=\"12\" r=\"1\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M14 4v4m0 8v4m-4-8h8m-4 0h-8m8 4h-4m-4 8h4m-8-4v-4m0-8v-4m8 8v-4m-8 4h8m4 0h-8\"/><circle cx=\"12\" cy=\"12\" r=\"1\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a turtle or any recognizable object related to turtle care."
+    }
+  },
+  {
+    "concept": "Turtle care",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 21a9 9 0 0 1-9-9 9 9 0 0 1 9-9 9 9 0 0 1 9 9 9 9 0 0 1-9 9\"/><path d=\"M12 5h6v6h-6z\"/><path d=\"M12 14a2 2 0 0 1 2-2v-6a2 2 0 0 1 2 2z\"/><path d=\"M18 12l-6-6-6 6z\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 21a9 9 0 0 1-9-9 9 9 0 0 1 9-9 9 9 0 0 1 9 9 9 9 0 0 1-9 9\"/><path d=\"M12 5h6v6h-6z\"/><path d=\"M12 14a2 2 0 0 1 2-2v-6a2 2 0 0 1 2 2z\"/><path d=\"M18 12l-6-6-6 6z\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon is a stylized number '4' and does not represent a turtle or any object related to turtle care."
+    }
+  },
+  {
+    "concept": "Reptile supplies",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M15 16h5m-5 0h-5m0-5v5m5 0v-5m-5 5h-5m5 0h5\"/><path d=\"M12 21a9 9 0 1 1 9-9 9 9 0 0 1-9 9zm-2-4a7 7 0 1 0 7-7 7 7 0 0 0-7 7z\"/><path d=\"M7 12l5 5\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M15 16h5m-5 0h-5m0-5v5m5 0v-5m-5 5h-5m5 0h5\"/><path d=\"M12 21a9 9 0 1 1 9-9 9 9 0 0 1-9 9zm-2-4a7 7 0 1 0 7-7 7 7 0 0 0-7 7z\"/><path d=\"M7 12l5 5\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon is abstract and does not clearly depict a recognizable object or symbol related to reptile supplies."
+    }
+  },
+  {
+    "concept": "Reptile supplies",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M3 4h18M3 10h18M3 16h18M3 22h18v-2H3v2z\"/><path d=\"M15 12h-3v6h3v-6z\"/><path d=\"M9 12h-3v6h3v-6z\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M3 4h18M3 10h18M3 16h18M3 22h18v-2H3v2z\"/><path d=\"M15 12h-3v6h3v-6z\"/><path d=\"M9 12h-3v6h3v-6z\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a recognizable object or symbol related to reptile supplies."
+    }
+  },
+  {
+    "concept": "Reptile supplies",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M14 17h2m-2-4v-2m0-2v-2m-2 4v-2m2 4v2m-2 4v2m2-4v2m2 4v2m-2 4h2m-2 4h2m2-4h2m2 4h2m-2 4h2m-2 4h2\"/><path d=\"M12 21v-2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2m-3-2v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2m2 0v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2\"/></g></svg>",
+    "problems": ["12 coordinate(s) outside the 24×24 grid, e.g. (14, 29)"],
+    "attempts": 3,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1"
+  },
+  {
+    "concept": "Reptile supplies",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M13 11h-2v2h2v-2zm3 0h-2v2h2v-2zm3 0h-2v2h2v-2zm6 0h-2v2h2v-2zm-3 8h-2v2h2v-2zm3 0h-2v2h2v-2zm6 0h-2v2h2v-2zm-3 4h-2v2h2v-2zm3 0h-2v2h2v-2zm6 0h-2v2h2v-2zm-3 4h-2v2h2v-2z\"/></g></svg>",
+    "problems": [
+      "paths too complex (121 commands > 120)",
+      "25 coordinate(s) outside the 24×24 grid, e.g. (31, 19)"
+    ],
+    "attempts": 3,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1"
+  },
+  {
+    "concept": "Sheep shearing",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M13 3v18M17 3v18\"/><path d=\"M11 13h2v6H11\"/><path d=\"M17 13h2v6H17\"/><path d=\"M10 17v-4h14v4\"/><path d=\"M10 19v-4h14v4\"/><path d=\"M12 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6z\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M13 3v18M17 3v18\"/><path d=\"M11 13h2v6H11\"/><path d=\"M17 13h2v6H17\"/><path d=\"M10 17v-4h14v4\"/><path d=\"M10 19v-4h14v4\"/><path d=\"M12 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6z\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict sheep shearing or any recognizable object from the category."
+    }
+  },
+  {
+    "concept": "Sheep shearing",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M21 18H3M3 18v-6h18v6\"/><path d=\"M12 9h2v8h-2z\"/><path d=\"M8 12h8m-8 0h8\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M21 18H3M3 18v-6h18v6\"/><path d=\"M12 9h2v8h-2z\"/><path d=\"M8 12h8m-8 0h8\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict sheep shearing or any recognizable object from the category."
+    }
+  },
+  {
+    "concept": "Sheep shearing",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 3v18M3 12h18\"/><path d=\"M14 12h2v2H14z\"/><path d=\"M8 12h2v2H8z\"/><path d=\"M6 12h2v2H6z\"/><path d=\"M12 12h2v2h-2z\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 3v18M3 12h18\"/><path d=\"M14 12h2v2H14z\"/><path d=\"M8 12h2v2H8z\"/><path d=\"M6 12h2v2H6z\"/><path d=\"M12 12h2v2h-2z\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict sheep shearing or any recognizable object from the category."
+    }
+  },
+  {
+    "concept": "Sheep shearing",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 2v18M8 12h8M14 22l-6-6M12 16l-6-6M8 10h8\"/><path d=\"M10 14h4v4h-4zm4 0h4v4h-4z\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 2v18M8 12h8M14 22l-6-6M12 16l-6-6M8 10h8\"/><path d=\"M10 14h4v4h-4zm4 0h4v4h-4z\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon depicts a hand with a finger pointing, which is not related to sheep shearing."
+    }
+  },
+  {
+    "concept": "Llama trekking",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M14 10h-4v4h4z\"/><path d=\"M10 16h4v4h-4z\"/><path d=\"M14 16h-4v4h4z\"/><path d=\"M10 10h4v4h-4z\"/><path d=\"M5 10h4v4H5z\"/><path d=\"M5 16h4v4H5z\"/><path d=\"M19 10h-4v4h4z\"/><path d=\"M19 16h-4v4h4z\"/><path d=\"M14 21h-4v-4h4z\"/><path d=\"M10 21h4v-4h-4z\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M14 10h-4v4h4z\"/><path d=\"M10 16h4v4h-4z\"/><path d=\"M14 16h-4v4h4z\"/><path d=\"M10 10h4v4h-4z\"/><path d=\"M5 10h4v4H5z\"/><path d=\"M5 16h4v4H5z\"/><path d=\"M19 10h-4v4h4z\"/><path d=\"M19 16h-4v4h4z\"/><path d=\"M14 21h-4v-4h4z\"/><path d=\"M10 21h4v-4h-4z\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a recognizable object or symbol related to llama trekking."
+    }
+  },
+  {
+    "concept": "Llama trekking",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 20v-2m0-4h.01\"/><path d=\"M12 8h.01\"/><path d=\"M12 4v2h.01\"/><path d=\"M12 12v2h.01\"/><path d=\"M12 16v2h.01\"/><path d=\"M9 12l3-3\"/><path d=\"M15 12l3 3\"/><path d=\"M12 19v-7a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v7\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 20v-2m0-4h.01\"/><path d=\"M12 8h.01\"/><path d=\"M12 4v2h.01\"/><path d=\"M12 12v2h.01\"/><path d=\"M12 16v2h.01\"/><path d=\"M9 12l3-3\"/><path d=\"M15 12l3 3\"/><path d=\"M12 19v-7a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v7\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a llama or any recognizable object related to llama trekking."
+    }
+  },
+  {
+    "concept": "Llama trekking",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 14.5c-1.937 0-3.5-1.563-3.5-3.5s1.563-3.5 3.5-3.5 3.5 1.563 3.5 3.5-1.563 3.5-3.5 3.5z\"/><path d=\"M12 10.5c-1.447 0-2.5 1.053-2.5 2.5s1.053 2.5 2.5 2.5 2.5-1.053 2.5-2.5-1.053-2.5-2.5-2.5z\"/><path d=\"M13 15.5h-3v-1h3v1z\"/><path d=\"M9 12h3v2H9z\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 14.5c-1.937 0-3.5-1.563-3.5-3.5s1.563-3.5 3.5-3.5 3.5 1.563 3.5 3.5-1.563 3.5-3.5 3.5z\"/><path d=\"M12 10.5c-1.447 0-2.5 1.053-2.5 2.5s1.053 2.5 2.5 2.5 2.5-1.053 2.5-2.5-1.053-2.5-2.5-2.5z\"/><path d=\"M13 15.5h-3v-1h3v1z\"/><path d=\"M9 12h3v2H9z\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a llama or any recognizable object related to llama trekking."
+    }
+  },
+  {
+    "concept": "Llama trekking",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 2l3 4-3 4\"/><path d=\"M5 18h14v2H5z\"/><path d=\"M9 15v3h3v-3H9zm5 0v3h3v-3h-3z\"/><path d=\"M18 12v6h-6v-6\"/><ellipse cx=\"12\" cy=\"12\" rx=\"1\" ry=\"2\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 2l3 4-3 4\"/><path d=\"M5 18h14v2H5z\"/><path d=\"M9 15v3h3v-3H9zm5 0v3h3v-3h-3z\"/><path d=\"M18 12v6h-6v-6\"/><ellipse cx=\"12\" cy=\"12\" rx=\"1\" ry=\"2\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a llama or any recognizable object related to llama trekking."
+    }
+  },
+  {
+    "concept": "Snake enclosure",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"3\" ry=\"3\"/><path d=\"M11 3h2v18h-2z\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"3\" ry=\"3\"/><path d=\"M11 3h2v18h-2z\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon is a generic pause symbol and does not clearly depict a snake enclosure."
+    }
+  },
+  {
+    "concept": "Snake enclosure",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"3\" ry=\"3\"/><path d=\"M11 3v2m0 16v-2\"/><path d=\"M15 9l-4 4-4-4\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"3\" ry=\"3\"/><path d=\"M11 3v2m0 16v-2\"/><path d=\"M15 9l-4 4-4-4\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon is a checkmark, which is not related to snake enclosures."
+    }
+  },
+  {
+    "concept": "Snake enclosure",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 3v18l-9-5 9-5z\"/><path d=\"M12 3v18\"/><path d=\"M10 19h14v-4H10z\"/><path d=\"M10 15h14v-4H10z\"/><path d=\"M10 11h14v-4H10z\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 3v18l-9-5 9-5z\"/><path d=\"M12 3v18\"/><path d=\"M10 19h14v-4H10z\"/><path d=\"M10 15h14v-4H10z\"/><path d=\"M10 11h14v-4H10z\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon is a generic arrow pointing left, which does not clearly depict a snake enclosure or any recognizable object from it."
+    }
+  },
+  {
+    "concept": "Snake enclosure",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\"/><path d=\"M3 3h18v18H3z\"/><circle cx=\"12\" cy=\"12\" r=\"1\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\"/><path d=\"M3 3h18v18H3z\"/><circle cx=\"12\" cy=\"12\" r=\"1\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon is too generic and does not clearly depict a snake enclosure."
+    }
+  },
+  {
+    "concept": "Frog pond",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><ellipse cx=\"12\" cy=\"12\" rx=\"8\" ry=\"4\"/><path d=\"M10 16v4l4-4\"/><path d=\"M16 10v4l-4-4\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><ellipse cx=\"12\" cy=\"12\" rx=\"8\" ry=\"4\"/><path d=\"M10 16v4l4-4\"/><path d=\"M16 10v4l-4-4\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon is a generic map pin, which does not clearly depict a frog pond or any recognizable object from it."
+    }
+  },
+  {
+    "concept": "Frog pond",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M11 5h2a2 2 0 0 0 2-2v14a2 2 0 0 0 2-2h-2M13 5h-2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2m-2-12h-2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-4\"/><ellipse cx=\"12\" cy=\"12\" rx=\"8\" ry=\"4\"/><path d=\"M12 19q-1 0-1.5-1\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M11 5h2a2 2 0 0 0 2-2v14a2 2 0 0 0 2-2h-2M13 5h-2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2m-2-12h-2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-4\"/><ellipse cx=\"12\" cy=\"12\" rx=\"8\" ry=\"4\"/><path d=\"M12 19q-1 0-1.5-1\"/></g>",
+    "problems": [],
+    "attempts": 2,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a frog pond or any recognizable object from it."
+    }
+  },
+  {
+    "concept": "Frog pond",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 18H4v-1h8v1zm4-9H4v1h16V9zm0 6H4v1h16v-1z\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 18H4v-1h8v1zm4-9H4v1h16V9zm0 6H4v1h16v-1z\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a frog pond or any recognizable object from it."
+    }
+  },
+  {
+    "concept": "Frog pond",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><ellipse cx=\"12\" cy=\"12\" rx=\"10\" ry=\"5\"/><path d=\"M12 8v8\"/><path d=\"M9 12h6\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><ellipse cx=\"12\" cy=\"12\" rx=\"10\" ry=\"5\"/><path d=\"M12 8v8\"/><path d=\"M9 12h6\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not depict a frog or any recognizable object from a frog pond."
+    }
+  },
+  {
+    "concept": "Honey harvest",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M11 5h2m10 7h-2m-7 3v2m7-3v-2m3 9h-2m-2 3v2m2-3v-2m-6-6h-2m6 6h-2m3-9v2m-3 9v-2m-2 3h-2m2-3h2\"/><ellipse cx=\"14\" cy=\"9\" rx=\"2\" ry=\"1\"/><path d=\"M17 12h-2v2h2\"/></g></svg>",
+    "problems": ["1 coordinate(s) outside the 24×24 grid, e.g. (20, 26)"],
+    "attempts": 3,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1"
+  },
+  {
+    "concept": "Honey harvest",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M18 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM18 16h-6v-2h6v2zM18 8h-6v-2h6v2z\"/><path d=\"M12 20c-3.866 0-7-3.134-7-7s3.134-7 7-7 7 3.134 7 7-3.134 7-7 7zm0-14c-3.866 0-7 3.134-7 7s3.134 7 7 7 7-3.134 7-7-3.134-7-7-7z\"/><circle cx=\"12\" cy=\"12\" r=\"2\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M18 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM18 16h-6v-2h6v2zM18 8h-6v-2h6v2z\"/><path d=\"M12 20c-3.866 0-7-3.134-7-7s3.134-7 7-7 7 3.134 7 7-3.134 7-7 7zm0-14c-3.866 0-7 3.134-7 7s3.134 7 7 7 7-3.134 7-7-3.134-7-7-7z\"/><circle cx=\"12\" cy=\"12\" r=\"2\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict honey or a recognizable object related to honey harvest."
+    }
+  },
+  {
+    "concept": "Honey harvest",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 17.75l-6-4v-2l6-4m-4 5l-2-2m-4 4v-5\"/><ellipse cx=\"12\" cy=\"12\" rx=\"8\" ry=\"8\"/><circle cx=\"12\" cy=\"12\" r=\"1\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 17.75l-6-4v-2l6-4m-4 5l-2-2m-4 4v-5\"/><ellipse cx=\"12\" cy=\"12\" rx=\"8\" ry=\"8\"/><circle cx=\"12\" cy=\"12\" r=\"1\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not depict a recognizable object or symbol related to honey harvest."
+    }
+  },
+  {
+    "concept": "Honey harvest",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 20v-4m0-1v-4m0-1v-4m0-1v-4m0-1v-4M3 12h18\"/><path d=\"M14 14l-4-4-4 4\"/><path d=\"M13 13.5l-4-4 4-4\"/></g></svg>",
+    "problems": ["1 coordinate(s) outside the 24×24 grid, e.g. (12, -4)"],
+    "attempts": 3,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1"
+  },
+  {
+    "concept": "Quilting",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M10 8h4M10 12h4M10 16h4\"/><path d=\"M6 8h4M6 12h4M6 16h4\"/><path d=\"M18 8h-4M18 12h-4M18 16h-4\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M10 8h4M10 12h4M10 16h4\"/><path d=\"M6 8h4M6 12h4M6 16h4\"/><path d=\"M18 8h-4M18 12h-4M18 16h-4\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon is too generic and does not clearly depict quilting."
+    }
+  },
+  {
+    "concept": "Quilting",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><polyline points=\"14 3 14 8 10 8 10 11 14 11 14 14 10 14 10 8 16 8 16 11 14 16 14\"/><polyline points=\"6 3 6 8 10 8 10 11 6 11 6 14 10 14 10 8 16 8 16 11 18 11 14 14 14\"/></g></svg>",
+    "problems": [
+      "<polyline> needs an even number of coordinates",
+      "<polyline> needs an even number of coordinates"
+    ],
+    "attempts": 3,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1"
+  },
+  {
+    "concept": "Quilting",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 2l4 12M12 18l-4-12\"/><circle cx=\"9\" cy=\"12\" r=\"2\"/><circle cx=\"15\" cy=\"12\" r=\"2\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 2l4 12M12 18l-4-12\"/><circle cx=\"9\" cy=\"12\" r=\"2\"/><circle cx=\"15\" cy=\"12\" r=\"2\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a recognizable object or symbol related to quilting."
+    }
+  },
+  {
+    "concept": "Quilting",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 3v6m0 12v-6\"/><path d=\"M12 12l-4 4 4 4\"/><path d=\"M16 16l-4-4-4 4\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 3v6m0 12v-6\"/><path d=\"M12 12l-4 4 4 4\"/><path d=\"M16 16l-4-4-4 4\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a recognizable object or symbol related to quilting."
+    }
+  },
+  {
+    "concept": "Embroidery",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18z\"/><path d=\"M12 5v14M12 9v6M9 12h6M18 12h6\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18z\"/><path d=\"M12 5v14M12 9v6M9 12h6M18 12h6\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon is a crosshair, which is not related to embroidery."
+    }
+  },
+  {
+    "concept": "Embroidery",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M10 12h4v4h2v-4h4v-2h-4v-4h-2v4H10z\"/><path d=\"M12 18v-2h4v2h-4z\"/><path d=\"M12 4v2h4V4h-4z\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M10 12h4v4h2v-4h4v-2h-4v-4h-2v4H10z\"/><path d=\"M12 18v-2h4v2h-4z\"/><path d=\"M12 4v2h4V4h-4z\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon is abstract and does not clearly depict embroidery or any recognizable object from it."
+    }
+  },
+  {
+    "concept": "Embroidery",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M16 16v4M8 16v4M4 16v4\"/><path d=\"M12 4v4M8 4v4M4 4v4\"/><path d=\"M20 12h-4M16 12h-4M12 12h-4\"/><path d=\"M18 20h-4M14 20h-4M10 20h-4\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M16 16v4M8 16v4M4 16v4\"/><path d=\"M12 4v4M8 4v4M4 4v4\"/><path d=\"M20 12h-4M16 12h-4M12 12h-4\"/><path d=\"M18 20h-4M14 20h-4M10 20h-4\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict embroidery or any recognizable object from it."
+    }
+  },
+  {
+    "concept": "Embroidery",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M5 7h14M5 11h14M5 15h14M5 19h14\"/><polyline points=\"16 10 12 14 8 10\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M5 7h14M5 11h14M5 15h14M5 19h14\"/><polyline points=\"16 10 12 14 8 10\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict an object or symbol related to embroidery."
+    }
+  },
+  {
+    "concept": "Woodturning",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M14 12h4M14 4v8M18 18V6M6 18V6M2 12h4M2 4v8M6 4v8\"/><circle cx=\"14\" cy=\"14\" r=\"4\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M14 12h4M14 4v8M18 18V6M6 18V6M2 12h4M2 4v8M6 4v8\"/><circle cx=\"14\" cy=\"14\" r=\"4\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a recognizable object or symbol related to woodturning."
+    }
+  },
+  {
+    "concept": "Woodturning",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M18 12v-7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7h6z\"/><path d=\"M12 16v-4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v4h-6z\"/><path d=\"M12 20v-4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v4h-6z\"/><path d=\"M9 8h12v4H9z\"/><path d=\"M9 14h12v4H9z\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M18 12v-7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7h6z\"/><path d=\"M12 16v-4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v4h-6z\"/><path d=\"M12 20v-4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v4h-6z\"/><path d=\"M9 8h12v4H9z\"/><path d=\"M9 14h12v4H9z\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon depicts a printer, which is not related to woodturning."
+    }
+  },
+  {
+    "concept": "Woodturning",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M10 21v-2a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m-2 0a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2\"/><path d=\"M12 10h2m-2 7v-2\"/><path d=\"M15 3v2a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V3m13 8h-2v-2\"/><path d=\"M18 10h-2m-2 7v-2\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M10 21v-2a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m-2 0a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2\"/><path d=\"M12 10h2m-2 7v-2\"/><path d=\"M15 3v2a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V3m13 8h-2v-2\"/><path d=\"M18 10h-2m-2 7v-2\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a recognizable object or symbol related to woodturning."
+    }
+  },
+  {
+    "concept": "Woodturning",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M14 12l3-4-3-4M14 12v8a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V12h5zM14 4v8M14 4h-3v10h3z\"/><path d=\"M11 10h2v2H11zM11 16h2v2H11z\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M14 12l3-4-3-4M14 12v8a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V12h5zM14 4v8M14 4h-3v10h3z\"/><path d=\"M11 10h2v2H11zM11 16h2v2H11z\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a recognizable object or symbol related to woodturning."
+    }
+  },
+  {
+    "concept": "Glassblowing",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M21 7v10H3V7h18zM7 11h10v2H7z\"/><path d=\"M10 16l4-4-4-4\"/><path d=\"M14 7l2 2-2 2\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M21 7v10H3V7h18zM7 11h10v2H7z\"/><path d=\"M10 16l4-4-4-4\"/><path d=\"M14 7l2 2-2 2\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict glassblowing, which typically involves a blowpipe and molten glass."
+    }
+  },
+  {
+    "concept": "Glassblowing",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M10 4h4v16h-4z\"/><path d=\"M10 18v-2h4v2h-4z\"/><path d=\"M10 6h4v2h-4z\"/><path d=\"M14 12l-2-2l-2 2m0 4l-2-2l-2 2\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M10 4h4v16h-4z\"/><path d=\"M10 18v-2h4v2h-4z\"/><path d=\"M10 6h4v2h-4z\"/><path d=\"M14 12l-2-2l-2 2m0 4l-2-2l-2 2\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon depicts a door lock, which is not related to glassblowing."
+    }
+  },
+  {
+    "concept": "Glassblowing",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M18 4v12h-2V4h-2v12h2zm-6 12h-2v-2h2v2zm-6-4h-2v-2h2v2zm12-12H6v2h16V4zm-2 16H6v-2h16v2zm-2-6H6V6h16v2z\"/><circle cx=\"12\" cy=\"12\" r=\"1\"/><line x1=\"12\" y1=\"12\" x2=\"12\" y2=\"14\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M18 4v12h-2V4h-2v12h2zm-6 12h-2v-2h2v2zm-6-4h-2v-2h2v2zm12-12H6v2h16V4zm-2 16H6v-2h16v2zm-2-6H6V6h16v2z\"/><circle cx=\"12\" cy=\"12\" r=\"1\"/><line x1=\"12\" y1=\"12\" x2=\"12\" y2=\"14\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict glassblowing, which typically involves molten glass and tools, and instead appears to be abstract or unrelated."
+    }
+  },
+  {
+    "concept": "Glassblowing",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 22H2v-2h10v2zm0-9H2v2h10V7zm0-5H2v2h10V2z\"/><path d=\"M12 10.5l2.5-2.5-2.5-2.5z\"/><path d=\"M12 15l5-5-5-5\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 22H2v-2h10v2zm0-9H2v2h10V7zm0-5H2v2h10V2z\"/><path d=\"M12 10.5l2.5-2.5-2.5-2.5z\"/><path d=\"M12 15l5-5-5-5\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict glassblowing or any recognizable object from it."
+    }
+  },
+  {
+    "concept": "Soap making",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M10 15v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v2h-2a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2z\"/><circle cx=\"14\" cy=\"12\" r=\"2\"/><line x1=\"18\" y1=\"12\" x2=\"22\" y2=\"12\"/><path d=\"M14 20v-2a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M10 15v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v2h-2a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2z\"/><circle cx=\"14\" cy=\"12\" r=\"2\"/><line x1=\"18\" y1=\"12\" x2=\"22\" y2=\"12\"/><path d=\"M14 20v-2a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon is abstract and does not clearly depict a recognizable object or symbol related to soap making."
+    }
+  },
+  {
+    "concept": "Soap making",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M15 13h-6v-6h6v6z\"/><path d=\"M5 7h14v2H5z\"/><path d=\"M15 17h-6v-6h6v6z\"/><circle cx=\"15\" cy=\"12\" r=\"2\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M15 13h-6v-6h6v6z\"/><path d=\"M5 7h14v2H5z\"/><path d=\"M15 17h-6v-6h6v6z\"/><circle cx=\"15\" cy=\"12\" r=\"2\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a recognizable object or symbol related to soap making."
+    }
+  },
+  {
+    "concept": "Soap making",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M11 14h2M11 18h2M11 6h2M11 2h2\"/><path d=\"M18 12v2h-2v-2h2zM14 18v2h-2v-2h2zM12 14v2h-2v-2h2zM10 12v2h-2v-2h2zM16 6v2h-2v-2h2zM14 2v2h-2v-2h2zM12 18v2h-2v-2h2z\"/><path d=\"M11 16h2v2H11z\"/><path d=\"M18 6h-2v2h2zM14 12h-2v2h2zM10 18h-2v2h2z\"/></g></svg>",
+    "problems": ["paths too complex (129 commands > 120)"],
+    "attempts": 3,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1"
+  },
+  {
+    "concept": "Soap making",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M14 11h2a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2\"/><path d=\"M5 13h4v-6h-4v6z\"/><path d=\"M11 7h2v8h-2z\"/><path d=\"M16 7h2v8h-2z\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M14 11h2a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2\"/><path d=\"M5 13h4v-6h-4v6z\"/><path d=\"M11 7h2v8h-2z\"/><path d=\"M16 7h2v8h-2z\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict any object or symbol related to soap making."
+    }
+  },
+  {
+    "concept": "Bookbinding",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M4 20h4M4 16h4M4 12h4M4 8h4M4 4h4\"/><path d=\"M16 4v4M16 8v4M16 12v4M16 16v4M16 20v4\"/><path d=\"M8 4v4M8 8v4M8 12v4M8 16v4M8 20v4\"/><path d=\"M20 14h-2v-2h2v2\"/><path d=\"M20 10h-2v-2h2v2\"/><path d=\"M20 6h-2v-2h2v2\"/><path d=\"M4 10h2v2H4v-2\"/><path d=\"M4 14h2v2H4v-2\"/><path d=\"M4 18h2v2H4v-2\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M4 20h4M4 16h4M4 12h4M4 8h4M4 4h4\"/><path d=\"M16 4v4M16 8v4M16 12v4M16 16v4M16 20v4\"/><path d=\"M8 4v4M8 8v4M8 12v4M8 16v4M8 20v4\"/><path d=\"M20 14h-2v-2h2v2\"/><path d=\"M20 10h-2v-2h2v2\"/><path d=\"M20 6h-2v-2h2v2\"/><path d=\"M4 10h2v2H4v-2\"/><path d=\"M4 14h2v2H4v-2\"/><path d=\"M4 18h2v2H4v-2\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict bookbinding or any recognizable object from it."
+    }
+  },
+  {
+    "concept": "Bookbinding",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M10 12h4M10 16h4\"/><path d=\"M20 4h-8M14 12h-4M14 16h-4\"/><path d=\"M12 10v4m0-4v4\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M10 12h4M10 16h4\"/><path d=\"M20 4h-8M14 12h-4M14 16h-4\"/><path d=\"M12 10v4m0-4v4\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict bookbinding or any recognizable object from it."
+    }
+  },
+  {
+    "concept": "Bookbinding",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 3v18M3 4h18M3 11h18M3 18h18\"/><circle cx=\"12\" cy=\"12\" r=\"2\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 3v18M3 4h18M3 11h18M3 18h18\"/><circle cx=\"12\" cy=\"12\" r=\"2\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict bookbinding or any recognizable object from it."
+    }
+  },
+  {
+    "concept": "Bookbinding",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M11 3v6h-6V3h6M11 19v-6h6V19h-6M11 15v-6h6V15h-6\"/><ellipse cx=\"11\" cy=\"7\" rx=\"3\" ry=\"3\"/><ellipse cx=\"11\" cy=\"17\" rx=\"3\" ry=\"3\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M11 3v6h-6V3h6M11 19v-6h6V19h-6M11 15v-6h6V15h-6\"/><ellipse cx=\"11\" cy=\"7\" rx=\"3\" ry=\"3\"/><ellipse cx=\"11\" cy=\"17\" rx=\"3\" ry=\"3\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict bookbinding or any recognizable object from it."
+    }
+  },
+  {
+    "concept": "Lacrosse",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 15v-7h6v7h-6z\"/><path d=\"M12 21h6\"/><path d=\"M12 3h6\"/><path d=\"M12 9h-6\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 15v-7h6v7h-6z\"/><path d=\"M12 21h6\"/><path d=\"M12 3h6\"/><path d=\"M12 9h-6\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a recognizable object or symbol related to lacrosse."
+    }
+  },
+  {
+    "concept": "Lacrosse",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 15v-2h6v2h-6zm-4 4h6v-2h-6v2zm0-6v2h6v-2h-6zM9 13h6v2H9v-2zm0-6v2h6V7H9z\"/><circle cx=\"12\" cy=\"12\" r=\"1\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 15v-2h6v2h-6zm-4 4h6v-2h-6v2zm0-6v2h6v-2h-6zM9 13h6v2H9v-2zm0-6v2h6V7H9z\"/><circle cx=\"12\" cy=\"12\" r=\"1\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon resembles a camera, which is not related to lacrosse."
+    }
+  },
+  {
+    "concept": "Lacrosse",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M13 3l-2 5l-2-5zM12 19l-2-5l-2 5zM21 12l-11-2l-11 2z\"/><path d=\"M10 18l4-4l4 4\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M13 3l-2 5l-2-5zM12 19l-2-5l-2 5zM21 12l-11-2l-11 2z\"/><path d=\"M10 18l4-4l4 4\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a recognizable object or symbol related to lacrosse."
+    }
+  },
+  {
+    "concept": "Lacrosse",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M16.5 12a1 1 0 0 1 0 2h5a1 1 0 0 1 0 2h-5a1 1 0 0 1 0-2z\"/><path d=\"M11 21v-3H7v-4h4v1h5l-3-3-3 3h5v1h-4v4H11z\"/><path d=\"M7 12l2 3 2-3\"/><ellipse cx=\"14\" cy=\"12\" rx=\"4\" ry=\"6\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M16.5 12a1 1 0 0 1 0 2h5a1 1 0 0 1 0 2h-5a1 1 0 0 1 0-2z\"/><path d=\"M11 21v-3H7v-4h4v1h5l-3-3-3 3h5v1h-4v4H11z\"/><path d=\"M7 12l2 3 2-3\"/><ellipse cx=\"14\" cy=\"12\" rx=\"4\" ry=\"6\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a recognizable object or symbol related to lacrosse."
+    }
+  },
+  {
+    "concept": "Croquet",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M11 11v2m4 0v2m-4 4h2m4 0h2\"/><path d=\"M11 7v2m4 0v2m-4 4h2m4 0h2\"/><path d=\"M7 11v2m2 0v2m-2 4h2m2 0h2\"/><path d=\"M7 17v2m2 0v2m-2 4h2m2 0h2\"/><ellipse cx=\"12\" cy=\"15\" rx=\"2\" ry=\"4\"/><ellipse cx=\"12\" cy=\"9\" rx=\"2\" ry=\"4\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M11 11v2m4 0v2m-4 4h2m4 0h2\"/><path d=\"M11 7v2m4 0v2m-4 4h2m4 0h2\"/><path d=\"M7 11v2m2 0v2m-2 4h2m2 0h2\"/><path d=\"M7 17v2m2 0v2m-2 4h2m2 0h2\"/><ellipse cx=\"12\" cy=\"15\" rx=\"2\" ry=\"4\"/><ellipse cx=\"12\" cy=\"9\" rx=\"2\" ry=\"4\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict croquet, which typically involves a mallet and a ball, or a recognizable object from the game."
+    }
+  },
+  {
+    "concept": "Croquet",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M10 18h4v-2H10z\"/><path d=\"M14 18h4v-2H14z\"/><path d=\"M6 6v12\"/><path d=\"M20 6v12\"/><path d=\"M10 12l4 4-4 4\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M10 18h4v-2H10z\"/><path d=\"M14 18h4v-2H14z\"/><path d=\"M6 6v12\"/><path d=\"M20 6v12\"/><path d=\"M10 12l4 4-4 4\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict croquet, which typically involves a mallet and a ball, or a croquet set."
+    }
+  },
+  {
+    "concept": "Croquet",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M14 12h-8m8 0h8\"/><circle cx=\"12\" cy=\"14\" r=\"1\"/><circle cx=\"12\" cy=\"10\" r=\"1\"/><circle cx=\"14\" cy=\"12\" r=\"1\"/><circle cx=\"10\" cy=\"12\" r=\"1\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M14 12h-8m8 0h8\"/><circle cx=\"12\" cy=\"14\" r=\"1\"/><circle cx=\"12\" cy=\"10\" r=\"1\"/><circle cx=\"14\" cy=\"12\" r=\"1\"/><circle cx=\"10\" cy=\"12\" r=\"1\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict croquet, which typically involves a mallet and a ball, or a common symbol for it."
+    }
+  },
+  {
+    "concept": "Croquet",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M9 3v3h12v6h-12z\"/><path d=\"M21 5h-4a2 2 0 0 1 0-4H7a2 2 0 0 1 0-4h14v6h-4a2 2 0 0 1 0-4h4v-6h-12z\"/><path d=\"M11 17H7v-2h4v2z\"/></g></svg>",
+    "problems": [
+      "11 coordinate(s) outside the 24×24 grid, e.g. (5.038429439193539, -1.3901806440322568)"
+    ],
+    "attempts": 3,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1"
+  },
+  {
+    "concept": "Ferret care",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18zm0-15a7 7 0 1 0 0 14 7 7 0 0 0 0-14zm6 15a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm-6-2a1 1 0 1 1 0-2 1 1 0 0 1 0 2z\"/><path d=\"M12 3c-4.42 0-8 3.58-8 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm0 10c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4zm0-12c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6z\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18zm0-15a7 7 0 1 0 0 14 7 7 0 0 0 0-14zm6 15a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm-6-2a1 1 0 1 1 0-2 1 1 0 0 1 0 2z\"/><path d=\"M12 3c-4.42 0-8 3.58-8 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm0 10c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4zm0-12c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6z\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a ferret or any recognizable object related to ferret care."
+    }
+  },
+  {
+    "concept": "Ferret care",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M13 13h-2v2h2v-2zm0 4h-2v2h2v-2zm-4-6h-2v2h2v-2zm0 4h-2v2h2v-2zm11 0h-2v2h2v-2zm-4-6h-2v2h2v-2zm0 4h-2v2h2v-2zm8-4v2h-2v-2h2zm-4-6v2h-2v-2h2zm0 4v2h-2v-2h2zm-2 6h-2v2h2v-2zm2 4v2h-2v-2h2zm-2 6h-2v2h2v-2zm2 4v2h-2v-2h2zm-2 6h-2v2h2v-2zm2 4v2h-2v-2h2zm-2 6h-2v2h2v-2zm2 4v2h-2v-2h2z\"/><circle cx=\"14\" cy=\"14\" r=\"1\"/><circle cx=\"16\" cy=\"14\" r=\"1\"/><path d=\"M13 14l2 2l2-2zm0-4l2 2l2-2zm0 8l2 2l2-2\"/><path d=\"M17 17v-2h-2v2zm-2-4v2h-2v-2zm2 4v2h-2v-2zm-2 4v2h-2v-2zm2 4v2h-2v-2zm2 4v2h-2v-2zm2 4v2h-2v-2zm2 4v2h-2v-2zm2 4v2h-2v-2zm2 4v2h-2v-2zm2 4v2h-2v-2zm2 4v2h-2v-2zm2 4v2h-2v-2zm2 4v2h-2v-2zm2 4v2h-2v-2zm2 4v2h-2v-2zm2 4v2h-2v-2z\"/></g></svg>",
+    "problems": [
+      "paths too complex (371 commands > 120)",
+      "75 coordinate(s) outside the 24×24 grid, e.g. (20, 27)"
+    ],
+    "attempts": 3,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1"
+  },
+  {
+    "concept": "Ferret care",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M10 16h2v-2h-2zm4-6h2v2h-2zm-4-4h2v2h-2zm2 12h-2v-2h2v2zm-2-4h-2v2h2v-2zm-2-4h-2v2h2v-2zm-2-4h-2v2h2v-2z\"/><path d=\"M10 4v2h4V4h-4z\"/><path d=\"M16 10v2h-2v-2h2zm-2-2v2h-2v-2h2zm-2-2v2h-2v-2h2z\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M10 16h2v-2h-2zm4-6h2v2h-2zm-4-4h2v2h-2zm2 12h-2v-2h2v2zm-2-4h-2v2h2v-2zm-2-4h-2v2h2v-2zm-2-4h-2v2h2v-2z\"/><path d=\"M10 4v2h4V4h-4z\"/><path d=\"M16 10v2h-2v-2h2zm-2-2v2h-2v-2h2zm-2-2v2h-2v-2h2z\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon is abstract and does not clearly depict a recognizable object or symbol related to ferret care."
+    }
+  },
+  {
+    "concept": "Ferret care",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M18 11h-3V4h3M21 14V8H3v6h18M15 15h3v3H15z\"/><circle cx=\"15\" cy=\"13\" r=\"2\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M18 11h-3V4h3M21 14V8H3v6h18M15 15h3v3H15z\"/><circle cx=\"15\" cy=\"13\" r=\"2\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict ferret care or any recognizable object related to it."
+    }
+  },
+  {
+    "concept": "Hedgehog rescue",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18zm0-12a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm6 12h-6v-4h6v4z\"/><path d=\"M17 3a1 1 0 0 1 1 1v2H8v-2a1 1 0 0 1 1-1z\"/><path d=\"M11 9a1 1 0 1 1 2 0 1 1 0 0 1-2 0z\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18zm0-12a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm6 12h-6v-4h6v4z\"/><path d=\"M17 3a1 1 0 0 1 1 1v2H8v-2a1 1 0 0 1 1-1z\"/><path d=\"M11 9a1 1 0 1 1 2 0 1 1 0 0 1-2 0z\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a hedgehog or any recognizable object related to hedgehog rescue."
+    }
+  },
+  {
+    "concept": "Hedgehog rescue",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M20 12H4M20 4H4\"/><path d=\"M15 12H9M15 4H9\"/><path d=\"M10 12l4 4-4 4\"/><path d=\"M10 4l4 4-4 4\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M20 12H4M20 4H4\"/><path d=\"M15 12H9M15 4H9\"/><path d=\"M10 12l4 4-4 4\"/><path d=\"M10 4l4 4-4 4\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not depict a recognizable object or symbol related to hedgehog rescue."
+    }
+  },
+  {
+    "concept": "Hedgehog rescue",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 21V9h10v12H12zm4-16v2h2V4h-2z\"/><path d=\"M7 15h10v-5h-2v2h-4v2h-2v-2h-4v-2h2v-2h4v2h2v2h-4z\"/><circle cx=\"12\" cy=\"13\" r=\"1\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 21V9h10v12H12zm4-16v2h2V4h-2z\"/><path d=\"M7 15h10v-5h-2v2h-4v2h-2v-2h-4v-2h2v-2h4v2h2v2h-4z\"/><circle cx=\"12\" cy=\"13\" r=\"1\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a hedgehog or any recognizable object related to hedgehog rescue."
+    }
+  },
+  {
+    "concept": "Hedgehog rescue",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 21a9 9 0 0 1-9-9 9 9 0 0 1 9-9 9 9 0 0 1 9 9 9 9 0 0 1-9 9\"/><path d=\"M12 3a9 9 0 0 0 9 9 9 9 0 0 0-9 9 9 9 0 0 0-9-9 9 9 0 0 0 9-9\"/><path d=\"M12 12l-5.9 5.9 2.1 2.1 7-7-7-7 2.1-2.1z\"/><circle cx=\"12\" cy=\"12\" r=\"1\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 21a9 9 0 0 1-9-9 9 9 0 0 1 9-9 9 9 0 0 1 9 9 9 9 0 0 1-9 9\"/><path d=\"M12 3a9 9 0 0 0 9 9 9 9 0 0 0-9 9 9 9 0 0 0-9-9 9 9 0 0 0 9-9\"/><path d=\"M12 12l-5.9 5.9 2.1 2.1 7-7-7-7 2.1-2.1z\"/><circle cx=\"12\" cy=\"12\" r=\"1\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon is abstract and does not clearly depict a hedgehog or a recognizable object related to hedgehog rescue."
+    }
+  },
+  {
+    "concept": "Axolotl tank",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><rect x=\"4\" y=\"4\" width=\"16\" height=\"16\"/><circle cx=\"9\" cy=\"13\" r=\"2\"/><circle cx=\"15\" cy=\"13\" r=\"2\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><rect x=\"4\" y=\"4\" width=\"16\" height=\"16\"/><circle cx=\"9\" cy=\"13\" r=\"2\"/><circle cx=\"15\" cy=\"13\" r=\"2\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict an axolotl tank or any recognizable object from it."
+    }
+  },
+  {
+    "concept": "Axolotl tank",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 14v-8M8 16h8v-8H8v8z\"/><path d=\"M12 6v8M6 12h12v-8H6z\"/><path d=\"M10 11l4 4-4 4\"/><circle cx=\"12\" cy=\"9\" r=\"2\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 14v-8M8 16h8v-8H8v8z\"/><path d=\"M12 6v8M6 12h12v-8H6z\"/><path d=\"M10 11l4 4-4 4\"/><circle cx=\"12\" cy=\"9\" r=\"2\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict an axolotl tank or any recognizable object from it."
+    }
+  },
+  {
+    "concept": "Axolotl tank",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M2 6h20M2 12h20M2 18h20\"/><path d=\"M12 6l6 6-6 6\"/><path d=\"M12 18l-6-6 6-6\"/><circle cx=\"12\" cy=\"6\" r=\"1\"/><circle cx=\"12\" cy=\"12\" r=\"1\"/><circle cx=\"12\" cy=\"18\" r=\"1\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M2 6h20M2 12h20M2 18h20\"/><path d=\"M12 6l6 6-6 6\"/><path d=\"M12 18l-6-6 6-6\"/><circle cx=\"12\" cy=\"6\" r=\"1\"/><circle cx=\"12\" cy=\"12\" r=\"1\"/><circle cx=\"12\" cy=\"18\" r=\"1\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict an axolotl tank or any recognizable object from it."
+    }
+  },
+  {
+    "concept": "Axolotl tank",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><rect x=\"3\" y=\"2\" width=\"18\" height=\"20\"/><path d=\"M13 7h4M13 11h4M13 15h4\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><rect x=\"3\" y=\"2\" width=\"18\" height=\"20\"/><path d=\"M13 7h4M13 11h4M13 15h4\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict an axolotl tank or any recognizable object from it."
+    }
+  },
+  {
+    "concept": "Chinchilla",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M11 18h2M11 10h2M11 6h2M11 2h2\"/><path d=\"M16 16H8a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1z\"/><path d=\"M10 18H6v-2h4v2zm0-4H6v-2h4v2zm0-4H6v-2h4v2zm0-4H6V6h4v2z\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M11 18h2M11 10h2M11 6h2M11 2h2\"/><path d=\"M16 16H8a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1z\"/><path d=\"M10 18H6v-2h4v2zm0-4H6v-2h4v2zm0-4H6v-2h4v2zm0-4H6V6h4v2z\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a chinchilla or any recognizable object associated with it."
+    }
+  },
+  {
+    "concept": "Chinchilla",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M10 12h4M14 12v4M10 16h4M14 16v4M10 8h4M14 8v4\"/><circle cx=\"12\" cy=\"12\" r=\"2\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M10 12h4M14 12v4M10 16h4M14 16v4M10 8h4M14 8v4\"/><circle cx=\"12\" cy=\"12\" r=\"2\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a chinchilla or any recognizable object from the category."
+    }
+  },
+  {
+    "concept": "Chinchilla",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 20c4.411 0 8-3.589 8-8s-3.589-8-8-8-8 3.589-8 8 3.589 8 8 8z\"/><path d=\"M12 4c2.206 0 4 1.794 4 4s-1.794 4-4 4-4-1.794-4-4 1.794-4 4-4z\"/><path d=\"M12 12c-2.206 0-4-1.794-4-4s1.794-4 4-4 4 1.794 4 4-1.794 4-4 4z\"/><circle cx=\"12\" cy=\"12\" r=\"2\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 20c4.411 0 8-3.589 8-8s-3.589-8-8-8-8 3.589-8 8 3.589 8 8 8z\"/><path d=\"M12 4c2.206 0 4 1.794 4 4s-1.794 4-4 4-4-1.794-4-4 1.794-4 4-4z\"/><path d=\"M12 12c-2.206 0-4-1.794-4-4s1.794-4 4-4 4 1.794 4 4-1.794 4-4 4z\"/><circle cx=\"12\" cy=\"12\" r=\"2\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a chinchilla or any recognizable object from the category."
+    }
+  },
+  {
+    "concept": "Chinchilla",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 2v22h-2v-22h2zm0 4v20h-2v-20h2zm0 4v20h-2v-20h2zm0 4v20h-2v-20h2zm0 4v20h-2v-20h2zm0 4v20h-2v-20h2zm0 4v20h-2v-20h2zm0 4v20h-2v-20h2zm0 4v20h-2v-20h2zm0 4v20h-2v-20h2z\"/></g></svg>",
+    "problems": ["30 coordinate(s) outside the 24×24 grid, e.g. (12, 26)"],
+    "attempts": 3,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1"
+  },
+  {
+    "concept": "Kombucha brewing",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M11 3H13v18h2V3h-2z\"/><path d=\"M12 12m-2 0a2 2 0 1 0 4 0 2 2 0 0 0-4 0z\"/><path d=\"M16 3h2v18h-2V3z\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M11 3H13v18h2V3h-2z\"/><path d=\"M12 12m-2 0a2 2 0 1 0 4 0 2 2 0 0 0-4 0z\"/><path d=\"M16 3h2v18h-2V3z\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon resembles a door handle, which is not related to kombucha brewing."
+    }
+  },
+  {
+    "concept": "Kombucha brewing",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 10.5c1.3 0 2.4 1.1 2.4 2.4s-1.1 2.4-2.4 2.4c-1.3 0-2.4-1.1-2.4-2.4s1.1-2.4 2.4-2.4m0 7.5c1.3 0 2.4-1.1 2.4-2.4s-1.1-2.4-2.4-2.4c-1.3 0-2.4 1.1-2.4 2.4s1.1 2.4 2.4 2.4m0 0c1.2-1.2 2.8-1.8 4.6-1.8 1.8 0 3.4 1.6 3.4 3.4s-1.6 3.4-3.4 3.4c-1.8 0-3.4-1.6-3.4-3.4s1.6-3.4 3.4-3.4c1.2-1.2 2.8-1.8 4.6-1.8 1.8 0 3.4 1.6 3.4 3.4s-1.6 3.4-3.4 3.4c-1.8 0-3.4-1.6-3.4-3.4\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 10.5c1.3 0 2.4 1.1 2.4 2.4s-1.1 2.4-2.4 2.4c-1.3 0-2.4-1.1-2.4-2.4s1.1-2.4 2.4-2.4m0 7.5c1.3 0 2.4-1.1 2.4-2.4s-1.1-2.4-2.4-2.4c-1.3 0-2.4 1.1-2.4 2.4s1.1 2.4 2.4 2.4m0 0c1.2-1.2 2.8-1.8 4.6-1.8 1.8 0 3.4 1.6 3.4 3.4s-1.6 3.4-3.4 3.4c-1.8 0-3.4-1.6-3.4-3.4s1.6-3.4 3.4-3.4c1.2-1.2 2.8-1.8 4.6-1.8 1.8 0 3.4 1.6 3.4 3.4s-1.6 3.4-3.4 3.4c-1.8 0-3.4-1.6-3.4-3.4\"/></g>",
+    "problems": [],
+    "attempts": 3,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a recognizable object or symbol related to kombucha brewing."
+    }
+  },
+  {
+    "concept": "Kombucha brewing",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M3 3h18v2H3V3z\"/><path d=\"M3 9h18v2H3V9z\"/><path d=\"M3 15h18v2H3V15z\"/><path d=\"M3 21h18v2H3V21z\"/><path d=\"M9 3h6v6H9z\"/><path d=\"M9 9h6v6H9z\"/><path d=\"M9 15h6v6H9z\"/><path d=\"M9 21h6v6H9z\"/><path d=\"M15 3h6v6H15z\"/><path d=\"M15 9h6v6H15z\"/><path d=\"M15 15h6v6H15z\"/><path d=\"M15 21h6v6H15z\"/><path d=\"M12 12v6M6 12v6M18 12v6\"/></g></svg>",
+    "problems": [
+      "paths too complex (128 commands > 120)",
+      "4 coordinate(s) outside the 24×24 grid, e.g. (15, 27)"
+    ],
+    "attempts": 3,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1"
+  },
+  {
+    "concept": "Kombucha brewing",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M10 4h2v2h-2zm4 0h2v2h-2zm-4 12h2v2h-2zm4-12h2v2h-2zm-4 12h2v2h-2zm6-10v12h-4v-12h4zM4 20v-4h16v4H4z\"/><circle cx=\"9\" cy=\"9\" r=\"4\"/><path d=\"M14 9h4v2h-4z\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M10 4h2v2h-2zm4 0h2v2h-2zm-4 12h2v2h-2zm4-12h2v2h-2zm-4 12h2v2h-2zm6-10v12h-4v-12h4zM4 20v-4h16v4H4z\"/><circle cx=\"9\" cy=\"9\" r=\"4\"/><path d=\"M14 9h4v2h-4z\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a recognizable object or symbol related to kombucha brewing."
+    }
+  },
+  {
+    "concept": "Pickling",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 22v-16l9 4-9 4z\"/><path d=\"M12 6v8l9-4-9-4z\"/><path d=\"M20 12H4\"/><path d=\"M10 8h4\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 22v-16l9 4-9 4z\"/><path d=\"M12 6v8l9-4-9-4z\"/><path d=\"M20 12H4\"/><path d=\"M10 8h4\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon resembles a directional arrow, which is not related to pickling."
+    }
+  },
+  {
+    "concept": "Pickling",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M18 12H20l-1 4v2H4v-2l-1-4h2M12 2v20M12 22H4V12h8zM12 4v8h8V4H12z\"/><circle cx=\"12\" cy=\"12\" r=\"1\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M18 12H20l-1 4v2H4v-2l-1-4h2M12 2v20M12 22H4V12h8zM12 4v8h8V4H12z\"/><circle cx=\"12\" cy=\"12\" r=\"1\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict pickling or any recognizable object or symbol associated with it."
+    }
+  },
+  {
+    "concept": "Pickling",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M15 5h2m-2 9h2m-2 5h2\"/><path d=\"M11 7l3 3-3 3m0-6l3 3-3 3m0-6l3 3-3 3\"/><path d=\"M11 19l3-3-3-3\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M15 5h2m-2 9h2m-2 5h2\"/><path d=\"M11 7l3 3-3 3m0-6l3 3-3 3m0-6l3 3-3 3\"/><path d=\"M11 19l3-3-3-3\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict pickling or any recognizable object or symbol associated with it."
+    }
+  },
+  {
+    "concept": "Pickling",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 21v-5a4 4 0 0 0-4-4H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5a4 4 0 0 0-4-4h-3M12 7h3v14h-3v-4M12 15h-3v5h3v-5z\"/><path d=\"M11 15h1v1h-1z\"/></g></svg>",
+    "problems": ["34 coordinate(s) outside the 24×24 grid, e.g. (3, 28)"],
+    "attempts": 3,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1"
+  },
+  {
+    "concept": "Fermentation",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M16 21H8a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v10m-4-8H4a2 2 0 0 0 0 4h12a2 2 0 0 0 0-4\"/><path d=\"M11 15H7v-2h4v2zm0-4H7v-2h4v2zm0-4H7V7h4v2z\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M16 21H8a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v10m-4-8H4a2 2 0 0 0 0 4h12a2 2 0 0 0 0-4\"/><path d=\"M11 15H7v-2h4v2zm0-4H7v-2h4v2zm0-4H7V7h4v2z\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a recognizable object or symbol related to fermentation."
+    }
+  },
+  {
+    "concept": "Fermentation",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M14 21H10V19h4v2zm-4 0h4v-2H6v2zm4-6h-4v2h4v-2zm-4 6H6v-2h4v2zm4-6h-4v2h4v-2zm-4 6h-4v-2h4v2zm4-6h-4v2h4v-2zm4-6h-4v2h4v-2z\"/><path d=\"M18 16v-2a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v2\"/><ellipse cx=\"12\" cy=\"12\" rx=\"7\" ry=\"4\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M14 21H10V19h4v2zm-4 0h4v-2H6v2zm4-6h-4v2h4v-2zm-4 6H6v-2h4v2zm4-6h-4v2h4v-2zm-4 6h-4v-2h4v2zm4-6h-4v2h4v-2zm4-6h-4v2h4v-2z\"/><path d=\"M18 16v-2a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v2\"/><ellipse cx=\"12\" cy=\"12\" rx=\"7\" ry=\"4\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon resembles a piggy bank, which is not a clear representation of fermentation."
+    }
+  },
+  {
+    "concept": "Fermentation",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 18v-3h-3v3h3zM12 12v-3h-3v3h3zM12 6v-3h-3v3h3z\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 18v-3h-3v3h3zM12 12v-3h-3v3h3zM12 6v-3h-3v3h3z\"/></g>",
+    "problems": [],
+    "attempts": 2,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a recognizable object or symbol related to fermentation."
+    }
+  },
+  {
+    "concept": "Fermentation",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 20h2m-2-6h2m-2-6h2m6 14c0-1.1-.9-2-2-2s-2 .9-2 2m0-10c0-1.1-.9-2-2-2s-2 .9-2 2m6 14c0-1.1-.9-2-2-2s-2 .9-2 2m0-10c0-1.1-.9-2-2-2s-2 .9-2 2\"/><ellipse cx=\"12\" cy=\"10\" rx=\"3\" ry=\"2\"/><path d=\"M12 12l-3 3 3 3\"/></g></svg>",
+    "problems": ["2 coordinate(s) outside the 24×24 grid, e.g. (18, 26)"],
+    "attempts": 3,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1"
+  },
+  {
+    "concept": "Probate",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 21v-13h2v13h-2zm1-15v13h2V2h-2zm-3-3h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zm6 8v13h2V13h-2zm-1-2h2v13h-2V11zm-4-3v13h2V8h-2z\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 21v-13h2v13h-2zm1-15v13h2V2h-2zm-3-3h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zm6 8v13h2V13h-2zm-1-2h2v13h-2V11zm-4-3v13h2V8h-2z\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a recognizable object or symbol related to probate, which typically involves legal documents and court proceedings."
+    }
+  },
+  {
+    "concept": "Probate",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 22v-4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v4\"/><path d=\"M12 12h4v-2h-4\"/><path d=\"M12 20v-4m0-2v4\"/><path d=\"M6 12h4v-2h-4\"/><path d=\"M6 20v-4m0-2v4\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 22v-4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v4\"/><path d=\"M12 12h4v-2h-4\"/><path d=\"M12 20v-4m0-2v4\"/><path d=\"M6 12h4v-2h-4\"/><path d=\"M6 20v-4m0-2v4\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a recognizable object or symbol related to probate, which typically involves legal and administrative processes."
+    }
+  },
+  {
+    "concept": "Probate",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2\"/><path d=\"M12 14.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0\"/><path d=\"M12 21h-2v-12h2\"/><path d=\"M12 14v-2m0 4v-2m0 4v-2\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2\"/><path d=\"M12 14.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0\"/><path d=\"M12 21h-2v-12h2\"/><path d=\"M12 14v-2m0 4v-2m0 4v-2\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a recognizable object or symbol related to probate."
+    }
+  },
+  {
+    "concept": "Probate",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M21 12c0-4.477-3.523-8-8-8s-8 3.523-8 8 3.523 8 8 8 8-3.523 8-8z\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M21 12c0-4.477-3.523-8-8-8s-8 3.523-8 8 3.523 8 8 8 8-3.523 8-8z\"/></g>",
+    "problems": [],
+    "attempts": 3,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon is a generic circle, which does not clearly depict the category of probate."
+    }
+  },
+  {
+    "concept": "Septic tank",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M5 15h14M5 17h14M5 19h14\"/><path d=\"M12 12l3-3-3-3\"/><path d=\"M12 5l3 3-3 3\"/><path d=\"M12 19l3-3-3-3\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M5 15h14M5 17h14M5 19h14\"/><path d=\"M12 12l3-3-3-3\"/><path d=\"M12 5l3 3-3 3\"/><path d=\"M12 19l3-3-3-3\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon depicts a hand giving a thumbs up, which is not related to a septic tank."
+    }
+  },
+  {
+    "concept": "Septic tank",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 21v-8m6 0v-8m-6 8v8m-6-16v8m12 0v8m-12-16v8m12 0v8\"/><circle cx=\"8\" cy=\"8\" r=\"4\"/><circle cx=\"16\" cy=\"8\" r=\"4\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 21v-8m6 0v-8m-6 8v8m-6-16v8m12 0v8m-12-16v8m12 0v8\"/><circle cx=\"8\" cy=\"8\" r=\"4\"/><circle cx=\"16\" cy=\"8\" r=\"4\"/></g>",
+    "problems": [],
+    "attempts": 2,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a septic tank or any recognizable object from it."
+    }
+  },
+  {
+    "concept": "Septic tank",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 20v-5h-6v5h6\"/><path d=\"M21 18H3a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h18a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2z\"/><path d=\"M12 16v-4\"/><path d=\"M12 4h-6v4h6\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 20v-5h-6v5h6\"/><path d=\"M21 18H3a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h18a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2z\"/><path d=\"M12 16v-4\"/><path d=\"M12 4h-6v4h6\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon is abstract and does not clearly depict a septic tank or a recognizable object from it."
+    }
+  },
+  {
+    "concept": "Septic tank",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M11 19h2M11 15h2M11 11h2M11 7h2M15 21v-2M15 17v-2M15 13v-2M15 9v-2M15 5v-2\"/><circle cx=\"10\" cy=\"9\" r=\"4\"/><circle cx=\"14\" cy=\"9\" r=\"4\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M11 19h2M11 15h2M11 11h2M11 7h2M15 21v-2M15 17v-2M15 13v-2M15 9v-2M15 5v-2\"/><circle cx=\"10\" cy=\"9\" r=\"4\"/><circle cx=\"14\" cy=\"9\" r=\"4\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a septic tank or any recognizable object from it."
+    }
+  },
+  {
+    "concept": "Chimney sweep",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 22v-8m0-6v8m0-6v8\"/><path d=\"M10 5h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h2\"/><path d=\"M12 7h2a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H13a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h2\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 22v-8m0-6v8m0-6v8\"/><path d=\"M10 5h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h2\"/><path d=\"M12 7h2a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H13a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h2\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon resembles a vacuum cleaner, which is not a common symbol for chimney sweep services."
+    }
+  },
+  {
+    "concept": "Chimney sweep",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M11 21v-4h4v4m-4 0v-4h4v4m-4 0v-4h4v4m-4 0v-4h4v4m-4 0v-4h4v4m-4 0v-4h4v4\"/><path d=\"M22 7v4m0-11v4\"/><path d=\"M7 21v-4h4v4m-4 0v-4h4v4m-4 0v-4h4v4m-4 0v-4h4v4m-4 0v-4h4v4\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M11 21v-4h4v4m-4 0v-4h4v4m-4 0v-4h4v4m-4 0v-4h4v4m-4 0v-4h4v4m-4 0v-4h4v4\"/><path d=\"M22 7v4m0-11v4\"/><path d=\"M7 21v-4h4v4m-4 0v-4h4v4m-4 0v-4h4v4m-4 0v-4h4v4m-4 0v-4h4v4\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a chimney sweep or any recognizable object from the category."
+    }
+  },
+  {
+    "concept": "Chimney sweep",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M11 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2\"/><path d=\"M11 17v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2\"/><path d=\"M21 3h-6v3H9V3h6v3h6\"/><path d=\"M12 11h2v2H12zm0-2h2v2H12z\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M11 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2\"/><path d=\"M11 17v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2\"/><path d=\"M21 3h-6v3H9V3h6v3h6\"/><path d=\"M12 11h2v2H12zm0-2h2v2H12z\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a chimney sweep or any recognizable object from the category."
+    }
+  },
+  {
+    "concept": "Chimney sweep",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M11 11h2m-2 6v2m6-6v2\"/><path d=\"M5 18v-4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v4\"/><path d=\"M17 17v-4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v4\"/><path d=\"M12 7l-4 3 4 3\"/></g></svg>",
+    "problems": [
+      "17 coordinate(s) outside the 24×24 grid, e.g. (25.19603428065912, 11.009630546655606)"
+    ],
+    "attempts": 3,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1"
+  },
+  {
+    "concept": "Gutter cleaning",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 3l9 9m-9-9-9 9\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 3l9 9m-9-9-9 9\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon resembles a birdhouse, which is not a clear representation of gutter cleaning."
+    }
+  },
+  {
+    "concept": "Gutter cleaning",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 3l8 8-8 8M12 3v18\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 3l8 8-8 8M12 3v18\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a recognizable object or symbol related to gutter cleaning."
+    }
+  },
+  {
+    "concept": "Gutter cleaning",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 3l-6 6h12l-6-6z\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/><line x1=\"12\" y1=\"14\" x2=\"12\" y2=\"16\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 3l-6 6h12l-6-6z\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/><line x1=\"12\" y1=\"14\" x2=\"12\" y2=\"16\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a recognizable object or symbol related to gutter cleaning."
+    }
+  },
+  {
+    "concept": "Gutter cleaning",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 19v-2a6 6 0 0 0-6-6h-2a6 6 0 0 0-6 6v2\"/><line x1=\"11\" y1=\"14\" x2=\"13\" y2=\"20\"/><line x1=\"13\" y1=\"14\" x2=\"11\" y2=\"20\"/></g></svg>",
+    "problems": [
+      "7 coordinate(s) outside the 24×24 grid, e.g. (-1.2915275860901296, 14.171619579044012)"
+    ],
+    "attempts": 3,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1"
+  },
+  {
+    "concept": "Ventriloquism",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm0-2a6 6 0 1 0 0-12 6 6 0 0 0 0 12z\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm0-2a6 6 0 1 0 0-12 6 6 0 0 0 0 12z\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon is a simple circle with a smaller circle in the center, which does not clearly depict ventriloquism or any recognizable object or symbol related to it."
+    }
+  },
+  {
+    "concept": "Ventriloquism",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M10 18V6c0-1.1.9-2 2-2h8c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H12c-1.1 0-2-.9-2-2zM10 14l4-4-4-4-4 4 4 4zm4-6l-4 4 4 4 4-4-4-4zm4 6v12h-8v-6c0-1.1.9-2 2-2s2 .9 2 2H16c0 1.1-.9 2-2 2z\"/><path d=\"M12 12l-4 4 4 4 4-4-4-4zM12 16l-4-4 4-4 4 4-4 4zm0-8l-4 4 4 4 4-4-4-4z\"/></g></svg>",
+    "problems": ["2 coordinate(s) outside the 24×24 grid, e.g. (18, 26)"],
+    "attempts": 3,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1"
+  },
+  {
+    "concept": "Ventriloquism",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 22v-16c4 0 8 0 8-4 0-4-4-8-8-8zm0 6l-1 1 1 1\"/><path d=\"M18 7l-3 3 3 3\"/></g></svg>",
+    "problems": ["6 coordinate(s) outside the 24×24 grid, e.g. (20, -2)"],
+    "attempts": 3,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1"
+  },
+  {
+    "concept": "Ventriloquism",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M15.5 11V13h-7v-2h7zm-6 0v2H8v-2h11zm3 6H8v-2h11v2zm-11-6h7v2H7V5zm7 6v-2h7v2h-7z\"/><circle cx=\"12\" cy=\"16\" r=\"2\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M15.5 11V13h-7v-2h7zm-6 0v2H8v-2h11zm3 6H8v-2h11v2zm-11-6h7v2H7V5zm7 6v-2h7v2h-7z\"/><circle cx=\"12\" cy=\"16\" r=\"2\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon is abstract and does not clearly depict a recognizable object or symbol related to ventriloquism."
+    }
+  },
+  {
+    "concept": "Puppet shows",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M16 16v-5a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v5\"/><path d=\"M10 10l4 4-4 4\"/><path d=\"M12 20l-5-5 5-5\"/><circle cx=\"12\" cy=\"12\" r=\"2\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M16 16v-5a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v5\"/><path d=\"M10 10l4 4-4 4\"/><path d=\"M12 20l-5-5 5-5\"/><circle cx=\"12\" cy=\"12\" r=\"2\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a puppet or any recognizable object from puppet shows."
+    }
+  },
+  {
+    "concept": "Puppet shows",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 22v-6l6-6-6-6z\"/><path d=\"M21 12H3\"/><path d=\"M12 4v8\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 22v-6l6-6-6-6z\"/><path d=\"M21 12H3\"/><path d=\"M12 4v8\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a puppet or any object related to puppet shows."
+    }
+  },
+  {
+    "concept": "Puppet shows",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M10 12h4M10 14h4M10 16h4M10 18h4\"/><path d=\"M7 16v2h2v-2M9 16v2h2v-2M11 16v2h2v-2\"/><path d=\"M13 16v2h2v-2M15 16v2h2v-2\"/><path d=\"M21 16v2h2v-2M19 16v2h2v-2\"/><path d=\"M3 16v2h2v-2M5 16v2h2v-2\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M10 12h4M10 14h4M10 16h4M10 18h4\"/><path d=\"M7 16v2h2v-2M9 16v2h2v-2M11 16v2h2v-2\"/><path d=\"M13 16v2h2v-2M15 16v2h2v-2\"/><path d=\"M21 16v2h2v-2M19 16v2h2v-2\"/><path d=\"M3 16v2h2v-2M5 16v2h2v-2\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a puppet or any recognizable object from puppet shows."
+    }
+  },
+  {
+    "concept": "Puppet shows",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 19v-4m0-5v4m-6-5v4m6-5v4\"/><path d=\"M12 16l3 3-3 3\"/><path d=\"M17 13h-4m-4 0h4\"/><path d=\"M12 6l3 3-3 3\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 19v-4m0-5v4m-6-5v4m6-5v4\"/><path d=\"M12 16l3 3-3 3\"/><path d=\"M17 13h-4m-4 0h4\"/><path d=\"M12 6l3 3-3 3\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a puppet or any recognizable object from puppet shows."
+    }
+  },
+  {
+    "concept": "Tattoo appointments",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18zm0-15a7 7 0 1 0 0 14 7 7 0 0 0 0-14zm-2 15v-2h2v2zm2-4v-2h2v2zm-2-6v-2h2v2zm2-2v-2h2v2zm2-2v-2h2v2zm2-2v-2h2v2zm2-2v-2h2v2zm-2-6v-2h2v2zm2-2v-2h2v2zm2-2v-2h2v2zm2-2v-2h2v2z\"/></g></svg>",
+    "problems": ["16 coordinate(s) outside the 24×24 grid, e.g. (16, -3)"],
+    "attempts": 3,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1"
+  },
+  {
+    "concept": "Tattoo appointments",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 21v-2a4 4 0 0 0-4-4H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2a4 4 0 0 0-4-4h2a2 2 0 0 0 2-2v-10\"/><circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M17 12h-2v2h2v-2\"/></g></svg>",
+    "problems": ["50 coordinate(s) outside the 24×24 grid, e.g. (3, 31)"],
+    "attempts": 3,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1"
+  },
+  {
+    "concept": "Tattoo appointments",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm6 2h-6m-2-10a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm-6 10a2 2 0 1 0 4 0 2 2 0 0 0-4 0z\"/><path d=\"M10 4h4v2h-4zm0 8h4v2h-4zm6-6h-2v2h2zm-10 14v-2h6v2h-6z\"/><ellipse cx=\"14\" cy=\"18\" rx=\"2\" ry=\"2\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm6 2h-6m-2-10a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm-6 10a2 2 0 1 0 4 0 2 2 0 0 0-4 0z\"/><path d=\"M10 4h4v2h-4zm0 8h4v2h-4zm6-6h-2v2h2zm-10 14v-2h6v2h-6z\"/><ellipse cx=\"14\" cy=\"18\" rx=\"2\" ry=\"2\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a tattoo or any recognizable object related to tattoo appointments."
+    }
+  },
+  {
+    "concept": "Tattoo appointments",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 2v4h4v12h-4v4h-4v-4h-4v-12h4v-4h4z\"/><line x1=\"12\" y1=\"2\" x2=\"12\" y2=\"18\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 2v4h4v12h-4v4h-4v-4h-4v-12h4v-4h4z\"/><line x1=\"12\" y1=\"2\" x2=\"12\" y2=\"18\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a tattoo or any recognizable object related to tattoo appointments."
+    }
+  },
+  {
+    "concept": "Genealogy",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 21v-2M12 19v-2M12 17v-2M12 15v-2M12 13v-2M12 11v-2M12 9v-2M12 7v-2M12 5v-2M12 3v-2M12 1h-6M12 3h-6M12 5h-6M12 7h-6M12 9h-6M12 11h-6M12 13h-6M12 15h-6M12 17h-6M12 19h-6M12 21h-6M3 16v-2a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2M14 18a2 2 0 0 1 2-2v-2a2 2 0 0 1 2 2\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 21v-2M12 19v-2M12 17v-2M12 15v-2M12 13v-2M12 11v-2M12 9v-2M12 7v-2M12 5v-2M12 3v-2M12 1h-6M12 3h-6M12 5h-6M12 7h-6M12 9h-6M12 11h-6M12 13h-6M12 15h-6M12 17h-6M12 19h-6M12 21h-6M3 16v-2a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2M14 18a2 2 0 0 1 2-2v-2a2 2 0 0 1 2 2\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon depicts a hand holding a genealogical chart, which is a clear and recognizable symbol for genealogy."
+    }
+  },
+  {
+    "concept": "Genealogy",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><line x1=\"12\" y1=\"2\" x2=\"12\" y2=\"22\"/><line x1=\"2\" y1=\"12\" x2=\"22\" y2=\"12\"/><circle cx=\"12\" cy=\"12\" r=\"9\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><line x1=\"12\" y1=\"2\" x2=\"12\" y2=\"22\"/><line x1=\"2\" y1=\"12\" x2=\"22\" y2=\"12\"/><circle cx=\"12\" cy=\"12\" r=\"9\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon is abstract and does not clearly depict a recognizable object or symbol related to genealogy."
+    }
+  },
+  {
+    "concept": "Genealogy",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M14 3H10.5a.5.5 0 0 0 0 1h2.5a.5.5 0 0 0 0-1\"/><path d=\"M14 17H10.5a.5.5 0 0 0 0 1h2.5a.5.5 0 0 0 0-1\"/><path d=\"M3 11h18v2H3z\"/><path d=\"M12 16v2h6v-2H12z\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M14 3H10.5a.5.5 0 0 0 0 1h2.5a.5.5 0 0 0 0-1\"/><path d=\"M14 17H10.5a.5.5 0 0 0 0 1h2.5a.5.5 0 0 0 0-1\"/><path d=\"M3 11h18v2H3z\"/><path d=\"M12 16v2h6v-2H12z\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a recognizable object or symbol related to genealogy."
+    }
+  },
+  {
+    "concept": "Genealogy",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><line x1=\"8\" y1=\"6\" x2=\"8\" y2=\"18\"/><line x1=\"8\" y1=\"12\" x2=\"20\" y2=\"12\"/><line x1=\"12\" y1=\"8\" x2=\"12\" y2=\"16\"/><line x1=\"16\" y1=\"6\" x2=\"16\" y2=\"18\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><line x1=\"8\" y1=\"6\" x2=\"8\" y2=\"18\"/><line x1=\"8\" y1=\"12\" x2=\"20\" y2=\"12\"/><line x1=\"12\" y1=\"8\" x2=\"12\" y2=\"16\"/><line x1=\"16\" y1=\"6\" x2=\"16\" y2=\"18\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a recognizable object or symbol related to genealogy."
+    }
+  },
+  {
+    "concept": "Harp lessons",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M13 4h-2v2h2V4zm0 8h-2v2h2v-2zm0 8h-2v2h2v-2zm8 0h-2v2h2v-2zm0 8h-2v2h2v-2zm-14 2v2h14v-2H3zm14 0v2h-2v-2h2zm0 8v2h-2v-2h2zm0 8v2h-2v-2h2z\"/><path d=\"M19.5 5.5l-3 3-3-3\"/><ellipse cx=\"19.5\" cy=\"10.5\" rx=\"1.5\" ry=\"2.5\"/></g></svg>",
+    "problems": ["25 coordinate(s) outside the 24×24 grid, e.g. (21, 28)"],
+    "attempts": 3,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1"
+  },
+  {
+    "concept": "Harp lessons",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M10 12v6h4v-6h-4m4 2l-2 3m0-3l2 3m-2-3v3h-4v-3m4 2v3h-4v-3\"/><path d=\"M18 12h-6v6h6v-6z\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M10 12v6h4v-6h-4m4 2l-2 3m0-3l2 3m-2-3v3h-4v-3m4 2v3h-4v-3\"/><path d=\"M18 12h-6v6h6v-6z\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a harp or any recognizable object related to harp lessons."
+    }
+  },
+  {
+    "concept": "Harp lessons",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M15 12h-2m-4 0h-2m-4 0h-2m6 4v8m-6-8v8\"/><path d=\"M11 3v2m3 0v2m3 0v2m3 0v2m3 0v2\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M15 12h-2m-4 0h-2m-4 0h-2m6 4v8m-6-8v8\"/><path d=\"M11 3v2m3 0v2m3 0v2m3 0v2m3 0v2\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a harp or any recognizable object related to harp lessons."
+    }
+  },
+  {
+    "concept": "Harp lessons",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M10 12h4v4h-4z\"/><path d=\"M12 5v14M18 12l-6-6M18 12l-6 6\"/><circle cx=\"12\" cy=\"12\" r=\"1\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M10 12h4v4h-4z\"/><path d=\"M12 5v14M18 12l-6-6M18 12l-6 6\"/><circle cx=\"12\" cy=\"12\" r=\"1\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a harp or any recognizable object associated with harp lessons."
+    }
+  },
+  {
+    "concept": "Bagpipes",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M16 3H18a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h2\"/><path d=\"M12 17V13\"/><path d=\"M9 13v4\"/><path d=\"M15 13v4\"/><path d=\"M11 11H13\"/><path d=\"M13 11H15\"/><path d=\"M11 9H13\"/><path d=\"M13 9H15\"/><path d=\"M12 7V3\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M16 3H18a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h2\"/><path d=\"M12 17V13\"/><path d=\"M9 13v4\"/><path d=\"M15 13v4\"/><path d=\"M11 11H13\"/><path d=\"M13 11H15\"/><path d=\"M11 9H13\"/><path d=\"M13 9H15\"/><path d=\"M12 7V3\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict bagpipes or a recognizable object from the category."
+    }
+  },
+  {
+    "concept": "Bagpipes",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 3c1.26 0 2.37 1.03 2.87 2.5a1.02 1.02 0 0 1-.18 1.51L14.5 9.5l-4.5 4.5c-.44.44-1.06.56-1.8 0z\"/><path d=\"M17 5h-1a5 5 0 0 1-5-5V1a5 5 0 0 1 5-5h1\"/><path d=\"M21 15l-2-2-6 6-6-6\"/><path d=\"M5 15h2v2H5\"/></g></svg>",
+    "problems": [
+      "13 coordinate(s) outside the 24×24 grid, e.g. (11.590393678258224, -1.3569836841299883)"
+    ],
+    "attempts": 3,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1"
+  },
+  {
+    "concept": "Bagpipes",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 12h.01M12 17h.01M12 5h.01\"/><path d=\"M7 17h10M7 5h10M7 12h10\"/><path d=\"M12 8l-3 3 3 3\"/><path d=\"M12 19l-3-3 3-3\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 12h.01M12 17h.01M12 5h.01\"/><path d=\"M7 17h10M7 5h10M7 12h10\"/><path d=\"M12 8l-3 3 3 3\"/><path d=\"M12 19l-3-3 3-3\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict bagpipes or any recognizable object from the category."
+    }
+  },
+  {
+    "concept": "Bagpipes",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M14 3h6M10 3h6M14 3v6M10 3v6M14 3s-2 6-6 6-6-6-6-6 2-6 6-6zm6 18H10v-6h6v6zm0-6H10v-6h6v6zm0-6H10v-6h6v6zm6 6H10v-6h6v6zm6-6H10v-6h6v6z\"/><path d=\"M14 17h6M10 17h6M14 17v-6M10 17v-6M14 17s-2-6-6-6-6 6-6 6 2 6 6 6zm-4 6H10v-6h6v6zm0-6H10v-6h6v6zm0-6H10v-6h6v6z\"/></g></svg>",
+    "problems": [
+      "paths too complex (134 commands > 120)",
+      "4 coordinate(s) outside the 24×24 grid, e.g. (4, -3)"
+    ],
+    "attempts": 3,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1"
+  },
+  {
+    "concept": "Accordion",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 3v18M6 9h6v12h-6\"/><path d=\"M10 14l-6 6 6 6\"/></g></svg>",
+    "problems": ["1 coordinate(s) outside the 24×24 grid, e.g. (10, 26)"],
+    "attempts": 3,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1"
+  },
+  {
+    "concept": "Accordion",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M3 5h18M3 15h18M3 11h18M3 19h18\"/><path d=\"M6 12l6 6-6 6\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M3 5h18M3 15h18M3 11h18M3 19h18\"/><path d=\"M6 12l6 6-6 6\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict an accordion or a recognizable object from it."
+    }
+  },
+  {
+    "concept": "Accordion",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 18v-7h6v7h-6zm6-14v7h-6V4h6zm-6 14h6v-7h-6v7zm-6-14h6v7h-6V4z\"/><path d=\"M12 14v4h4v-4h-4z\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 18v-7h6v7h-6zm6-14v7h-6V4h6zm-6 14h6v-7h-6v7zm-6-14h6v7h-6V4z\"/><path d=\"M12 14v4h4v-4h-4z\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict an accordion or a recognizable object from it."
+    }
+  },
+  {
+    "concept": "Accordion",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 22v-4.8c0-1.333-1.333-2.4-2.9-2.4h-4c-1.567 0-2.9 1.067-2.9 2.4v4.8c0 1.333 1.333 2.4 2.9 2.4h4c1.567 0 2.9-1.067 2.9-2.4zM12 12v-4c0-1.333-1.333-2.4-2.9-2.4h-4c-1.567 0-2.9 1.067-2.9 2.4v4c0 1.333 1.333 2.4 2.9 2.4h4c1.567 0 2.9-1.067 2.9-2.4z\"/><path d=\"M16 12h-4v4h4c1.1 0 2-.9 2-2v-4c0-1.1-.9-2-2-2zm4 0h-4v4h4c1.1 0 2-.9 2-2v-4c0-1.1-.9-2-2-2zm-4-4v4c0 1.1.9 2 2 2h4c1.1 0 2-.9 2-2v-4c0-1.1-.9-2-2-2zm-4 4v4c0 1.1.9 2 2 2h4c1.1 0 2-.9 2-2v-4c0-1.1-.9-2-2-2z\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 22v-4.8c0-1.333-1.333-2.4-2.9-2.4h-4c-1.567 0-2.9 1.067-2.9 2.4v4.8c0 1.333 1.333 2.4 2.9 2.4h4c1.567 0 2.9-1.067 2.9-2.4zM12 12v-4c0-1.333-1.333-2.4-2.9-2.4h-4c-1.567 0-2.9 1.067-2.9 2.4v4c0 1.333 1.333 2.4 2.9 2.4h4c1.567 0 2.9-1.067 2.9-2.4z\"/><path d=\"M16 12h-4v4h4c1.1 0 2-.9 2-2v-4c0-1.1-.9-2-2-2zm4 0h-4v4h4c1.1 0 2-.9 2-2v-4c0-1.1-.9-2-2-2zm-4-4v4c0 1.1.9 2 2 2h4c1.1 0 2-.9 2-2v-4c0-1.1-.9-2-2-2zm-4 4v4c0 1.1.9 2 2 2h4c1.1 0 2-.9 2-2v-4c0-1.1-.9-2-2-2z\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon resembles a camera, not an accordion, which makes it confusing for users."
+    }
+  },
+  {
+    "concept": "Ballroom dancing",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M10 19v-2h2v2H10z\"/><path d=\"M18 19v-2h2v2h-2z\"/><circle cx=\"12\" cy=\"13\" r=\"3\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M10 19v-2h2v2H10z\"/><path d=\"M18 19v-2h2v2h-2z\"/><circle cx=\"12\" cy=\"13\" r=\"3\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict ballroom dancing or any recognizable object from it."
+    }
+  },
+  {
+    "concept": "Ballroom dancing",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 22c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zm1-14h-2v4h2zM12 8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z\"/><path d=\"M18 12h-6v6h6zm-6-6h6v6h-6z\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 22c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zm1-14h-2v4h2zM12 8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z\"/><path d=\"M18 12h-6v6h6zm-6-6h6v6h-6z\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a recognizable object or symbol related to ballroom dancing."
+    }
+  },
+  {
+    "concept": "Ballroom dancing",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M15 12H5v6h14v-6\"/><circle cx=\"12\" cy=\"8\" r=\"2\"/><circle cx=\"12\" cy=\"16\" r=\"2\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M15 12H5v6h14v-6\"/><circle cx=\"12\" cy=\"8\" r=\"2\"/><circle cx=\"12\" cy=\"16\" r=\"2\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict ballroom dancing or any recognizable object from it."
+    }
+  },
+  {
+    "concept": "Ballroom dancing",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M16 16h-4v-2h4v2z\"/><path d=\"M12 6v12M6 12h12\"/><circle cx=\"12\" cy=\"6\" r=\"2\"/><circle cx=\"12\" cy=\"18\" r=\"2\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M16 16h-4v-2h4v2z\"/><path d=\"M12 6v12M6 12h12\"/><circle cx=\"12\" cy=\"6\" r=\"2\"/><circle cx=\"12\" cy=\"18\" r=\"2\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a recognizable object or symbol related to ballroom dancing."
+    }
+  },
+  {
+    "concept": "Macramé",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><line x1=\"12\" y1=\"4\" x2=\"12\" y2=\"20\"/><line x1=\"14\" y1=\"20\" x2=\"14\" y2=\"4\"/><line x1=\"10\" y1=\"20\" x2=\"10\" y2=\"4\"/><line x1=\"8\" y1=\"16\" x2=\"8\" y2=\"8\"/><line x1=\"16\" y1=\"16\" x2=\"16\" y2=\"8\"/><line x1=\"8\" y1=\"12\" x2=\"16\" y2=\"12\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><line x1=\"12\" y1=\"4\" x2=\"12\" y2=\"20\"/><line x1=\"14\" y1=\"20\" x2=\"14\" y2=\"4\"/><line x1=\"10\" y1=\"20\" x2=\"10\" y2=\"4\"/><line x1=\"8\" y1=\"16\" x2=\"8\" y2=\"8\"/><line x1=\"16\" y1=\"16\" x2=\"16\" y2=\"8\"/><line x1=\"8\" y1=\"12\" x2=\"16\" y2=\"12\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict macramé or any recognizable object from it."
+    }
+  },
+  {
+    "concept": "Macramé",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><line x1=\"9\" y1=\"4\" x2=\"9\" y2=\"14\"/><line x1=\"3\" y1=\"10\" x2=\"21\" y2=\"10\"/><line x1=\"3\" y1=\"16\" x2=\"21\" y2=\"16\"/><line x1=\"15\" y1=\"4\" x2=\"15\" y2=\"14\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><line x1=\"9\" y1=\"4\" x2=\"9\" y2=\"14\"/><line x1=\"3\" y1=\"10\" x2=\"21\" y2=\"10\"/><line x1=\"3\" y1=\"16\" x2=\"21\" y2=\"16\"/><line x1=\"15\" y1=\"4\" x2=\"15\" y2=\"14\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict macramé or any recognizable object from it."
+    }
+  },
+  {
+    "concept": "Macramé",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M10 18h4M12 10v8M18 12h-6M16 16h-4M8 12v8M12 18h6\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M10 18h4M12 10v8M18 12h-6M16 16h-4M8 12v8M12 18h6\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict macramé or any recognizable object from it."
+    }
+  },
+  {
+    "concept": "Macramé",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><line x1=\"2\" y1=\"18\" x2=\"22\" y2=\"18\"/><line x1=\"2\" y1=\"14\" x2=\"22\" y2=\"14\"/><line x1=\"2\" y1=\"10\" x2=\"22\" y2=\"10\"/><line x1=\"2\" y1=\"6\" x2=\"22\" y2=\"6\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><line x1=\"2\" y1=\"18\" x2=\"22\" y2=\"18\"/><line x1=\"2\" y1=\"14\" x2=\"22\" y2=\"14\"/><line x1=\"2\" y1=\"10\" x2=\"22\" y2=\"10\"/><line x1=\"2\" y1=\"6\" x2=\"22\" y2=\"6\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon is too generic and does not clearly depict macramé, which is a form of textile art."
+    }
+  },
+  {
+    "concept": "Lapidary",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M22 3H2c-.55 0-1 .45-1 1v12c0 .55.45 1 1 1h16c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1zM11 14H9V12h2v2zm0 4H9v-2h2v2zm2 0h-2v-4h2v4z\"/><ellipse cx=\"12\" cy=\"10\" rx=\"2\" ry=\"3\"/><ellipse cx=\"18\" cy=\"10\" rx=\"2\" ry=\"3\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M22 3H2c-.55 0-1 .45-1 1v12c0 .55.45 1 1 1h16c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1zM11 14H9V12h2v2zm0 4H9v-2h2v2zm2 0h-2v-4h2v4z\"/><ellipse cx=\"12\" cy=\"10\" rx=\"2\" ry=\"3\"/><ellipse cx=\"18\" cy=\"10\" rx=\"2\" ry=\"3\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a recognizable object or symbol related to lapidary, which typically involves cutting, polishing, and shaping gemstones and minerals."
+    }
+  },
+  {
+    "concept": "Lapidary",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M11 17h2M9 17v2M11 15v2M9 15v2M13 15v2M11 13v2M9 13v2M13 13v2M11 11v2M9 11v2M13 11v2M11 9v2M9 9v2M13 9v2M11 7v2M9 7v2M11 5h2M9 5v2M11 3v2M9 3v2\"/><path d=\"M17 17H21v2H17z\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M11 17h2M9 17v2M11 15v2M9 15v2M13 15v2M11 13v2M9 13v2M13 13v2M11 11v2M9 11v2M13 11v2M11 9v2M9 9v2M13 9v2M11 7v2M9 7v2M11 5h2M9 5v2M11 3v2M9 3v2\"/><path d=\"M17 17H21v2H17z\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict a recognizable object or symbol related to lapidary, which typically involves cutting, polishing, and shaping gemstones and minerals."
+    }
+  },
+  {
+    "concept": "Lapidary",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M12 22V4m-6 12h16m-10-16V2h16v20H2z\"/><circle cx=\"12\" cy=\"12\" r=\"2\"/></g></svg>}ewn",
+    "problems": [
+      "element <svg> is not allowed",
+      "element <g> is not allowed",
+      "text or stray markup is not allowed: \"}ewn\"",
+      "2 coordinate(s) outside the 24×24 grid, e.g. (28, 2)"
+    ],
+    "attempts": 3,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1"
+  },
+  {
+    "concept": "Lapidary",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M18 10v4H6V10h12m-2 4v2H4v-2h12m2 8v2H4v-2h12\"/><path d=\"M18 14v2H6v-2h12\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M18 10v4H6V10h12m-2 4v2H4v-2h12m2 8v2H4v-2h12\"/><path d=\"M18 14v2H6v-2h12\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon resembles a couch, which is not related to lapidary, which typically involves working with gemstones or minerals."
+    }
+  },
+  {
+    "concept": "Mosaic tiles",
+    "index": 1,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M13 15h-2v-2h2v2zm0-4h-2v-2h2v2zm-4 6h-2v-2h2v2zm6-4h-2v-2h2v2zm-4 6h-2v-2h2v2zm6-4h-2v-2h2v2zm-4 6h-2v-2h2v2zm6-4h-2v-2h2v2zm-4 6h-2v-2h2v2zm6-4h-2v-2h2v2zm-4 6h-2v-2h2v2zm6-4h-2v-2h2v2zm-4 6h-2v-2h2v2zm6-4h-2v-2h2v2z\"/><path d=\"M21 11v2h-2v-2z\"/></g></svg>",
+    "problems": [
+      "paths too complex (163 commands > 120)",
+      "3 coordinate(s) outside the 24×24 grid, e.g. (19, 27)"
+    ],
+    "attempts": 3,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1"
+  },
+  {
+    "concept": "Mosaic tiles",
+    "index": 2,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M11 4h2M11 8h2M11 12h2M11 16h2\"/><path d=\"M15 4h2M15 8h2M15 12h2M15 16h2\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M11 4h2M11 8h2M11 12h2M11 16h2\"/><path d=\"M15 4h2M15 8h2M15 12h2M15 16h2\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict mosaic tiles or a recognizable object from the category."
+    }
+  },
+  {
+    "concept": "Mosaic tiles",
+    "index": 3,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><circle cx=\"12\" cy=\"5\" r=\"2\"/><circle cx=\"12\" cy=\"12\" r=\"2\"/><circle cx=\"12\" cy=\"19\" r=\"2\"/><circle cx=\"5\" cy=\"12\" r=\"2\"/><circle cx=\"19\" cy=\"12\" r=\"2\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><circle cx=\"12\" cy=\"5\" r=\"2\"/><circle cx=\"12\" cy=\"12\" r=\"2\"/><circle cx=\"12\" cy=\"19\" r=\"2\"/><circle cx=\"5\" cy=\"12\" r=\"2\"/><circle cx=\"19\" cy=\"12\" r=\"2\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict mosaic tiles or a recognizable object from the category."
+    }
+  },
+  {
+    "concept": "Mosaic tiles",
+    "index": 4,
+    "raw": "<svg viewBox=\"0 0 24 24\"><g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M14 9h6v6H14z\"/><path d=\"M14 12h6v6H14z\"/><path d=\"M14 15h6v6H14z\"/><path d=\"M14 18h6v6H14z\"/><path d=\"M17 9h-6v6h6z\"/><path d=\"M17 12h-6v6h6z\"/><path d=\"M17 15h-6v6h6z\"/><path d=\"M17 18h-6v6h6z\"/><path d=\"M10 9h6v6H10z\"/><path d=\"M10 12h6v6H10z\"/><path d=\"M10 15h6v6H10z\"/><path d=\"M10 18h6v6H10z\"/></g></svg>",
+    "body": "<g fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path d=\"M14 9h6v6H14z\"/><path d=\"M14 12h6v6H14z\"/><path d=\"M14 15h6v6H14z\"/><path d=\"M14 18h6v6H14z\"/><path d=\"M17 9h-6v6h6z\"/><path d=\"M17 12h-6v6h6z\"/><path d=\"M17 15h-6v6h6z\"/><path d=\"M17 18h-6v6h6z\"/><path d=\"M10 9h6v6H10z\"/><path d=\"M10 12h6v6H10z\"/><path d=\"M10 15h6v6H10z\"/><path d=\"M10 18h6v6H10z\"/></g>",
+    "problems": [],
+    "attempts": 1,
+    "model": "qwen2.5:7b-instruct",
+    "promptVersion": "generate-v1",
+    "verdict": {
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon does not clearly depict mosaic tiles or a recognizable object from the category."
+    }
+  }
+]

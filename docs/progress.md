@@ -136,6 +136,6 @@ The owner asked to try, in order: more no-match queries in a new eval revision, 
 
 - [x] SVG validator + style lint (unit tests)
 - [x] Generator (few-shot local LLM) + `generate` CLI + HTML gallery; fixture-tested
-- [ ] Run over v2 no-match concepts; judge + acceptance rates reported
+- [x] Run over v2 no-match concepts; judge + acceptance rates reported (141/168 valid; judge 3/141 fits; agent 0/141; nothing approved)
 - [x] `generated` set packaging from an approval file (fixture-tested)
-- [ ] Audit P7
+- [x] Audit P7

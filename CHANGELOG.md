@@ -9,6 +9,7 @@ All notable changes to the published packages. Versions follow [semver](https://
 - **Per-set neutral fallback:** `manifest.sets[].fallbackIcon`; the matcher defaults `fallbackIcon` to it.
 - **New package `@iconmatch/lucide`:** Lucide icon data with Lucide-style lettered fallback glyphs.
 - **Confidence:** the +0.1 keyword bump now needs a keyword hit on a source field (label, name, tags, categories); matches on enrichment text alone don't earn it. No change for the packaged (unenriched) data.
+- **Pipeline (experimental):** `iconmatch-build generate` drafts icons for missing concepts with a local LLM, validates and normalises them to the set's stroke style, and builds a review gallery; approved icons form an opt-in `generated` set. A vision judge (`iconmatch-eval --judge`) measures how well a local vision model agrees with the eval labels.
 - **Pipeline:** `enrich.applyTo` (`both` | `index` | `embed`) and learned concepts from users' choice exports (`enrich.learnedFrom`, `enrich.learnedMinUsers`).
 
 - Root README rewritten as the project landing page; package README links back to the repository, eval results and this changelog.

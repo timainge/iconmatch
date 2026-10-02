@@ -616,3 +616,25 @@ The fallback loss persisted after a principled fix that is now in core. Per the 
 - **Label issues:** likely missing labels go to `eval/label-issues.md` as suggestions only (§9.1: reviewed sets are never edited).
 
 **Consequence for P7:** κ 0.394 is below the 0.4 bar in §15.6, so the judge is _not_ used as a pre-filter. A human reviews every generated icon; judge verdicts appear in the gallery as advice only.
+
+## 2026-10-03 — P7: icon generation works mechanically, fails semantically with a 7B model; nothing approved
+
+**Pipeline** (all build-time, opt-in):
+
+- **`validateIcon`:** a whitelist of path/line/circle/rect/polyline/ellipse with geometry attributes only, bounds checked against true SVG arc geometry (SVG 1.1 F.6.5, sampled), complexity limits, ink ratio, then normalisation to the shared 2px round-stroke style.
+- **`generateCandidates`:** few-shot from four of the set's own icons, temperature 0.8, validation problems fed back for up to 2 retries, backoff on retryable provider errors.
+- **`iconmatch-build generate --concept … [--n] [--judge]`:** writes the gallery under `build/generated/`.
+- **`createGeneratedAdapter`:** builds a `generated` set from a human `generated/approved.json` and re-validates every body.
+
+Two fixes found while running it:
+
+- **Rendering speed:** resvg loaded system fonts on every render, making a 64px render take about 300 ms. Font loading is now off in both the validator and the judge's PNG renderer: 0.2 s for 200 icons.
+- **Concurrency:** Ollama couldn't serve the text model while the vision judge held the GPU, so generation now retries with backoff and skips a failing concept instead of aborting.
+
+**Run** over the 42 v2 no-match concepts (`qwen2.5:7b-instruct`, 4 drafts each):
+
+- 141/168 drafts valid (84%).
+- Judge "fits": 3/141 (all Origami).
+- My review: 0/141 recognisable. The drawings are abstract stroke glyphs (contact sheets in `docs/audits/P7/`).
+
+**Decision:** nothing is approved and no generated set ships. Per §15.6 the judge (κ 0.394) is advisory only, and here it agrees with the human verdict. A stronger drawing model is the obvious next experiment: `--model` swaps it, and a hosted model is a cost and hard checkpoint for the owner.
