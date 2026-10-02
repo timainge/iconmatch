@@ -1,5 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { pathPoints, STYLE_GROUP, validateIcon } from "./validate.js";
+import { readFile } from "node:fs/promises";
+import { fixturePath } from "../../../../test-support/fixtures.js";
+import {
+  arcPoints,
+  pathPoints,
+  STYLE_GROUP,
+  validateIcon,
+} from "./validate.js";
 
 const svg = (inner: string, viewBox = "0 0 24 24") =>
   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox}" fill="none" stroke="currentColor" stroke-width="2">${inner}</svg>`;
@@ -89,6 +96,31 @@ describe("validateIcon (spec §15.7)", () => {
     if (!b.ok) expect(b.problems).toEqual(["renders as a solid blob"]);
     const dot = validateIcon(svg('<path d="M12 12h0.01"/>'));
     expect(dot.ok).toBe(false);
+  });
+});
+
+describe("validateIcon on real icons in the target style", () => {
+  it("accepts at least 99% of the Tabler fixture icons (the rest have filled details)", async () => {
+    const svgs = JSON.parse(
+      await readFile(fixturePath("tabler-200", "svgs.json"), "utf8"),
+    ) as Record<string, { outline?: { body: string } }>;
+    const results = Object.entries(svgs).map(([id, v]) => ({
+      id,
+      r: validateIcon(v.outline?.body ?? ""),
+    }));
+    const failed = results.filter((x) => !x.r.ok);
+    expect(failed.length / results.length).toBeLessThanOrEqual(0.01);
+    for (const f of failed)
+      if (!f.r.ok) expect(f.r.problems.join(" ")).toMatch(/is filled/);
+  });
+});
+
+describe("arcPoints", () => {
+  it("follows the curve: a half circle from (3,12) to (21,12) bulges to y = 3, not past the grid", () => {
+    const pts = arcPoints(3, 12, [9, 9, 0, 1, 1], 21, 12);
+    const ys = pts.map(([, y]) => y);
+    expect(Math.min(...ys)).toBeCloseTo(3, 0);
+    expect(Math.max(...pts.map(([x]) => x))).toBeLessThanOrEqual(21.001);
   });
 });
 

@@ -155,10 +155,9 @@ export function pathPoints(d: string): {
         points.push([x, y]);
         break;
       case "a": {
-        // Endpoint, plus the radii as a conservative extent around it.
         const ex = ax(a5);
         const ey = ay(a6);
-        points.push([ex, ey], [ex - a0, ey - a1], [ex + a0, ey + a1]);
+        points.push(...arcPoints(x, y, args, ex, ey), [ex, ey]);
         x = ex;
         y = ey;
         break;
@@ -167,6 +166,66 @@ export function pathPoints(d: string): {
     commands++;
   }
   return { points, commands, problems };
+}
+
+/**
+ * Points along an elliptical arc from (x1,y1) to (x2,y2), via the SVG spec's
+ * endpoint-to-centre conversion (SVG 1.1 appendix F.6.5), sampled every 1/16
+ * of the sweep, so bounds checks see the curve, not just its endpoints.
+ */
+export function arcPoints(
+  x1: number,
+  y1: number,
+  args: readonly number[],
+  x2: number,
+  y2: number,
+): [number, number][] {
+  let rx = Math.abs(args[0] ?? 0);
+  let ry = Math.abs(args[1] ?? 0);
+  const phi = ((args[2] ?? 0) * Math.PI) / 180;
+  const largeArc = (args[3] ?? 0) !== 0;
+  const sweep = (args[4] ?? 0) !== 0;
+  if (rx === 0 || ry === 0 || (x1 === x2 && y1 === y2)) return [];
+  const cos = Math.cos(phi);
+  const sin = Math.sin(phi);
+  const dx = (x1 - x2) / 2;
+  const dy = (y1 - y2) / 2;
+  const x1p = cos * dx + sin * dy;
+  const y1p = -sin * dx + cos * dy;
+  // Scale the radii up if they can't span the endpoints.
+  const lambda = (x1p * x1p) / (rx * rx) + (y1p * y1p) / (ry * ry);
+  if (lambda > 1) {
+    rx *= Math.sqrt(lambda);
+    ry *= Math.sqrt(lambda);
+  }
+  const num = rx * rx * ry * ry - rx * rx * y1p * y1p - ry * ry * x1p * x1p;
+  const den = rx * rx * y1p * y1p + ry * ry * x1p * x1p;
+  const coef =
+    (largeArc === sweep ? -1 : 1) * Math.sqrt(Math.max(0, num / den));
+  const cxp = (coef * (rx * y1p)) / ry;
+  const cyp = (coef * -(ry * x1p)) / rx;
+  const cx = cos * cxp - sin * cyp + (x1 + x2) / 2;
+  const cy = sin * cxp + cos * cyp + (y1 + y2) / 2;
+  const angle = (ux: number, uy: number, vx: number, vy: number) =>
+    Math.atan2(ux * vy - uy * vx, ux * vx + uy * vy);
+  const theta1 = angle(1, 0, (x1p - cxp) / rx, (y1p - cyp) / ry);
+  let delta = angle(
+    (x1p - cxp) / rx,
+    (y1p - cyp) / ry,
+    (-x1p - cxp) / rx,
+    (-y1p - cyp) / ry,
+  );
+  if (!sweep && delta > 0) delta -= 2 * Math.PI;
+  if (sweep && delta < 0) delta += 2 * Math.PI;
+  const out: [number, number][] = [];
+  for (let k = 1; k < 16; k++) {
+    const t = theta1 + (delta * k) / 16;
+    out.push([
+      cx + rx * Math.cos(t) * cos - ry * Math.sin(t) * sin,
+      cy + rx * Math.cos(t) * sin + ry * Math.sin(t) * cos,
+    ]);
+  }
+  return out;
 }
 
 function attributes(tag: string): Map<string, string> | string {
@@ -344,7 +403,11 @@ export function validateIcon(
 /** Share of dark pixels when rendered black on white at 64×64. */
 export function ink(body: string): number {
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="64" height="64" style="color:#000">${body.replace(/currentColor/g, "#000")}</svg>`;
-  const img = new Resvg(svg, { background: "#ffffff" }).render();
+  // No text in icons, so skip loading system fonts (slow on every call).
+  const img = new Resvg(svg, {
+    background: "#ffffff",
+    font: { loadSystemFonts: false },
+  }).render();
   const px = img.pixels;
   let dark = 0;
   for (let i = 0; i < px.length; i += 4) if ((px[i] ?? 255) < 128) dark++;

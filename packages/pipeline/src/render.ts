@@ -20,6 +20,8 @@ export function renderPng(
   return new Resvg(markup, {
     fitTo: { mode: "width", value: size },
     background: "#ffffff",
+    // Icons have no text: skip loading system fonts (slow on every call).
+    font: { loadSystemFonts: false },
   })
     .render()
     .asPng();
