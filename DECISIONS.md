@@ -545,3 +545,14 @@ nomic's layer-norm step only applies when truncating Matryoshka dimensions; the 
 Without a `choices` part nothing changes: dev `--compare baseline` is +0.000 for keyword and baseline. The browser-client example seeds the memory from saved choices, records every pick, and exposes `exportChoices()`; it's exact-repeat only, since it has no local vectors (tested, including a reload with the remote down). The package README has a type-checked "Learning from choices" example.
 
 (These records belong to commit 788469f; a combined command was blocked by the guard and the follow-up chain stopped early, so they're added in the next commit.)
+
+## 2026-10-03 — P3: model families compared; bge-small kept
+
+Eight candidates from five families were each built from the shipped Tabler data with only `embed.model` changed, and evaluated hybrid on the reviewed v2 **dev** split. Full table: `eval/models/comparison-2026-10-03.md`.
+
+- **bge-small** (default): best MRR (0.639) and best fallback F1 (0.903 at 0.65), with AUC 0.971.
+- **gte-small:** Hit@3 0.756 (+0.025, two queries) but MRR 0.636 and much weaker fallback separation (F1 0.789, and only at a 0.92 threshold).
+- **Everything else** (gte-base, all-MiniLM-L6-v2, mxbai-xsmall, arctic-embed xs/s/m, nomic v1.5) is behind on both ranking and fallback F1. bge-base keeps the best AUC (0.982) but ranks worse.
+- **Latency:** all embed a query in under 10 ms warm (bge-small 1.8 ms), so it doesn't decide anything.
+
+**Decision:** no candidate beats bge-small on dev, so per §15.3 nothing is adopted and test isn't consulted. bge-small's reported test numbers stand (v2: Hit@3 0.758, fallback R 0.71). The profile registry stays, so trying a model is a config change (`embed.model`) plus a rebuild.

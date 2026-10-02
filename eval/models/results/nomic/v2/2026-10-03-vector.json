@@ -1,0 +1,1732 @@
+{
+  "config": "vector",
+  "split": "dev",
+  "date": "2026-10-03",
+  "minConfidence": 0.65,
+  "report": {
+    "n": 78,
+    "hit1": 0.46153846153846156,
+    "hit3": 0.6282051282051282,
+    "hit5": 0.6794871794871795,
+    "mrr": 0.563692446845116,
+    "fallback": {
+      "threshold": 0.65,
+      "precision": 0.5370370370370371,
+      "recall": 0.9666666666666667,
+      "truePositives": 29,
+      "falsePositives": 25,
+      "falseNegatives": 1
+    },
+    "perGroup": {
+      "abstract": {
+        "n": 14,
+        "hit1": 0.14285714285714285,
+        "hit3": 0.2857142857142857,
+        "hit5": 0.2857142857142857,
+        "mrr": 0.2322771276342705,
+        "fallback": {
+          "threshold": 0.65,
+          "precision": 0,
+          "recall": 1,
+          "truePositives": 0,
+          "falsePositives": 7,
+          "falseNegatives": 0
+        }
+      },
+      "brands": {
+        "n": 11,
+        "hit1": 0.9090909090909091,
+        "hit3": 1,
+        "hit5": 1,
+        "mrr": 0.9545454545454546,
+        "fallback": {
+          "threshold": 0.65,
+          "precision": 0,
+          "recall": 1,
+          "truePositives": 0,
+          "falsePositives": 1,
+          "falseNegatives": 0
+        }
+      },
+      "concrete": {
+        "n": 18,
+        "hit1": 0.5,
+        "hit3": 0.7777777777777778,
+        "hit5": 0.7777777777777778,
+        "mrr": 0.6459279171644764,
+        "fallback": {
+          "threshold": 0.65,
+          "precision": 0,
+          "recall": 1,
+          "truePositives": 0,
+          "falsePositives": 5,
+          "falseNegatives": 0
+        }
+      },
+      "hobbies": {
+        "n": 14,
+        "hit1": 0.5714285714285714,
+        "hit3": 0.7142857142857143,
+        "hit5": 0.8571428571428571,
+        "mrr": 0.682936507936508,
+        "fallback": {
+          "threshold": 0.65,
+          "precision": 0,
+          "recall": 1,
+          "truePositives": 0,
+          "falsePositives": 4,
+          "falseNegatives": 0
+        }
+      },
+      "home-life": {
+        "n": 14,
+        "hit1": 0.42857142857142855,
+        "hit3": 0.5714285714285714,
+        "hit5": 0.7142857142857143,
+        "mrr": 0.5496417224024457,
+        "fallback": {
+          "threshold": 0.65,
+          "precision": 0,
+          "recall": 1,
+          "truePositives": 0,
+          "falsePositives": 4,
+          "falseNegatives": 0
+        }
+      },
+      "no-match": {
+        "n": 0,
+        "hit1": 0,
+        "hit3": 0,
+        "hit5": 0,
+        "mrr": 0,
+        "fallback": {
+          "threshold": 0.65,
+          "precision": 1,
+          "recall": 0.9655172413793104,
+          "truePositives": 28,
+          "falsePositives": 0,
+          "falseNegatives": 1
+        }
+      },
+      "vague": {
+        "n": 7,
+        "hit1": 0.14285714285714285,
+        "hit3": 0.2857142857142857,
+        "hit5": 0.2857142857142857,
+        "mrr": 0.19047619047619047,
+        "fallback": {
+          "threshold": 0.65,
+          "precision": 0.2,
+          "recall": 1,
+          "truePositives": 1,
+          "falsePositives": 4,
+          "falseNegatives": 0
+        }
+      }
+    }
+  },
+  "sweep": [
+    {
+      "threshold": 0.3,
+      "precision": 1,
+      "recall": 0,
+      "truePositives": 0,
+      "falsePositives": 0,
+      "falseNegatives": 30
+    },
+    {
+      "threshold": 0.35,
+      "precision": 1,
+      "recall": 0,
+      "truePositives": 0,
+      "falsePositives": 0,
+      "falseNegatives": 30
+    },
+    {
+      "threshold": 0.4,
+      "precision": 1,
+      "recall": 0,
+      "truePositives": 0,
+      "falsePositives": 0,
+      "falseNegatives": 30
+    },
+    {
+      "threshold": 0.45,
+      "precision": 1,
+      "recall": 0,
+      "truePositives": 0,
+      "falsePositives": 0,
+      "falseNegatives": 30
+    },
+    {
+      "threshold": 0.5,
+      "precision": 1,
+      "recall": 0,
+      "truePositives": 0,
+      "falsePositives": 0,
+      "falseNegatives": 30
+    },
+    {
+      "threshold": 0.55,
+      "precision": 1,
+      "recall": 0.4,
+      "truePositives": 12,
+      "falsePositives": 0,
+      "falseNegatives": 18
+    },
+    {
+      "threshold": 0.6,
+      "precision": 0.71875,
+      "recall": 0.7666666666666667,
+      "truePositives": 23,
+      "falsePositives": 9,
+      "falseNegatives": 7
+    },
+    {
+      "threshold": 0.65,
+      "precision": 0.5370370370370371,
+      "recall": 0.9666666666666667,
+      "truePositives": 29,
+      "falsePositives": 25,
+      "falseNegatives": 1
+    },
+    {
+      "threshold": 0.7,
+      "precision": 0.40540540540540543,
+      "recall": 1,
+      "truePositives": 30,
+      "falsePositives": 44,
+      "falseNegatives": 0
+    },
+    {
+      "threshold": 0.75,
+      "precision": 0.3191489361702128,
+      "recall": 1,
+      "truePositives": 30,
+      "falsePositives": 64,
+      "falseNegatives": 0
+    },
+    {
+      "threshold": 0.8,
+      "precision": 0.2777777777777778,
+      "recall": 1,
+      "truePositives": 30,
+      "falsePositives": 78,
+      "falseNegatives": 0
+    }
+  ],
+  "queries": [
+    {
+      "query": "Car servicing",
+      "group": "concrete",
+      "split": "dev",
+      "ranked": [
+        "tabler:car-suspension",
+        "tabler:car-garage",
+        "tabler:car-lifter",
+        "tabler:wiper-wash",
+        "tabler:car-turbine"
+      ],
+      "topConfidence": 0.6978902220726013,
+      "firstHit": 2
+    },
+    {
+      "query": "Laundry",
+      "group": "concrete",
+      "split": "dev",
+      "ranked": [
+        "tabler:wash-dryclean",
+        "tabler:wash",
+        "tabler:wash-dry",
+        "tabler:wash-dry-w",
+        "tabler:wash-dry-flat"
+      ],
+      "topConfidence": 0.7651553750038147,
+      "firstHit": 2
+    },
+    {
+      "query": "Coffee",
+      "group": "concrete",
+      "split": "dev",
+      "ranked": [
+        "tabler:coffee",
+        "tabler:coffee-off",
+        "tabler:cup",
+        "tabler:cup-off",
+        "tabler:mug-off"
+      ],
+      "topConfidence": 0.7802976965904236,
+      "firstHit": 1
+    },
+    {
+      "query": "Gym",
+      "group": "concrete",
+      "split": "dev",
+      "ranked": [
+        "tabler:weight",
+        "tabler:dumbbell",
+        "tabler:barbell",
+        "tabler:treadmill",
+        "tabler:barbell-off"
+      ],
+      "topConfidence": 0.7516232132911682,
+      "firstHit": 1
+    },
+    {
+      "query": "Houseplants",
+      "group": "concrete",
+      "split": "dev",
+      "ranked": [
+        "tabler:plant-2-off",
+        "tabler:seedling-off",
+        "tabler:plant-2",
+        "tabler:leaf-2",
+        "tabler:plant-off"
+      ],
+      "topConfidence": 0.6160959005355835,
+      "firstHit": 3
+    },
+    {
+      "query": "Recipes",
+      "group": "concrete",
+      "split": "dev",
+      "ranked": [
+        "tabler:cooker",
+        "tabler:whisk",
+        "tabler:cake-off",
+        "tabler:soup-off",
+        "tabler:tools-kitchen"
+      ],
+      "topConfidence": 0.680928647518158,
+      "firstHit": 10
+    },
+    {
+      "query": "Fuel",
+      "group": "concrete",
+      "split": "dev",
+      "ranked": [
+        "tabler:gas-station",
+        "tabler:gas-station-off",
+        "tabler:barrel",
+        "tabler:bottle",
+        "tabler:barrel-off"
+      ],
+      "topConfidence": 0.6929873824119568,
+      "firstHit": 1
+    },
+    {
+      "query": "Travel",
+      "group": "concrete",
+      "split": "dev",
+      "ranked": [
+        "tabler:plane",
+        "tabler:brand-tripadvisor",
+        "tabler:plane-departure",
+        "tabler:plane-off",
+        "tabler:caravan"
+      ],
+      "topConfidence": 0.6867913603782654,
+      "firstHit": 1
+    },
+    {
+      "query": "Summer holidays",
+      "group": "concrete",
+      "split": "dev",
+      "ranked": [
+        "tabler:speedboat",
+        "tabler:pool-off",
+        "tabler:pool",
+        "tabler:sunglasses",
+        "tabler:brand-airbnb"
+      ],
+      "topConfidence": 0.5855304598808289,
+      "firstHit": 9
+    },
+    {
+      "query": "Camping",
+      "group": "concrete",
+      "split": "dev",
+      "ranked": [
+        "tabler:camper",
+        "tabler:campfire",
+        "tabler:tent",
+        "tabler:tent-off",
+        "tabler:mountain-off"
+      ],
+      "topConfidence": 0.694061815738678,
+      "firstHit": 2
+    },
+    {
+      "query": "Movies",
+      "group": "concrete",
+      "split": "dev",
+      "ranked": [
+        "tabler:movie",
+        "tabler:movie-off",
+        "tabler:brand-letterboxd",
+        "tabler:stereo-glasses",
+        "tabler:theater"
+      ],
+      "topConfidence": 0.7334310412406921,
+      "firstHit": 1
+    },
+    {
+      "query": "Pizza nights",
+      "group": "concrete",
+      "split": "dev",
+      "ranked": [
+        "tabler:pizza-off",
+        "tabler:pizza",
+        "tabler:brand-airbnb",
+        "tabler:brand-meetup",
+        "tabler:brand-topbuzz"
+      ],
+      "topConfidence": 0.5727346539497375,
+      "firstHit": 2
+    },
+    {
+      "query": "Baby stuff",
+      "group": "concrete",
+      "split": "dev",
+      "ranked": [
+        "tabler:baby-bottle",
+        "tabler:baby-carriage",
+        "tabler:diaper",
+        "tabler:horse-toy",
+        "tabler:brand-thingiverse"
+      ],
+      "topConfidence": 0.6491908431053162,
+      "firstHit": 1
+    },
+    {
+      "query": "Cat food",
+      "group": "concrete",
+      "split": "dev",
+      "ranked": [
+        "tabler:carrot",
+        "tabler:cheese",
+        "tabler:dumpling",
+        "tabler:carrot-off",
+        "tabler:mushroom"
+      ],
+      "topConfidence": 0.6760654449462891,
+      "firstHit": 31
+    },
+    {
+      "query": "Garden",
+      "group": "concrete",
+      "split": "dev",
+      "ranked": [
+        "tabler:garden-cart",
+        "tabler:flower-off",
+        "tabler:flower",
+        "tabler:garden-cart-off",
+        "tabler:fountain"
+      ],
+      "topConfidence": 0.7233080267906189,
+      "firstHit": 1
+    },
+    {
+      "query": "Birthday party",
+      "group": "concrete",
+      "split": "dev",
+      "ranked": [
+        "tabler:balloon",
+        "tabler:balloon-off",
+        "tabler:cake-off",
+        "tabler:cake",
+        "tabler:confetti-off"
+      ],
+      "topConfidence": 0.7086655497550964,
+      "firstHit": 1
+    },
+    {
+      "query": "Swimming lessons",
+      "group": "concrete",
+      "split": "dev",
+      "ranked": [
+        "tabler:swimming",
+        "tabler:pool-off",
+        "tabler:pool",
+        "tabler:waterpolo",
+        "tabler:scuba-diving"
+      ],
+      "topConfidence": 0.6448673009872437,
+      "firstHit": 1
+    },
+    {
+      "query": "Moving house",
+      "group": "concrete",
+      "split": "dev",
+      "ranked": [
+        "tabler:home-move",
+        "tabler:cash-move",
+        "tabler:hand-move",
+        "tabler:cash-banknote-move",
+        "tabler:moneybag-move"
+      ],
+      "topConfidence": 0.7240011096000671,
+      "firstHit": 20
+    },
+    {
+      "query": "Super contributions",
+      "group": "abstract",
+      "split": "dev",
+      "ranked": [
+        "tabler:superscript",
+        "tabler:tip-jar-euro",
+        "tabler:credits",
+        "tabler:brand-supernova",
+        "tabler:brand-superhuman"
+      ],
+      "topConfidence": 0.5806570053100586,
+      "firstHit": 0
+    },
+    {
+      "query": "Tax",
+      "group": "abstract",
+      "split": "dev",
+      "ranked": [
+        "tabler:receipt-tax",
+        "tabler:tax",
+        "tabler:tax-euro",
+        "tabler:tax-pound",
+        "tabler:receipt-off"
+      ],
+      "topConfidence": 0.7466008067131042,
+      "firstHit": 1
+    },
+    {
+      "query": "Subscriptions",
+      "group": "abstract",
+      "split": "dev",
+      "ranked": [
+        "tabler:paywall",
+        "tabler:brand-disqus",
+        "tabler:brand-nytimes",
+        "tabler:user-plus",
+        "tabler:users-plus"
+      ],
+      "topConfidence": 0.671907901763916,
+      "firstHit": 0
+    },
+    {
+      "query": "Savings",
+      "group": "abstract",
+      "split": "dev",
+      "ranked": [
+        "tabler:heart-discount",
+        "tabler:filter-discount",
+        "tabler:tip-jar-euro",
+        "tabler:rosette-discount-check",
+        "tabler:users-minus"
+      ],
+      "topConfidence": 0.6472123265266418,
+      "firstHit": 11
+    },
+    {
+      "query": "Investments",
+      "group": "abstract",
+      "split": "dev",
+      "ranked": [
+        "tabler:brand-stocktwits",
+        "tabler:brand-crunchbase",
+        "tabler:moneybag-move",
+        "tabler:moneybag-move-back",
+        "tabler:lock-dollar"
+      ],
+      "topConfidence": 0.6256835460662842,
+      "firstHit": 0
+    },
+    {
+      "query": "Loans",
+      "group": "abstract",
+      "split": "dev",
+      "ranked": [
+        "tabler:building-bank",
+        "tabler:zoom-money",
+        "tabler:currency-dinar",
+        "tabler:cash-banknote-move-back",
+        "tabler:cash-banknote-move"
+      ],
+      "topConfidence": 0.6392373442649841,
+      "firstHit": 1
+    },
+    {
+      "query": "Donations",
+      "group": "abstract",
+      "split": "dev",
+      "ranked": [
+        "tabler:tip-jar",
+        "tabler:tip-jar-pound",
+        "tabler:tip-jar-euro",
+        "tabler:cash-move",
+        "tabler:folder-share"
+      ],
+      "topConfidence": 0.6806143522262573,
+      "firstHit": 28
+    },
+    {
+      "query": "Passwords",
+      "group": "abstract",
+      "split": "dev",
+      "ranked": [
+        "tabler:password-user",
+        "tabler:password-fingerprint",
+        "tabler:password",
+        "tabler:lock-password",
+        "tabler:password-mobile-phone"
+      ],
+      "topConfidence": 0.7464544773101807,
+      "firstHit": 3
+    },
+    {
+      "query": "Legal",
+      "group": "abstract",
+      "split": "dev",
+      "ranked": [
+        "tabler:license",
+        "tabler:section-sign",
+        "tabler:trademark",
+        "tabler:license-off",
+        "tabler:copyright"
+      ],
+      "topConfidence": 0.6481033563613892,
+      "firstHit": 6
+    },
+    {
+      "query": "Paperwork",
+      "group": "abstract",
+      "split": "dev",
+      "ranked": [
+        "tabler:file-certificate",
+        "tabler:file-off",
+        "tabler:rubber-stamp",
+        "tabler:note",
+        "tabler:clipboard-check"
+      ],
+      "topConfidence": 0.6785885095596313,
+      "firstHit": 25
+    },
+    {
+      "query": "Emails to answer",
+      "group": "abstract",
+      "split": "dev",
+      "ranked": [
+        "tabler:mail-opened",
+        "tabler:mail-ai",
+        "tabler:mail",
+        "tabler:message-reply",
+        "tabler:send"
+      ],
+      "topConfidence": 0.6699649691581726,
+      "firstHit": 3
+    },
+    {
+      "query": "Meetings",
+      "group": "abstract",
+      "split": "dev",
+      "ranked": [
+        "tabler:brand-meetup",
+        "tabler:podium",
+        "tabler:message-report",
+        "tabler:podium-off",
+        "tabler:message-share"
+      ],
+      "topConfidence": 0.6857042908668518,
+      "firstHit": 20
+    },
+    {
+      "query": "Health insurance",
+      "group": "abstract",
+      "split": "dev",
+      "ranked": [
+        "tabler:hospital-circle",
+        "tabler:pills",
+        "tabler:first-aid-kit-off",
+        "tabler:health-recognition",
+        "tabler:prescription"
+      ],
+      "topConfidence": 0.6416893601417542,
+      "firstHit": 13
+    },
+    {
+      "query": "Retirement",
+      "group": "abstract",
+      "split": "dev",
+      "ranked": [
+        "tabler:rewind-backward-40",
+        "tabler:rewind-backward-30",
+        "tabler:rewind-backward-50",
+        "tabler:rewind-backward-20",
+        "tabler:receipt-tax"
+      ],
+      "topConfidence": 0.5874695181846619,
+      "firstHit": 8
+    },
+    {
+      "query": "Ski training",
+      "group": "hobbies",
+      "split": "dev",
+      "ranked": [
+        "tabler:ski-jumping",
+        "tabler:curling",
+        "tabler:snowboarding",
+        "tabler:treadmill",
+        "tabler:acrobatic"
+      ],
+      "topConfidence": 0.6441370248794556,
+      "firstHit": 1
+    },
+    {
+      "query": "Knitting",
+      "group": "hobbies",
+      "split": "dev",
+      "ranked": [
+        "tabler:yarn",
+        "tabler:needle-thread",
+        "tabler:needle",
+        "tabler:brand-yarn",
+        "tabler:sock"
+      ],
+      "topConfidence": 0.7062667012214661,
+      "firstHit": 1
+    },
+    {
+      "query": "Chess club",
+      "group": "hobbies",
+      "split": "dev",
+      "ranked": [
+        "tabler:chess-king",
+        "tabler:chess-rook",
+        "tabler:chess-queen",
+        "tabler:chess",
+        "tabler:chess-knight"
+      ],
+      "topConfidence": 0.6581462621688843,
+      "firstHit": 4
+    },
+    {
+      "query": "Board games",
+      "group": "hobbies",
+      "split": "dev",
+      "ranked": [
+        "tabler:go-game",
+        "tabler:dice-6",
+        "tabler:dice-5",
+        "tabler:dice-3",
+        "tabler:dice-2"
+      ],
+      "topConfidence": 0.7374803423881531,
+      "firstHit": 6
+    },
+    {
+      "query": "Video games",
+      "group": "hobbies",
+      "split": "dev",
+      "ranked": [
+        "tabler:brand-electronic-arts",
+        "tabler:player-eject",
+        "tabler:brand-xbox",
+        "tabler:device-nintendo",
+        "tabler:device-gamepad"
+      ],
+      "topConfidence": 0.7180497050285339,
+      "firstHit": 5
+    },
+    {
+      "query": "Fishing trips",
+      "group": "hobbies",
+      "split": "dev",
+      "ranked": [
+        "tabler:fish-hook-off",
+        "tabler:fish-hook",
+        "tabler:fish-off",
+        "tabler:pool-off",
+        "tabler:speedboat"
+      ],
+      "topConfidence": 0.6058331727981567,
+      "firstHit": 2
+    },
+    {
+      "query": "Tennis",
+      "group": "hobbies",
+      "split": "dev",
+      "ranked": [
+        "tabler:ball-tennis",
+        "tabler:ping-pong",
+        "tabler:curling",
+        "tabler:sport-billiard",
+        "tabler:rugby"
+      ],
+      "topConfidence": 0.7890250086784363,
+      "firstHit": 1
+    },
+    {
+      "query": "Yoga",
+      "group": "hobbies",
+      "split": "dev",
+      "ranked": [
+        "tabler:yoga",
+        "tabler:stretching",
+        "tabler:acrobatic",
+        "tabler:stretching-2",
+        "tabler:spiral"
+      ],
+      "topConfidence": 0.7916553020477295,
+      "firstHit": 1
+    },
+    {
+      "query": "Running",
+      "group": "hobbies",
+      "split": "dev",
+      "ranked": [
+        "tabler:run",
+        "tabler:run-sprint",
+        "tabler:treadmill",
+        "tabler:walk",
+        "tabler:stretching"
+      ],
+      "topConfidence": 0.7294401526451111,
+      "firstHit": 1
+    },
+    {
+      "query": "Hiking",
+      "group": "hobbies",
+      "split": "dev",
+      "ranked": [
+        "tabler:trekking",
+        "tabler:mountain-off",
+        "tabler:mountain",
+        "tabler:footsteps",
+        "tabler:walk"
+      ],
+      "topConfidence": 0.7174864411354065,
+      "firstHit": 1
+    },
+    {
+      "query": "Woodworking",
+      "group": "hobbies",
+      "split": "dev",
+      "ranked": [
+        "tabler:chisel",
+        "tabler:scissors",
+        "tabler:scissors-off",
+        "tabler:whisk",
+        "tabler:brand-craft"
+      ],
+      "topConfidence": 0.6435992121696472,
+      "firstHit": 9
+    },
+    {
+      "query": "Sewing",
+      "group": "hobbies",
+      "split": "dev",
+      "ranked": [
+        "tabler:needle-thread",
+        "tabler:needle",
+        "tabler:brand-threads",
+        "tabler:yarn",
+        "tabler:ironing-1"
+      ],
+      "topConfidence": 0.7611750364303589,
+      "firstHit": 1
+    },
+    {
+      "query": "Home brewing",
+      "group": "hobbies",
+      "split": "dev",
+      "ranked": [
+        "tabler:beer-off",
+        "tabler:home-hand",
+        "tabler:beer",
+        "tabler:home-up",
+        "tabler:barrel-off"
+      ],
+      "topConfidence": 0.5964584946632385,
+      "firstHit": 3
+    },
+    {
+      "query": "Snowboarding",
+      "group": "hobbies",
+      "split": "dev",
+      "ranked": [
+        "tabler:snowboarding",
+        "tabler:skateboarding",
+        "tabler:ski-jumping",
+        "tabler:ice-skating",
+        "tabler:skateboard-off"
+      ],
+      "topConfidence": 0.7682865262031555,
+      "firstHit": 1
+    },
+    {
+      "query": "Home build",
+      "group": "home-life",
+      "split": "dev",
+      "ranked": [
+        "tabler:home",
+        "tabler:home-hand",
+        "tabler:home-off",
+        "tabler:home-up",
+        "tabler:home-2"
+      ],
+      "topConfidence": 0.6998690366744995,
+      "firstHit": 1
+    },
+    {
+      "query": "Medical",
+      "group": "home-life",
+      "split": "dev",
+      "ranked": [
+        "tabler:report-medical",
+        "tabler:stethoscope",
+        "tabler:medicine-syrup",
+        "tabler:medical-cross",
+        "tabler:prescription"
+      ],
+      "topConfidence": 0.7538396120071411,
+      "firstHit": 1
+    },
+    {
+      "query": "Dentist",
+      "group": "home-life",
+      "split": "dev",
+      "ranked": [
+        "tabler:dental",
+        "tabler:dental-off",
+        "tabler:dental-broken",
+        "tabler:razor",
+        "tabler:razor-electric"
+      ],
+      "topConfidence": 0.6997485160827637,
+      "firstHit": 1
+    },
+    {
+      "query": "Kids",
+      "group": "home-life",
+      "split": "dev",
+      "ranked": [
+        "tabler:brand-youtube-kids",
+        "tabler:mood-kid",
+        "tabler:horse-toy",
+        "tabler:scribble",
+        "tabler:scribble-off"
+      ],
+      "topConfidence": 0.7139999866485596,
+      "firstHit": 2
+    },
+    {
+      "query": "Electricity",
+      "group": "home-life",
+      "split": "dev",
+      "ranked": [
+        "tabler:waves-electricity",
+        "tabler:sun-electricity",
+        "tabler:solar-electricity",
+        "tabler:wind-electricity",
+        "tabler:circuit-ground"
+      ],
+      "topConfidence": 0.7680593729019165,
+      "firstHit": 41
+    },
+    {
+      "query": "Water bill",
+      "group": "home-life",
+      "split": "dev",
+      "ranked": [
+        "tabler:ripple-up",
+        "tabler:receipt",
+        "tabler:receipt-2",
+        "tabler:receipt-off",
+        "tabler:receipt-pound"
+      ],
+      "topConfidence": 0.5632340908050537,
+      "firstHit": 9
+    },
+    {
+      "query": "Internet",
+      "group": "home-life",
+      "split": "dev",
+      "ranked": [
+        "tabler:browser",
+        "tabler:wifi-0",
+        "tabler:world-www",
+        "tabler:http-connect",
+        "tabler:network"
+      ],
+      "topConfidence": 0.7147485613822937,
+      "firstHit": 8
+    },
+    {
+      "query": "Phone plan",
+      "group": "home-life",
+      "split": "dev",
+      "ranked": [
+        "tabler:phone-call",
+        "tabler:phone-calling",
+        "tabler:phone-check",
+        "tabler:phone-plus",
+        "tabler:phone"
+      ],
+      "topConfidence": 0.6508026123046875,
+      "firstHit": 5
+    },
+    {
+      "query": "Rent",
+      "group": "home-life",
+      "split": "dev",
+      "ranked": [
+        "tabler:brand-booking",
+        "tabler:brand-airbnb",
+        "tabler:receipt-off",
+        "tabler:building-off",
+        "tabler:building"
+      ],
+      "topConfidence": 0.6070907711982727,
+      "firstHit": 5
+    },
+    {
+      "query": "Pets",
+      "group": "home-life",
+      "split": "dev",
+      "ranked": [
+        "tabler:paw",
+        "tabler:paw-off",
+        "tabler:dog",
+        "tabler:cat",
+        "tabler:dog-bowl"
+      ],
+      "topConfidence": 0.7063283920288086,
+      "firstHit": 1
+    },
+    {
+      "query": "Vet visits",
+      "group": "home-life",
+      "split": "dev",
+      "ranked": [
+        "tabler:brand-vechain",
+        "tabler:checkup-list",
+        "tabler:physiotherapist",
+        "tabler:bat",
+        "tabler:razor"
+      ],
+      "topConfidence": 0.561552107334137,
+      "firstHit": 29
+    },
+    {
+      "query": "Pharmacy",
+      "group": "home-life",
+      "split": "dev",
+      "ranked": [
+        "tabler:prescription",
+        "tabler:medicine-syrup",
+        "tabler:vaccine-bottle-off",
+        "tabler:vaccine-bottle",
+        "tabler:capsule-horizontal"
+      ],
+      "topConfidence": 0.7272236943244934,
+      "firstHit": 1
+    },
+    {
+      "query": "Doctor appointments",
+      "group": "home-life",
+      "split": "dev",
+      "ranked": [
+        "tabler:stethoscope-off",
+        "tabler:stethoscope",
+        "tabler:calendar-check",
+        "tabler:checkup-list",
+        "tabler:report-medical"
+      ],
+      "topConfidence": 0.5891282558441162,
+      "firstHit": 2
+    },
+    {
+      "query": "Recycling",
+      "group": "home-life",
+      "split": "dev",
+      "ranked": [
+        "tabler:recycle",
+        "tabler:recycle-off",
+        "tabler:trash-x",
+        "tabler:paper-bag-off",
+        "tabler:paper-bag"
+      ],
+      "topConfidence": 0.7311270236968994,
+      "firstHit": 1
+    },
+    {
+      "query": "Netflix",
+      "group": "brands",
+      "split": "dev",
+      "ranked": [
+        "tabler:brand-netflix",
+        "tabler:brand-hbo",
+        "tabler:brand-twitch",
+        "tabler:brand-comedy-central",
+        "tabler:brand-adobe-premiere"
+      ],
+      "topConfidence": 0.7743781805038452,
+      "firstHit": 1
+    },
+    {
+      "query": "Spotify",
+      "group": "brands",
+      "split": "dev",
+      "ranked": [
+        "tabler:brand-spotify",
+        "tabler:playlist",
+        "tabler:playlist-add",
+        "tabler:playlist-off",
+        "tabler:music-plus"
+      ],
+      "topConfidence": 0.7813214063644409,
+      "firstHit": 1
+    },
+    {
+      "query": "YouTube",
+      "group": "brands",
+      "split": "dev",
+      "ranked": [
+        "tabler:brand-youtube",
+        "tabler:brand-youtube-kids",
+        "tabler:brand-vimeo",
+        "tabler:brand-adobe-premiere",
+        "tabler:brand-twitch"
+      ],
+      "topConfidence": 0.739858865737915,
+      "firstHit": 1
+    },
+    {
+      "query": "Amazon orders",
+      "group": "brands",
+      "split": "dev",
+      "ranked": [
+        "tabler:brand-amazon",
+        "tabler:menu-order",
+        "tabler:shopping-cart-cancel",
+        "tabler:truck-delivery",
+        "tabler:arrows-sort"
+      ],
+      "topConfidence": 0.6302968263626099,
+      "firstHit": 1
+    },
+    {
+      "query": "Google Drive",
+      "group": "brands",
+      "split": "dev",
+      "ranked": [
+        "tabler:brand-google-drive",
+        "tabler:brand-onedrive",
+        "tabler:brand-google-one",
+        "tabler:brand-google-big-query",
+        "tabler:brand-google-photos"
+      ],
+      "topConfidence": 0.7649199962615967,
+      "firstHit": 1
+    },
+    {
+      "query": "PayPal",
+      "group": "brands",
+      "split": "dev",
+      "ranked": [
+        "tabler:brand-paypal",
+        "tabler:brand-paypay",
+        "tabler:brand-alipay",
+        "tabler:currency-kip",
+        "tabler:credit-card-hand"
+      ],
+      "topConfidence": 0.7395415306091309,
+      "firstHit": 1
+    },
+    {
+      "query": "Uber rides",
+      "group": "brands",
+      "split": "dev",
+      "ranked": [
+        "tabler:brand-uber",
+        "tabler:segway",
+        "tabler:unicycle",
+        "tabler:rollercoaster",
+        "tabler:rollercoaster-off"
+      ],
+      "topConfidence": 0.682056725025177,
+      "firstHit": 1
+    },
+    {
+      "query": "Steam games",
+      "group": "brands",
+      "split": "dev",
+      "ranked": [
+        "tabler:steam",
+        "tabler:brand-steam",
+        "tabler:brand-itch",
+        "tabler:go-game",
+        "tabler:brand-electronic-arts"
+      ],
+      "topConfidence": 0.6804317831993103,
+      "firstHit": 2
+    },
+    {
+      "query": "Slack",
+      "group": "brands",
+      "split": "dev",
+      "ranked": [
+        "tabler:brand-slack",
+        "tabler:slashes",
+        "tabler:loader-quarter",
+        "tabler:freeze-column",
+        "tabler:ripple-up"
+      ],
+      "topConfidence": 0.7504032850265503,
+      "firstHit": 1
+    },
+    {
+      "query": "Dropbox",
+      "group": "brands",
+      "split": "dev",
+      "ranked": [
+        "tabler:brand-dropbox",
+        "tabler:droplet-code",
+        "tabler:bucket-droplet",
+        "tabler:droplet-x",
+        "tabler:droplet-off"
+      ],
+      "topConfidence": 0.7609935998916626,
+      "firstHit": 1
+    },
+    {
+      "query": "Zoom calls",
+      "group": "brands",
+      "split": "dev",
+      "ranked": [
+        "tabler:brand-zoom",
+        "tabler:zoom-exclamation",
+        "tabler:zoom-code",
+        "tabler:zoom-scan",
+        "tabler:zoom-pan"
+      ],
+      "topConfidence": 0.6785735487937927,
+      "firstHit": 1
+    },
+    {
+      "query": "Stuff to sort",
+      "group": "vague",
+      "split": "dev",
+      "ranked": [
+        "tabler:sort-ascending-2",
+        "tabler:sort-ascending",
+        "tabler:sort-descending-2",
+        "tabler:arrows-sort",
+        "tabler:sort-descending"
+      ],
+      "topConfidence": 0.726455807685852,
+      "firstHit": 0
+    },
+    {
+      "query": "Other",
+      "group": "vague",
+      "split": "dev",
+      "ranked": [
+        "tabler:brand-among-us",
+        "tabler:alt",
+        "tabler:external-link",
+        "tabler:ampersand",
+        "tabler:diabolo-plus"
+      ],
+      "topConfidence": 0.6081731915473938,
+      "firstHit": 0
+    },
+    {
+      "query": "Random",
+      "group": "vague",
+      "split": "dev",
+      "ranked": [
+        "tabler:arrows-random",
+        "tabler:grain",
+        "tabler:arrows-shuffle",
+        "tabler:arrows-shuffle-2",
+        "tabler:repeat-off"
+      ],
+      "topConfidence": 0.6710963845252991,
+      "firstHit": 3
+    },
+    {
+      "query": "Admin",
+      "group": "vague",
+      "split": "dev",
+      "ranked": [
+        "tabler:brand-asana",
+        "tabler:user",
+        "tabler:user-minus",
+        "tabler:user-x",
+        "tabler:brand-tabnine"
+      ],
+      "topConfidence": 0.5851835012435913,
+      "firstHit": 0
+    },
+    {
+      "query": "Important",
+      "group": "vague",
+      "split": "dev",
+      "ranked": [
+        "tabler:label-important",
+        "tabler:urgent",
+        "tabler:world-exclamation",
+        "tabler:device-watch-exclamation",
+        "tabler:message-2-star"
+      ],
+      "topConfidence": 0.7218480110168457,
+      "firstHit": 0
+    },
+    {
+      "query": "Personal",
+      "group": "vague",
+      "split": "dev",
+      "ranked": [
+        "tabler:user",
+        "tabler:folder-user",
+        "tabler:calendar-user",
+        "tabler:message-user",
+        "tabler:users"
+      ],
+      "topConfidence": 0.6363604664802551,
+      "firstHit": 1
+    },
+    {
+      "query": "Later",
+      "group": "vague",
+      "split": "dev",
+      "ranked": [
+        "tabler:rewind-forward-30",
+        "tabler:rewind-backward-30",
+        "tabler:caret-down",
+        "tabler:rewind-forward-60",
+        "tabler:rewind-forward-15"
+      ],
+      "topConfidence": 0.6192476749420166,
+      "firstHit": 0
+    },
+    {
+      "query": "Someday",
+      "group": "vague",
+      "split": "dev",
+      "ranked": [
+        "tabler:repeat-once",
+        "tabler:crystal-ball",
+        "tabler:hours-12",
+        "tabler:brand-superhuman",
+        "tabler:brand-wish"
+      ],
+      "topConfidence": 0.5271561741828918,
+      "firstHit": 0
+    },
+    {
+      "query": "Beekeeping",
+      "group": "no-match",
+      "split": "dev",
+      "ranked": [
+        "tabler:brand-bumble",
+        "tabler:bell-ringing",
+        "tabler:abacus",
+        "tabler:api-book",
+        "tabler:bell-ringing-2"
+      ],
+      "topConfidence": 0.5622270107269287,
+      "firstHit": 0
+    },
+    {
+      "query": "Origami",
+      "group": "no-match",
+      "split": "dev",
+      "ranked": [
+        "tabler:ease-out-control-point",
+        "tabler:ease-in-control-point",
+        "tabler:ease-in-out",
+        "tabler:pencil-ai",
+        "tabler:ease-in-out-control-points"
+      ],
+      "topConfidence": 0.5594261288642883,
+      "firstHit": 0
+    },
+    {
+      "query": "Falconry",
+      "group": "no-match",
+      "split": "dev",
+      "ranked": [
+        "tabler:glass-off",
+        "tabler:binoculars",
+        "tabler:glass-full",
+        "tabler:feather-off",
+        "tabler:chess-rook"
+      ],
+      "topConfidence": 0.5345597863197327,
+      "firstHit": 0
+    },
+    {
+      "query": "Reptile supplies",
+      "group": "no-match",
+      "split": "dev",
+      "ranked": [
+        "tabler:brand-zulip",
+        "tabler:brand-vechain",
+        "tabler:brand-python",
+        "tabler:brand-cucumber",
+        "tabler:razor-electric"
+      ],
+      "topConfidence": 0.5234004855155945,
+      "firstHit": 0
+    },
+    {
+      "query": "Sheep shearing",
+      "group": "no-match",
+      "split": "dev",
+      "ranked": [
+        "tabler:scissors",
+        "tabler:ironing-1",
+        "tabler:razor-electric",
+        "tabler:ironing-2",
+        "tabler:ironing-steam"
+      ],
+      "topConfidence": 0.5535314083099365,
+      "firstHit": 0
+    },
+    {
+      "query": "Snake enclosure",
+      "group": "no-match",
+      "split": "dev",
+      "ranked": [
+        "tabler:frame",
+        "tabler:sandbox",
+        "tabler:building-circus",
+        "tabler:box-model-2",
+        "tabler:box-model"
+      ],
+      "topConfidence": 0.5339363813400269,
+      "firstHit": 0
+    },
+    {
+      "query": "Frog pond",
+      "group": "no-match",
+      "split": "dev",
+      "ranked": [
+        "tabler:fountain",
+        "tabler:fountain-off",
+        "tabler:waterpolo",
+        "tabler:ripple-down",
+        "tabler:ripple-up"
+      ],
+      "topConfidence": 0.5584735870361328,
+      "firstHit": 0
+    },
+    {
+      "query": "Honey harvest",
+      "group": "no-match",
+      "split": "dev",
+      "ranked": [
+        "tabler:growth",
+        "tabler:wheat-off",
+        "tabler:git-cherry-pick",
+        "tabler:cane",
+        "tabler:wheat"
+      ],
+      "topConfidence": 0.5184643864631653,
+      "firstHit": 0
+    },
+    {
+      "query": "Embroidery",
+      "group": "no-match",
+      "split": "dev",
+      "ranked": [
+        "tabler:needle-thread",
+        "tabler:needle",
+        "tabler:yarn",
+        "tabler:ironing-1",
+        "tabler:ironing-2"
+      ],
+      "topConfidence": 0.6727173924446106,
+      "firstHit": 0
+    },
+    {
+      "query": "Woodturning",
+      "group": "no-match",
+      "split": "dev",
+      "ranked": [
+        "tabler:wrecking-ball",
+        "tabler:whisk",
+        "tabler:u-turn-left",
+        "tabler:u-turn-right",
+        "tabler:chisel"
+      ],
+      "topConfidence": 0.5705037713050842,
+      "firstHit": 0
+    },
+    {
+      "query": "Soap making",
+      "group": "no-match",
+      "split": "dev",
+      "ranked": [
+        "tabler:ironing-steam",
+        "tabler:ironing-steam-off",
+        "tabler:bleach-chlorine",
+        "tabler:ironing-2",
+        "tabler:ironing-3"
+      ],
+      "topConfidence": 0.6447790265083313,
+      "firstHit": 0
+    },
+    {
+      "query": "Bookbinding",
+      "group": "no-match",
+      "split": "dev",
+      "ranked": [
+        "tabler:book-upload",
+        "tabler:bookmark-ai",
+        "tabler:kerning",
+        "tabler:bookmark-off",
+        "tabler:book-off"
+      ],
+      "topConfidence": 0.5872374773025513,
+      "firstHit": 0
+    },
+    {
+      "query": "Croquet",
+      "group": "no-match",
+      "split": "dev",
+      "ranked": [
+        "tabler:ball-tennis",
+        "tabler:ping-pong",
+        "tabler:sport-billiard",
+        "tabler:acrobatic",
+        "tabler:crutches"
+      ],
+      "topConfidence": 0.593476414680481,
+      "firstHit": 0
+    },
+    {
+      "query": "Hedgehog rescue",
+      "group": "no-match",
+      "split": "dev",
+      "ranked": [
+        "tabler:shield-up",
+        "tabler:pig-off",
+        "tabler:help-hexagon",
+        "tabler:alert-hexagon-off",
+        "tabler:webhook"
+      ],
+      "topConfidence": 0.5226351618766785,
+      "firstHit": 0
+    },
+    {
+      "query": "Chinchilla",
+      "group": "no-match",
+      "split": "dev",
+      "ranked": [
+        "tabler:carambola",
+        "tabler:cone-plus",
+        "tabler:pizza-off",
+        "tabler:dumpling",
+        "tabler:git-cherry-pick"
+      ],
+      "topConfidence": 0.5200062990188599,
+      "firstHit": 0
+    },
+    {
+      "query": "Kombucha brewing",
+      "group": "no-match",
+      "split": "dev",
+      "ranked": [
+        "tabler:bubble-tea-2",
+        "tabler:bubble-tea",
+        "tabler:beer-off",
+        "tabler:coffee-off",
+        "tabler:coffee"
+      ],
+      "topConfidence": 0.5591018199920654,
+      "firstHit": 0
+    },
+    {
+      "query": "Probate",
+      "group": "no-match",
+      "split": "dev",
+      "ranked": [
+        "tabler:folder-cancel",
+        "tabler:podium-off",
+        "tabler:basket-share",
+        "tabler:file-type-ppt",
+        "tabler:podium"
+      ],
+      "topConfidence": 0.5795973539352417,
+      "firstHit": 0
+    },
+    {
+      "query": "Septic tank",
+      "group": "no-match",
+      "split": "dev",
+      "ranked": [
+        "tabler:scuba-diving-tank",
+        "tabler:plunger",
+        "tabler:barrel",
+        "tabler:barrel-off",
+        "tabler:tank"
+      ],
+      "topConfidence": 0.617961049079895,
+      "firstHit": 0
+    },
+    {
+      "query": "Chimney sweep",
+      "group": "no-match",
+      "split": "dev",
+      "ranked": [
+        "tabler:ironing-steam",
+        "tabler:ironing-steam-off",
+        "tabler:ironing-off",
+        "tabler:ironing-1",
+        "tabler:ironing-2"
+      ],
+      "topConfidence": 0.5909175872802734,
+      "firstHit": 0
+    },
+    {
+      "query": "Ventriloquism",
+      "group": "no-match",
+      "split": "dev",
+      "ranked": [
+        "tabler:spiral-off",
+        "tabler:spiral",
+        "tabler:pendulum",
+        "tabler:whirl",
+        "tabler:reduce-motion"
+      ],
+      "topConfidence": 0.5432217121124268,
+      "firstHit": 0
+    },
+    {
+      "query": "Puppet shows",
+      "group": "no-match",
+      "split": "dev",
+      "ranked": [
+        "tabler:masks-theater-off",
+        "tabler:masks-theater",
+        "tabler:brand-comedy-central",
+        "tabler:ghost-off",
+        "tabler:theater"
+      ],
+      "topConfidence": 0.6365062594413757,
+      "firstHit": 0
+    },
+    {
+      "query": "Tattoo appointments",
+      "group": "no-match",
+      "split": "dev",
+      "ranked": [
+        "tabler:calendar-check",
+        "tabler:navigation-check",
+        "tabler:calendar-cog",
+        "tabler:location-check",
+        "tabler:hand-click-off"
+      ],
+      "topConfidence": 0.5276872515678406,
+      "firstHit": 0
+    },
+    {
+      "query": "Genealogy",
+      "group": "no-match",
+      "split": "dev",
+      "ranked": [
+        "tabler:folder-root",
+        "tabler:dna",
+        "tabler:dna-off",
+        "tabler:dna-2-off",
+        "tabler:dna-2"
+      ],
+      "topConfidence": 0.6346381306648254,
+      "firstHit": 0
+    },
+    {
+      "query": "Harp lessons",
+      "group": "no-match",
+      "split": "dev",
+      "ranked": [
+        "tabler:bell-school",
+        "tabler:chalkboard-teacher",
+        "tabler:play-card-off",
+        "tabler:hand-finger-right",
+        "tabler:heart-handshake"
+      ],
+      "topConfidence": 0.5056822896003723,
+      "firstHit": 0
+    },
+    {
+      "query": "Bagpipes",
+      "group": "no-match",
+      "split": "dev",
+      "ranked": [
+        "tabler:chevron-right-pipe",
+        "tabler:bong",
+        "tabler:chevron-left-pipe",
+        "tabler:baguette",
+        "tabler:guitar-pick"
+      ],
+      "topConfidence": 0.5811048746109009,
+      "firstHit": 0
+    },
+    {
+      "query": "Accordion",
+      "group": "no-match",
+      "split": "dev",
+      "ranked": [
+        "tabler:switch-3",
+        "tabler:keyboard-show",
+        "tabler:ease-in-out",
+        "tabler:arrows-shuffle-2",
+        "tabler:arrows-shuffle"
+      ],
+      "topConfidence": 0.6135545969009399,
+      "firstHit": 0
+    },
+    {
+      "query": "Ballroom dancing",
+      "group": "no-match",
+      "split": "dev",
+      "ranked": [
+        "tabler:acrobatic",
+        "tabler:roulette",
+        "tabler:glass-champagne",
+        "tabler:play-card-off",
+        "tabler:roller-skating"
+      ],
+      "topConfidence": 0.6403622627258301,
+      "firstHit": 0
+    },
+    {
+      "query": "Macramé",
+      "group": "no-match",
+      "split": "dev",
+      "ranked": [
+        "tabler:brand-xamarin",
+        "tabler:meeple",
+        "tabler:brand-redux",
+        "tabler:brand-ctemplar",
+        "tabler:swords"
+      ],
+      "topConfidence": 0.5335738062858582,
+      "firstHit": 0
+    },
+    {
+      "query": "Lapidary",
+      "group": "no-match",
+      "split": "dev",
+      "ranked": [
+        "tabler:table-spark",
+        "tabler:grid-goldenratio",
+        "tabler:currency-leu",
+        "tabler:currency-lyd",
+        "tabler:math-x-floor-divide-y"
+      ],
+      "topConfidence": 0.5019724369049072,
+      "firstHit": 0
+    }
+  ]
+}
