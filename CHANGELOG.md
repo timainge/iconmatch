@@ -8,6 +8,8 @@ All notable changes to the published packages. Versions follow [semver](https://
 - **Embedding model profiles:** `EMBEDDING_PROFILES` / `findEmbeddingProfile()` (pooling and prefixes per model). The transformers embedder applies its model's profile and needs an explicit `profile` for unregistered models. The manifest may record `embedding.pooling` and `embedding.documentPrefix`.
 - **Per-set neutral fallback:** `manifest.sets[].fallbackIcon`; the matcher defaults `fallbackIcon` to it.
 - **New package `@iconmatch/lucide`:** Lucide icon data with Lucide-style lettered fallback glyphs.
+- **Confidence:** the +0.1 keyword bump now needs a keyword hit on a source field (label, name, tags, categories); matches on enrichment text alone don't earn it. No change for the packaged (unenriched) data.
+- **Pipeline:** `enrich.applyTo` (`both` | `index` | `embed`) and learned concepts from users' choice exports (`enrich.learnedFrom`, `enrich.learnedMinUsers`).
 
 - Root README rewritten as the project landing page; package README links back to the repository, eval results and this changelog.
 

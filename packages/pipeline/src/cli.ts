@@ -1,8 +1,9 @@
 import { existsSync } from "node:fs";
+import { readFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { parseArgs } from "node:util";
-import type { Embedder } from "@iconmatch/core";
+import type { CatalogEntry, Embedder } from "@iconmatch/core";
 import {
   createTransformersEmbedder,
   type TransformersEmbedderOptions,
@@ -15,6 +16,7 @@ import {
 import { runEmbed } from "./embed.js";
 import { formatSizes, runPackage } from "./package.js";
 import { createProvider, type EnrichmentProvider } from "./enrich/provider.js";
+import { learnedConcepts, readChoiceExports } from "./enrich/learned.js";
 import { readBuildEnrichments, runEnrichStage } from "./enrich/stage.js";
 import { ingest, writeIngest } from "./ingest.js";
 import { runIndex } from "./index.js";
@@ -114,8 +116,23 @@ const STAGES = {
       mode === "none" ? undefined : make(config.enrich.textModel);
     const visionProvider =
       mode === "vision" ? make(config.enrich.visionModel) : undefined;
+    let learned: Map<string, string[]> | undefined;
+    if (config.enrich.learnedFrom !== "") {
+      const catalog = JSON.parse(
+        await readFile(join(config.buildDir, "catalog.json"), "utf8"),
+      ) as CatalogEntry[];
+      learned = learnedConcepts(
+        await readChoiceExports(config.enrich.learnedFrom),
+        new Set(catalog.map((e) => e.id)),
+        { minUsers: config.enrich.learnedMinUsers },
+      );
+      io.log(
+        `enrich: learned concepts for ${String(learned.size)} icons from ${config.enrich.learnedFrom}`,
+      );
+    }
     const { written, stats } = await runEnrichStage(config.buildDir, {
       mode,
+      ...(learned && { learned }),
       visionFor: config.enrich.visionFor,
       ...(visionProvider && { visionProvider }),
       cacheFile: config.enrich.cacheFile,
@@ -138,7 +155,10 @@ const STAGES = {
   async embed(config: ResolvedConfig, io: CliIo) {
     const embedder = (io.createEmbedder ?? transformersEmbedder)(config);
     const meta = await runEmbed(config.buildDir, {
-      enrichments: await readBuildEnrichments(config.buildDir),
+      enrichments:
+        config.enrich.applyTo === "index"
+          ? new Map()
+          : await readBuildEnrichments(config.buildDir),
       embedder,
       quantisation: config.embed.quantisation,
       log: io.log,
@@ -160,7 +180,10 @@ const STAGES = {
     );
   },
   async index(config: ResolvedConfig, io: CliIo) {
-    const enrichments = await readBuildEnrichments(config.buildDir);
+    const enrichments =
+      config.enrich.applyTo === "embed"
+        ? new Map()
+        : await readBuildEnrichments(config.buildDir);
     io.log(`index: -> ${await runIndex(config.buildDir, enrichments)}`);
   },
 } as const;
@@ -230,6 +253,8 @@ export async function main(
     }
     if (values.model !== undefined) resolved.enrich.textModel = values.model;
     resolved.enrich.cacheFile = resolve(root, resolved.enrich.cacheFile);
+    if (resolved.enrich.learnedFrom !== "")
+      resolved.enrich.learnedFrom = resolve(root, resolved.enrich.learnedFrom);
     const opts: StageOptions = {};
     if (values.limit !== undefined) {
       const n = Number(values.limit);

@@ -15,7 +15,11 @@ import {
 } from "@iconmatch/core";
 import { EMBED_META_FILE, manifestEmbedding, type EmbedMeta } from "./embed.js";
 import { PROMPT_VERSION, VISION_PROMPT_VERSION } from "./enrich/prompts.js";
-import { readBuildEnrichments } from "./enrich/stage.js";
+import {
+  BUILD_ENRICHMENTS_FILE,
+  readBuildEnrichments,
+  type BuildEnrichments,
+} from "./enrich/stage.js";
 import { SETS_FILE, type SetInfo } from "./ingest.js";
 
 /** Spec §6.6 size targets (uncompressed). */
@@ -30,6 +34,8 @@ export interface PackageOptions {
     mode: "none" | "text" | "vision";
     textModel: string;
     visionModel: string;
+    /** Default "both". */
+    applyTo?: "both" | "index" | "embed";
   };
   /** Defaults to now; injectable for tests. */
   builtAt?: string;
@@ -118,6 +124,16 @@ export async function runPackage(
             },
     files: { ...DEFAULT_FILES },
   };
+  const learnedIcons = await countLearned(buildDir);
+  if (learnedIcons > 0 && manifest.enrichment)
+    manifest.enrichment.learnedIcons = learnedIcons;
+  const applyTo = options.enrich.applyTo ?? "both";
+  if (
+    manifest.enrichment &&
+    manifest.enrichment.mode !== "none" &&
+    applyTo !== "both"
+  )
+    manifest.enrichment.appliedTo = applyTo;
   if (hasVectors) {
     const meta = JSON.parse(
       await readFile(join(buildDir, EMBED_META_FILE), "utf8"),
@@ -160,4 +176,18 @@ export function formatSizes(r: SizeReport): string {
     `  excluding svgs           ${mb(r.excludingSvgs)} (target ≤ 4 MB: ${flag(r.withinTargets.excludingSvgs)})`,
     `  browser (catalog+index)  ${mb(r.browser)}`,
   ].join("\n");
+}
+
+/** Icons whose `enrichments.json` entry has learned concepts (spec §15.5). */
+async function countLearned(buildDir: string): Promise<number> {
+  try {
+    const raw = JSON.parse(
+      await readFile(join(buildDir, BUILD_ENRICHMENTS_FILE), "utf8"),
+    ) as BuildEnrichments;
+    return Object.values(raw).filter((e) => (e.learned?.length ?? 0) > 0)
+      .length;
+  } catch (e) {
+    if ((e as NodeJS.ErrnoException).code === "ENOENT") return 0;
+    throw e;
+  }
 }

@@ -368,7 +368,9 @@ export function createIconMatcher(
       const confidence = r
         ? Math.max(r.confidence, kw?.confidence ?? 0)
         : sims && row !== undefined
-          ? hybridConfidence(sims[row] ?? 0, kw !== undefined)
+          ? // Only a source-field keyword hit earns the bump (spec §6.3:
+            // enrichment is supplementary).
+            hybridConfidence(sims[row] ?? 0, kw?.sourceMatch === true)
           : (kw?.confidence ?? 0);
       const c: Candidate = {
         confidence,
@@ -390,7 +392,10 @@ export function createIconMatcher(
           const row = rowOf.get(id);
           return row === undefined
             ? 0
-            : hybridConfidence(allSims[row] ?? 0, keywordById.has(id));
+            : hybridConfidence(
+                allSims[row] ?? 0,
+                keywordById.get(id)?.sourceMatch === true,
+              );
         },
       }),
     };

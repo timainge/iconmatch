@@ -8,6 +8,7 @@
     "packages/*/scripts",
     "eval/src",
     "eval/models",
+    "eval/enrichment",
     "examples",
     "test-support",
     "*.config.ts"

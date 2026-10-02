@@ -55,6 +55,13 @@ export const CONFIGS = {
   baseline: { keyword: true, vector: true, data: "base", expand: false },
   text: { keyword: true, vector: true, data: "text", expand: false },
   vision: { keyword: true, vector: true, data: "vision", expand: false },
+  /** Enrichment v3 variant 1 (spec §15.5): text-v2 concepts in the keyword index only. */
+  "text-index": {
+    keyword: true,
+    vector: true,
+    data: "textIndex",
+    expand: false,
+  },
   expansion: { keyword: true, vector: true, data: "vision", expand: true },
   "baseline-expansion": {
     keyword: true,
@@ -77,6 +84,7 @@ const USAGE = `Usage: iconmatch-eval [options]
   --data <dir>           build directory (default ./build)
   --data-text <dir>      build with text enrichment (default ./build-text)
   --data-vision <dir>    build with text + vision enrichment (default ./build-vision)
+  --data-text-index <dir> build with text enrichment in the keyword index only (default ./build-text-index)
   --data-float32 <dir>   baseline build with float32 vectors (default ./build-float32)
   --expansions <file>    recorded query expansions (default eval/expansions.json)
   --expander ollama      fetch missing expansions with examples/query-expansion (Ollama at
@@ -199,6 +207,7 @@ export async function main(argv: string[], io: EvalIo): Promise<number> {
         data: { type: "string", default: "build" },
         "data-text": { type: "string", default: "build-text" },
         "data-vision": { type: "string", default: "build-vision" },
+        "data-text-index": { type: "string", default: "build-text-index" },
         "data-float32": { type: "string", default: "build-float32" },
         expansions: { type: "string" },
         choices: { type: "boolean" },
@@ -243,6 +252,7 @@ export async function main(argv: string[], io: EvalIo): Promise<number> {
     base: resolve(io.cwd, values.data),
     text: resolve(io.cwd, values["data-text"]),
     vision: resolve(io.cwd, values["data-vision"]),
+    textIndex: resolve(io.cwd, values["data-text-index"]),
     float32: resolve(io.cwd, values["data-float32"]),
   } as const;
   const dataDir = dataDirs.base;

@@ -159,6 +159,28 @@ describe("runPackage (spec §6.6, §8)", () => {
       model: "qwen2.5:7b-instruct",
       promptVersion: PROMPT_VERSION,
     });
+    // Learned concepts are counted (spec §15.5), even with no LLM mode.
+    await writeFile(
+      join(build, BUILD_ENRICHMENTS_FILE),
+      JSON.stringify({ "demo:heart": { learned: ["valentines"] } }),
+    );
+    expect(
+      (await runPackage(build, data, { enrich })).manifest.enrichment,
+    ).toEqual({ mode: "none", learnedIcons: 1 });
+    await writeFile(
+      join(build, BUILD_ENRICHMENTS_FILE),
+      JSON.stringify({
+        "demo:heart": { description: "x", concepts: ["a"], domains: ["b"] },
+      }),
+    );
+    // Enrichment used on one side only is recorded (spec §15.5).
+    expect(
+      (
+        await runPackage(build, data, {
+          enrich: { ...enrich, mode: "text", applyTo: "index" },
+        })
+      ).manifest.enrichment,
+    ).toMatchObject({ mode: "text", appliedTo: "index" });
     await writeFile(join(build, BUILD_ENRICHMENTS_FILE), "{}\n");
     expect(
       (await runPackage(build, data, { enrich: { ...enrich, mode: "text" } }))

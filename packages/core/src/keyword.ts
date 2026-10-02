@@ -12,7 +12,20 @@ export interface KeywordHit {
   score: number;
   /** 0..1, see `keywordConfidence`. */
   confidence: number;
+  /**
+   * Matched at least one source field (label, name, tags, categories), not
+   * only LLM enrichment (concepts, description). Spec §6.3 trust model.
+   */
+  sourceMatch: boolean;
 }
+
+/** Fields from the icon set itself; enrichment fields are supplementary. */
+const SOURCE_FIELDS: ReadonlySet<string> = new Set([
+  "label",
+  "name",
+  "tags",
+  "categories",
+]);
 
 export interface KeywordSearcher {
   /** Expects a normalised query (`normaliseQuery`). Returns best first. */
@@ -66,6 +79,9 @@ export function createKeywordSearcher(
         id: r.id as string,
         score: r.score,
         confidence: keywordConfidence(r, top, total),
+        sourceMatch: Object.values(r.match).some((fields) =>
+          fields.some((f) => SOURCE_FIELDS.has(f)),
+        ),
       }));
     },
   };

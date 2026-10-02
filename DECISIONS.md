@@ -576,3 +576,17 @@ A first version tuned on paraphrase gain alone and picked 0.65. That run, and on
 - **Never-remembered v2 test queries:** Hit@3 0.758 → 0.788, MRR 0.698 → 0.733, fallback recall 0.71 → 0.71.
 
 The threshold depends on the embedding model's cosine scale; it was measured with bge-small.
+
+## 2026-10-03 — P5: enrichment v3 (keyword-side, tie-break, learned concepts); none adopted as default
+
+Spec §15.5 variants were evaluated on reviewed v2 **dev** with the existing text-v2 enrichments, unenriched vectors, and bge-small at threshold 0.65.
+
+**Variant 1, keyword-side only** (concepts in the keyword index, not in embedded text). An offline sweep of concept boosts 0.1–1.0 showed the boost barely matters (MRR 0.666–0.672). It's now a pipeline option, `enrich.applyTo: "index"` (the others: `"embed"`, default `"both"`), recorded as `manifest.enrichment.appliedTo`. The real build is `eval/enrichment/text-index.config.ts` → `build-text-index/`, eval config `text-index`, in the results table `eval/v2/results/2026-10-03.md`. Dev against baseline: Hit@1 +0.051, Hit@3 +0.026, MRR +0.036, but fallback precision 0.88 → 0.84 and recall 0.93 → 0.90; best fallback F1 0.871 vs 0.903, AUC 0.961 vs 0.971.
+
+The fallback loss persisted after a principled fix that is now in core. Per the §6.3 trust model, the +0.1 keyword confidence bump is earned only by a keyword hit on a **source** field (label, name, tags, categories), not by a match on enrichment concepts or description alone (`KeywordHit.sourceMatch`, tested). For unenriched data every keyword hit is a source hit, so shipped behaviour is unchanged (dev baseline +0.000). Enriched builds' confidence becomes more honest: config 4 (text) now shows fallback R 0.93 instead of 0.89.
+
+**Variant 2, tie-break only** (a concepts-only index re-ranks only the unenriched top-k). Evaluated offline for k ∈ {3, 5, 10} and weight ∈ {0.5, 1, 2}. Every setting hurt: dev MRR 0.543–0.592 vs 0.639, Hit@1 0.37–0.44 vs 0.53. Not implemented in core.
+
+**Variant 3, learned concepts.** `enrich.learnedFrom` points at a JSON array of users' choice exports. A name becomes a concept of an icon when at least `enrich.learnedMinUsers` (default 2) distinct users chose that icon for it, capped at 15 per icon, most widely chosen first. Learned concepts are stored apart in `enrichments.json` (`learned`, so their source stays visible) and folded into `concepts` for the index and embeddings; `manifest.enrichment.learnedIcons` counts them. They work with or without an LLM mode. Implemented and tested on fixtures (unit tests, plus a CLI test where two users' shared "valentines" choice makes `demo:heart` findable by that word). The real-data run waits for real usage exports.
+
+**Decision:** the packaged default stays `enrich: none`. Variant 1 trades fallback quality for ranking on dev, and given the earlier enrichment results (dev gains that reversed on test), a mixed dev result isn't enough to adopt it. So test wasn't used to decide; its rows are in the table for completeness only. `applyTo: "index"` is available for deployments that prefer recall over fallback precision.

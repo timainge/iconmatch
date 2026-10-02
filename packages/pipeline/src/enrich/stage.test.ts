@@ -89,6 +89,75 @@ it("enrich (text) feeds concepts into the keyword index and the embedding text",
   ).toHaveLength(1);
 });
 
+it("enrich.applyTo limits enrichment to the keyword index or the embeddings (spec §15.5)", async () => {
+  const recorded = await recordedEnrichment();
+  const onlyFromEnrichment = recorded.concepts.find(
+    (c) => !/heart|shape/.test(c),
+  );
+  if (!onlyFromEnrichment) throw new Error("fixture needs a distinct concept");
+  for (const applyTo of ["index", "embed"] as const) {
+    // A config file per variant: Node caches an imported module by path.
+    const config = `iconmatch.${applyTo}.config.ts`;
+    await writeFile(
+      join(dir, config),
+      CONFIG.replace(
+        'enrich: { mode: "text",',
+        `enrich: { applyTo: "${applyTo}", mode: "text",`,
+      ),
+    );
+    embedder = createFakeEmbedder({ dims: 8 });
+    for (const stage of ["ingest", "enrich", "index", "embed"])
+      expect(await main([stage, "--config", config], io)).toBe(0);
+    const index = parseKeywordIndex(
+      await readFile(join(dir, "out", "keyword-index.json"), "utf8"),
+    );
+    const inIndex = index.search(onlyFromEnrichment).length > 0;
+    const embedded = embedder.calls[0]?.texts[0] ?? "";
+    expect(inIndex).toBe(applyTo === "index");
+    expect(embedded.includes("Represents:")).toBe(applyTo === "embed");
+  }
+});
+
+it("enrich.learnedFrom turns users' shared choices into searchable concepts, without an LLM (spec §15.5)", async () => {
+  const pick = (query: string) => ({
+    query,
+    iconId: "demo:heart",
+    count: 1,
+    seq: 1,
+  });
+  await writeFile(
+    join(dir, "choices.json"),
+    JSON.stringify([
+      [pick("valentines")],
+      [pick("valentines"), pick("my crush")],
+    ]),
+  );
+  const config = "iconmatch.learned.config.ts";
+  await writeFile(
+    join(dir, config),
+    CONFIG.replace(
+      'enrich: { mode: "text",',
+      'enrich: { learnedFrom: "choices.json", mode: "none",',
+    ),
+  );
+  for (const stage of ["ingest", "enrich", "index"])
+    expect(await main([stage, "--config", config], io)).toBe(0);
+  expect(out).toContain(
+    `enrich: learned concepts for 1 icons from ${join(dir, "choices.json")}`,
+  );
+  const enrichments = JSON.parse(
+    await readFile(join(dir, "out", "enrichments.json"), "utf8"),
+  ) as Record<string, { learned?: string[] }>;
+  // Only the name two users agreed on is learned.
+  expect(enrichments).toEqual({ "demo:heart": { learned: ["valentines"] } });
+  const index = parseKeywordIndex(
+    await readFile(join(dir, "out", "keyword-index.json"), "utf8"),
+  );
+  expect(index.search("valentines").map((r) => r.id as string)).toEqual([
+    "demo:heart",
+  ]);
+});
+
 it("enrich --mode none writes an empty map so later stages ignore stale enrichment", async () => {
   expect(await main(["ingest"], io)).toBe(0);
   expect(await main(["enrich"], io)).toBe(0);

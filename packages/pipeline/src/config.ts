@@ -23,6 +23,18 @@ export interface IconmatchConfig {
     visionModel?: string;
     concurrency?: number;
     cacheFile?: string;
+    /**
+     * Where enrichment feeds the search (spec §15.5): the keyword index and
+     * the embedded document text (`both`, v0.1 behaviour), or only one.
+     */
+    applyTo?: "both" | "index" | "embed";
+    /**
+     * Learned concepts (spec §15.5): a JSON file holding an array of users'
+     * choice exports (`ChoiceMemory.export()`). Empty for none.
+     */
+    learnedFrom?: string;
+    /** Distinct users who must agree on a choice for it to become a concept. Default 2. */
+    learnedMinUsers?: number;
   };
   embed?: {
     model?: string;
@@ -66,6 +78,9 @@ export const DEFAULT_CONFIG: Omit<ResolvedConfig, "sets"> = {
     visionModel: "qwen2.5vl:7b",
     concurrency: 2,
     cacheFile: "packages/pipeline/cache/enrichment.jsonl",
+    applyTo: "both",
+    learnedFrom: "",
+    learnedMinUsers: 2,
   },
   embed: {
     model: DEFAULT_EMBEDDING_MODEL,

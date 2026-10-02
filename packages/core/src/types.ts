@@ -87,6 +87,10 @@ export interface Manifest {
     mode: "text" | "vision" | "none";
     model?: string;
     promptVersion?: string;
+    /** Where enrichment was used, when not both index and embeddings (spec §15.5). */
+    appliedTo?: "index" | "embed";
+    /** Icons with concepts learned from users' choices (spec §15.5). */
+    learnedIcons?: number;
   };
   files: ManifestFiles;
 }

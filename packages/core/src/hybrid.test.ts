@@ -3,6 +3,7 @@ import { createFakeEmbedder } from "../../../test-support/fake-embedder.js";
 import { IconMatchCapabilityError } from "./errors.js";
 import { hybridConfidence } from "./fuse.js";
 import { buildKeywordIndex } from "./keyword-index.js";
+import { createKeywordSearcher } from "./keyword.js";
 import { createIconMatcher } from "./matcher.js";
 import type { CatalogEntry } from "./types.js";
 import {
@@ -50,6 +51,47 @@ beforeAll(async () => {
     64,
     "int8",
   );
+});
+
+describe("keyword confidence bump comes from source fields only (spec §6.3, §15.5)", () => {
+  it("an icon matched only through enrichment concepts gets no +0.1 bump", async () => {
+    const enriched = buildKeywordIndex(
+      catalog,
+      new Map([["t:calendar", { concepts: ["grooming appointments"] }]]),
+    );
+    expect(
+      createKeywordSearcher(catalog, enriched)
+        .search("grooming")
+        .map((h) => [h.id, h.sourceMatch]),
+    ).toEqual(
+      expect.arrayContaining([
+        ["t:scissors", true],
+        ["t:calendar", false],
+      ]),
+    );
+    const embedder = createFakeEmbedder({ dims: 64 });
+    const hybrid = await createIconMatcher({
+      catalog,
+      keywordIndex: enriched,
+      vectors,
+      embedder,
+    });
+    // Vector-only confidence is the plain cosine (no bump).
+    const vectorOnly = await createIconMatcher({ catalog, vectors, embedder });
+    const conf = async (
+      m: Awaited<ReturnType<typeof createIconMatcher>>,
+      id: string,
+    ) =>
+      (await m.search("grooming", { limit: 50 })).find((r) => r.id === id)
+        ?.confidence;
+    const cosCalendar = await conf(vectorOnly, "t:calendar");
+    const cosScissors = await conf(vectorOnly, "t:scissors");
+    expect(await conf(hybrid, "t:calendar")).toBeCloseTo(cosCalendar ?? -1, 6);
+    expect(await conf(hybrid, "t:scissors")).toBeCloseTo(
+      Math.min(1, (cosScissors ?? -1) + 0.1),
+      6,
+    );
+  });
 });
 
 describe("hybrid search", () => {

@@ -92,9 +92,9 @@ describe("iconmatch-eval", () => {
     io = freshIo();
     expect(await main(args(), io)).toBe(0);
     // No enriched/float32 builds at the default paths and no recorded
-    // expansions here, so configs 4–7 and baseline-expansion are skipped.
+    // expansions here, so configs 4–7, text-index and baseline-expansion are skipped.
     expect(out.filter((l) => l.includes("skipped (no build in"))).toHaveLength(
-      4,
+      5,
     );
     expect(
       out.filter((l) => l.includes("skipped (no expansions in")),

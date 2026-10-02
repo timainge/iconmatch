@@ -120,10 +120,11 @@ The owner asked to try, in order: more no-match queries in a new eval revision, 
 
 ## P5: Metadata enrichment v3 (spec §15.5)
 
-- [ ] Variant 1 (keyword-side only) and 2 (tie-break only) implemented behind config; eval on v2 dev with deltas
-- [ ] Variant 3 (learned concepts from choice exports) implemented on fixtures — real-data run WAITS: real choice data
-- [ ] Decision recorded; test reported once for any adopted variant
-- [ ] Audit P5
+- [x] Variant 1 (keyword-side only) and 2 (tie-break only) implemented behind config; eval on v2 dev with deltas (variant 1 = `enrich.applyTo`, mixed on dev; variant 2 lost offline, not implemented)
+- [x] Variant 3 (learned concepts from choice exports) implemented on fixtures (`enrich.learnedFrom`)
+- [ ] Variant 3 real-data run — WAITS: real choice data
+- [x] Decision recorded; test reported once for any adopted variant (none adopted)
+- [x] Audit P5
 
 ## P6: Vision model review (spec §15.6)
 
