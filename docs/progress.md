@@ -95,9 +95,9 @@ The owner asked to try, in order: more no-match queries in a new eval revision, 
 
 ## P2: Second icon set — Lucide (spec §15.2)
 
-- [ ] Verify Lucide sources (`@iconify-json/lucide`, `lucide-static` tags, categories source, aliases/deprecated, licence) and record in DECISIONS.md
-- [ ] Lucide adapter + fixture subset + adapter tests
-- [ ] Lucide lettered fallback (frame + stroke letters) with tests for a–z/0–9
+- [x] Verify Lucide sources (`@iconify-json/lucide`, `lucide-static` tags, categories source, aliases/deprecated, licence) and record in DECISIONS.md
+- [x] Lucide adapter + adapter tests (fixture subset moved to the data-package item)
+- [x] Lucide lettered fallback (frame + stroke letters) with tests for a–z/0–9
 - [ ] Set selection in the pipeline config and `@iconmatch/lucide` data package (manifest, packagedSource, pack check, sizes)
 - [ ] Lucide eval set draft (`eval/lucide/queries.json`, labels by catalog browsing) + provisional results; flag for owner review
 - [ ] Lucide threshold + acceptance bar on Lucide test — WAITS: eval/lucide/REVIEWED

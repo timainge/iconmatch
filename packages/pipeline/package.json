@@ -5,10 +5,12 @@
   "private": true,
   "license": "MIT",
   "dependencies": {
+    "@iconify-json/lucide": "^1.2.138",
     "@iconify-json/tabler": "^1.2.40",
+    "@iconmatch/core": "^0.1.0",
     "@resvg/resvg-js": "^2.6.2",
     "@tabler/icons": "^3.48.0",
-    "@iconmatch/core": "^0.1.0",
+    "lucide-static": "^1.50.0",
     "tsx": "^4.23.15",
     "zod": "^4.6.5"
   },

@@ -70,6 +70,8 @@ export interface Manifest {
     attributionRequired?: boolean;
     /** Licence URL, for attribution UIs. */
     url?: string;
+    /** The set's neutral fallback glyph id (spec §7.4), e.g. "tabler:category". */
+    fallbackIcon?: string;
   }[];
   embedding?: {
     model: string;

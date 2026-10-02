@@ -196,6 +196,7 @@ export function createTablerAdapter(
       attributionRequired: false,
     },
     variants,
+    fallbackIcon: "category",
     licenseText: () =>
       readFile(packageFile("@tabler/icons", "LICENSE"), "utf8"),
     async load() {

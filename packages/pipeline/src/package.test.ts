@@ -38,6 +38,7 @@ const adapter = (license = true) => ({
     attributionRequired: false,
   },
   variants: ["outline" as const],
+  fallbackIcon: "heart",
   ...(license && { licenseText: () => Promise.resolve("MIT demo licence\n") }),
   load: () =>
     Promise.resolve([
@@ -89,6 +90,7 @@ describe("runPackage (spec §6.6, §8)", () => {
           count: 2,
           attributionRequired: false,
           url: "https://example.com",
+          fallbackIcon: "demo:heart",
         },
       ],
       enrichment: { mode: "none" },
@@ -118,6 +120,8 @@ describe("runPackage (spec §6.6, §8)", () => {
     });
     expect((await matcher.search("heart"))[0]?.id).toBe("demo:heart");
     expect(matcher.attributions()).toEqual([]);
+    // The manifest's fallbackIcon becomes the neutral fallback by default.
+    expect((await matcher.best("???")).id).toBe("demo:heart");
   });
 
   it("copies each set's licence into licenses/ and fails without one", async () => {

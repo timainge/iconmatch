@@ -177,6 +177,29 @@ describe("matcher.best()", () => {
     expect((await m.best("???")).id).toBe("tabler:heart");
   });
 
+  it("defaults fallbackIcon to the manifest's set (e.g. a Lucide build), an explicit one still wins", async () => {
+    const manifest = {
+      sets: [
+        {
+          id: "tabler",
+          version: "x",
+          license: "MIT",
+          count: 1,
+          fallbackIcon: "tabler:heart",
+        },
+      ],
+    };
+    const m = await createIconMatcher({ catalog, keywordIndex, manifest });
+    expect((await m.best("???")).id).toBe("tabler:heart");
+    const explicit = await createIconMatcher({
+      catalog,
+      keywordIndex,
+      manifest,
+      fallbackIcon: "tabler:category",
+    });
+    expect((await explicit.best("???")).id).toBe("tabler:category");
+  });
+
   it("never returns a glyph as a ranked match", async () => {
     const m = await createIconMatcher({ catalog, keywordIndex });
     expect(await m.search("square letter")).toEqual([]);

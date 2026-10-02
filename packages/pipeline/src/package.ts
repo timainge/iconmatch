@@ -101,6 +101,7 @@ export async function runPackage(
       count: s.count,
       attributionRequired: s.attributionRequired,
       url: s.url,
+      ...(s.fallbackIcon !== undefined && { fallbackIcon: s.fallbackIcon }),
     })),
     enrichment:
       enrichments.size === 0 || options.enrich.mode === "none"

@@ -17,6 +17,11 @@ export interface IconSetAdapter {
   load(): Promise<RawIcon[]>;
   /** The set's licence text, shipped in `data/licenses/` (spec §8). */
   licenseText?(): Promise<string>;
+  /**
+   * Name of the set's neutral glyph, used by the fallback when a label has no
+   * usable character (spec §7.4), e.g. "category" for Tabler. Goes in the manifest.
+   */
+  fallbackIcon?: string;
 }
 
 /** SVG inner markup plus its viewBox size. */

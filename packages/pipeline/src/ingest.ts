@@ -18,6 +18,8 @@ export interface SetInfo {
   attributionRequired: boolean;
   url: string;
   count: number;
+  /** Full id of the set's neutral fallback glyph, e.g. "tabler:category". */
+  fallbackIcon?: string;
   /** Licence text to ship in `data/licenses/<id>.txt` (spec §8). */
   licenseText?: string;
 }
@@ -88,6 +90,12 @@ export async function ingest(
       url: adapter.license.url,
       count: catalog.length - before,
     };
+    if (adapter.fallbackIcon !== undefined) {
+      const id = `${adapter.id}:${adapter.fallbackIcon}`;
+      if (!catalog.slice(before).some((e) => e.id === id))
+        problems.push(`${adapter.id}: fallbackIcon ${id} is not in the set`);
+      set.fallbackIcon = id;
+    }
     const text = await adapter.licenseText?.();
     if (text !== undefined) set.licenseText = text;
     sets.push(set);

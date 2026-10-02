@@ -449,3 +449,20 @@ The root `README.md` is rewritten as the GitHub landing page (§15.1): a real ou
 - relative links resolve.
 
 The package README must not contain relative links, which break on npm. It gains absolute links to the repository, eval results, changelog and issues. A root `CHANGELOG.md` is started; it isn't shipped in the tarball, which keeps the pack allow-list unchanged. `npm run readme` syncs both READMEs.
+
+## 2026-10-03 — P2: Lucide sources, adapter and fallback glyphs
+
+**Sources, verified in the installed packages:**
+
+- **SVG bodies:** `@iconify-json/lucide` 1.2.138, `icons.json`. It holds 1,929 icons on a 24×24 grid, every body `fill="none" stroke="currentColor"` with round caps/joins and a 2px stroke. 72 icons are `hidden` (Lucide's renamed/removed icons that Iconify keeps for compatibility). Its 219 aliases live in a separate `aliases` map and are never emitted. `info.json` has no version field, and `metadata.json` has no categories.
+- **Tags:** `lucide-static` 1.50.0, `tags.json`. It covers 1,858 icons and every visible Iconify icon. The one extra entry (`layout-grid-circles`) is version skew between the two packages, and is ignored.
+- **Categories:** Lucide's categories exist only in its GitHub repo (`icons/*.json`); no npm package ships them. Per spec §3 ("do not crawl websites"), Lucide entries have **no categories**. Categories are the weakest keyword field (boost 1), so this costs little.
+- **Licence:** ISC (`lucide-static/LICENSE`). The manifest version is the Lucide release `1.50.0`.
+
+**Adapter** (`packages/pipeline/src/adapters/lucide.ts`): pure `lucideIcons(source)` plus `readLucideSource()`, mirroring the Tabler adapter. It emits 1,857 visible concepts plus 72 generated glyphs.
+
+**Fallback glyphs:** Lucide has no letter/number glyphs, so the adapter generates `square-letter-[a-z]`, `square-number-[0-9]`, `circle-letter-*` and `circle-number-*`. Each is Lucide's own `square` frame (`rect 18×18 at 3,3, rx 2`) or `circle` frame (`r 10`) around the letter strokes of the matching Tabler glyph. Tabler uses the same grid, stroke and round joins, and its square frame has the same geometry. The ids follow Tabler's naming, so core's `glyphId()`/`letterFallback()` work unchanged. Iconify sometimes merges Tabler's letter into the frame's path (`…z m7 11 …`); the extraction then makes that relative move absolute from the frame's start (3,5) (unit-tested).
+
+The shipped licence text is Lucide's ISC licence followed by the Tabler MIT notice covering the letter strokes. A render of `square-letter-a/h/q`, `square-number-7`, `circle-letter-m`, `circle-number-0`, `heart` and `shapes` was checked by eye: same weight and style. The adapter throws if Lucide ever ships its own icon with a generated glyph's name.
+
+**Neutral glyph per set:** `IconSetAdapter.fallbackIcon` (Tabler `category`, Lucide `shapes`). Ingest checks it exists, `sets.json` and the manifest's `sets[]` carry the full id, and the matcher's default `fallbackIcon` is the manifest's first set's, else `tabler:category` as before.

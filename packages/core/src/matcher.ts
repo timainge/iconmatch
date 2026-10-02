@@ -76,6 +76,10 @@ export interface IconMatcherParts {
    */
   keywordMinConfidence?: number;
   fallbackShape?: FallbackOptions["fallbackShape"];
+  /**
+   * Neutral fallback glyph id. Default: the manifest's first set's
+   * `fallbackIcon` when a `manifest` part is given, else `DEFAULT_FALLBACK_ICON`.
+   */
   fallbackIcon?: string;
 }
 
@@ -453,7 +457,9 @@ export function createIconMatcher(
       if (top && top.confidence >= threshold) return top;
       const fallback: FallbackOptions = {};
       if (parts.fallbackShape) fallback.fallbackShape = parts.fallbackShape;
-      if (parts.fallbackIcon) fallback.fallbackIcon = parts.fallbackIcon;
+      const fallbackIcon =
+        parts.fallbackIcon ?? parts.manifest?.sets?.[0]?.fallbackIcon;
+      if (fallbackIcon) fallback.fallbackIcon = fallbackIcon;
       if (options.variant) fallback.variant = options.variant;
       return letterFallback(query, byId, fallback);
     },

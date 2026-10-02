@@ -124,6 +124,16 @@ describe("ingest", () => {
     );
   });
 
+  it("records the set's neutral fallback glyph and checks it exists in the set", async () => {
+    const { sets } = await ingest([
+      adapter([heart], { fallbackIcon: "heart" }),
+    ]);
+    expect(sets?.[0]?.fallbackIcon).toBe("test:heart");
+    await expect(
+      ingest([adapter([heart], { fallbackIcon: "category" })]),
+    ).rejects.toThrow(/test: fallbackIcon test:category is not in the set/);
+  });
+
   it("prefixes ids with the adapter id across several sets", async () => {
     const { catalog } = await ingest([
       adapter([heart]),
