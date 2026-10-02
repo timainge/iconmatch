@@ -406,3 +406,22 @@ The owner reviewed `eval/v2/queries.json` with no label changes and created `eva
 Still failing, by query: Llama trekking → trekking (0.716), Quilting → needle-thread (0.700), Gutter cleaning → toilet-paper (0.747), and vague "Life" → lifebuoy (0.688), all above 0.65. `eval/label-issues.md` notes that the first two may deserve an acceptable icon.
 
 With expansion, v2 dev's best fallback F1 is only 0.60 (at 0.70), so the `expandQuery` doc and README now say 0.70 and that expansion falls back less often. The README cites `eval/v2/results/2026-10-02.md`, and its test now reads the cited revision's `REVIEWED` and result files, including the default threshold.
+
+## 2026-10-03 — Release: owner-authorised push/publish, package metadata, clean-install check
+
+The owner asked to push, make `timainge/iconmatch` public, and publish `iconmatch` to npm, keeping the name; the name check is summarised below.
+
+**Guard.** It still denies pushing and publishing by default. A push or publish the owner has explicitly authorised runs as one plain command prefixed `ICONMATCH_RELEASE=1`. The guard denies force pushes (`--force`, `-f`, `+ref`) always, and denies any prefixed command that is chained or contains substitution or redirection. The autonomous loop (`/next`) never uses the prefix. Checked with sample commands: plain push/publish denied; prefixed push/publish allowed; prefixed force, chained and `$(…)` variants denied.
+
+**Package metadata.** `packages/core/package.json` gains `repository` (with `directory: packages/core`), `homepage` and `bugs`. There's no `author` field; the LICENSE holder stays "the iconmatch authors".
+
+**Clean-install check**, outside the repo in a scratch project:
+
+- `npm pack -w iconmatch` gives 48 files.
+- The README quick start runs unchanged against the installed tarball with `@huggingface/transformers`: "Dog grooming" → dog/paw icons, SVG rendered.
+- The README browser example bundles with esbuild (`--platform=browser`) to 86 KB, with no Node built-ins and no transformers.js.
+- The public types type-check under `--strict --module nodenext`.
+
+The browser example's leftover `minConfidence: 0.5` (from before the 0.65 re-tune) is removed, so it uses the documented default.
+
+**Name check (2026-10-02/03).** `iconmatch` is unclaimed on npm. Name collisions are only an unrelated Python screen-icon detector on GitHub and "Icon Match" puzzle games on Google Play. No trademark turned up in a web search (not a formal search). The closest product is Semantic Icons (`semantic-icons`: its own ~3,000-icon set, hosted Voyage embeddings, paid generation), a different approach from matching category names to Tabler with a local model.

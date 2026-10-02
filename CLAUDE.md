@@ -54,7 +54,7 @@ Work runs lights-out, with no human in the loop, driven by `/loop /next`. Each `
 These form an observe, orient/decide, act loop:
 
 - **SessionStart** (`observe.sh`): shows open, blocked and waiting checklist items, checkpoints, the eval review state, and git state.
-- **PreToolUse** (`guard.sh`): blocks edits to human-owned files, `git push`, `npm publish`, destructive git, `--no-verify` and `--amend`. It runs `npm run check` before every `git commit` and denies the commit if it fails. A human-directed session can set `ICONMATCH_ALLOW_PROTECTED=1` to edit protected files.
+- **PreToolUse** (`guard.sh`): blocks edits to human-owned files, `git push`, `npm publish`, destructive git, `--no-verify` and `--amend`. It runs `npm run check` before every `git commit` and denies the commit if it fails. A human-directed session can set `ICONMATCH_ALLOW_PROTECTED=1` to edit protected files. A push or publish the owner has explicitly authorised in the conversation runs as a single command prefixed `ICONMATCH_RELEASE=1` (force pushes are always denied); the autonomous loop never uses it.
 - **PostToolUse** (`act.sh`): auto-formats edits and feeds ESLint errors back to you.
 - **Stop** (`verify.sh`): blocks stopping while `npm run check` fails (only when code files are uncommitted).
 

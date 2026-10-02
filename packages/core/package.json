@@ -11,6 +11,15 @@
     "category icons"
   ],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timainge/iconmatch.git",
+    "directory": "packages/core"
+  },
+  "homepage": "https://github.com/timainge/iconmatch/tree/main/packages/core#readme",
+  "bugs": {
+    "url": "https://github.com/timainge/iconmatch/issues"
+  },
   "type": "module",
   "sideEffects": false,
   "engines": {

@@ -90,7 +90,6 @@ const matcher = await createIconMatcher({
         `/api/icons/icons/${encodeURIComponent(id)}?variant=${variant}`,
       ).then((r) => r.json() as Promise<SvgBody>),
   },
-  minConfidence: 0.5,
 });
 
 const suggestion = await matcher.best("Kids' ski gear");

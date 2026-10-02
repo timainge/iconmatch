@@ -38,8 +38,16 @@ case "$tool" in
   Bash)
     cmd=$(echo "$input" | jq -r '.tool_input.command // empty')
     # Outward-facing or irreversible: human checkpoint.
-    echo "$cmd" | grep -qE '\bgit\s+push\b' && deny "Pushing is a human checkpoint. Commit locally and report instead."
-    echo "$cmd" | grep -qE '\b(npm|pnpm|yarn)\s+publish\b' && deny "Publishing is a human checkpoint. Use 'npm pack --dry-run' to verify contents."
+    # A release the owner has explicitly authorised in the conversation is
+    # written as one command prefixed `ICONMATCH_RELEASE=1 `; force pushes never pass.
+    echo "$cmd" | grep -qE '\bgit\s+push\b.*(\s--force|\s-f\b|\s\+)' && deny "Force pushes are never allowed."
+    release=$(echo "$cmd" | grep -cE '^ICONMATCH_RELEASE=1 (git push|npm publish)( |$)')
+    if [ "$release" = "0" ]; then
+      echo "$cmd" | grep -qE '\bgit\s+push\b' && deny "Pushing is a human checkpoint. Commit locally and report instead (an owner-authorised push is prefixed ICONMATCH_RELEASE=1)."
+      echo "$cmd" | grep -qE '\b(npm|pnpm|yarn)\s+publish\b' && deny "Publishing is a human checkpoint. Use 'npm pack --dry-run' to verify contents (an owner-authorised publish is prefixed ICONMATCH_RELEASE=1)."
+    elif echo "$cmd" | grep -qE '[;&|`$()<>]'; then
+      deny "A release command must be a single plain command, not chained or substituted."
+    fi
     echo "$cmd" | grep -qE '\bgit\s+(reset\s+--hard|clean\s+-[a-zA-Z]*f|checkout\s+--\s+\.|restore\s+\.|branch\s+-D|rebase)\b' \
       && deny "Destructive git command blocked. Fix forward with a new commit instead."
     echo "$cmd" | grep -qE -- '--no-verify|--amend' && deny "Don't bypass verification or rewrite commits. Make a new commit."
