@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "icons": [
+    {
+      "name": "beehive",
+      "concept": "Beekeeping",
+      "tags": ["bees", "honey"],
+      "body": "<svg viewBox=\"0 0 24 24\"><path d=\"M7 8h10l2 4l-2 4H7l-2-4z\"/><line x1=\"12\" y1=\"16\" x2=\"12\" y2=\"20\"/></svg>",
+      "model": "fixture",
+      "promptVersion": "generate-v1",
+      "approvedAt": "2026-10-03",
+      "approvedBy": "test fixture (not a real approval)"
+    }
+  ]
+}

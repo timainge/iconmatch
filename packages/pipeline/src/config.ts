@@ -103,4 +103,5 @@ export function resolveConfig(config: IconmatchConfig = {}): ResolvedConfig {
 
 export { createTablerAdapter };
 export { createLucideAdapter } from "./adapters/lucide.js";
+export { createGeneratedAdapter } from "./adapters/generated.js";
 export { subsetAdapter } from "./adapters/subset.js";

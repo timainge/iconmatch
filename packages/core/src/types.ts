@@ -27,6 +27,8 @@ export interface CatalogEntry {
   license: string;
   /** Depicts a third-party trademark. */
   brand?: boolean;
+  /** Drawn by a local model and approved by a maintainer (spec §15.7). */
+  generated?: boolean;
   /** Letter/number glyphs, used by the lettered fallback (spec §7.4). */
   glyph?: "letter" | "number";
 }

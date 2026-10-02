@@ -19,6 +19,7 @@ import { createProvider, type EnrichmentProvider } from "./enrich/provider.js";
 import { learnedConcepts, readChoiceExports } from "./enrich/learned.js";
 import { readBuildEnrichments, runEnrichStage } from "./enrich/stage.js";
 import { ingest, writeIngest } from "./ingest.js";
+import { runGenerate } from "./generate/run.js";
 import { runIndex } from "./index.js";
 
 const USAGE = `Usage: iconmatch-build <stage> [options]
@@ -30,6 +31,8 @@ Stages:
   index     build/catalog.json -> build/keyword-index.json
   package   build/ -> packages/core/data/ + manifest.json + licenses, size report
   all       every implemented stage, in order
+  generate  experimental (spec §15.7): draft icons for --concept with the text
+            model -> build/generated/ (candidates.json, SVGs, index.html gallery)
 
 Options:
   --config <file>     config file (default ./iconmatch.config.ts if present)
@@ -38,7 +41,10 @@ Options:
   --float32           embed: store float32 vectors instead of int8
   --mode <mode>       enrich: text | none (default from config)
   --limit <n>         enrich: process at most n uncached icons
-  --model <name>      enrich: override the text model
+  --model <name>      enrich/generate: override the text model
+  --concept <name>    generate: concept to draw (repeatable)
+  --n <count>         generate: candidates per concept (default 4)
+  --judge             generate: score valid candidates with the vision judge
   -h, --help          show this help
 `;
 
@@ -209,6 +215,9 @@ export async function main(
         mode: { type: "string" },
         limit: { type: "string" },
         model: { type: "string" },
+        concept: { type: "string", multiple: true },
+        n: { type: "string" },
+        judge: { type: "boolean" },
         help: { type: "boolean", short: "h" },
       },
     });
@@ -224,7 +233,12 @@ export async function main(
   }
   if (
     extra.length > 0 ||
-    !(stage in STAGES || PENDING.has(stage) || stage === "all")
+    !(
+      stage in STAGES ||
+      PENDING.has(stage) ||
+      stage === "all" ||
+      stage === "generate"
+    )
   ) {
     io.error(`Unknown stage: ${[stage, ...extra].join(" ")}\n\n${USAGE}`);
     return 2;
@@ -261,6 +275,39 @@ export async function main(
       if (!Number.isInteger(n) || n < 0)
         throw new Error(`--limit must be a non-negative integer`);
       opts.limit = n;
+    }
+    if (stage === "generate") {
+      const concepts = values.concept ?? [];
+      if (concepts.length === 0)
+        throw new Error("generate needs at least one --concept");
+      const n = Number(values.n ?? "4");
+      if (!Number.isInteger(n) || n < 1)
+        throw new Error("--n must be a positive integer");
+      const make = (model: string) =>
+        io.createProvider?.(resolved, model) ??
+        createProvider({
+          provider: resolved.enrich.provider,
+          baseUrl: resolved.enrich.baseUrl,
+          model,
+        });
+      const { candidates, outDir } = await runGenerate({
+        buildDir: resolved.buildDir,
+        concepts,
+        n,
+        provider: make(resolved.enrich.textModel),
+        ...(values.judge === true && {
+          judge: {
+            provider: make(resolved.enrich.visionModel),
+            cacheFile: join(dirname(resolved.enrich.cacheFile), "judge.jsonl"),
+          },
+        }),
+        log: io.log,
+      });
+      const valid = candidates.filter((c) => c.body !== undefined).length;
+      io.log(
+        `generate: ${String(valid)}/${String(candidates.length)} valid candidates -> ${join(outDir, "index.html")}`,
+      );
+      return 0;
     }
     const stages = stage === "all" ? ORDER : [stage];
     for (const s of stages) {

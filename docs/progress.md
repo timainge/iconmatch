@@ -134,8 +134,8 @@ The owner asked to try, in order: more no-match queries in a new eval revision, 
 
 ## P7: Icon generation, experimental (spec §15.7)
 
-- [ ] SVG validator + style lint (unit tests)
-- [ ] Generator (few-shot local LLM) + `generate` CLI + HTML gallery; fixture-tested
+- [x] SVG validator + style lint (unit tests)
+- [x] Generator (few-shot local LLM) + `generate` CLI + HTML gallery; fixture-tested
 - [ ] Run over v2 no-match concepts; judge + acceptance rates reported
-- [ ] `generated` set packaging from an approval file (fixture-tested)
+- [x] `generated` set packaging from an approval file (fixture-tested)
 - [ ] Audit P7

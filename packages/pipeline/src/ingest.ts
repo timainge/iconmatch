@@ -48,6 +48,7 @@ function toEntry(adapter: IconSetAdapter, icon: RawIcon): CatalogEntry {
   };
   if (icon.brand) entry.brand = true;
   if (icon.glyph) entry.glyph = icon.glyph;
+  if (icon.generated) entry.generated = true;
   return entry;
 }
 

@@ -39,6 +39,8 @@ export interface RawIcon {
   deprecated?: boolean;
   /** Depicts a third-party trademark (spec §6.1 rule 3). */
   brand?: boolean;
+  /** Drawn by a local model and approved by a maintainer (spec §15.7). */
+  generated?: boolean;
   /** Letter/number glyph used by the lettered fallback (spec §7.4). */
   glyph?: "letter" | "number";
 }
