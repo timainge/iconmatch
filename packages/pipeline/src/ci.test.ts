@@ -50,6 +50,50 @@ it("iconmatch.ci.config.ts builds and packages exactly the 200-icon fixture subs
   }
 });
 
+// Spec §15.2: CI also builds a Lucide subset, with its fallback glyphs.
+it("iconmatch.ci-lucide.config.ts builds the Lucide subset with its fallback glyphs and licence", async () => {
+  const build = await mkdtemp(join(tmpdir(), "iconmatch-ci-lucide-"));
+  const logs: string[] = [];
+  try {
+    const code = await main(
+      [
+        "all",
+        "--config",
+        "iconmatch.ci-lucide.config.ts",
+        "--mode",
+        "none",
+        "--build-dir",
+        build,
+        "--package-dir",
+        join(build, "package"),
+      ],
+      {
+        cwd: repo,
+        log: (m) => logs.push(m),
+        error: (m) => logs.push(`ERR ${m}`),
+        createEmbedder: () => createFakeEmbedder({ dims: 8 }),
+      },
+    );
+    expect(code, logs.join("\n")).toBe(0);
+    const src = fsSource(join(build, "package"));
+    const manifest = await loadManifest(src);
+    const names = JSON.parse(
+      await readFile(join(repo, "fixtures/lucide-subset.json"), "utf8"),
+    ) as string[];
+    expect(manifest.sets).toMatchObject([
+      { id: "lucide", count: names.length, fallbackIcon: "lucide:shapes" },
+    ]);
+    const ids = (await loadCatalog(src)).map((e) => e.id);
+    expect(ids).toContain("lucide:square-letter-z");
+    expect(ids).toContain("lucide:circle-number-0");
+    expect(
+      await readFile(join(build, "package/licenses/lucide.txt"), "utf8"),
+    ).toMatch(/^ISC License/);
+  } finally {
+    await rm(build, { recursive: true, force: true });
+  }
+});
+
 it("the CI workflow runs check, the subset build and a pack dry-run", async () => {
   const yml = await readFile(join(repo, ".github/workflows/ci.yml"), "utf8");
   expect(yml).toContain("run: npm ci");
@@ -57,7 +101,12 @@ it("the CI workflow runs check, the subset build and a pack dry-run", async () =
   expect(yml).toContain(
     "npx iconmatch-build all --config iconmatch.ci.config.ts --mode none",
   );
-  expect(yml).toContain("npm pack --dry-run -w @iconmatch/core");
+  expect(yml).toContain(
+    "npx iconmatch-build all --config iconmatch.ci-lucide.config.ts --mode none",
+  );
+  expect(yml).toContain(
+    "npm pack --dry-run -w @iconmatch/core -w @iconmatch/lucide",
+  );
   // No Ollama in CI (CLAUDE.md, spec §10): no run step mentions it.
   expect(yml).not.toMatch(/run:.*ollama/i);
 });

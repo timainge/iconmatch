@@ -1,0 +1,53 @@
+{
+  "name": "@iconmatch/lucide",
+  "version": "0.1.0",
+  "description": "Lucide icon data for @iconmatch/core: catalog, keyword index, vectors and SVGs for semantic icon matching, with Lucide-style lettered fallback glyphs.",
+  "keywords": [
+    "icons",
+    "lucide",
+    "semantic search",
+    "embeddings",
+    "icon picker",
+    "category icons"
+  ],
+  "license": "(MIT AND ISC)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timainge/iconmatch.git",
+    "directory": "packages/lucide"
+  },
+  "homepage": "https://github.com/timainge/iconmatch/tree/main/packages/lucide#readme",
+  "bugs": {
+    "url": "https://github.com/timainge/iconmatch/issues"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=20"
+  },
+  "exports": {
+    "./node": {
+      "source": "./src/node.ts",
+      "types": "./dist/node.d.ts",
+      "default": "./dist/node.js"
+    },
+    "./data/*": "./data/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "data",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "prepack": "npm run build"
+  },
+  "peerDependencies": {
+    "@iconmatch/core": "^0.1.0"
+  },
+  "devDependencies": {
+    "@iconmatch/core": "^0.1.0"
+  }
+}

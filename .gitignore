@@ -12,4 +12,5 @@ CLAUDE.local.md
 .claude/settings.local.json
 .factory/
 packages/core/data/
+packages/lucide/data/
 build-*/

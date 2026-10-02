@@ -5,7 +5,9 @@ import { fileURLToPath } from "node:url";
 import {
   checkPackFiles,
   compositionSizes,
+  CORE_PACK,
   formatCompositionSizes,
+  LUCIDE_PACK,
   packFiles,
 } from "../src/pack-check.js";
 
@@ -16,15 +18,21 @@ const modelDir = join(
   "Xenova",
   "bge-small-en-v1.5",
 );
-console.log(
-  formatCompositionSizes(
-    await compositionSizes(join(root, "packages/core/data"), modelDir),
-  ),
-);
-const pack = await packFiles(root);
-const problems = checkPackFiles(pack.paths);
-console.log(
-  `\nnpm pack: ${String(pack.paths.length)} files, ${(pack.size / 1e6).toFixed(2)} MB packed, ${(pack.unpackedSize / 1e6).toFixed(2)} MB unpacked`,
-);
-console.log(problems.length ? problems.join("\n") : "pack contents ok");
-if (problems.length) process.exitCode = 1;
+for (const [spec, dataDir] of [
+  [CORE_PACK, "packages/core/data"],
+  [LUCIDE_PACK, "packages/lucide/data"],
+] as const) {
+  console.log(`\n## ${spec.workspace}\n`);
+  console.log(
+    formatCompositionSizes(
+      await compositionSizes(join(root, dataDir), modelDir),
+    ),
+  );
+  const pack = await packFiles(root, spec.workspace);
+  const problems = checkPackFiles(pack.paths, spec);
+  console.log(
+    `\nnpm pack: ${String(pack.paths.length)} files, ${(pack.size / 1e6).toFixed(2)} MB packed, ${(pack.unpackedSize / 1e6).toFixed(2)} MB unpacked`,
+  );
+  console.log(problems.length ? problems.join("\n") : "pack contents ok");
+  if (problems.length) process.exitCode = 1;
+}

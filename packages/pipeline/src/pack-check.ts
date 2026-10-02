@@ -4,57 +4,96 @@ import { join } from "node:path";
 import { promisify } from "node:util";
 import { gzipSync } from "node:zlib";
 
-/** Paths the published `@iconmatch/core` tarball may contain (spec §11.1 M5). */
-const ALLOWED = [
-  /^package\.json$/,
-  /^README\.md$/,
-  /^LICENSE$/,
-  /^dist\/(?:[\w-]+\/)*[\w.-]+\.(?:js|d\.ts)$/,
+/** What one published package's tarball may and must contain (spec §11.1 M5, §15.2). */
+export interface PackSpec {
+  /** npm workspace name, for `npm pack -w`. */
+  workspace: string;
+  allowed: RegExp[];
+  required: string[];
+}
+
+const DATA_FILES = [
   /^data\/(?:manifest|catalog|svgs|keyword-index|vector-ids)\.json$/,
   /^data\/vectors\.bin$/,
   /^data\/licenses\/[\w-]+\.txt$/,
 ];
 
-/** Paths it must contain. */
-export const REQUIRED_PACK_FILES = [
-  "package.json",
-  "README.md",
-  "LICENSE",
-  "dist/index.js",
-  "dist/index.d.ts",
-  "dist/node.js",
-  "dist/embedders/transformers.js",
-  "data/manifest.json",
-  "data/catalog.json",
-  "data/keyword-index.json",
-  "data/svgs.json",
-  "data/licenses/tabler.txt",
-];
+/** `@iconmatch/core`: the library plus the Tabler data. */
+export const CORE_PACK: PackSpec = {
+  workspace: "@iconmatch/core",
+  allowed: [
+    /^package\.json$/,
+    /^README\.md$/,
+    /^LICENSE$/,
+    /^dist\/(?:[\w-]+\/)*[\w.-]+\.(?:js|d\.ts)$/,
+    ...DATA_FILES,
+  ],
+  required: [
+    "package.json",
+    "README.md",
+    "LICENSE",
+    "dist/index.js",
+    "dist/index.d.ts",
+    "dist/node.js",
+    "dist/embedders/transformers.js",
+    "data/manifest.json",
+    "data/catalog.json",
+    "data/keyword-index.json",
+    "data/svgs.json",
+    "data/licenses/tabler.txt",
+  ],
+};
+
+/** `@iconmatch/lucide`: Lucide data plus its Node source helper. */
+export const LUCIDE_PACK: PackSpec = {
+  workspace: "@iconmatch/lucide",
+  allowed: [
+    /^package\.json$/,
+    /^README\.md$/,
+    /^LICENSE$/,
+    /^dist\/node\.(?:js|d\.ts)$/,
+    ...DATA_FILES,
+  ],
+  required: [
+    "package.json",
+    "README.md",
+    "LICENSE",
+    "dist/node.js",
+    "dist/node.d.ts",
+    "data/manifest.json",
+    "data/catalog.json",
+    "data/keyword-index.json",
+    "data/svgs.json",
+    "data/vectors.bin",
+    "data/vector-ids.json",
+    "data/licenses/lucide.txt",
+  ],
+};
+
+/** Paths `@iconmatch/core` must contain. */
+export const REQUIRED_PACK_FILES = CORE_PACK.required;
 
 /** Problems with a tarball file list: unexpected files (sources, tests, maps…) and missing required ones. */
-export function checkPackFiles(paths: string[]): string[] {
+export function checkPackFiles(
+  paths: string[],
+  spec: PackSpec = CORE_PACK,
+): string[] {
   const problems = paths
-    .filter((p) => !ALLOWED.some((re) => re.test(p)) || /\.test\./.test(p))
+    .filter((p) => !spec.allowed.some((re) => re.test(p)) || /\.test\./.test(p))
     .map((p) => `unexpected file: ${p}`);
-  for (const r of REQUIRED_PACK_FILES)
+  for (const r of spec.required)
     if (!paths.includes(r)) problems.push(`missing file: ${r}`);
   return problems;
 }
 
-/** Runs `npm pack --dry-run --json` for the core package (dist and data must already exist). */
+/** Runs `npm pack --dry-run --json` for a workspace (dist and data must already exist). */
 export async function packFiles(
   repoRoot: string,
+  workspace: string = CORE_PACK.workspace,
 ): Promise<{ paths: string[]; size: number; unpackedSize: number }> {
   const { stdout } = await promisify(execFile)(
     "npm",
-    [
-      "pack",
-      "--dry-run",
-      "--json",
-      "--ignore-scripts",
-      "-w",
-      "@iconmatch/core",
-    ],
+    ["pack", "--dry-run", "--json", "--ignore-scripts", "-w", workspace],
     {
       cwd: repoRoot,
     },

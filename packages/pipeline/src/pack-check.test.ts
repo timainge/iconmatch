@@ -10,6 +10,7 @@ import {
   checkPackFiles,
   compositionSizes,
   formatCompositionSizes,
+  LUCIDE_PACK,
   packFiles,
   REQUIRED_PACK_FILES,
 } from "./pack-check.js";
@@ -47,6 +48,27 @@ describe("checkPackFiles (spec §11.1 M5)", () => {
   });
 });
 
+describe("checkPackFiles for @iconmatch/lucide (spec §15.2)", () => {
+  it("accepts the data, licence and the Node helper only", () => {
+    expect(checkPackFiles(LUCIDE_PACK.required, LUCIDE_PACK)).toEqual([]);
+    expect(
+      checkPackFiles(
+        [...LUCIDE_PACK.required, "dist/index.js", "src/node.ts"],
+        LUCIDE_PACK,
+      ),
+    ).toEqual([
+      "unexpected file: dist/index.js",
+      "unexpected file: src/node.ts",
+    ]);
+    expect(
+      checkPackFiles(
+        LUCIDE_PACK.required.filter((f) => f !== "data/licenses/lucide.txt"),
+        LUCIDE_PACK,
+      ),
+    ).toEqual(["missing file: data/licenses/lucide.txt"]);
+  });
+});
+
 describe("compositionSizes", () => {
   it("sizes the browser download and the server bundle, counting one ONNX variant", async () => {
     const dir = await mkdtemp(join(tmpdir(), "iconmatch-sizes-"));
@@ -81,14 +103,16 @@ describe("compositionSizes", () => {
   });
 });
 
-// §11.1 M5: `npm pack --dry-run` of packages/core lists only the intended files.
+// §11.1 M5 / §15.2: `npm pack --dry-run` of each published package lists only the intended files.
 itSlow(
-  "the real npm pack of iconmatch contains only intended files",
+  "the real npm packs of @iconmatch/core and @iconmatch/lucide contain only intended files",
   async () => {
     const root = fileURLToPath(new URL("../../../", import.meta.url));
     await promisify(execFile)("npm", ["run", "build"], { cwd: root });
     const pack = await packFiles(root);
     expect(checkPackFiles(pack.paths)).toEqual([]);
+    const lucide = await packFiles(root, LUCIDE_PACK.workspace);
+    expect(checkPackFiles(lucide.paths, LUCIDE_PACK)).toEqual([]);
   },
   120_000,
 );

@@ -95,3 +95,14 @@ describe("packages/core/README.md links", () => {
       expect(existsSync(join(pkgDir, href)), href).toBe(true);
   });
 });
+
+describe("packages/lucide/README.md", () => {
+  it("has its example in sync, no relative links, and both licence notices", async () => {
+    const text = await read("packages/lucide/README.md");
+    expect(readmeExamplePaths(text)).toEqual(["examples/readme/lucide.ts"]);
+    expect(await syncReadme(text, root)).toBe(text);
+    expect(relativeLinks(text)).toEqual([]);
+    expect(text).toContain("ISC licence");
+    expect(text).toContain("Tabler Icons");
+  });
+});

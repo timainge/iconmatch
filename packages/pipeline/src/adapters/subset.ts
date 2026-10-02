@@ -14,6 +14,9 @@ export function subsetAdapter(
     id: adapter.id,
     license: adapter.license,
     variants: adapter.variants,
+    ...(adapter.fallbackIcon !== undefined && {
+      fallbackIcon: adapter.fallbackIcon,
+    }),
     async load() {
       const icons = (await adapter.load()).filter((i) => keep.has(i.name));
       if (adapter.version !== undefined) wrapped.version = adapter.version;
