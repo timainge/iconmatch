@@ -439,3 +439,13 @@ Changes:
 - **Unchanged:** the model cache stays at `~/.cache/iconmatch/models` (a bulk rewrite briefly changed it; caught by tests and restored), the private repo-root package keeps the name `iconmatch`, and the project and bin names (`iconmatch-build`, `iconmatch-eval`) stay.
 
 Clean-install check repeated with `iconmatch-core-0.1.0.tgz`: README quick start runs, browser bundle 86 KB. Publishing needs the `iconmatch` org on npmjs.com (owner action) and then a scoped public publish (`--access public`).
+
+## 2026-10-03 — P1: README
+
+The root `README.md` is rewritten as the GitHub landing page (§15.1): a real output block from 0.1.0 (honest about the "Beekeeping"/"Misc" fallbacks), the three deployment shapes with sizes, a ranking diagram, the reviewed v2 test numbers, limitations, development and licences. The owner's in-IDE edit to the old root README ("The `iconmatch` library", plus a truncated code fence) was superseded by the rewrite; the project is called iconmatch throughout, and the npm package `@iconmatch/core`. `test-support/root-readme.test.ts` checks the root README the same way as the package README:
+
+- examples are in sync;
+- every quoted eval figure equals the committed reviewed results;
+- relative links resolve.
+
+The package README must not contain relative links, which break on npm. It gains absolute links to the repository, eval results, changelog and issues. A root `CHANGELOG.md` is started; it isn't shipped in the tarball, which keeps the pack allow-list unchanged. `npm run readme` syncs both READMEs.

@@ -7,6 +7,8 @@ Pick a sensible icon for a user-defined category ("Dog grooming", "Super contrib
 - **Runs anywhere:** Node 20+ and modern browsers. The default entry has no Node built-ins and never downloads a model.
 - **Data included:** about 5,100 Tabler outline icons (brands included), their keyword index, vectors and SVGs, under `data/`.
 
+[Repository](https://github.com/timainge/iconmatch) · [Evaluation results](https://github.com/timainge/iconmatch/blob/main/eval/v2/results/2026-10-02.md) · [Changelog](https://github.com/timainge/iconmatch/blob/main/CHANGELOG.md) · [Issues](https://github.com/timainge/iconmatch/issues)
+
 ## Install
 
 ```sh

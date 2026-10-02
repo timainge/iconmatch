@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import { syncReadme } from "../../../test-support/readme.js";
 
 const root = fileURLToPath(new URL("../../../", import.meta.url));
-const file = `${root}packages/core/README.md`;
-await writeFile(file, await syncReadme(await readFile(file, "utf8"), root));
-console.log(`synced ${file}`);
+for (const file of [`${root}README.md`, `${root}packages/core/README.md`]) {
+  await writeFile(file, await syncReadme(await readFile(file, "utf8"), root));
+  console.log(`synced ${file}`);
+}
