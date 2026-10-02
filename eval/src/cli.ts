@@ -10,6 +10,7 @@ import {
   DEFAULT_MIN_CONFIDENCE,
   loadCatalog,
   loadKeywordIndex,
+  loadSvgs,
   loadVectors,
   type Embedder,
   type IconMatcherParts,
@@ -24,6 +25,10 @@ import {
   resolveExpansions,
   writeExpansions,
 } from "./expansions.js";
+import { createOllamaProvider } from "../../packages/pipeline/src/enrich/provider.js";
+import type { EnrichmentProvider } from "../../packages/pipeline/src/enrich/provider.js";
+import { runJudgements } from "../../packages/pipeline/src/judge/judge.js";
+import { judgeEval, judgeEvalMarkdown } from "./judge-eval.js";
 import {
   choiceEvalMarkdown,
   readParaphrases,
@@ -91,6 +96,10 @@ const USAGE = `Usage: iconmatch-eval [options]
                          --ollama-url, model --expander-model) and record them
   --choices              run the choice-learning eval (spec §15.4) on the base build instead
   --paraphrases <file>   paraphrase set for --choices (default eval/choices/paraphrases.json)
+  --judge                run the vision-judge agreement eval (spec §15.6): Ollama at --ollama-url
+                         judges the hybrid top --judge-top (default 5) per query; results in eval/judge/
+  --judge-model <name>   vision model (default qwen2.5vl:7b); cache --judge-cache
+                         (default packages/pipeline/cache/judge.jsonl)
   --queries <file>       eval set (default eval/v2/queries.json)
   --out <dir>            results directory (default eval/results)
   --min-confidence <n>   fallback threshold for every config (default: the library's,
@@ -130,6 +139,11 @@ export interface EvalIo {
   log: (m: string) => void;
   error: (m: string) => void;
   createEmbedder?: (manifest: Manifest) => Embedder;
+  /** Judge provider for `--judge` (default: Ollama). */
+  createJudgeProvider?: (options: {
+    baseUrl: string;
+    model: string;
+  }) => EnrichmentProvider;
   /** Live expander for `--expander` (default: the Ollama example). */
   createExpander?: (options: {
     baseUrl: string;
@@ -211,6 +225,10 @@ export async function main(argv: string[], io: EvalIo): Promise<number> {
         "data-float32": { type: "string", default: "build-float32" },
         expansions: { type: "string" },
         choices: { type: "boolean" },
+        judge: { type: "boolean" },
+        "judge-model": { type: "string", default: "qwen2.5vl:7b" },
+        "judge-top": { type: "string", default: "5" },
+        "judge-cache": { type: "string" },
         paraphrases: { type: "string" },
         expander: { type: "string" },
         "expander-model": { type: "string", default: "qwen2.5:7b-instruct" },
@@ -394,6 +412,75 @@ export async function main(argv: string[], io: EvalIo): Promise<number> {
     }
     return p;
   };
+
+  if (values.judge === true) {
+    const { catalog, keywordIndex, vectors, embedder } =
+      await partsFor("baseline");
+    const matcher = await createIconMatcher({
+      catalog,
+      keywordIndex,
+      vectors,
+      embedder,
+    });
+    const svgs = await loadSvgs(fsSource(dataDir), { manifest });
+    const topK = Number(values["judge-top"]);
+    const candidates = new Map<string, string[]>();
+    for (const q of set.queries)
+      candidates.set(
+        q.query,
+        (await matcher.search(q.query, { limit: topK })).map((r) => r.id),
+      );
+    const items = [...candidates].flatMap(([query, ids]) =>
+      ids.flatMap((iconId) => {
+        const svg = svgs[iconId]?.outline;
+        return svg ? [{ query, iconId, svg }] : [];
+      }),
+    );
+    const provider = (io.createJudgeProvider ?? createOllamaProvider)({
+      baseUrl: values["ollama-url"],
+      model: values["judge-model"],
+    });
+    const cacheFile = values["judge-cache"]
+      ? resolve(io.cwd, values["judge-cache"])
+      : fileURLToPath(
+          new URL("../../packages/pipeline/cache/judge.jsonl", import.meta.url),
+        );
+    const { judgements, stats } = await runJudgements({
+      provider,
+      items,
+      cacheFile,
+      concurrency: 2,
+      log: io.log,
+    });
+    for (const f of stats.failed.slice(0, 5))
+      io.error(`judge: ${f.key}: ${f.error}`);
+    const result = judgeEval({
+      queries: set.queries,
+      candidates,
+      judgements,
+      topK,
+      failed: stats.failed.length,
+    });
+    const reviewed = await readFile(join(dirname(queriesFile), "REVIEWED"))
+      .then(() => true)
+      .catch(() => false);
+    const judgeOut = values.out
+      ? join(outDir, "judge")
+      : fileURLToPath(new URL("../judge/results/", import.meta.url));
+    await mkdir(judgeOut, { recursive: true });
+    await writeFile(
+      join(judgeOut, `${date}.json`),
+      JSON.stringify({ ...result, judgements }, null, 2) + "\n",
+    );
+    await writeFile(
+      join(judgeOut, `${date}.md`),
+      judgeEvalMarkdown(result, { date, reviewed }),
+    );
+    io.log(
+      `judge: ${String(stats.judged)} judged, ${String(stats.cached)} cached, ${String(stats.failed.length)} failed; κ ${result.overall.kappa.toFixed(3)} -> ${join(judgeOut, `${date}.md`)}`,
+    );
+    return stats.failed.length > 0 ? 1 : 0;
+  }
 
   if (values.choices === true) {
     const file = values.paraphrases

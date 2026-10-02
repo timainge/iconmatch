@@ -1,0 +1,31 @@
+{
+  "source": "recorded",
+  "note": "Recorded from Ollama with qwen2.5vl:7b on 2026-10-02: judge \"Dog grooming\" vs tabler:calendar (image omitted from the request).",
+  "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:11434/api/chat",
+    "body": {
+      "model": "qwen2.5vl:7b"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "model": "qwen2.5vl:7b",
+      "created_at": "2026-10-02T15:16:57.364378Z",
+      "message": {
+        "role": "assistant",
+        "content": "{\"fits\": false, \"confidence\": 0.8, \"reason\": \"The icon depicts a calendar, which is not related to dog grooming.\"}"
+      },
+      "done": true,
+      "done_reason": "stop",
+      "total_duration": 4734168084,
+      "load_duration": 24331250,
+      "prompt_eval_count": 1188,
+      "prompt_eval_cached_count": 153,
+      "prompt_eval_duration": 3430516000,
+      "eval_count": 33,
+      "eval_duration": 1244917000
+    }
+  }
+}

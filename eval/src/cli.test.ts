@@ -325,6 +325,77 @@ describe("iconmatch-eval", () => {
     expect(err[0]).toMatch(/text: the eval set's ids aren't in/);
   });
 
+  it("--judge asks the vision judge about each query's top candidates and writes agreement results (spec §15.6)", async () => {
+    const asked: string[] = [];
+    io = freshIo();
+    io.createJudgeProvider = ({ model }) => ({
+      kind: "ollama",
+      model,
+      chat: (req) => {
+        const m = req.messages[0];
+        asked.push(m?.content ?? "");
+        expect(m?.images?.[0]).toMatch(/^iVBORw0KGgo/);
+        return Promise.resolve({
+          content: JSON.stringify({
+            fits: true,
+            confidence: 0.9,
+            reason: "ok",
+          }),
+          model,
+        });
+      },
+    });
+    const cache = join(outDir, "judge.jsonl");
+    expect(
+      await main(
+        args(
+          "--judge",
+          "--judge-top",
+          "1",
+          "--judge-cache",
+          cache,
+          "--config",
+          "baseline",
+        ),
+        io,
+      ),
+    ).toBe(0);
+    const qs = await fixtureQueries();
+    // One candidate per query that returned anything; each asked once, then cached.
+    expect(asked.length).toBeGreaterThan(0);
+    expect(asked.length).toBeLessThanOrEqual(qs.length);
+    const result = JSON.parse(
+      await readFile(join(outDir, "judge", "2026-09-24.json"), "utf8"),
+    ) as { overall: { n: number; recall: number }; model: string };
+    expect(result.model).toBe("qwen2.5vl:7b");
+    expect(result.overall.n).toBe(asked.length);
+    // The judge says everything fits, so recall of "fits" is 1.
+    expect(result.overall.recall).toBe(1);
+    expect(
+      await readFile(join(outDir, "judge", "2026-09-24.md"), "utf8"),
+    ).toContain("# Vision judge agreement 2026-09-24");
+    io = freshIo();
+    io.createJudgeProvider = ({ model }) => ({
+      kind: "ollama",
+      model,
+      chat: () => Promise.reject(new Error("must not be called: all cached")),
+    });
+    expect(
+      await main(
+        args(
+          "--judge",
+          "--judge-top",
+          "1",
+          "--judge-cache",
+          cache,
+          "--config",
+          "baseline",
+        ),
+        io,
+      ),
+    ).toBe(0);
+  }, 60_000);
+
   it("rejects unknown configs and splits", async () => {
     io = freshIo();
     expect(await main(args("--config", "enriched"), io)).toBe(2);

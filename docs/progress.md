@@ -128,7 +128,7 @@ The owner asked to try, in order: more no-match queries in a new eval revision, 
 
 ## P6: Vision model review (spec §15.6)
 
-- [ ] Judge module (prompt, zod schema, cache, recorded fixtures)
+- [x] Judge module (prompt, zod schema, cache, recorded fixtures)
 - [ ] Agreement run on v2 top-5 candidates vs human labels (accuracy, κ, P/R); label-issue suggestions appended
 - [ ] Audit P6
 
