@@ -590,3 +590,29 @@ The fallback loss persisted after a principled fix that is now in core. Per the 
 **Variant 3, learned concepts.** `enrich.learnedFrom` points at a JSON array of users' choice exports. A name becomes a concept of an icon when at least `enrich.learnedMinUsers` (default 2) distinct users chose that icon for it, capped at 15 per icon, most widely chosen first. Learned concepts are stored apart in `enrichments.json` (`learned`, so their source stays visible) and folded into `concepts` for the index and embeddings; `manifest.enrichment.learnedIcons` counts them. They work with or without an LLM mode. Implemented and tested on fixtures (unit tests, plus a CLI test where two users' shared "valentines" choice makes `demo:heart` findable by that word). The real-data run waits for real usage exports.
 
 **Decision:** the packaged default stays `enrich: none`. Variant 1 trades fallback quality for ranking on dev, and given the earlier enrichment results (dev gains that reversed on test), a mixed dev result isn't enough to adopt it. So test wasn't used to decide; its rows are in the table for completeness only. `applyTo: "index"` is available for deployments that prefer recall over fallback precision.
+
+## 2026-10-03 — P6: vision judge agreement κ 0.394; advisory only
+
+**Judge** (`packages/pipeline/src/judge/judge.ts`, prompt `judge-v1`):
+
+- **Input:** qwen2.5vl:7b sees the 256×256 render and the category name only. No icon name or tags, so it judges what a user would see.
+- **Output:** JSON `{fits, confidence, reason}`, validated with zod and retried like enrichment (§6.3).
+- **Cache:** jsonl, keyed by sha256 of (svg body + query + prompt version + model).
+- **Tests:** default-tier tests replay two recorded exchanges ("Dog grooming" vs `tabler:dog` → fits 0.95, vs `tabler:calendar` → no 0.8).
+- **Speed:** about 6 s per judgement alone, about 7–8 s each in a queue.
+
+**Agreement run** (`iconmatch-eval --judge`): the hybrid top 5 for all 155 v2 queries, 775 pairs, 0 failures (`eval/judge/results/2026-10-03.md`; the JSON there includes every judgement).
+
+|                     | Result        |
+| ------------------- | ------------- |
+| Accuracy            | 0.783         |
+| Cohen's κ           | **0.394**     |
+| Precision of "fits" | 0.404         |
+| Recall of "fits"    | 0.728         |
+| dev / test κ        | 0.392 / 0.401 |
+
+- **By group:** concrete 0.432, hobbies 0.487, abstract 0.192, home-life 0.287, brands 0.285. No-match: 203 of 210 correctly "no", but κ is 0 because the human labels are all "no".
+- **Reading:** the judge is lenient (it says "fits" for 134 pairs the labels reject) and misses some literal icons (Golf → `golf`, Netflix → `brand-netflix`). Part of its "disagreement" is the labels' conservatism: home-move/Moving house, tax/Tax, section-sign/Legal, go-game/Board games.
+- **Label issues:** likely missing labels go to `eval/label-issues.md` as suggestions only (§9.1: reviewed sets are never edited).
+
+**Consequence for P7:** κ 0.394 is below the 0.4 bar in §15.6, so the judge is _not_ used as a pre-filter. A human reviews every generated icon; judge verdicts appear in the gallery as advice only.

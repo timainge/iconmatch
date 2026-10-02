@@ -35,3 +35,29 @@ Source: `eval/v2/results/2026-10-02-baseline*.json` (current model, provisional)
 | Harp lessons, Bagpipes, Accordion | dev   | (none: no-match)     | school-bell, trowel, arrows-shuffle | Confirm: would a generic `music` icon be acceptable for an instrument?                       |
 | Woodturning                       | dev   | (none: no-match)     | wood (0.614)                        | Confirm: `wood` (a log) isn't a lathe, but is arguably acceptable                            |
 | Septic tank                       | dev   | (none: no-match)     | tank (0.703)                        | Probably fine: Tabler `tank` is a military tank                                              |
+
+## Eval v2, suggested by the vision judge (spec §15.6), not applied
+
+Source: `eval/judge/results/2026-10-03.md`. qwen2.5vl:7b judged the hybrid top 5 for every v2 query from the rendered icon and the category name only. It agreed with the labels at κ 0.394. It is lenient (precision 0.40) and misses some literal icons, so treat these only as prompts for a second look.
+
+The judge said these fit with confidence ≥ 0.95, and I (the agent) think a typical user would accept them, though the reviewed labels don't include them:
+
+| Query           | Split | Icon (rank)                                                    |
+| --------------- | ----- | -------------------------------------------------------------- |
+| Moving house    | dev   | `tabler:home-move` (1)                                         |
+| Tax             | dev   | `tabler:tax` (1)                                               |
+| Legal           | dev   | `tabler:section-sign` (1)                                      |
+| Contracts       | test  | `tabler:contract` (1), also in the v1 list above               |
+| Board games     | dev   | `tabler:go-game` (1)                                           |
+| Woodworking     | dev   | `tabler:chisel` (1)                                            |
+| Embroidery      | dev   | `tabler:needle-thread` (1), also in the v2 list above          |
+| Summer holidays | dev   | `tabler:flip-flops` (2)                                        |
+| Books to read   | test  | `tabler:book-2` (2)                                            |
+| Work            | test  | `tabler:briefcase-2` (2)                                       |
+| Home build      | dev   | `tabler:home-2` (2)                                            |
+| Phone plan      | dev   | `tabler:phone-call` (2)                                        |
+| Insurance       | test  | `tabler:shield-dollar` (2)                                     |
+| Passwords       | dev   | `tabler:lock-password` (2)                                     |
+| Electricity     | dev   | `tabler:solar-electricity` (1), `tabler:waves-electricity` (2) |
+
+Judge "fits" verdicts I would _not_ accept: Budget → `bell-dollar`, Cleaning → `toilet-paper`, Frog pond → `fountain`, Rent → `tax-pound`, Savings → `cloud-dollar`. The judge also rejected several literal icons the labels rightly accept (Golf → `golf`, Netflix → `brand-netflix`, GitHub stuff → `brand-github`, Knitting → `yarn`).
