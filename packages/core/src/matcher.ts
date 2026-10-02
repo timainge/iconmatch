@@ -49,7 +49,7 @@ export interface IconMatcherParts {
    * Optional query expansion (spec §7.3), e.g. an LLM returning 2–3 concrete
    * objects for an abstract label. The library ships no LLM. Each icon keeps
    * its best confidence over the query texts, so expansion raises confidences:
-   * pair it with a higher `minConfidence` (0.65 on the eval's tuning split).
+   * pair it with a higher `minConfidence` (0.70 on the eval's tuning split).
    */
   expandQuery?: (query: string) => Promise<string[]>;
   /** Called when `expandQuery` rejects; search continues without expansions. */
@@ -194,9 +194,9 @@ function withTimeout<T>(
 
 /**
  * Chosen from the reviewed eval's dev sweep (spec §7.2 step 5, §9.3): the
- * hybrid threshold with the best fallback F1 (see DECISIONS.md).
+ * hybrid threshold with the best fallback F1 on eval v2 (see DECISIONS.md).
  */
-export const DEFAULT_MIN_CONFIDENCE = 0.6;
+export const DEFAULT_MIN_CONFIDENCE = 0.65;
 
 /** Keyword-only counterpart of `DEFAULT_MIN_CONFIDENCE`, from the same sweep. */
 export const DEFAULT_KEYWORD_MIN_CONFIDENCE = 0.5;

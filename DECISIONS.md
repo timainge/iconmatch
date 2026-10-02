@@ -389,3 +389,20 @@ Both ship `onnx/model_quantized.onnx`, and their cards use mean pooling and the 
 Embedding the catalog takes 15 s / 45 s / 2 min 11 s. On dev, neither larger model is better on ranking (MRR is lower for both; bge-large Hit@3 +0.013) or on fallback F1. The test numbers, reported once after choosing on dev, agree: both lose ranking quality. **Decision:** keep bge-small. I didn't try other families (gte, nomic, mxbai, arctic): they need a model-specific query prefix or CLS pooling, which is a core change; left as an option.
 
 The more useful finding: with bge-small at **0.65**, the threshold the v2 dev sweep picks, v2 **test** meets both halves of the §9.3 bar: Hit@3 0.758 and fallback recall 0.71 (10/14), with 2 of 33 wrong fallbacks. That is provisional until `eval/v2/REVIEWED`; changing `DEFAULT_MIN_CONFIDENCE` is the WAITS re-baseline item.
+
+## 2026-10-02 — Eval v2 reviewed; `minConfidence` 0.65; v1 acceptance bar met
+
+The owner reviewed `eval/v2/queries.json` with no label changes and created `eval/v2/REVIEWED`. v2 is now the eval CLI's default set (`QUERIES_FILE`; v1 stays as `QUERIES_V1_FILE`), with results in `eval/v2/results/` by default. The 30 new queries' expansions were recorded with the same Ollama expander (`eval/expansions.json`, 155 entries).
+
+**`DEFAULT_MIN_CONFIDENCE` 0.60 → 0.65**, by the same rule as before: the best hybrid fallback F1 on the 0.05 grid, on v2 dev (29 no-match + 1 vague fallback queries). It scores 0.903 (P 0.88 / R 0.93), against 0.784 at 0.60 and 0.800 at 0.70. `keywordMinConfidence` stays 0.50 (tied best, F1 0.794 at 0.40–0.50). Dev ranking is unchanged (thresholds don't affect it): `--compare baseline` shows +0.000 for every config.
+
+**Final results, v2 test, shipped config (hybrid, bge-small int8, no enrichment):**
+
+- Hit@3 **0.758**, MRR 0.698.
+- Fallback recall **0.71** (10/14), precision 0.83 (2 of 33 names with an acceptable icon fall back).
+
+**Both halves of the §9.3 bar are met.** Vector-only and float32 also meet it. Text and vision enrichment miss on Hit@3; expansion misses on fallback recall (0.21).
+
+Still failing, by query: Llama trekking → trekking (0.716), Quilting → needle-thread (0.700), Gutter cleaning → toilet-paper (0.747), and vague "Life" → lifebuoy (0.688), all above 0.65. `eval/label-issues.md` notes that the first two may deserve an acceptable icon.
+
+With expansion, v2 dev's best fallback F1 is only 0.60 (at 0.70), so the `expandQuery` doc and README now say 0.70 and that expansion falls back less often. The README cites `eval/v2/results/2026-10-02.md`, and its test now reads the cited revision's `REVIEWED` and result files, including the default threshold.

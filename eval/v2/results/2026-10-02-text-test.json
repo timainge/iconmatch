@@ -2,7 +2,7 @@
   "config": "text",
   "split": "test",
   "date": "2026-10-02",
-  "minConfidence": 0.6,
+  "minConfidence": 0.65,
   "report": {
     "n": 33,
     "hit1": 0.42424242424242425,
@@ -10,12 +10,12 @@
     "hit5": 0.7272727272727273,
     "mrr": 0.5618992118992119,
     "fallback": {
-      "threshold": 0.6,
-      "precision": 0.5,
-      "recall": 0.14285714285714285,
-      "truePositives": 2,
-      "falsePositives": 2,
-      "falseNegatives": 12
+      "threshold": 0.65,
+      "precision": 0.6923076923076923,
+      "recall": 0.6428571428571429,
+      "truePositives": 9,
+      "falsePositives": 4,
+      "falseNegatives": 5
     },
     "perGroup": {
       "abstract": {
@@ -25,7 +25,7 @@
         "hit5": 0.6666666666666666,
         "mrr": 0.4364163614163615,
         "fallback": {
-          "threshold": 0.6,
+          "threshold": 0.65,
           "precision": 1,
           "recall": 1,
           "truePositives": 0,
@@ -40,7 +40,7 @@
         "hit5": 0.75,
         "mrr": 0.7857142857142857,
         "fallback": {
-          "threshold": 0.6,
+          "threshold": 0.65,
           "precision": 1,
           "recall": 1,
           "truePositives": 0,
@@ -55,7 +55,7 @@
         "hit5": 0.875,
         "mrr": 0.577724358974359,
         "fallback": {
-          "threshold": 0.6,
+          "threshold": 0.65,
           "precision": 1,
           "recall": 1,
           "truePositives": 0,
@@ -70,7 +70,7 @@
         "hit5": 1,
         "mrr": 0.9166666666666666,
         "fallback": {
-          "threshold": 0.6,
+          "threshold": 0.65,
           "precision": 1,
           "recall": 1,
           "truePositives": 0,
@@ -85,11 +85,11 @@
         "hit5": 0.5,
         "mrr": 0.40158730158730155,
         "fallback": {
-          "threshold": 0.6,
+          "threshold": 0.65,
           "precision": 0,
           "recall": 1,
           "truePositives": 0,
-          "falsePositives": 1,
+          "falsePositives": 2,
           "falseNegatives": 0
         }
       },
@@ -100,12 +100,12 @@
         "hit5": 0,
         "mrr": 0,
         "fallback": {
-          "threshold": 0.6,
+          "threshold": 0.65,
           "precision": 1,
-          "recall": 0.15384615384615385,
-          "truePositives": 2,
+          "recall": 0.6923076923076923,
+          "truePositives": 9,
           "falsePositives": 0,
-          "falseNegatives": 11
+          "falseNegatives": 4
         }
       },
       "vague": {
@@ -115,11 +115,11 @@
         "hit5": 0.3333333333333333,
         "mrr": 0.08333333333333333,
         "fallback": {
-          "threshold": 0.6,
+          "threshold": 0.65,
           "precision": 0,
           "recall": 0,
           "truePositives": 0,
-          "falsePositives": 1,
+          "falsePositives": 2,
           "falseNegatives": 1
         }
       }

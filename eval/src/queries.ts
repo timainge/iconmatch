@@ -27,7 +27,13 @@ export const REQUIRED_GROUPS = [
   "no-match",
 ] as const;
 
+/** The current eval set: v2 (v1 + 30 no-match queries, reviewed 2026-10-02). */
 export const QUERIES_FILE = fileURLToPath(
+  new URL("../v2/queries.json", import.meta.url),
+);
+
+/** The frozen v1 set, kept so earlier results stay reproducible. */
+export const QUERIES_V1_FILE = fileURLToPath(
   new URL("../queries.json", import.meta.url),
 );
 

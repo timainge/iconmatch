@@ -1,6 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
+import { DEFAULT_MIN_CONFIDENCE } from "./matcher.js";
 import {
   readmeExamplePaths,
   syncReadme,
@@ -39,15 +40,19 @@ describe("packages/core/README.md", () => {
 
   it("cites only reviewed eval numbers, matching the committed test-split results", async () => {
     const text = await readme();
-    // Numbers are allowed only once the eval set is reviewed (spec §14).
-    await expect(readFile(`${root}eval/REVIEWED`)).resolves.toBeDefined();
-    const date = /eval\/results\/(\d{4}-\d{2}-\d{2})\.md/.exec(text)?.[1];
-    expect(date).toBeDefined();
+    // Numbers come from one reviewed eval revision (spec §14): the README
+    // links its results table, and its REVIEWED marker must exist.
+    const cited = /`(eval\/(?:v\d+\/)?)results\/(\d{4}-\d{2}-\d{2})\.md`/.exec(
+      text,
+    );
+    expect(cited).not.toBeNull();
+    const [, evalDir = "", date = ""] = cited ?? [];
+    await expect(readFile(`${root}${evalDir}REVIEWED`)).resolves.toBeDefined();
     const result = async (config: string) =>
       (
         JSON.parse(
           await readFile(
-            `${root}eval/results/${date ?? ""}-${config}-test.json`,
+            `${root}${evalDir}results/${date}-${config}-test.json`,
             "utf8",
           ),
         ) as {
@@ -69,7 +74,10 @@ describe("packages/core/README.md", () => {
       `**Keyword-only:** Hit@3 ${keyword.hit3.toFixed(3)}.`,
     );
     expect(text).toContain(
-      `fallback recall ${hybrid.fallback.recall.toFixed(2)} at \`minConfidence\` 0.60`,
+      `fallback recall ${hybrid.fallback.recall.toFixed(2)} at \`minConfidence\` ${String(DEFAULT_MIN_CONFIDENCE)}`,
+    );
+    expect(text).toContain(
+      `\`minConfidence\` (default **${DEFAULT_MIN_CONFIDENCE.toFixed(2)}**)`,
     );
     expect(text).toContain(
       `test split: ${String(hybrid.n)} category names that have a suitable icon`,

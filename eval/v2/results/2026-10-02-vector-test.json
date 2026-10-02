@@ -2,7 +2,7 @@
   "config": "vector",
   "split": "test",
   "date": "2026-10-02",
-  "minConfidence": 0.6,
+  "minConfidence": 0.65,
   "report": {
     "n": 33,
     "hit1": 0.5454545454545454,
@@ -10,12 +10,12 @@
     "hit5": 0.8181818181818182,
     "mrr": 0.65343113676447,
     "fallback": {
-      "threshold": 0.6,
-      "precision": 0.625,
-      "recall": 0.35714285714285715,
-      "truePositives": 5,
-      "falsePositives": 3,
-      "falseNegatives": 9
+      "threshold": 0.65,
+      "precision": 0.5416666666666666,
+      "recall": 0.9285714285714286,
+      "truePositives": 13,
+      "falsePositives": 11,
+      "falseNegatives": 1
     },
     "perGroup": {
       "abstract": {
@@ -25,11 +25,11 @@
         "hit5": 0.6666666666666666,
         "mrr": 0.5666666666666667,
         "fallback": {
-          "threshold": 0.6,
-          "precision": 1,
+          "threshold": 0.65,
+          "precision": 0,
           "recall": 1,
           "truePositives": 0,
-          "falsePositives": 0,
+          "falsePositives": 3,
           "falseNegatives": 0
         }
       },
@@ -40,7 +40,7 @@
         "hit5": 0.75,
         "mrr": 0.7857142857142857,
         "fallback": {
-          "threshold": 0.6,
+          "threshold": 0.65,
           "precision": 1,
           "recall": 1,
           "truePositives": 0,
@@ -55,11 +55,11 @@
         "hit5": 1,
         "mrr": 0.8125,
         "fallback": {
-          "threshold": 0.6,
+          "threshold": 0.65,
           "precision": 0,
           "recall": 1,
           "truePositives": 0,
-          "falsePositives": 1,
+          "falsePositives": 4,
           "falseNegatives": 0
         }
       },
@@ -70,7 +70,7 @@
         "hit5": 1,
         "mrr": 1,
         "fallback": {
-          "threshold": 0.6,
+          "threshold": 0.65,
           "precision": 0,
           "recall": 1,
           "truePositives": 0,
@@ -85,11 +85,11 @@
         "hit5": 0.8333333333333334,
         "mrr": 0.3783950617283951,
         "fallback": {
-          "threshold": 0.6,
-          "precision": 1,
+          "threshold": 0.65,
+          "precision": 0,
           "recall": 1,
           "truePositives": 0,
-          "falsePositives": 0,
+          "falsePositives": 1,
           "falseNegatives": 0
         }
       },
@@ -100,12 +100,12 @@
         "hit5": 0,
         "mrr": 0,
         "fallback": {
-          "threshold": 0.6,
+          "threshold": 0.65,
           "precision": 1,
-          "recall": 0.38461538461538464,
-          "truePositives": 5,
+          "recall": 0.9230769230769231,
+          "truePositives": 12,
           "falsePositives": 0,
-          "falseNegatives": 8
+          "falseNegatives": 1
         }
       },
       "vague": {
@@ -115,12 +115,12 @@
         "hit5": 0.3333333333333333,
         "mrr": 0.08333333333333333,
         "fallback": {
-          "threshold": 0.6,
-          "precision": 0,
-          "recall": 0,
-          "truePositives": 0,
-          "falsePositives": 1,
-          "falseNegatives": 1
+          "threshold": 0.65,
+          "precision": 0.3333333333333333,
+          "recall": 1,
+          "truePositives": 1,
+          "falsePositives": 2,
+          "falseNegatives": 0
         }
       }
     }

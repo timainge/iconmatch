@@ -2,7 +2,7 @@
   "config": "baseline",
   "split": "dev",
   "date": "2026-10-02",
-  "minConfidence": 0.6,
+  "minConfidence": 0.65,
   "report": {
     "n": 78,
     "hit1": 0.5256410256410257,
@@ -10,12 +10,12 @@
     "hit5": 0.7692307692307693,
     "mrr": 0.6387300021915407,
     "fallback": {
-      "threshold": 0.6,
-      "precision": 0.9523809523809523,
-      "recall": 0.6666666666666666,
-      "truePositives": 20,
-      "falsePositives": 1,
-      "falseNegatives": 10
+      "threshold": 0.65,
+      "precision": 0.875,
+      "recall": 0.9333333333333333,
+      "truePositives": 28,
+      "falsePositives": 4,
+      "falseNegatives": 2
     },
     "perGroup": {
       "abstract": {
@@ -25,7 +25,7 @@
         "hit5": 0.5714285714285714,
         "mrr": 0.37380952380952376,
         "fallback": {
-          "threshold": 0.6,
+          "threshold": 0.65,
           "precision": 1,
           "recall": 1,
           "truePositives": 0,
@@ -40,7 +40,7 @@
         "hit5": 1,
         "mrr": 0.9545454545454546,
         "fallback": {
-          "threshold": 0.6,
+          "threshold": 0.65,
           "precision": 1,
           "recall": 1,
           "truePositives": 0,
@@ -55,11 +55,11 @@
         "hit5": 0.8888888888888888,
         "mrr": 0.7481006647673314,
         "fallback": {
-          "threshold": 0.6,
-          "precision": 1,
+          "threshold": 0.65,
+          "precision": 0,
           "recall": 1,
           "truePositives": 0,
-          "falsePositives": 0,
+          "falsePositives": 1,
           "falseNegatives": 0
         }
       },
@@ -70,7 +70,7 @@
         "hit5": 0.9285714285714286,
         "mrr": 0.7408424908424909,
         "fallback": {
-          "threshold": 0.6,
+          "threshold": 0.65,
           "precision": 1,
           "recall": 1,
           "truePositives": 0,
@@ -85,7 +85,7 @@
         "hit5": 0.7857142857142857,
         "mrr": 0.6938775510204083,
         "fallback": {
-          "threshold": 0.6,
+          "threshold": 0.65,
           "precision": 0,
           "recall": 1,
           "truePositives": 0,
@@ -100,12 +100,12 @@
         "hit5": 0,
         "mrr": 0,
         "fallback": {
-          "threshold": 0.6,
+          "threshold": 0.65,
           "precision": 1,
-          "recall": 0.6551724137931034,
-          "truePositives": 19,
+          "recall": 0.9310344827586207,
+          "truePositives": 27,
           "falsePositives": 0,
-          "falseNegatives": 10
+          "falseNegatives": 2
         }
       },
       "vague": {
@@ -115,11 +115,11 @@
         "hit5": 0.14285714285714285,
         "mrr": 0.07653061224489796,
         "fallback": {
-          "threshold": 0.6,
-          "precision": 1,
+          "threshold": 0.65,
+          "precision": 0.3333333333333333,
           "recall": 1,
           "truePositives": 1,
-          "falsePositives": 0,
+          "falsePositives": 2,
           "falseNegatives": 0
         }
       }

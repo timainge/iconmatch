@@ -267,7 +267,7 @@ export async function main(argv: string[], io: EvalIo): Promise<number> {
   }
   const outDir = values.out
     ? resolve(io.cwd, values.out)
-    : fileURLToPath(new URL("../results/", import.meta.url));
+    : fileURLToPath(new URL("../v2/results/", import.meta.url));
   // Mirror best(): keyword-only configs use the keyword threshold.
   const thresholdFor = (config: ConfigName) =>
     values["min-confidence"] !== undefined

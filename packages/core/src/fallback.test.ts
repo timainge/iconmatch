@@ -132,7 +132,7 @@ describe("matcher.best()", () => {
 
   it("falls back when a keyword-only top confidence is below keywordMinConfidence", async () => {
     // Chosen from the reviewed eval's dev sweep (DECISIONS.md).
-    expect(DEFAULT_MIN_CONFIDENCE).toBe(0.6);
+    expect(DEFAULT_MIN_CONFIDENCE).toBe(0.65);
     expect(DEFAULT_KEYWORD_MIN_CONFIDENCE).toBe(0.5);
     const strict = await createIconMatcher({
       catalog,

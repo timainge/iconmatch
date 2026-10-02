@@ -83,6 +83,6 @@ Checklist derived from `docs/plan.md` §11. The spec is the source of truth for 
 The owner asked to try, in order: more no-match queries in a new eval revision, a stronger embedding model, then accept the result.
 
 - [x] Eval v2 draft: `eval/v2/queries.json` = v1 + 30 no-match queries (objective catalog filter, hashed splits), provisional results in `eval/v2/results/`
-- [ ] Re-baseline on v2 and re-choose `minConfidence` on v2 dev (v2 dev sweep suggests 0.65), report test — WAITS: eval/v2/REVIEWED
+- [x] Re-baseline on v2 and re-choose `minConfidence` on v2 dev (v2 dev sweep suggests 0.65), report test — WAITS: eval/v2/REVIEWED (done: 0.65, dev F1 0.903; keyword stays 0.50)
 - [x] Stronger embedding model: compare transformers.js-compatible candidates (e.g. bge-base-en-v1.5) against bge-small on v1 (reviewed) and v2 (provisional) dev; sizes and latency; adopt only on dev evidence, report test after review (result: bge-base/large not better on dev; bge-small kept. bge-small at 0.65 meets both bars on v2 test, provisional)
-- [ ] Verdict: final acceptance-bar result on v2 test with the chosen model and threshold; accept or record what's still failing — WAITS: eval/v2/REVIEWED
+- [x] Verdict: final acceptance-bar result on v2 test with the chosen model and threshold; accept or record what's still failing — WAITS: eval/v2/REVIEWED (done: hybrid test Hit@3 0.758, fallback R 0.71 at 0.65; bar met)

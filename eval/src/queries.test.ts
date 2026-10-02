@@ -4,6 +4,8 @@ import { createTablerAdapter } from "../../packages/pipeline/src/adapters/tabler
 import { ingest } from "../../packages/pipeline/src/ingest.js";
 import {
   evalSetProblems,
+  QUERIES_FILE,
+  QUERIES_V1_FILE,
   readEvalSet,
   REQUIRED_GROUPS,
   type EvalSet,
@@ -11,10 +13,10 @@ import {
 
 // Spec §9.1 / §11.1 M3: ≥120 queries, ≥10 fallback, every group, dev/test
 // split, every id resolves against the current catalog.
-describe("eval/queries.json", () => {
+describe("eval/queries.json (v1, frozen)", () => {
   it("passes every §9.1 check against the installed Tabler catalog", async () => {
     const [set, { catalog }] = await Promise.all([
-      readEvalSet(),
+      readEvalSet(QUERIES_V1_FILE),
       ingest([createTablerAdapter({ log: () => undefined })]),
     ]);
     expect(evalSetProblems(set, new Set(catalog.map((e) => e.id)))).toEqual([]);
@@ -27,6 +29,10 @@ describe("eval/queries.json", () => {
 describe("eval/v2/queries.json", () => {
   const v2File = fileURLToPath(new URL("../v2/queries.json", import.meta.url));
 
+  it("is the default eval set", () => {
+    expect(QUERIES_FILE).toBe(v2File);
+  });
+
   it("passes every §9.1 check against the installed Tabler catalog", async () => {
     const [set, { catalog }] = await Promise.all([
       readEvalSet(v2File),
@@ -36,7 +42,10 @@ describe("eval/v2/queries.json", () => {
   });
 
   it("is v1 unchanged plus new no-match queries only", async () => {
-    const [v1, v2] = await Promise.all([readEvalSet(), readEvalSet(v2File)]);
+    const [v1, v2] = await Promise.all([
+      readEvalSet(QUERIES_V1_FILE),
+      readEvalSet(v2File),
+    ]);
     expect(v2.version).toBe(2);
     expect(v2.queries.slice(0, v1.queries.length)).toEqual(v1.queries);
     const added = v2.queries.slice(v1.queries.length);
