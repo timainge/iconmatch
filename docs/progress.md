@@ -99,7 +99,7 @@ The owner asked to try, in order: more no-match queries in a new eval revision, 
 - [x] Lucide adapter + adapter tests (fixture subset moved to the data-package item)
 - [x] Lucide lettered fallback (frame + stroke letters) with tests for a–z/0–9
 - [x] Set selection in the pipeline config and `@iconmatch/lucide` data package (manifest, packagedSource, pack check, sizes); Lucide CI subset build
-- [ ] Lucide eval set draft (`eval/lucide/queries.json`, labels by catalog browsing) + provisional results; flag for owner review
+- [x] Lucide eval set draft (`eval/lucide/queries.json`, labels by catalog browsing) + provisional results; flag for owner review (checkpoint: docs/checkpoints/P2-lucide-eval.md)
 - [ ] Lucide threshold + acceptance bar on Lucide test — WAITS: eval/lucide/REVIEWED
 - [ ] Audit P2
 

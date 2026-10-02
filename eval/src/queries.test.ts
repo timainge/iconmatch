@@ -1,5 +1,6 @@
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
+import { createLucideAdapter } from "../../packages/pipeline/src/adapters/lucide.js";
 import { createTablerAdapter } from "../../packages/pipeline/src/adapters/tabler.js";
 import { ingest } from "../../packages/pipeline/src/ingest.js";
 import {
@@ -56,6 +57,35 @@ describe("eval/v2/queries.json", () => {
     }
     // Same split rule as v1, applied within the new batch: 30% to test.
     expect(added.filter((q) => q.split === "test")).toHaveLength(9);
+  });
+});
+
+describe("eval/lucide/queries.json (spec §15.2)", () => {
+  const lucideFile = fileURLToPath(
+    new URL("../lucide/queries.json", import.meta.url),
+  );
+
+  it("passes every §9.1 check against the installed Lucide catalog", async () => {
+    const [set, { catalog }] = await Promise.all([
+      readEvalSet(lucideFile),
+      ingest([createLucideAdapter({ log: () => undefined })]),
+    ]);
+    expect(evalSetProblems(set, new Set(catalog.map((e) => e.id)))).toEqual([]);
+    expect(
+      set.queries.every((q) =>
+        q.acceptable.every((id) => id.startsWith("lucide:")),
+      ),
+    ).toBe(true);
+  });
+
+  it("has v2's queries, groups and splits, in order", async () => {
+    const [v2, lucide] = await Promise.all([
+      readEvalSet(QUERIES_FILE),
+      readEvalSet(lucideFile),
+    ]);
+    const shape = (s: typeof v2) =>
+      s.queries.map(({ query, group, split }) => ({ query, group, split }));
+    expect(shape(lucide)).toEqual(shape(v2));
   });
 });
 

@@ -1,4 +1,4 @@
-import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
@@ -293,6 +293,36 @@ describe("iconmatch-eval", () => {
     expect(err[0]).toMatch(
       /baseline-expansion: no expansions in .* and no --expander/,
     );
+  });
+
+  it("skips a config built from another icon set (its catalog lacks the eval set's ids)", async () => {
+    const other = join(outDir, "other-set");
+    await mkdir(other, { recursive: true });
+    await writeFile(
+      join(other, "catalog.json"),
+      JSON.stringify([
+        {
+          id: "other:x",
+          set: "other",
+          name: "x",
+          label: "X",
+          tags: [],
+          categories: [],
+          variants: ["outline"],
+          license: "MIT",
+        },
+      ]),
+    );
+    io = freshIo();
+    expect(await main(args("--data-text", other), io)).toBe(0);
+    expect(out).toContain(
+      `text: skipped (the eval set's ids aren't in ${other})`,
+    );
+    io = freshIo();
+    expect(await main(args("--config", "text", "--data-text", other), io)).toBe(
+      1,
+    );
+    expect(err[0]).toMatch(/text: the eval set's ids aren't in/);
   });
 
   it("rejects unknown configs and splits", async () => {

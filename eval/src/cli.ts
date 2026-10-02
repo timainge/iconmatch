@@ -292,6 +292,27 @@ export async function main(argv: string[], io: EvalIo): Promise<number> {
     );
     return 1;
   }
+  // A config built from another icon set (e.g. the Tabler enrichment builds
+  // when scoring the Lucide eval set) can't be scored: skip it.
+  const labelIds = new Set(set.queries.flatMap((q) => q.acceptable));
+  for (const c of [...configs]) {
+    const dir = dataDirs[CONFIGS[c].data];
+    if (dir === dataDirs.base) continue;
+    const ids = new Set(
+      (
+        await loadCatalog(fsSource(dir), {
+          manifest: await readBuildManifest(dir),
+        })
+      ).map((e) => e.id),
+    );
+    if ([...labelIds].every((id) => ids.has(id))) continue;
+    if (values.config) {
+      io.error(`${c}: the eval set's ids aren't in ${dir}`);
+      return 1;
+    }
+    io.log(`${c}: skipped (the eval set's ids aren't in ${dir})`);
+    configs.splice(configs.indexOf(c), 1);
+  }
   const embedder =
     io.createEmbedder?.(manifest) ??
     createTransformersEmbedder({
