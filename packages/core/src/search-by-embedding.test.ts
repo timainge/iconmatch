@@ -146,6 +146,7 @@ describe("lazy model loading", () => {
     let imports = 0;
     const embedder = createTransformersEmbedder({
       model: MODEL,
+      profile: { pooling: "mean", queryPrefix: "", documentPrefix: "" },
       loadModule: () => {
         imports++;
         return Promise.resolve({

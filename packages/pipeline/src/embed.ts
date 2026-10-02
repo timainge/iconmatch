@@ -2,8 +2,11 @@ import { readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import {
   encodeVectors,
+  findEmbeddingProfile,
+  QUERY_PREFIX,
   type CatalogEntry,
   type Embedder,
+  type Manifest,
   type Quantisation,
 } from "@iconmatch/core";
 
@@ -45,6 +48,28 @@ export interface EmbedMeta {
 }
 
 export const EMBED_META_FILE = "embed-meta.json";
+
+/**
+ * The manifest's `embedding` section for a build: the model's registered
+ * conventions (spec §15.3), or the bge query prefix for an unregistered model
+ * (e.g. the test-only fake embedder).
+ */
+export function manifestEmbedding(
+  meta: EmbedMeta,
+): NonNullable<Manifest["embedding"]> {
+  const profile = findEmbeddingProfile(meta.model);
+  const embedding: NonNullable<Manifest["embedding"]> = {
+    model: meta.model,
+    dims: meta.dims,
+    quantisation: meta.quantisation,
+    queryPrefix: profile?.queryPrefix ?? QUERY_PREFIX,
+  };
+  if (profile && profile.documentPrefix !== "")
+    embedding.documentPrefix = profile.documentPrefix;
+  if (profile && profile.pooling !== "mean")
+    embedding.pooling = profile.pooling;
+  return embedding;
+}
 
 export interface EmbedOptions {
   embedder: Embedder;

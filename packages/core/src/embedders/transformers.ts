@@ -4,7 +4,12 @@
  * an optional peer dependency, and only when the first text is embedded.
  */
 import type * as Transformers from "@huggingface/transformers";
-import { DEFAULT_EMBEDDING_MODEL, embeddingInput } from "../embedding.js";
+import {
+  DEFAULT_EMBEDDING_MODEL,
+  embeddingInput,
+  findEmbeddingProfile,
+  type EmbeddingProfile,
+} from "../embedding.js";
 import type { Embedder } from "../types.js";
 
 type TransformersModule = Pick<typeof Transformers, "pipeline" | "env">;
@@ -23,6 +28,14 @@ export interface TransformersEmbedderOptions {
   cacheDir?: string;
   /** ONNX weights: "q8" (quantised, default) or "fp32". */
   dtype?: "q8" | "fp32";
+  /**
+   * Pooling and prefixes for a model outside the built-in registry
+   * (`EMBEDDING_PROFILES`). Registered models use their own profile.
+   */
+  profile?: Pick<
+    EmbeddingProfile,
+    "pooling" | "queryPrefix" | "documentPrefix"
+  >;
   /** Test seam: supplies the transformers.js module instead of importing it. */
   loadModule?: () => Promise<TransformersModule>;
 }
@@ -36,7 +49,7 @@ export interface TransformersEmbedder extends Embedder {
 
 type Extractor = (
   texts: string[],
-  options: { pooling: "mean"; normalize: true },
+  options: { pooling: "mean" | "cls"; normalize: true },
 ) => Promise<{ dims: readonly number[]; data: ArrayLike<number> }>;
 
 type EnvKey =
@@ -105,6 +118,11 @@ export function createTransformersEmbedder(
   options: TransformersEmbedderOptions = {},
 ): TransformersEmbedder {
   const modelId = options.model ?? DEFAULT_EMBEDDING_MODEL;
+  const conventions = options.profile ?? findEmbeddingProfile(modelId);
+  if (!conventions)
+    throw new Error(
+      `No embedding profile for ${modelId}: pass \`profile\` ({ pooling, queryPrefix, documentPrefix }) from its model card`,
+    );
   let extractor: Promise<Extractor> | undefined;
 
   const getExtractor = (): Promise<Extractor> => {
@@ -137,10 +155,10 @@ export function createTransformersEmbedder(
     async embed(texts, kind) {
       if (texts.length === 0) return [];
       const extract = await getExtractor();
-      // Mean pooling + L2 normalisation, per the model card (spec §6.4).
+      // The model card's pooling + L2 normalisation (spec §6.4, §15.3).
       const out = await extract(
-        texts.map((t) => embeddingInput(t, kind)),
-        { pooling: "mean", normalize: true },
+        texts.map((t) => embeddingInput(t, kind, conventions)),
+        { pooling: conventions.pooling, normalize: true },
       );
       const dims = out.dims[out.dims.length - 1] ?? 0;
       return texts.map((_, i) =>

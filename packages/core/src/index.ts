@@ -87,9 +87,13 @@ export type { FallbackOptions } from "./fallback.js";
 export {
   DEFAULT_EMBEDDING_DIMS,
   DEFAULT_EMBEDDING_MODEL,
+  DEFAULT_EMBEDDING_PROFILE,
+  EMBEDDING_PROFILES,
   embeddingInput,
+  findEmbeddingProfile,
   QUERY_PREFIX,
 } from "./embedding.js";
+export type { EmbeddingProfile, Pooling } from "./embedding.js";
 export {
   decodeVectors,
   encodeVectors,

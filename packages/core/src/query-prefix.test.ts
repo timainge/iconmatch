@@ -2,7 +2,14 @@ import { readdirSync, readFileSync } from "node:fs";
 import { join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { expect, it } from "vitest";
-import { QUERY_PREFIX } from "./embedding.js";
+import {
+  DEFAULT_EMBEDDING_MODEL,
+  DEFAULT_EMBEDDING_PROFILE,
+  EMBEDDING_PROFILES,
+  embeddingInput,
+  findEmbeddingProfile,
+  QUERY_PREFIX,
+} from "./embedding.js";
 
 const repo = fileURLToPath(new URL("../../../", import.meta.url));
 
@@ -52,4 +59,25 @@ it("the build embeds through the shared embedder module", () => {
     "utf8",
   );
   expect(embed).toContain('"document"');
+});
+
+// Spec §15.3: every registered model's conventions live in the one registry,
+// and bge-small (the default) keeps exactly the v0.1 conventions.
+it("registers each model once, with bge-small unchanged as the default", () => {
+  const ids = EMBEDDING_PROFILES.map((p) => p.model);
+  expect(new Set(ids).size).toBe(ids.length);
+  expect(DEFAULT_EMBEDDING_PROFILE).toEqual({
+    model: "Xenova/bge-small-en-v1.5",
+    dims: 384,
+    pooling: "mean",
+    queryPrefix: QUERY_PREFIX,
+    documentPrefix: "",
+  });
+  expect(findEmbeddingProfile(DEFAULT_EMBEDDING_MODEL)).toBe(
+    DEFAULT_EMBEDDING_PROFILE,
+  );
+  expect(embeddingInput("Dog grooming", "query")).toBe(
+    QUERY_PREFIX + "Dog grooming",
+  );
+  expect(embeddingInput("Dog.", "document")).toBe("Dog.");
 });

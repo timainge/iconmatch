@@ -504,3 +504,26 @@ Fallback queries total 43 (14 test). Review notes are in `docs/checkpoints/P2-lu
 - test: Hit@3 0.788, MRR 0.714, fallback P 0.56 / R 0.64.
 
 Keyword-only test Hit@3 is 0.636. Not cited anywhere until reviewed.
+
+## 2026-10-03 — P3: embedding model profiles
+
+`packages/core/src/embedding.ts` is still the single home of model text conventions. It now holds a registry, `EMBEDDING_PROFILES`, with the model id, dims, pooling, query prefix and document prefix for each model. The bge query instruction literal is still defined once (`QUERY_PREFIX`) and reused by the bge and arctic profiles. `embeddingInput(text, kind, profile?)` defaults to the bge-small profile, so v0.1 behaviour is unchanged; the committed reference vectors still match in the slow tier.
+
+The transformers embedder looks up its model's profile and applies its pooling and prefixes. For an unregistered model it now throws unless a `profile` is passed, rather than silently using bge's conventions. That's a deliberate 0.x API tightening; a v0.1 user with a custom model passes `profile`. The manifest's `embedding` records `documentPrefix` and `pooling` when they differ from the defaults (none, mean), via `manifestEmbedding()` shared by `build-manifest` and `package`.
+
+**Conventions, verified on the Hub (2026-10-03).** Pooling comes from each model's sentence-transformers `1_Pooling/config.json` (for Xenova mirrors, the upstream repo's); prompts from `config_sentence_transformers.json` or the card. All have `onnx/model_quantized.onnx`.
+
+| Model                                   | Dims | Pooling | Query prefix         | Doc prefix          | q8 ONNX |
+| --------------------------------------- | ---- | ------- | -------------------- | ------------------- | ------- |
+| Xenova/gte-small (thenlper)             | 384  | mean    | none                 | none                | 34 MB   |
+| Xenova/gte-base (thenlper)              | 768  | mean    | none                 | none                | 110 MB  |
+| Xenova/all-MiniLM-L6-v2                 | 384  | mean    | none                 | none                | 23 MB   |
+| mixedbread-ai/mxbai-embed-xsmall-v1     | 384  | mean    | none (`prompts: {}`) | none                | 24 MB   |
+| Snowflake/snowflake-arctic-embed-xs     | 384  | CLS     | bge instruction      | none                | 23 MB   |
+| Snowflake/snowflake-arctic-embed-s      | 384  | CLS     | bge instruction      | none                | 34 MB   |
+| Snowflake/snowflake-arctic-embed-m-v1.5 | 768  | CLS     | bge instruction      | none                | 110 MB  |
+| nomic-ai/nomic-embed-text-v1.5          | 768  | mean    | `search_query: `     | `search_document: ` | 137 MB  |
+
+nomic's layer-norm step only applies when truncating Matryoshka dimensions; the full 768 dims use mean pooling and normalisation per its card.
+
+**Skipped:** `minishlab/potion-base-8M` and `potion-retrieval-32M` (model2vec static embeddings). Their ONNX graphs take token ids plus offsets (an EmbeddingBag), not the transformer inputs transformers.js's `feature-extraction` pipeline feeds. Supporting them needs a custom Embedder (tokenizer plus a lookup table, about 30 MB fp32), recorded as a future option for browser-side semantic search.

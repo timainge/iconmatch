@@ -105,7 +105,7 @@ The owner asked to try, in order: more no-match queries in a new eval revision, 
 
 ## P3: Alternative embedding model families (spec §15.3)
 
-- [ ] Model profile registry (prefix/pooling per model) used by build and runtime; manifest fields; bge-small reference unchanged
+- [x] Model profile registry (prefix/pooling per model) used by build and runtime; manifest fields; bge-small reference unchanged
 - [ ] Verify candidates on the Hub; build + eval each on v2 dev (ranking, fallback AUC/F1, size, latency); test once for the chosen one
 - [ ] Decision: adopt or keep bge-small
 - [ ] Audit P3

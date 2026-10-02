@@ -78,6 +78,10 @@ export interface Manifest {
     dims: number;
     quantisation: "int8" | "float32";
     queryPrefix: string;
+    /** Prefix the documents were embedded with (spec §15.3); absent means none. */
+    documentPrefix?: string;
+    /** Pooling the vectors were built with (spec §15.3); absent means mean. */
+    pooling?: "mean" | "cls";
   };
   enrichment?: {
     mode: "text" | "vision" | "none";

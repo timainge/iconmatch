@@ -10,11 +10,10 @@ import { join } from "node:path";
 import {
   DEFAULT_FILES,
   MANIFEST_FILE,
-  QUERY_PREFIX,
   SCHEMA_VERSION,
   type Manifest,
 } from "@iconmatch/core";
-import { EMBED_META_FILE, type EmbedMeta } from "./embed.js";
+import { EMBED_META_FILE, manifestEmbedding, type EmbedMeta } from "./embed.js";
 import { PROMPT_VERSION, VISION_PROMPT_VERSION } from "./enrich/prompts.js";
 import { readBuildEnrichments } from "./enrich/stage.js";
 import { SETS_FILE, type SetInfo } from "./ingest.js";
@@ -123,12 +122,7 @@ export async function runPackage(
     const meta = JSON.parse(
       await readFile(join(buildDir, EMBED_META_FILE), "utf8"),
     ) as EmbedMeta;
-    manifest.embedding = {
-      model: meta.model,
-      dims: meta.dims,
-      quantisation: meta.quantisation,
-      queryPrefix: QUERY_PREFIX,
-    };
+    manifest.embedding = manifestEmbedding(meta);
   }
   await writeFile(
     join(packageDir, MANIFEST_FILE),

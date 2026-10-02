@@ -81,6 +81,34 @@ describe("createTransformersEmbedder", () => {
     ]);
   });
 
+  it("applies each registered model's pooling and prefixes (spec §15.3)", async () => {
+    const run = async (model: string) => {
+      const f = fakeModule();
+      const e = createTransformersEmbedder({ loadModule: f.loadModule, model });
+      await e.embed(["q"], "query");
+      await e.embed(["d"], "document");
+      return f.calls.extracts;
+    };
+    expect(await run("Snowflake/snowflake-arctic-embed-xs")).toEqual([
+      [[QUERY_PREFIX + "q"], { pooling: "cls", normalize: true }],
+      [["d"], { pooling: "cls", normalize: true }],
+    ]);
+    expect(await run("nomic-ai/nomic-embed-text-v1.5")).toEqual([
+      [["search_query: q"], { pooling: "mean", normalize: true }],
+      [["search_document: d"], { pooling: "mean", normalize: true }],
+    ]);
+    expect(await run("Xenova/gte-small")).toEqual([
+      [["q"], { pooling: "mean", normalize: true }],
+      [["d"], { pooling: "mean", normalize: true }],
+    ]);
+  });
+
+  it("refuses a model with no registered profile unless one is passed", () => {
+    expect(() => createTransformersEmbedder({ model: "org/unknown" })).toThrow(
+      /No embedding profile for org\/unknown: pass `profile`/,
+    );
+  });
+
   it("splits the batch tensor into one Float32Array per text", async () => {
     const e = createTransformersEmbedder({
       loadModule: fakeModule().loadModule,
@@ -109,6 +137,7 @@ describe("createTransformersEmbedder", () => {
     const e = createTransformersEmbedder({
       loadModule: f.loadModule,
       model: "org/other",
+      profile: { pooling: "mean", queryPrefix: "", documentPrefix: "" },
       dtype: "fp32",
       localOnly: true,
     });
