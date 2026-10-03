@@ -59,7 +59,7 @@ Serve the files in `node_modules/@iconmatch/lucide/data/` (at least `manifest.js
 - **One set per app.** Lucide and Tabler share a 24px grid and 2px round stroke, but they aren't mixed in one result list: choose the data source that matches your app's icons.
 - **No brand icons.** Lucide doesn't include brand logos, so a name like "Netflix" gets the lettered fallback.
 - **Fallback glyphs.** Lucide has no letter or number icons. This package adds `square-letter-*`, `square-number-*`, `circle-letter-*` and `circle-number-*` glyphs drawn from Lucide's own square and circle frames with letter strokes from Tabler Icons (MIT), in the same style. `lucide:shapes` is the neutral glyph.
-- **Evaluation.** Lucide-specific results are in the repository's eval folder once the Lucide eval set has been reviewed; until then, treat match quality as similar to but not measured like the Tabler data.
+- **Evaluation.** Measured on a reviewed, Lucide-labelled copy of the project's eval set ([results](https://github.com/timainge/iconmatch/blob/main/eval/lucide/results/2026-10-03.md)): with the default threshold (0.65, also best for Lucide on the tuning split), hybrid search meets the project's v1 bar on the held-out split (Hit@3 ≥ 0.70, fallback recall ≥ 0.60).
 
 ## Licences
 

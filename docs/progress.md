@@ -100,8 +100,8 @@ The owner asked to try, in order: more no-match queries in a new eval revision, 
 - [x] Lucide lettered fallback (frame + stroke letters) with tests for a–z/0–9
 - [x] Set selection in the pipeline config and `@iconmatch/lucide` data package (manifest, packagedSource, pack check, sizes); Lucide CI subset build
 - [x] Lucide eval set draft (`eval/lucide/queries.json`, labels by catalog browsing) + provisional results; flag for owner review (checkpoint: docs/checkpoints/P2-lucide-eval.md)
-- [ ] Lucide threshold + acceptance bar on Lucide test — WAITS: eval/lucide/REVIEWED
-- [ ] Audit P2
+- [x] Lucide threshold + acceptance bar on Lucide test — WAITS: eval/lucide/REVIEWED (0.65; test Hit@3 0.788, fallback R 0.64: met)
+- [x] Audit P2
 
 ## P3: Alternative embedding model families (spec §15.3)
 
@@ -115,8 +115,8 @@ The owner asked to try, in order: more no-match queries in a new eval revision, 
 - [x] `ChoiceProvider` + `createChoiceMemory` + matcher `choices` part (exact + embedding-neighbour match, extra RRF ranking, confidence floor)
 - [x] browser-client example persists and reuses choices; README section
 - [x] Choice eval: exact repeats, no-regression with populated memory; paraphrase set draft for generalisation (provisional) (choiceSimilarity 0.70 chosen on dev; checkpoint docs/checkpoints/P4-paraphrases.md)
-- [ ] Paraphrase generalisation numbers — WAITS: eval/choices/REVIEWED
-- [ ] Audit P4
+- [x] Paraphrase generalisation numbers — WAITS: eval/choices/REVIEWED (held-out MRR 0.567 → 0.912)
+- [x] Audit P4
 
 ## P5: Metadata enrichment v3 (spec §15.5)
 
