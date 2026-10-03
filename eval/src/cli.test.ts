@@ -367,7 +367,7 @@ describe("iconmatch-eval", () => {
     const result = JSON.parse(
       await readFile(join(outDir, "judge", "2026-09-24.json"), "utf8"),
     ) as { overall: { n: number; recall: number }; model: string };
-    expect(result.model).toBe("qwen2.5vl:7b");
+    expect(result.model).toBe("qwen3-vl:8b");
     expect(result.overall.n).toBe(asked.length);
     // The judge says everything fits, so recall of "fits" is 1.
     expect(result.overall.recall).toBe(1);

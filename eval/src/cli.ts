@@ -98,7 +98,7 @@ const USAGE = `Usage: iconmatch-eval [options]
   --paraphrases <file>   paraphrase set for --choices (default eval/choices/paraphrases.json)
   --judge                run the vision-judge agreement eval (spec §15.6): Ollama at --ollama-url
                          judges the hybrid top --judge-top (default 5) per query; results in eval/judge/
-  --judge-model <name>   vision model (default qwen2.5vl:7b); cache --judge-cache
+  --judge-model <name>   vision model (default qwen3-vl:8b); cache --judge-cache
                          (default packages/pipeline/cache/judge.jsonl)
   --queries <file>       eval set (default eval/v2/queries.json)
   --out <dir>            results directory (default eval/results)
@@ -226,7 +226,7 @@ export async function main(argv: string[], io: EvalIo): Promise<number> {
         expansions: { type: "string" },
         choices: { type: "boolean" },
         judge: { type: "boolean" },
-        "judge-model": { type: "string", default: "qwen2.5vl:7b" },
+        "judge-model": { type: "string", default: "qwen3-vl:8b" },
         "judge-top": { type: "string", default: "5" },
         "judge-cache": { type: "string" },
         paraphrases: { type: "string" },

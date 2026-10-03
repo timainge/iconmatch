@@ -1,0 +1,3206 @@
+{
+  "gemma4:12b-mlx": [
+    {
+      "query": "Savings",
+      "iconId": "tabler:pig-money",
+      "fits": true,
+      "confidence": 1,
+      "reason": "A piggy bank is the universal symbol for savings.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "005904923bee41d88820c1f2060e7fc91f721a545ef49be39f0e908c888c2883"
+    },
+    {
+      "query": "Glassblowing",
+      "iconId": "tabler:glass-off",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon represents a prohibition on drinking alcohol, not the craft of glassblowing.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "b0ba3ff8ecce573fba62d0e9f0548ed5a76de073bc1c66c906208997dc57954c"
+    },
+    {
+      "query": "Falconry",
+      "iconId": "tabler:helicopter-landing",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon is a letter 'H' and does not represent the sport of falconry.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "d98e27f48f789cba758b8a2cef6dcc39b8f17cb89f23cb08ee0f96c4cefc562e"
+    },
+    {
+      "query": "Camping",
+      "iconId": "tabler:camper",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The icon clearly depicts a camper van, which is a primary vehicle associated with camping.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "2f362b4ff7298f428c97312ae7c3ee49fb5ede226944b9b4b768175919418f30"
+    },
+    {
+      "query": "Groceries",
+      "iconId": "tabler:paper-bag",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon depicts a washing machine, which is unrelated to the category of groceries.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "f75f27cc9a3c3cf6f0bf89473e9392d26b07e113aab83c0208b81fb77b3e8fa5"
+    },
+    {
+      "query": "Ballroom dancing",
+      "iconId": "tabler:corner-right-down",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon is a generic downward arrow and has no relation to ballroom dancing.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "6251169a8a5c511b7f81a55861dd9cd789ea121976b95cd4074a5ce24a7c7224"
+    },
+    {
+      "query": "Bills",
+      "iconId": "tabler:file-invoice",
+      "fits": true,
+      "confidence": 1,
+      "reason": "A document icon is a standard and universally recognized symbol for bills and invoices.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "9e7debe8fd6de4295f4e5b02164015d625332862337435c44a3720f1c07ea8d2"
+    },
+    {
+      "query": "Woodworking",
+      "iconId": "tabler:wood",
+      "fits": true,
+      "confidence": 1,
+      "reason": "A tree stump is a primary material and a clear symbol for woodworking.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "7ef81c8ffa207c0518ec74ef07c4a5b8346fec45464d561deb1e203465a40992"
+    },
+    {
+      "query": "Mosaic tiles",
+      "iconId": "tabler:layout-2",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The icon clearly depicts a grid of four tiles, which is a direct representation of mosaic tiles.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "2fd0a85771413363b18e54eea37f2c6415180fe550c6ed80a67a72baa8afd488"
+    },
+    {
+      "query": "Insurance",
+      "iconId": "tabler:user-shield",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The shield is a universal symbol for protection and insurance.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "3507842a9695fd1d28fd457bb85a81ecd8f9972abe62141b8b3aeb949ecc02b0"
+    },
+    {
+      "query": "Macram\u00e9",
+      "iconId": "tabler:hourglass",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon depicts an hourglass, which is unrelated to the craft of macram\u00e9.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "151aa71197b3c8de86e160bea389a0d77cb864b9c89f0be1c70bcf116a92bacd"
+    },
+    {
+      "query": "Pharmacy",
+      "iconId": "tabler:vaccine-bottle",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The icon clearly depicts a medicine bottle, which is a standard representation for a pharmacy.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "3de390b56d855a609103b52387630a3c3b79f8eee4ee6733534fbbc2f96333b3"
+    },
+    {
+      "query": "Accordion",
+      "iconId": "tabler:arrows-shuffle",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon depicts a split or switch symbol, which is unrelated to an accordion.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "94110692c6ce57720fe66ce8e99516e6945ce9add7f0ccbff773b1a9e7dbf26b"
+    },
+    {
+      "query": "Chimney sweep",
+      "iconId": "tabler:zzz",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon represents sleeping, which is unrelated to the category 'Chimney sweep'.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "33f86b0e9c33d3d04c9261d0e27a28cc27eecf402b86f6c5c10978fc5c02d54c"
+    },
+    {
+      "query": "Slack",
+      "iconId": "tabler:file-stack",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon represents a document or file, whereas Slack is a communication platform typically represented by a speech bubble or its specific logo.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "802fde5c3cad4cc52e6b5294569e8fc67811f716914e2944ca057eda8142f038"
+    },
+    {
+      "query": "Ballroom dancing",
+      "iconId": "tabler:stretching-2",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "The stick figure in a dynamic pose clearly represents the action of dancing.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "05750c7513757466fdf75738dde32d78b269b7b7fa862e9c76e3e0b41d1a28dd"
+    },
+    {
+      "query": "Lapidary",
+      "iconId": "tabler:laurel-wreath-2",
+      "fits": false,
+      "confidence": 0.95,
+      "reason": "The icon is an abstract wreath-like shape and does not represent gemstones or stone-cutting tools associated with the term 'Lapidary'.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "e545e2f3097cab83b4d3cbdd4e5e09b86c859b2bc0648cc3f068c8c266457569"
+    },
+    {
+      "query": "Painting",
+      "iconId": "tabler:paint",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon depicts a roll of tape or paper, which is not a standard representation for painting.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "c3fb12b8e52129c74af569dd310cb4eaf6402d10f92051b4d5113bd5f8e8b236"
+    },
+    {
+      "query": "Camping",
+      "iconId": "tabler:campfire",
+      "fits": true,
+      "confidence": 1,
+      "reason": "A campfire is a universal and clear symbol for camping.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "593649240e330ba948aa1e9abd58bef0c674c2806f9c169bb2cc59d2d2f70da5"
+    },
+    {
+      "query": "Books to read",
+      "iconId": "tabler:book-2",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The icon clearly depicts a book, which is the primary object for the 'Books to read' category.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "747743a23af1f38085f26e9ed977f7aa29302164e03b11ea7121d67fa4874366"
+    },
+    {
+      "query": "Bookbinding",
+      "iconId": "tabler:book-off",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon depicts a 'no books' symbol, which does not represent the craft of bookbinding.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "de7a734b23d47f5012e0526cb8c1332eed1325be2c4a64c6f2235e0c9c8e5c97"
+    },
+    {
+      "query": "Frog pond",
+      "iconId": "tabler:basket-question",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon depicts a calendar with a question mark, which is unrelated to a frog pond.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "56d9c255b2d5aad20b2083ca5d79f700372c2c4733d265bba8634bdb27ff61c4"
+    },
+    {
+      "query": "Home build",
+      "iconId": "tabler:home",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The house icon is a direct and clear representation of the 'Home build' category.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "490e5d0a986ba88edd576698ee0fbe3633745de8bd3215371cf0372f4312390b"
+    },
+    {
+      "query": "Repairs",
+      "iconId": "tabler:hammer-off",
+      "fits": true,
+      "confidence": 1,
+      "reason": "A wrench is a universal symbol for repairs and maintenance.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "2a206738589eb13ea8c8cbb297ea64906f304f57f0f15ff2c46c2df1f6e3d2b4"
+    },
+    {
+      "query": "Books to read",
+      "iconId": "tabler:book-off",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon depicts a book with a slash through it, which signifies 'no books' rather than a collection of books to read.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "0b27b0a343122c2957c1742470594b34d12af307623d875b6dafbfa97d6e4b5b"
+    },
+    {
+      "query": "Hedgehog rescue",
+      "iconId": "tabler:paw",
+      "fits": true,
+      "confidence": 1,
+      "reason": "A paw print is a universally recognized symbol for animals and is highly appropriate for a hedgehog rescue category.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "3d901f5d0a578eeff0eb8faa6c0e47791c6bba534eaa710f6f8ccc8bb6e74f90"
+    },
+    {
+      "query": "Groceries",
+      "iconId": "tabler:paper-bag-off",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon depicts a 'no groceries' symbol (a bag with a slash through it) rather than the category itself.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "e3034244cc91211774397b6fa6d9cb18a4593187481ceb4dfb3ab265c448ca96"
+    },
+    {
+      "query": "Houseplants",
+      "iconId": "tabler:leaf",
+      "fits": true,
+      "confidence": 1,
+      "reason": "A leaf is a universal and clear symbol for plants and houseplants.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "6986b3cec439b7bcb071d8a3afe71aa87b079eb2cd87aae710f9c912f0d2d1e1"
+    },
+    {
+      "query": "Car servicing",
+      "iconId": "tabler:car-suspension",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The icon depicts a shock absorber, which is a recognizable component related to car maintenance and servicing.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "1b60e7dc0a9695bd7e47d26e8bf068b1d3f2b28d3d0481ad1d1c70e1d1d0e80f"
+    },
+    {
+      "query": "Retirement",
+      "iconId": "tabler:cloud-dollar",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon depicts a cloud and a dollar sign, which relates to cloud computing or finance rather than retirement.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "32cb9459ec1d21a70b6f76d6c7c360a5d6d6139b2961440cd74f9aa74dd2e07d"
+    },
+    {
+      "query": "Apple devices",
+      "iconId": "tabler:device-airpods",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon resembles a pair of glasses or a stylized letter and does not represent Apple devices or any technology products.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "2f4b1d57256c58dc9afda60597ccff11a59d3031cb7ebf49e41b5456d0d99789"
+    },
+    {
+      "query": "Zoom calls",
+      "iconId": "tabler:zoom-question",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon represents a search or help function, not video conferencing or Zoom calls.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "81f6d3a2e68cc326a9138ed2d02d8f3d6424130ba9c51a07e3dbb10d166e572a"
+    },
+    {
+      "query": "Pets",
+      "iconId": "tabler:paw",
+      "fits": true,
+      "confidence": 1,
+      "reason": "A paw print is a universally recognized symbol for pets.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "83cc0e46e3cd829b5a1f6276a677cd1fe65bd1fc91c9d00a3854c31affede73f"
+    },
+    {
+      "query": "Google Drive",
+      "iconId": "tabler:brand-google-one",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon is an abstract shape that does not represent Google Drive or any related concept like cloud storage or files.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "4f8c64faff9168795a11c396c4d977f217486bc9a9d97aa29bac607c1e0f51ef"
+    },
+    {
+      "query": "Macram\u00e9",
+      "iconId": "tabler:brand-apple-arcade",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "The icon depicts a knot, which is the fundamental technique used in macram\u00e9.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "565205e4543ce63217ed7f0a06623ca3eabaaf360b9d10cd428e1002cd027f32"
+    },
+    {
+      "query": "Puppet shows",
+      "iconId": "tabler:keyframes",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon depicts a geometric shape and arrows, which have no relation to puppet shows.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "e5ff32b8949088bf0eb909d30a0f9c398fff749c141936e3ff67034e9d263f94"
+    },
+    {
+      "query": "Wine tasting",
+      "iconId": "tabler:glass",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The icon clearly depicts a wine glass, which is the primary object associated with wine tasting.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "47bf247f3bb64fcef83861d36b17501c031e127f940b3fa0c1231d3d5ceefc65"
+    },
+    {
+      "query": "Photography",
+      "iconId": "tabler:camera-question",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "The camera is a universally recognized symbol for photography.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "f2f61ae8b5d4f3fd26062f762ba5083903cad3b3f96c01464fa8dac6580981ec"
+    },
+    {
+      "query": "Personal",
+      "iconId": "tabler:gender-femme",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The female symbol represents gender rather than the general concept of 'Personal' items or tasks.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "c9ab9577af2bd01935f3ef14000c5c2cfca4e342420ae551b2e893462bff808c"
+    },
+    {
+      "query": "Kombucha brewing",
+      "iconId": "tabler:beer-off",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon represents a prohibition of a drink, which does not represent the process of brewing kombucha.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "7055a710408e4c474ae55b8073acb8626eb528c28b87e2c6ddf8c4318acfd46f"
+    },
+    {
+      "query": "Dropbox",
+      "iconId": "tabler:droplet-share",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The icon depicts a drop with an arrow, which is a direct visual representation of the name 'Dropbox'.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "8b70cd78c78833a589998fa9b58355161a87ce0c428d485886e9e058e02b69d8"
+    },
+    {
+      "query": "Taxidermy",
+      "iconId": "tabler:razor",
+      "fits": false,
+      "confidence": 1,
+      "reason": "A hammer is a generic tool and does not specifically represent the craft of taxidermy.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "d6d1bcdf85e31ab4887eb80091e6de0b66511add6c3a06b38c4871228bbae97d"
+    },
+    {
+      "query": "Legal",
+      "iconId": "tabler:gavel",
+      "fits": true,
+      "confidence": 1,
+      "reason": "A gavel is the universal symbol for legal proceedings and the judiciary.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "11625093ae97e98df77d6d0b5c33621a927303d48ce05b12521b106d34f4efb4"
+    },
+    {
+      "query": "Chess club",
+      "iconId": "tabler:chess-bishop",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The icon clearly depicts a chess piece, which is the universal symbol for a chess club.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "39e7e6751677f64004d36eab0b30126353eb94862b92cae7483e8c1b0fdbc204"
+    },
+    {
+      "query": "Axolotl tank",
+      "iconId": "tabler:barrel",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon depicts a globe or grid-sphere, which is unrelated to an axolotl tank.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "7d08cda99d69757dc19b6fe9ac016f0d7e08b593268435f3a72338f3095017d5"
+    },
+    {
+      "query": "Board games",
+      "iconId": "tabler:dice-2",
+      "fits": true,
+      "confidence": 1,
+      "reason": "A die is a universally recognized symbol for board games.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "47109f315be55d3e83de8395827e300f91b916480349f85288f0c7bf4cdc49e3"
+    },
+    {
+      "query": "Meetings",
+      "iconId": "tabler:calendar-time",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The icon clearly depicts a calendar and a clock, which are standard symbols for scheduled meetings.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "7a5ed8eed8847f8534a54c99ef499c8d3919e3a9d708ed176c9004168d7889af"
+    },
+    {
+      "query": "Birdwatching",
+      "iconId": "tabler:feather-off",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The diagonal line indicates a prohibition, which does not represent the hobby of birdwatching.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "4c5ca5f01a5d5aa02965cceb9a645ce95f7638c47a7d46876b8ecf82add9755b"
+    },
+    {
+      "query": "Insurance",
+      "iconId": "tabler:shield-heart",
+      "fits": true,
+      "confidence": 1,
+      "reason": "A shield is a universally recognized symbol for insurance and protection.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "d94a53c81b3d6d05bd4c15cdcd215f55fab40aaab94c304ff7190def7dc2d2b8"
+    },
+    {
+      "query": "Horse riding",
+      "iconId": "tabler:dragon",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon is an abstract shape that does not represent a horse or any equipment related to horse riding.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "0ee0660da2c9a89f0e18b92e9aa3dae6ff0d412dc681b544d4d479a41d46b1c8"
+    },
+    {
+      "query": "Cleaning",
+      "iconId": "tabler:toilet-paper",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon depicts a specific bathroom supply rather than a general cleaning tool like a broom or spray bottle.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "8681c8aaeddbd4fde4c09a16fd7e21d3ea2b19903486e7213e663c15d13826ab"
+    },
+    {
+      "query": "Home build",
+      "iconId": "tabler:home-cog",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The combination of a house and a gear clearly represents construction or maintenance related to a home.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "cb2723f930348cab1e569a57a1bbd662cce911e011f9ba402e6d4e380842d6cb"
+    },
+    {
+      "query": "Llama trekking",
+      "iconId": "tabler:mountain",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "A mountain is a standard and recognizable symbol for trekking and hiking activities.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "c99dcd99150c4c9de7a3ac872de9f569646fdcc84200c36bd0defe66e1a07993"
+    },
+    {
+      "query": "Pets",
+      "iconId": "tabler:cat",
+      "fits": true,
+      "confidence": 1,
+      "reason": "A cat is a primary example of a pet, making the icon highly relevant to the category.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "7a34443ea868b0654d02e48b15bc4c0c2b118fcdd0252f02ddd9a9ee9449b813"
+    },
+    {
+      "query": "Moving house",
+      "iconId": "tabler:home-question",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "The house icon combined with a question mark clearly represents the process of relocating or finding a new home.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "8bb5d082ae135c6a0407d489aa5e2fe4ad2f03543251cc4c80b1937e230dfda2"
+    },
+    {
+      "query": "Wedding planning",
+      "iconId": "tabler:confetti-off",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "A spotlight is associated with events or performances rather than being a specific symbol for wedding planning.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "84b812db68fe62ce01dc6fb7f5cc070c0245911885280d61e771306bca64a7fd"
+    },
+    {
+      "query": "Travel",
+      "iconId": "tabler:route-off",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon depicts a 'no' or 'prohibited' symbol, which is not related to travel.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "7eb2694e9146b58faa0ac10728ccbbe937b6124752859305dd91d0883ec50b18"
+    },
+    {
+      "query": "Croquet",
+      "iconId": "tabler:meeple",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon depicts a human figure, which is not a specific representation of the sport of croquet.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "89a7ba274c4d4c1e6b6f4cdbcf875d36acf9704d85b8fa85b77d5474bea70111"
+    },
+    {
+      "query": "Netflix",
+      "iconId": "tabler:cast",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "The icon depicts a screen with a broadcast signal, which is a standard representation for streaming services like Netflix.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "4bd078748dd5d333c3b2a6e6a571fcb8009d7779585e9d0a5f9d7736c3e8d110"
+    },
+    {
+      "query": "Travel",
+      "iconId": "tabler:location",
+      "fits": true,
+      "confidence": 1,
+      "reason": "A paper airplane is a standard and widely recognized symbol for travel and aviation.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "4f1ccb978821da0759ab03a67da8a31c891a1cdac84c537dac36c54bc34a6310"
+    },
+    {
+      "query": "Bagpipes",
+      "iconId": "tabler:bong",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon depicts a laboratory flask, which is unrelated to the musical instrument 'Bagpipes'.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "9beaf77da1fd932b3103fa1a3fc14414c9debd709c3e666c8dba3814bda6e3a1"
+    },
+    {
+      "query": "Vet visits",
+      "iconId": "tabler:forbid",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon is a universal 'prohibited' symbol and does not represent veterinary services or pet care.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "814c989c6dded4ce9b65276b076ef32cf55a43eaa0239b0d2f4e031a3f4923d5"
+    },
+    {
+      "query": "Health insurance",
+      "iconId": "tabler:hospital",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The letter 'H' is too generic and does not specifically represent health insurance.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "15ed5ed2f229c1913a8a414d58aff5caaec313fa7ed654bd1e65d399ecf31db7"
+    },
+    {
+      "query": "Meetings",
+      "iconId": "tabler:brand-meetup",
+      "fits": false,
+      "confidence": 0.95,
+      "reason": "The letter 'm' is too generic and does not visually represent the concept of a meeting.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "405410a23afbc0ff2f9689e024859044521f9aeb05343d5f809bd1219cb81bd9"
+    },
+    {
+      "query": "Honey harvest",
+      "iconId": "tabler:growth",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon depicts a botanical sprig or branch, which is not a specific representation of honey harvesting; a beehive or bee would be more appropriate.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "bfe83648470dce607a36bd2bd54610e8defbe06c8d104f1c44f29d1d292cd7a0"
+    },
+    {
+      "query": "Car registration",
+      "iconId": "tabler:car-door",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The icon clearly depicts a car, which is the primary subject of the 'Car registration' category.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "1b1fcf010117c7d4a1a3fa2c599a4f3ad311711bb0431fe52860519799f82d95"
+    },
+    {
+      "query": "Lapidary",
+      "iconId": "tabler:leaf-off",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon is a 'no' or 'prohibited' symbol and has no relation to lapidary work or gemstones.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "964be6941d007a4a5193faa82af0f6118349d1e7ff38ce315de9765c022af3d3"
+    },
+    {
+      "query": "Electricity",
+      "iconId": "tabler:battery-automotive",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The icon clearly depicts a battery, which is a universal symbol for electricity.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "3a431369c5e241cdf88e85cf7a160120c6ea017fa7f27a3d5666b4a76c34ea8b"
+    },
+    {
+      "query": "Pottery",
+      "iconId": "tabler:plant-2",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon depicts a flower or lotus, which is not related to pottery.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "3e4af0f535b755b31b983ff000ee47d2c170e32a44fcf1c5eb09e41a37adab3d"
+    },
+    {
+      "query": "Mosaic tiles",
+      "iconId": "tabler:layout",
+      "fits": false,
+      "confidence": 0.95,
+      "reason": "The icon resembles the number '80' rather than representing mosaic tiles.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "144ad824233579c3b9e57d61ec86eb1217a554b19854acb5548f20c0c28cc2d5"
+    },
+    {
+      "query": "Airbnb stays",
+      "iconId": "tabler:brand-airbnb",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The icon is the recognizable logo for Airbnb, which directly represents the category.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "0c150eb2d74245cf7124be20fccaf4a8c4a8e43a819d921cf3d8e2538724cac2"
+    },
+    {
+      "query": "Super contributions",
+      "iconId": "tabler:tip-jar",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "A money jar is a standard and recognizable symbol for financial contributions or savings.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "9e62e9fc5ed9ff20bd7f3b3a3d1851cd695211f88951d35f15a10f72464ebea9"
+    },
+    {
+      "query": "Ferret care",
+      "iconId": "tabler:smoking",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon depicts a cigarette, which has no relation to ferret care.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "aaef653be26662f623e50fb4b641859ab4220e676f08e5d8d6ec9a67e905a180"
+    },
+    {
+      "query": "YouTube",
+      "iconId": "tabler:brand-kick",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon appears to be a stylized letter 'K' and does not represent the YouTube logo or any video-related symbols.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "4d46818f47b4f82dc02b42a13924546240a99b265fb1f06b67d425c54d533e14"
+    },
+    {
+      "query": "Slack",
+      "iconId": "tabler:stack-push",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon represents downloading or archiving, which is not a standard representation for the Slack communication platform.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "014a1cde0821081e9d06a985ba8af3ac1627d53d445537a65a53f2432435c824"
+    },
+    {
+      "query": "Discord",
+      "iconId": "tabler:affiliate",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon represents a generic network or connection diagram rather than the specific Discord platform or its recognizable branding.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "bee3189cdc4b118aaa1357f7a93bb577d011d1402438b7efadc8767fd1a68cac"
+    },
+    {
+      "query": "Medical",
+      "iconId": "tabler:disabled",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The wheelchair icon is a universally recognized symbol for medical and accessibility-related categories.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "65dd1c4f612041b35d169854bd27c3eaada72c10ca7bef47d165e82d3a162ac9"
+    },
+    {
+      "query": "Zoom calls",
+      "iconId": "tabler:zoom",
+      "fits": false,
+      "confidence": 1,
+      "reason": "A magnifying glass represents a search function, not a video conferencing or communication platform like Zoom calls.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "5147dbfec840ca0c099c3573c52a61c7bcc1406598e154e745657ee9ae94d106"
+    },
+    {
+      "query": "Septic tank",
+      "iconId": "tabler:barrel-off",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon depicts a 'no' symbol over a grid, which is unrelated to a septic tank.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "fefe80f8af06710ab0138c7eb44812a872007a1e9ede97b27af1dc371616c32e"
+    },
+    {
+      "query": "Yoga",
+      "iconId": "tabler:exercise-ball",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon depicts a ball, which is not related to the practice of Yoga.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "169ac408d75064c5f77c2350511a7596e4c06158712bd602a768dc88c9fae5fa"
+    },
+    {
+      "query": "Paperwork",
+      "iconId": "tabler:files",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The icon clearly depicts documents, which is the standard representation for paperwork.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "4ebb910ad2779ba7256724117c653c1ff1e19680b2e7db3c496f68dd9926b5db"
+    },
+    {
+      "query": "Genealogy",
+      "iconId": "tabler:dna",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon represents a generic person, which is too generic for the specific concept of genealogy.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "1adf95c0c5e0627942208d0c89efa2a77f856a39b1829c3fa53ae8774b78db69"
+    },
+    {
+      "query": "Dentist",
+      "iconId": "tabler:stethoscope",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The stethoscope is the universal symbol for general medicine or a doctor, whereas a tooth would be the standard icon for a dentist.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "039ef8ba26bcca7fa255819c76f6401e7b53277132969c2bc73979578e1b0cf3"
+    },
+    {
+      "query": "Emails to answer",
+      "iconId": "tabler:mail-forward",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The envelope icon is the universal symbol for email, making it perfectly suitable for a category about emails.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "fb142b2f43752528912d93c365a0f0e94bd9733c4a95eee4454d4165eca439f7"
+    },
+    {
+      "query": "Photography",
+      "iconId": "tabler:photo-sensor",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The icon represents a camera viewfinder or framing bracket, which is a standard symbol for photography.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "a772d7537e60a64b4d541d05058abdadccb863d4092e33e555ffd6f20d7a19a3"
+    },
+    {
+      "query": "Work",
+      "iconId": "tabler:building-estate",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The icon depicts a building, which is a standard and universally recognized symbol for work.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "fa160fdd12ebf8115aa3f3cd2ff2bd3c763781a6a6579c05da897a441be6d386"
+    },
+    {
+      "query": "Macram\u00e9",
+      "iconId": "tabler:brand-algolia",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon is a stylized letter 'a' and does not represent macram\u00e9, which is a form of textile knotting.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "48937809fbafd17f55571acf41cc5b844431b5dffd8359b2e21a9e8ed34e721e"
+    },
+    {
+      "query": "Taxidermy",
+      "iconId": "tabler:blade",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon depicts a roll of toilet paper, which is unrelated to the category of taxidermy.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "2d0e36bb47ded9627731fd63eeddaa12b8e46b2f6186b0d261ba2285386fd7cf"
+    },
+    {
+      "query": "Electricity",
+      "iconId": "tabler:waves-electricity",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The lightning bolt is a universal symbol for electricity.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "5bc200c01f709098814b3469db58372385224bd90c25fd1a31a381e5e15f174b"
+    },
+    {
+      "query": "Summer holidays",
+      "iconId": "tabler:speedboat",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "A boat is a common and recognizable symbol for summer holidays.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "a4cbd53534954221a3b4a8dadc3f7c2dce5a931c309562c00635d264f32159e4"
+    },
+    {
+      "query": "Recipes",
+      "iconId": "tabler:cooker",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon depicts a microwave or appliance, which is not a standard representation for a collection of recipes.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "e5afdd28e87d781a0d323de8a10a11db52bb19fd74a39138fad77b2ed8f664d2"
+    },
+    {
+      "query": "Chimney sweep",
+      "iconId": "tabler:flame-off",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon appears to be a 'no' symbol or a stylized circle with a slash, which does not represent a chimney sweep.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "4fb28719d0de57f73f96bd154a5f335351dfb9dac760290753cf38c1a59a123c"
+    },
+    {
+      "query": "Pets",
+      "iconId": "tabler:dog",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The icon clearly depicts a dog, which is a primary representative of the Pets category.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "993f8a755b817a060ca8f2a4bda1ff35d7e14565f8b8ebf3286f04e5811c4986"
+    },
+    {
+      "query": "Rent",
+      "iconId": "tabler:tax-pound",
+      "fits": true,
+      "confidence": 1,
+      "reason": "A money bag with a currency symbol is a standard representation for financial payments like rent.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "1abe8485eaed1c518d20af8e446feab73d796900cdf61627371b77198651d25e"
+    },
+    {
+      "query": "Home build",
+      "iconId": "tabler:home-plus",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The house icon with a plus sign clearly represents construction or building a home.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "c1b49a4850a3ffcda91adae29cc9be9fb056420cb6002b5c3a8bd28698ece885"
+    },
+    {
+      "query": "Amazon orders",
+      "iconId": "tabler:truck-delivery",
+      "fits": true,
+      "confidence": 1,
+      "reason": "A delivery truck is a standard and universally recognized symbol for shipping and online orders.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "0875cdee2f1e997c8e79ed21b3f49134226b157f5386d863e9ea9ea96e069d85"
+    },
+    {
+      "query": "Donations",
+      "iconId": "tabler:camera-dollar",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon depicts a camera with a dollar sign, which is unrelated to the concept of donations.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "9f0e3b76a8adec9d4de642f39e759d1009ff3b5e62a7e4193123fc044dbce763"
+    },
+    {
+      "query": "Pizza nights",
+      "iconId": "tabler:pizza",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The icon clearly depicts a slice of pizza, which directly represents the category 'Pizza nights'.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "84116bf1f770ebd016db01eb329bb7a161300654991946803adf539d1232b391"
+    },
+    {
+      "query": "Recipes",
+      "iconId": "tabler:cake",
+      "fits": true,
+      "confidence": 1,
+      "reason": "A cake is a universally recognized symbol for food and baking recipes.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "aa1f34f7edb1c7756d43f253bfa3e202e70a96d063c647fc2aee9f04232b9fd8"
+    },
+    {
+      "query": "Fuel",
+      "iconId": "tabler:barrel",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon represents a globe or the world, which is not a standard symbol for fuel.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "2e1b341420a52c628ac5082907ba3cf43cdab1a7b5b06e18690c300e3ad96f90"
+    },
+    {
+      "query": "Embroidery",
+      "iconId": "tabler:needle",
+      "fits": true,
+      "confidence": 1,
+      "reason": "A needle is a primary tool used for embroidery.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "19712f4f81f546225e051ea0aba7890941c6820f53617f8f906e508a3f15f129"
+    },
+    {
+      "query": "Snowboarding",
+      "iconId": "tabler:skateboarding",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The icon clearly depicts a person snowboarding, which directly represents the category name.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "afac036d17f9131bfd25b87b7f181a21db77f40ff61f5554e4f61147b89f4d02"
+    },
+    {
+      "query": "Kombucha brewing",
+      "iconId": "tabler:barrel",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon depicts a globe, which has no relation to the process of brewing kombucha.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "aef59539d9080befe9f1ae95396be3020b96e4d72f03dd19f81f26a4e60274fa"
+    },
+    {
+      "query": "Honey harvest",
+      "iconId": "tabler:wheat",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon depicts a leaf, which is too generic and does not specifically represent honey or harvesting.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "adf41f82af8776108261a846d35be245d00d43e23e859ce4bc39143b925f4a58"
+    },
+    {
+      "query": "Septic tank",
+      "iconId": "tabler:barrel",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon depicts a globe, which has no relation to a septic tank.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "8047eb6865140bbb6955791da805e6e29a562f6aa806863fee06fbd85762d343"
+    },
+    {
+      "query": "Car servicing",
+      "iconId": "tabler:car-garage",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The icon clearly depicts a car in a garage, which is a direct representation of car servicing.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "69824125d6e913ab24eb7e37393b9fdb2ce37662b959576c9d9bea92ae911677"
+    },
+    {
+      "query": "Books to read",
+      "iconId": "tabler:books-off",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon features a 'no' symbol over a book, which implies a prohibition rather than a list of books to read.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "6050db584e9b85fac7bcf3046d8a50fadc475320e8ad4a2f1a61255c1a3ae7a2"
+    },
+    {
+      "query": "Passwords",
+      "iconId": "tabler:password",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon depicts flowers or stars, which are not related to the concept of passwords.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "7d2dd74c720ac383401d37ac12c290efcc1c23f80f2bfb3072b020d4022daa4a"
+    },
+    {
+      "query": "GitHub stuff",
+      "iconId": "tabler:brand-github-copilot",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon depicts a generic robot or character face, which is not a standard symbol for GitHub or software development.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "66417f46b1b0bef7c6f5aa261fb694a28a90f0724c38ace478a63e0ee0fd302a"
+    },
+    {
+      "query": "Car registration",
+      "iconId": "tabler:car-off",
+      "fits": false,
+      "confidence": 0.95,
+      "reason": "The icon depicts a 'no cars' or 'no parking' prohibition, which is unrelated to the administrative task of car registration.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "bf8ef9dc2ad2e0a51cc9dac08a966d9c7c169bdec8e731e5cac666747a79aff0"
+    },
+    {
+      "query": "Swimming lessons",
+      "iconId": "tabler:pool-off",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The icon clearly depicts a person swimming in water, which directly represents the category 'Swimming lessons'.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "1a2e7fd9c962bd8f7b90ccb79bc33b29d9a642206edec5d994302120115cb2cc"
+    },
+    {
+      "query": "Health insurance",
+      "iconId": "tabler:first-aid-kit",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The first-aid kit icon is a universally recognized symbol for health and medical services.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "c567a606747d80639cb5c94ed726bb45519e0ca540d5079c5a6b62f21ecdd7d6"
+    },
+    {
+      "query": "Someday",
+      "iconId": "tabler:basket-heart",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The calendar icon is too generic and typically represents scheduled events or favorites rather than a 'Someday' (undated/future) list.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "d83ad26f45c5cdc8339d3367b4c67b0255ffcfacb41e138b1b96b2e75547e344"
+    },
+    {
+      "query": "Health insurance",
+      "iconId": "tabler:crutches",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon depicts a microphone or flashlight, which is not related to health insurance.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "43a00686b43dcfdafa08b9e9e36545e8ea03e08362950036b090a66907233b2d"
+    },
+    {
+      "query": "Wedding planning",
+      "iconId": "tabler:rings",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon depicts a chandelier, which is not a standard or representative symbol for wedding planning.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "b071599978cce0e647c4f54317f972b2fb9c811b984b8ff365313e8f024807c0"
+    },
+    {
+      "query": "Bike maintenance",
+      "iconId": "tabler:unicycle",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The bicycle icon is a direct and clear representation of the Bike maintenance category.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "2c8cd84e6c46c4702cd56e21d3fcc3f4192c573d9121eaff614650a09b40814c"
+    },
+    {
+      "query": "Coffee",
+      "iconId": "tabler:milk",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The icon clearly depicts a jar, which is a standard representation for coffee products.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "f4129f65f66e065b6470cc347b392f959a016082ed28f066b3b09fe03f018ef0"
+    },
+    {
+      "query": "Google Drive",
+      "iconId": "tabler:brand-google-maps",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon is a map pin, which represents location or navigation, not a cloud storage service like Google Drive.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "8ff4cf77a653ae04fabe33c8836300dba5ece8774fa1b1c1660779a05a66b51f"
+    },
+    {
+      "query": "Investments",
+      "iconId": "tabler:file-bitcoin",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The Bitcoin symbol on a document clearly represents cryptocurrency investments.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "da2c69cafeffbbf161f27cb1dce1dd04cdb1995a3a03b5f62725e95e107448e9"
+    },
+    {
+      "query": "Paperwork",
+      "iconId": "tabler:note",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The icon clearly depicts a piece of paper, which is the primary representation of paperwork.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "08acfb6bb4217a655ef44e326c232c4fd4d24514c5ff95bac40d85e0238466bd"
+    },
+    {
+      "query": "Golf",
+      "iconId": "tabler:tournament",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon depicts a circuit or network diagram, which is unrelated to golf.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "13b0866772e20f51f90f31db132b99c6f44487ef49da44e51e13f52659824db7"
+    },
+    {
+      "query": "Wine tasting",
+      "iconId": "tabler:barrel",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon represents a globe, which is not related to wine tasting.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "012e7e922e91afb0f11c9431932557e2be5cf156690c34ee81331ad0d65769c6"
+    },
+    {
+      "query": "Netflix",
+      "iconId": "tabler:brand-netflix",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "The icon is a stylized letter 'N', which is the primary brand identifier for Netflix.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "171f12701c579fd4fb97d52f350b24a4d04d0d61a6c18eb337791c9b9e05931d"
+    },
+    {
+      "query": "Glassblowing",
+      "iconId": "tabler:glass-champagne",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The icon depicts a glass, which is a primary product of the glassblowing craft.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "24f53121d6f46ba47aca1e3c40722957837bef032a54049ee42b5948eeaecbae"
+    },
+    {
+      "query": "Legal",
+      "iconId": "tabler:trademark",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The 'TM' symbol specifically represents trademarks, which is too narrow for a general 'Legal' category.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "c863c287cd89cf19cd909003293d4d0b9c5b80af802af759ebaeeae2d9d76d2b"
+    },
+    {
+      "query": "Fuel",
+      "iconId": "tabler:lighter",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The icon clearly depicts a fuel pump with a liquid drop symbol, which is a direct representation of the category.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "d7c5d3a230c591752365d9c7be1286ccdae96215361537fa3b0575ce8d5895b4"
+    },
+    {
+      "query": "Spotify",
+      "iconId": "tabler:playlist",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The musical note icon is a universally recognized symbol for music, which directly relates to the Spotify category.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "a0851a2653580f6d762f1684da5b05b615b5cc26de6d9dea465a4cd337e0e196"
+    },
+    {
+      "query": "Water bill",
+      "iconId": "tabler:receipt-2",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The icon clearly depicts a bill with a currency symbol, which is a standard representation for a utility bill.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "038a795c4691a09f4bd5fe4539b3b396420722805304fb1145b122c3f3cfa56b"
+    },
+    {
+      "query": "Subscriptions",
+      "iconId": "tabler:brand-tidal",
+      "fits": false,
+      "confidence": 0.95,
+      "reason": "The icon is an abstract geometric pattern that does not represent the concept of subscriptions.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "5ddab43c4fcb4729b5a00c7dd4031a7b4b5c0b5d7fe4d34d0885bd05b4cbe4fb"
+    },
+    {
+      "query": "Ventriloquism",
+      "iconId": "tabler:heart-down",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon represents 'liking' or 'saving' and has no relation to the art of ventriloquism.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "a6c8d125f678c77aba10ddbfe6d6b87cf05ab3dd2b1b453a67fd255f3dcd2d0b"
+    },
+    {
+      "query": "Life",
+      "iconId": "tabler:health-recognition",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The heart icon is a common symbol for 'Love' or 'Health' rather than a clear representation of the broad category 'Life'.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "54927e328a858e4053f0c34a26a4b85526fae7a71a9b4cdb7371c305715f46f5"
+    },
+    {
+      "query": "Phone plan",
+      "iconId": "tabler:phone-calling",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The telephone handset is a universal symbol for phone-related services and plans.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "ee1a2ffbbb5e20c86821111c2f770c30a8676658ce09253a73252f4e3ff09b26"
+    },
+    {
+      "query": "Paperwork",
+      "iconId": "tabler:notes",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The icon clearly represents a list or document, which is a standard symbol for paperwork.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "7a225d54bd0fd6a7d60f785d4fd40b07735a7482544bee6c979632b42b4411a1"
+    },
+    {
+      "query": "Bike maintenance",
+      "iconId": "tabler:brand-zwift",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon is a letter 'Z' and does not represent bike maintenance or any related tools.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "752e75a3c60853acb3dee296ea40cc2822da968f7b828cebc32013c1934f1ce4"
+    },
+    {
+      "query": "Random",
+      "iconId": "tabler:roulette",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon represents settings or configuration, which does not correspond to the category 'Random'.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "a7facd4b4fbba2b36aa3ea98c4c725a63148f5db79f7f1d72e4651a98f75c820"
+    },
+    {
+      "query": "Bike maintenance",
+      "iconId": "tabler:bike-off",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon depicts a person riding a bicycle, which represents cycling activity rather than the specific task of bike maintenance.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "50a82438674117e85f623b9cc4fccd6fef3e8de13e8bf206703ece14ccc90335"
+    },
+    {
+      "query": "Reptile supplies",
+      "iconId": "tabler:fish-bone",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon depicts a fish, which is not a reptile.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "5a2964961c9c0cc08cce6e4f38ac2f5355fa9d7ddb6815a695f05c66a0afc335"
+    },
+    {
+      "query": "Random",
+      "iconId": "tabler:grain",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon consists of generic dots that do not specifically represent the concept of 'Random'.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "3a2208d1592bb79a862ca3bf303ec19072b5cca862ad8b35344d28f23beadd7d"
+    },
+    {
+      "query": "Woodturning",
+      "iconId": "tabler:chisel",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The icon depicts a chisel or gouge, which is the primary tool used in woodturning.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "04a9f6e42f9e317d54741fba6a9078fa837542e75dea868579c69482a69a78ae"
+    },
+    {
+      "query": "Video games",
+      "iconId": "tabler:go-game",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon represents a grid or network, which is too generic and not a specific symbol for video games.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "6447c0b2eb52e2352ffc94a7d8104d8c254162b7dcfa6af59be225e0017ea5e1"
+    },
+    {
+      "query": "Lacrosse",
+      "iconId": "tabler:rugby",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The icon clearly depicts a lacrosse stick, which is the primary equipment for the sport.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "140e8c9051987d62d5ffc907ad363dd00f88e8f1a8c6b8b46ee48dbc10b6b437"
+    },
+    {
+      "query": "Zoom calls",
+      "iconId": "tabler:zoom-code",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon represents searching code, which is unrelated to video conferencing or Zoom calls.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "9e35ce43af5fdf9969b1fa06ab081b2c62b20d66093704db7bf81d849b04c0ae"
+    },
+    {
+      "query": "Probate",
+      "iconId": "tabler:certificate",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "The certificate icon represents legal documents, which are the primary focus of the probate process.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "cc7648c93d4b544d7e9e9b9fb471e7178e5e0f883453181efd6ed26afd153b86"
+    },
+    {
+      "query": "Reptile supplies",
+      "iconId": "tabler:pig-money",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon depicts a pig, which is a mammal and unrelated to reptiles.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "ba675ffb311908df85316a6eb83025b7065a4bc291af8ce0da46d19228f8ff68"
+    },
+    {
+      "query": "Personal",
+      "iconId": "tabler:folder-user",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "The combination of a folder and a person icon clearly represents personal files or personal information.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "a5cc5d39e34bb4d7b8cd47252c87d02441ae50d89a19a82edd0f39644ad24d0f"
+    },
+    {
+      "query": "Running",
+      "iconId": "tabler:run-sprint",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The icon clearly depicts a person in a running pose, directly representing the category 'Running'.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "1bc768248192d970b1f6d884181ca276a92317eeee23d001c7438ff0493c5c4e"
+    },
+    {
+      "query": "Dentist",
+      "iconId": "tabler:dental-off",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon depicts a 'No Tooth' symbol, which is confusing and does not clearly represent a 'Dentist' category.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "1801eef8314a23a00b49f62e8f266cde0080fad92209836af20848d70b7df7a5"
+    },
+    {
+      "query": "Baby stuff",
+      "iconId": "tabler:building-warehouse",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The icon clearly depicts a baby bottle, which is a primary symbol for baby-related items.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "7a6062cbea2a4744280b448d1c0a92d4d1b2bb2af55d8c5ac746b043129a010a"
+    },
+    {
+      "query": "Glassblowing",
+      "iconId": "tabler:glass-gin",
+      "fits": true,
+      "confidence": 0.95,
+      "reason": "A glass is a primary and recognizable product of the glassblowing craft.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "c35d635e2231a4dd17b2ba966aa68acc0564e2adc9554fbc68b7e16905acadd1"
+    },
+    {
+      "query": "Knitting",
+      "iconId": "tabler:brand-threads",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon does not depict knitting needles, yarn, or any other recognizable symbol associated with knitting.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "7bc69a56cdb826f060efef2636d8397eb0c14aa99ec41c1521af653c7e82e898"
+    },
+    {
+      "query": "Life",
+      "iconId": "tabler:lifebuoy",
+      "fits": false,
+      "confidence": 0.95,
+      "reason": "A steering wheel represents driving or navigation and is not a standard symbol for the broad concept of 'Life'.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "02ad6c9dd7cbe44d8154685d161baae1b7254d7cace53be6b9950055e32fe3a7"
+    },
+    {
+      "query": "Baby stuff",
+      "iconId": "tabler:diaper",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The icon clearly depicts underwear, which is a common item associated with baby care.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "11a77bffcf25f8060fa8426eee2355ca7dd047f699be967fbb34e8f3ccca09e6"
+    },
+    {
+      "query": "Pottery",
+      "iconId": "tabler:plant",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon depicts a potted plant, which is related to gardening rather than the craft of pottery.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "a846e70c78c4a8d5b4b0f35c307a6843c3c17ea4fbc6a337c8f5e22eea80fd07"
+    },
+    {
+      "query": "Donations",
+      "iconId": "tabler:tip-jar-pound",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The icon clearly depicts a donation jar with a currency symbol, which is a standard representation for donations.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "08375540556d5db5ae727465a9be80388e628c40bb525d0aa3b1fd7caaa1ab35"
+    },
+    {
+      "query": "Fermentation",
+      "iconId": "tabler:bottle-off",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon represents a prohibited bottle, which does not represent the process of fermentation.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "6b9d41c860ed2b50b89371b091d3cbb981052f5c3aa473987f631d1a5da68678"
+    },
+    {
+      "query": "Birthday party",
+      "iconId": "tabler:cake-off",
+      "fits": false,
+      "confidence": 0.95,
+      "reason": "The 'no' symbol over the cake suggests 'no cake' or 'canceled' rather than representing a birthday party category.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "813c3b982c25b0dd469dabdfa7afb4ef099983259dd58d63bbf28dacd4cc3359"
+    },
+    {
+      "query": "Airbnb stays",
+      "iconId": "tabler:bed-off",
+      "fits": false,
+      "confidence": 0.95,
+      "reason": "The icon appears to be a letter 'A' with a slash through it, which does not represent a lodging or travel category.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "89e52ed67fd0e53c5763d508d6e3e067def3200c02410f608c3855d767f4d9bf"
+    },
+    {
+      "query": "Tennis",
+      "iconId": "tabler:cricket",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon depicts a bottle or dispenser, which is unrelated to the sport of tennis.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "f79dae40593679b5aea5d3d79b7413a1a7a60abc098a986200eb79952706acd8"
+    },
+    {
+      "query": "Baby stuff",
+      "iconId": "tabler:baby-bottle",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon depicts a trash can, which is not a standard representation for baby-related items.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "8e6b031a76055ca05119f16330cfdf6892e62709f410156700683eb662ab9f0f"
+    },
+    {
+      "query": "Mortgage",
+      "iconId": "tabler:building-bank",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The icon represents a bank, which is the standard institution associated with mortgages.",
+      "model": "gemma4:12b-mlx",
+      "promptVersion": "judge-v1",
+      "hash": "9cd53083da585de23d7f3526f517b171401bb76196eaede825a6856d1091b6e1"
+    }
+  ],
+  "qwen3-vl:8b": [
+    {
+      "query": "Savings",
+      "iconId": "tabler:pig-money",
+      "fits": true,
+      "confidence": 1,
+      "reason": "A piggy bank is a universally recognized symbol for savings, directly depicting the category.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "1d81c6e406c21f22d8123298cd7bba8d8542cc2e088baaabd329548f3cc1e709"
+    },
+    {
+      "query": "Glassblowing",
+      "iconId": "tabler:glass-off",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon depicts a prohibited drinking glass, not related to glassblowing.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "175247be4496971252492c803b45afc7da781a760704d67bf7ccdf2e99fd473b"
+    },
+    {
+      "query": "Falconry",
+      "iconId": "tabler:helicopter-landing",
+      "fits": false,
+      "confidence": 0,
+      "reason": "The 'H' icon has no visual connection to falconry and is too generic to represent the category.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "6367c7c0d05315016a9307eafea3f8d9f17d565e8ef4d9e7de8a3f2691861057"
+    },
+    {
+      "query": "Camping",
+      "iconId": "tabler:camper",
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "A generic van icon does not clearly represent camping, as it lacks specific camping elements like tents or outdoor gear.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "4029960f7be13b66eb07b41d0ad3ca877fcb522227b3a88761b52e4e3b6ba799"
+    },
+    {
+      "query": "Groceries",
+      "iconId": "tabler:paper-bag",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "The icon depicts a shopping bag, a common symbol for groceries.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "417c567182e8848c6898e455f633230ba766e9375a75d12ce90de4f1ea974eac"
+    },
+    {
+      "query": "Ballroom dancing",
+      "iconId": "tabler:corner-right-down",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The arrow icon is unrelated to ballroom dancing and is too generic for a specific category.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "00cc3eb2228ed5b39d24ea2143fd4e5d7b98450477436a4d6b162d6d92cd61fe"
+    },
+    {
+      "query": "Bills",
+      "iconId": "tabler:file-invoice",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "A document icon is a standard symbol for bills, clearly representing the category.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "349387d76d1f4094e44644cbf8e4dd0db74f41a36915ab36f9e50aee559c6864"
+    },
+    {
+      "query": "Woodworking",
+      "iconId": "tabler:wood",
+      "fits": false,
+      "confidence": 0.1,
+      "reason": "The icon resembles a jar or container, not a recognizable woodworking tool or object.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "b9ea65e5e7067f4e9a0927679b3473ee909e640a8487436eb45007b13aeace43"
+    },
+    {
+      "query": "Mosaic tiles",
+      "iconId": "tabler:layout-2",
+      "fits": false,
+      "confidence": 0.3,
+      "reason": "The icon is a generic grid of squares, not specifically representing mosaic tiles' pattern or small tile elements.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "425f62f51c8d1dafcb984228cb930f7a3491a6bc179399e79d57902eeade83df"
+    },
+    {
+      "query": "Insurance",
+      "iconId": "tabler:user-shield",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "The shield symbol is a common and recognizable representation of insurance, indicating protection and security.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "750b96ec4b6a61d6059ab46c8ba02ece3957506e7f0364d81368b29cb6ffed49"
+    },
+    {
+      "query": "Macram\u00e9",
+      "iconId": "tabler:hourglass",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "An hourglass icon represents time, not macram\u00e9 (a knotting craft), so it's unrelated to the category.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "d6e52fffec7200cee0bcc8362bc4bce21fe3b95751c80d26153d020e6964556e"
+    },
+    {
+      "query": "Pharmacy",
+      "iconId": "tabler:vaccine-bottle",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "A bottle icon is a standard and recognizable symbol for pharmacy items like medicine bottles.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "5e1b7e5aed75fb7eca1a7272262da52620405b2e84824774250444f1f6765767"
+    },
+    {
+      "query": "Accordion",
+      "iconId": "tabler:arrows-shuffle",
+      "fits": false,
+      "confidence": 0.2,
+      "reason": "The icon resembles arrows or a refresh symbol, not a recognizable representation of an accordion instrument.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "9ccce817739f6bb8295d872c3ef2fb5c8b4f948373e69097c92bfec97dbe4ca1"
+    },
+    {
+      "query": "Chimney sweep",
+      "iconId": "tabler:zzz",
+      "fits": false,
+      "confidence": 0.1,
+      "reason": "The 'Z' icon has no visual connection to chimney sweeping and is too generic to represent the category.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "50b38cc2f6e665dbf2850791b128b5fbeef1f8da227312a1cb11dca9de87f025"
+    },
+    {
+      "query": "Slack",
+      "iconId": "tabler:file-stack",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "A document icon is too generic and does not specifically represent Slack's communication-focused nature.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "5924ee88ee5e7fdc41bed41aa6d4183aa5b12c4b07e60a1a2a1b1dde03885ebd"
+    },
+    {
+      "query": "Ballroom dancing",
+      "iconId": "tabler:stretching-2",
+      "fits": false,
+      "confidence": 0.2,
+      "reason": "The generic stick figure icon does not specifically represent ballroom dancing, which requires a more dance-related symbol.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "ad3091debc52ff39a6855f2ea5dbc98db61e75add88f78b076cd75f65cf5dde5"
+    },
+    {
+      "query": "Lapidary",
+      "iconId": "tabler:laurel-wreath-2",
+      "fits": false,
+      "confidence": 0.1,
+      "reason": "The icon features a prominent number '2' and abstract shapes, which do not clearly represent lapidary (stone cutting/polishing) and are too generic or unrelated to the category.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "409c1ef17036e62311a7235ae8150a9c9b9e13b2a61c8c19765a9cf2e25a8849"
+    },
+    {
+      "query": "Painting",
+      "iconId": "tabler:paint",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "The icon depicts a paint roller, a recognizable tool directly associated with the 'Painting' category.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "b90fa81792f06cc61adaee01481988128d54beb991e94b6e8b2bda958b50e3ce"
+    },
+    {
+      "query": "Camping",
+      "iconId": "tabler:campfire",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "The icon depicts a campfire (flame over logs), a recognizable symbol for camping.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "ca177e28eab4ab9fca9733359bd78c74e5f27be264422559e202138649829a59"
+    },
+    {
+      "query": "Books to read",
+      "iconId": "tabler:book-2",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "The icon clearly depicts a book, which directly represents the 'Books to read' category.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "08836f4450c5f38c0fda5a48126e04a12a1bd78fb36af9ccc98fd641d4fa14bc"
+    },
+    {
+      "query": "Bookbinding",
+      "iconId": "tabler:book-off",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon depicts a prohibited book symbol, not bookbinding.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "dbd2095ae56a56b323b0535ab3fd1a8120dcaabaafc77053cf1da9c5f2f1e281"
+    },
+    {
+      "query": "Frog pond",
+      "iconId": "tabler:basket-question",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon depicts a camera with a question mark, which is unrelated to a frog pond category.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "6d0abac61087482980e4a0c6a4ffbb9a0adebdf7421f85a44df3c7b6ec5d2007"
+    },
+    {
+      "query": "Home build",
+      "iconId": "tabler:home",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "A house icon directly represents 'Home build' as it's a recognizable symbol for home construction.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "7e6b7120ea36da3c4dfc4bcf8b08eda34d3c4b82133a464225a5184fbdc173eb"
+    },
+    {
+      "query": "Repairs",
+      "iconId": "tabler:hammer-off",
+      "fits": false,
+      "confidence": 0.2,
+      "reason": "The icon is too abstract and generic to clearly represent 'Repairs' with recognizable repair tools.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "52ceb84e6c31ff8398251c61e8a0e34bee5c87d472f2a38ac23ed108bb0d26b1"
+    },
+    {
+      "query": "Books to read",
+      "iconId": "tabler:book-off",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon depicts a prohibited book symbol, not a book for reading.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "6af7e22c95c8f964415805133485420d22999d23691eb0848d032dbd6f48c17b"
+    },
+    {
+      "query": "Hedgehog rescue",
+      "iconId": "tabler:paw",
+      "fits": false,
+      "confidence": 0.1,
+      "reason": "Paw print icon is typically associated with dogs or cats, not hedgehogs, so it does not clearly depict hedgehog rescue.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "8b47af89004367957d5ac198b195e855181a9310dc068a501635dd94b77951ab"
+    },
+    {
+      "query": "Groceries",
+      "iconId": "tabler:paper-bag-off",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon depicts a prohibition symbol (bottle with slash), not a recognizable grocery-related object or symbol.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "1911835b6115cd6818fffaf5af63371faca8311f2d2f3c348724a740cc2d553c"
+    },
+    {
+      "query": "Houseplants",
+      "iconId": "tabler:leaf",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "A leaf is a universally recognized symbol for houseplants, directly representing the category.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "d03acfceb88f74850128a35000de07fdc503cca89055b01ec588e0e9a83b1ed4"
+    },
+    {
+      "query": "Car servicing",
+      "iconId": "tabler:car-suspension",
+      "fits": false,
+      "confidence": 0.2,
+      "reason": "The icon resembles a key, which is not a direct symbol for car servicing (typically represented by wrenches or cars), making it loosely related.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "8b09194076219f7b549f87bf56c90570dfc20b6345c9c013f4e31255ffd623df"
+    },
+    {
+      "query": "Retirement",
+      "iconId": "tabler:cloud-dollar",
+      "fits": false,
+      "confidence": 0.7,
+      "reason": "Cloud with dollar sign is more associated with general finance or cloud services, not specifically retirement.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "9169ba8948d24e5b66fd6fb68b691db0af13009eff4e1a1264cc50c9414ed8eb"
+    },
+    {
+      "query": "Apple devices",
+      "iconId": "tabler:device-airpods",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon resembles abstract shapes (Q and P) rather than any recognizable symbol for Apple devices like the Apple logo.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "b58e3f6491bfd2bdbcb7fda3e9f536001a66a8c0046ca5319ce55eac9ca7963f"
+    },
+    {
+      "query": "Zoom calls",
+      "iconId": "tabler:zoom-question",
+      "fits": false,
+      "confidence": 0.1,
+      "reason": "The magnifying glass with a question mark icon is unrelated to Zoom calls, which are video conferencing sessions.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "0e5d2d0870f8c7e0424d71e316506ef617c583ebe00e616b30e21d8b0ad78380"
+    },
+    {
+      "query": "Pets",
+      "iconId": "tabler:paw",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "A paw print is a universally recognized symbol for pets, clearly depicting the category.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "ea7241cdd2ee4bb809493e20ec7f7f881309fba8fcc1327040935e704d2dd3d5"
+    },
+    {
+      "query": "Google Drive",
+      "iconId": "tabler:brand-google-one",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon is an abstract black line shape with no recognizable connection to Google Drive's actual logo or service.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "a3c1d44c8621364dd85bc90bbe08baa4f59bceaff04678456b512170a8b18b87"
+    },
+    {
+      "query": "Macram\u00e9",
+      "iconId": "tabler:brand-apple-arcade",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon resembles a pushpin or location marker, which is unrelated to macram\u00e9 (a knotting craft) and too generic for the category.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "2c50c8e90a51784de2c596b8e0a51bd15265771b566ba7e0194319ff2a2399ae"
+    },
+    {
+      "query": "Puppet shows",
+      "iconId": "tabler:keyframes",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon is abstract and does not clearly represent puppet shows or related objects.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "8584ca9d01f5f2c6d4c4d5286ceb07924711603a884959b3006e47c4bdf8255b"
+    },
+    {
+      "query": "Wine tasting",
+      "iconId": "tabler:glass",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "The wine glass icon directly represents wine tasting, a common symbol for the category.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "ee13805b16fca1ed20d2074fa7fdaf4378b7ab9fee65fa490b23c94808acf1b5"
+    },
+    {
+      "query": "Photography",
+      "iconId": "tabler:camera-question",
+      "fits": false,
+      "confidence": 0.7,
+      "reason": "The icon combines a camera (relevant) with a question mark, which is not a standard symbol for photography and adds confusion.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "b21f860e02b703adb470453a4ae9d86258cd32fd8bcc7fc52275c1aad4a59ee4"
+    },
+    {
+      "query": "Personal",
+      "iconId": "tabler:gender-femme",
+      "fits": false,
+      "confidence": 0,
+      "reason": "The female gender symbol is unrelated to the \"Personal\" category.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "ab905b803a1306a9a2ca157a44fe2cedc4ba659b096a52723ce422178b90207f"
+    },
+    {
+      "query": "Kombucha brewing",
+      "iconId": "tabler:beer-off",
+      "fits": false,
+      "confidence": 0.1,
+      "reason": "The icon is a prohibition symbol, not related to kombucha brewing.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "f9287ddea3c17bd6d99a5e07c899b7eefe9686327b42ba38cf9f400311db8646"
+    },
+    {
+      "query": "Dropbox",
+      "iconId": "tabler:droplet-share",
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon combines a droplet with an arrow, which does not match Dropbox's standard droplet logo and is not a recognizable symbol for the service.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "bc970d6fb8ea4ae3dc41af437ef063e9763cbb8312c41a4ec9432878aeb8ffb9"
+    },
+    {
+      "query": "Taxidermy",
+      "iconId": "tabler:razor",
+      "fits": false,
+      "confidence": 0.1,
+      "reason": "The icon resembles a generic tool but does not clearly represent taxidermy-specific equipment.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "e70949c93d295a03667d345ffd636aeffd4b08a1072f2eecaaa9b79f452abe53"
+    },
+    {
+      "query": "Legal",
+      "iconId": "tabler:gavel",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "The icon depicts a gavel, a universally recognized symbol for legal proceedings.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "aa24bc386ec542ba67812e64810811ec1107e00d485af9ad891e16be818f691a"
+    },
+    {
+      "query": "Chess club",
+      "iconId": "tabler:chess-bishop",
+      "fits": false,
+      "confidence": 0.1,
+      "reason": "Icon depicts a bell, not related to chess.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "49aff40b0d3f8a7f4474036fa3893665de1c08422d28d622ed6006ddb3db3dfb"
+    },
+    {
+      "query": "Axolotl tank",
+      "iconId": "tabler:barrel",
+      "fits": false,
+      "confidence": 0.2,
+      "reason": "The grid icon does not clearly represent an axolotl tank, which typically involves an aquarium or water container, not a generic grid.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "956c1bbee9bcbb1b22b6a77e02eac5e33cfd1195d0bc981dc0395efd65acd2ab"
+    },
+    {
+      "query": "Board games",
+      "iconId": "tabler:dice-2",
+      "fits": true,
+      "confidence": 0.8,
+      "reason": "The icon resembles a die face, a common symbol associated with board games, making it recognizable for the category.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "8e8143de69ba7b876ca35ac3c1e97ca24f09c1cf1c785c137b43cc050623f8fe"
+    },
+    {
+      "query": "Meetings",
+      "iconId": "tabler:calendar-time",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "The calendar with a clock icon clearly represents scheduled meetings, a common symbol for time-bound appointments.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "9399630f65282de304a3df6b2457b079e604893d73ae6c6e77962450ee1fe7e0"
+    },
+    {
+      "query": "Birdwatching",
+      "iconId": "tabler:feather-off",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon shows a prohibition symbol (crossed out bird/telescope), which contradicts the positive activity of birdwatching.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "83c4d723767b8558477711c6405cc48e1f8324d410f6e881df58617a9bdf8bc2"
+    },
+    {
+      "query": "Insurance",
+      "iconId": "tabler:shield-heart",
+      "fits": true,
+      "confidence": 0.8,
+      "reason": "The shield shape is a common symbol for insurance, representing protection, making it recognizable for the category.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "4fe24e63c37caf8b7e421fb0f9ef6d2dfe437695a65b1de02cf429ff41a00edf"
+    },
+    {
+      "query": "Horse riding",
+      "iconId": "tabler:dragon",
+      "fits": false,
+      "confidence": 0.2,
+      "reason": "The icon is too abstract and doesn't clearly depict a horse or horse riding elements.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "81424b37eff6efa2e959df092acde143766dff30fe5516b3fee4a1208a21be21"
+    },
+    {
+      "query": "Cleaning",
+      "iconId": "tabler:toilet-paper",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "Toilet paper icon is too specific to bathroom hygiene, not general cleaning.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "f74c024a3ea89f9c3b6233b710f74f9e960839018f7d792c6ee997235ec518ce"
+    },
+    {
+      "query": "Home build",
+      "iconId": "tabler:home-cog",
+      "fits": true,
+      "confidence": 0.8,
+      "reason": "The house icon is a widely recognized symbol for home, which aligns with the \"Home build\" category as it represents the core concept of a home.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "5ab091a3bae5b3713c889c842ec1f02eb6afc254908a7a83b400e4c7b6b8ef49"
+    },
+    {
+      "query": "Llama trekking",
+      "iconId": "tabler:mountain",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The mountain icon is too generic for llama trekking, as it doesn't depict llamas or trekking-specific elements.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "de786472ee85c080361870df3166483511e3eaa0381510d041694bf0362253c6"
+    },
+    {
+      "query": "Pets",
+      "iconId": "tabler:cat",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "A cat icon clearly represents the 'Pets' category as it is a recognizable pet animal.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "1acb27be87696d51a801590a919f003cd04f2bbc754181beae13b8f4475e4ea8"
+    },
+    {
+      "query": "Moving house",
+      "iconId": "tabler:home-question",
+      "fits": false,
+      "confidence": 0.2,
+      "reason": "The icon combines a house with a question mark, which doesn't clearly represent moving house.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "a63842c6576980e3620f1df1a42270c93c4821b1d962ff185f458652bb3b6673"
+    },
+    {
+      "query": "Wedding planning",
+      "iconId": "tabler:confetti-off",
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon's abstract elements (triangle, dotted line, plus sign) do not clearly represent wedding planning, which typically uses recognizable symbols like rings or cakes.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "83d4b156416ac568c1a9cea0fdfebc5bbb5abfdb54843019c785c18c5603f962"
+    },
+    {
+      "query": "Travel",
+      "iconId": "tabler:route-off",
+      "fits": false,
+      "confidence": 0.1,
+      "reason": "The icon resembles a 'no' symbol over abstract shapes, not a recognizable travel-related object or symbol.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "dbcd2930f448d2590662ae1a89ef535f9689e88096c39e45120cce8084f16918"
+    },
+    {
+      "query": "Croquet",
+      "iconId": "tabler:meeple",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The star-shaped icon does not clearly represent croquet, which typically involves mallets, balls, or wickets, and is too generic to be recognizable for the category.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "2327854193e065300e05aa6c299f4a34640b7d45be0483e5ea6857a15ccee73e"
+    },
+    {
+      "query": "Netflix",
+      "iconId": "tabler:cast",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon resembles a Wi-Fi signal, not Netflix's branding or related imagery.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "5b590372b7359e2a7555e051e859952c17b9160313895f2e62a27fcce9f9887d"
+    },
+    {
+      "query": "Travel",
+      "iconId": "tabler:location",
+      "fits": true,
+      "confidence": 0.8,
+      "reason": "The paper airplane icon is a recognizable symbol associated with travel and journeys.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "fa1e7281649af82853e1778c496558eaa4e1537fc2578763f835b1506fa61c05"
+    },
+    {
+      "query": "Bagpipes",
+      "iconId": "tabler:bong",
+      "fits": false,
+      "confidence": 0,
+      "reason": "The flask icon is unrelated to bagpipes, which are musical instruments.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "dea6caa43eb4469c2b5fe672afa3f65eebbde647b00e2c91ac9c5790466febeb"
+    },
+    {
+      "query": "Vet visits",
+      "iconId": "tabler:forbid",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon is a generic 'no' or 'cancel' symbol, not related to veterinary visits.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "ea460c939e338a5388239e17933a8ec057c75bf85fe5944d56069c18b2c1424a"
+    },
+    {
+      "query": "Health insurance",
+      "iconId": "tabler:hospital",
+      "fits": false,
+      "confidence": 0.3,
+      "reason": "The 'H' icon is too generic for health insurance and doesn't clearly represent the specific category.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "940f9faa57700c4c15e41ba5f3d8bde0ceada7f21857ef51c01470cc43b9b739"
+    },
+    {
+      "query": "Meetings",
+      "iconId": "tabler:brand-meetup",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon is a stylized 'm' which does not visually represent meetings or any related concept.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "bd31271900940daddf53fe4069048da04bbf4dc25a7dbc13a36ff7e8e4ac47b2"
+    },
+    {
+      "query": "Honey harvest",
+      "iconId": "tabler:growth",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon resembles a plant or leaf structure, which does not clearly represent honey harvest or its common symbols like honeycombs or bees.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "747e033dc248682cd5786adadf249f160dab4cc55ddc64a28ef29e388888dc27"
+    },
+    {
+      "query": "Car registration",
+      "iconId": "tabler:car-door",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "The document icon is a common symbol for registration-related documents, making it recognizable for 'Car registration'.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "38a5a3935806328fff1ff7a0f90921ec6c2bc7599091234de956d52a732a2aca"
+    },
+    {
+      "query": "Lapidary",
+      "iconId": "tabler:leaf-off",
+      "fits": false,
+      "confidence": 0.2,
+      "reason": "The icon is an abstract line drawing with no clear connection to lapidary tools or stones, making it unrecognizable for the category.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "b1f23f7bd5a9fd5afe99386bca1475915fa7df3a817ba67f4655b372b1dc9590"
+    },
+    {
+      "query": "Electricity",
+      "iconId": "tabler:battery-automotive",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon resembles a calendar with plus/minus signs, which is unrelated to electricity concepts like lightning or power symbols.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "5ec938107621a93863119919aabf67f83cff49e659ce081c7f0c7f4d8a4fb9e5"
+    },
+    {
+      "query": "Pottery",
+      "iconId": "tabler:plant-2",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon depicts a leaf-like shape, which is unrelated to pottery and does not represent a common symbol or object associated with the category.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "f5f01a3a22167adc1881592de96c47921ccb46dd959ec60fd2e55ea48af6e4ad"
+    },
+    {
+      "query": "Mosaic tiles",
+      "iconId": "tabler:layout",
+      "fits": false,
+      "confidence": 0.95,
+      "reason": "The icon shows the number '80', which is unrelated to mosaic tiles and does not depict any aspect of the category.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "ef3e1c7fd958d4f08e099fd7fdaa095edddf69b85238e6210b1bf2e08b8735c8"
+    },
+    {
+      "query": "Airbnb stays",
+      "iconId": "tabler:brand-airbnb",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The icon is the recognizable Airbnb logo, directly representing the category 'Airbnb stays'.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "bcffda92a9eb512759a7e07e2dffe916dc18c8e2dbf7b360b7226870f6bede7c"
+    },
+    {
+      "query": "Super contributions",
+      "iconId": "tabler:tip-jar",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "The jar with a dollar sign clearly represents money saving, which aligns with contributing to a retirement fund (superannuation) as 'super contributions' typically refers to money put into such savings.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "010a12e8f0fd8711e127e5a560eaf2ab6d1268ad80799ca0998c9a10ecbda18b"
+    },
+    {
+      "query": "Ferret care",
+      "iconId": "tabler:smoking",
+      "fits": false,
+      "confidence": 0.1,
+      "reason": "The icon depicts a cigarette, which is unrelated to ferret care.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "0e2c031bec6883575e7b7fa4d9b379eef3dad9a0b3394eb653b5a996dbe63ea7"
+    },
+    {
+      "query": "YouTube",
+      "iconId": "tabler:brand-kick",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The maze-like icon does not represent YouTube's recognizable logo or symbol.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "b9eb2a380c5f3d8e3283335eabd705ffcf30ee63007869b3b3ed506cb0e16377"
+    },
+    {
+      "query": "Slack",
+      "iconId": "tabler:stack-push",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon depicts downward arrows, which is generic for download or hierarchy, not related to Slack's communication app identity.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "fb7fd0077eda8e79415e1c3ee6f39f148b17afff18e710be8de0045e93c925eb"
+    },
+    {
+      "query": "Discord",
+      "iconId": "tabler:affiliate",
+      "fits": false,
+      "confidence": 0.2,
+      "reason": "The icon is a generic network symbol, not specifically representing Discord.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "d3354eca1d771c53ab5b711f332042b16fdb6d44f4478458979f44741b1727bd"
+    },
+    {
+      "query": "Medical",
+      "iconId": "tabler:disabled",
+      "fits": false,
+      "confidence": 0.3,
+      "reason": "The wheelchair icon is primarily associated with accessibility/disability, not a general medical category like doctor visits or prescriptions.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "b0359cbcca22774a6d1205b6b774e0cc7f9d92bc5f79aa8f27cd11e8dd754a3c"
+    },
+    {
+      "query": "Zoom calls",
+      "iconId": "tabler:zoom",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "A magnifying glass icon is universally associated with search or magnification, not specifically with Zoom calls, which are video conferencing.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "660221edf3077e0930e0c613baf8da5c0edb39b06db8711a3ed55d05b81938a9"
+    },
+    {
+      "query": "Septic tank",
+      "iconId": "tabler:barrel-off",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon resembles a 'no' symbol over a grid, not a septic tank, which is unrelated to the category.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "91c317f82cf30c06b2c3c026fccbcbcd5c94f5ad9fb7b135dce02cad05e82763"
+    },
+    {
+      "query": "Yoga",
+      "iconId": "tabler:exercise-ball",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon resembles a sports ball (e.g., tennis ball) rather than a recognizable symbol for yoga, which typically involves poses or mats.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "f9bac4dec02cb7ef16f0620f4c51edcd230b0d259907c59a64c29fc7166fd46b"
+    },
+    {
+      "query": "Paperwork",
+      "iconId": "tabler:files",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "The icon clearly depicts stacked papers, a standard symbol for paperwork.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "8c05d008b8b8aed1738c6fb43845416aaa227b3f8408512ba8ee543ccc821fb4"
+    },
+    {
+      "query": "Genealogy",
+      "iconId": "tabler:dna",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon is an abstract shape with no clear connection to genealogy, which typically uses symbols like family trees or ancestral charts.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "0c1dbb19190bf2d6faab2828c14b94bb1649ddcb67449435560d52777d086e0d"
+    },
+    {
+      "query": "Dentist",
+      "iconId": "tabler:stethoscope",
+      "fits": false,
+      "confidence": 0.7,
+      "reason": "A stethoscope is commonly associated with general medical doctors, not specifically dentists, who use different tools like dental drills or mirrors.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "a5553a6d9a417b9cb2dde0d86a6b4542afe12173e76d29964852a0368906a641"
+    },
+    {
+      "query": "Emails to answer",
+      "iconId": "tabler:mail-forward",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "The envelope icon is a universally recognized symbol for emails, making it appropriate for the 'Emails to answer' category.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "f3cc99f6ac466aee8caa7190b61f7277be33856431b51ea511b411ca65bdd742"
+    },
+    {
+      "query": "Photography",
+      "iconId": "tabler:photo-sensor",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "The icon depicts a camera viewfinder, a recognizable symbol for photography.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "848030d533cb7493550ea07e8d371015dc213ae0856346e7c445776567078717"
+    },
+    {
+      "query": "Work",
+      "iconId": "tabler:building-estate",
+      "fits": true,
+      "confidence": 0.8,
+      "reason": "The building shape is a common symbol for work, representing an office or workplace.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "b3d637712b44de1cf99da9e9a4102067f38f1fe81625450e180eeb2b92c97e97"
+    },
+    {
+      "query": "Macram\u00e9",
+      "iconId": "tabler:brand-algolia",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The magnifying glass icon is unrelated to macram\u00e9, which involves knotting/weaving, not search.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "1992f07ef98b3c9bb047bcdb31d89c9fd2a72ec687ce1bbed52aab7400f6443f"
+    },
+    {
+      "query": "Taxidermy",
+      "iconId": "tabler:blade",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon depicts a ticket with a bone, which is not a recognizable symbol for taxidermy (typically associated with mounted animals or preservation, not tickets/bones in this context).",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "c44a53f9d4166abd2a0362ad856a852767ed4d21d077bea498db318cf6c7d86e"
+    },
+    {
+      "query": "Electricity",
+      "iconId": "tabler:waves-electricity",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "The lightning bolt is a universally recognized symbol for electricity.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "a0678f661fb7f9a3e64b2120ad6ed5f800a855723dd86c05aa74b680f65b2668"
+    },
+    {
+      "query": "Summer holidays",
+      "iconId": "tabler:speedboat",
+      "fits": true,
+      "confidence": 0.8,
+      "reason": "A boat icon is a recognizable symbol associated with summer holidays, such as vacations or cruises.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "cdbd6212c65e57d835c2b2064fb26f01136c60fc94e0c51f3c65f0fe75d58a0c"
+    },
+    {
+      "query": "Recipes",
+      "iconId": "tabler:cooker",
+      "fits": false,
+      "confidence": 0.2,
+      "reason": "An oven icon does not clearly represent recipes; it depicts a kitchen appliance rather than the concept of cooking instructions.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "90e76826b5f3657ce3dab2cfeb7c9144f86c97b319a4d4801663c3bdad0f3f7e"
+    },
+    {
+      "query": "Chimney sweep",
+      "iconId": "tabler:flame-off",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon resembles a prohibition symbol rather than depicting chimney sweep or related elements.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "8980e5552be9124b400df56d7cb4fc63c4a4a6167d8703e5b8277d33b5c362a3"
+    },
+    {
+      "query": "Pets",
+      "iconId": "tabler:dog",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "The icon depicts a dog, a common pet, clearly representing the \"Pets\" category.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "ccf07ed5448c485ad45a412a544f80a2048915bd2fa1a9d66b64e566ad3b047d"
+    },
+    {
+      "query": "Rent",
+      "iconId": "tabler:tax-pound",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "The money bag with a pound symbol clearly represents financial payments, which aligns with the 'Rent' category as rent is a monetary obligation.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "8ab4db1920cf432e0bd7cb0d5653f9dc42ed04742e907bd5cbd5f499e96f942b"
+    },
+    {
+      "query": "Home build",
+      "iconId": "tabler:home-plus",
+      "fits": false,
+      "confidence": 0.3,
+      "reason": "The house icon is generic for 'home' but doesn't clearly represent the 'build' aspect of the category.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "7d16ab677162e4e1e46674dda002a2fbbc5b76301e3e7611175ca4933bfdffe6"
+    },
+    {
+      "query": "Amazon orders",
+      "iconId": "tabler:truck-delivery",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "The truck icon is a common symbol for delivery and shipping, directly related to Amazon orders.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "62c68480f9379a4d93ea2e8098e3333dd8ee81b152fbb97ec7f932bb432d5c41"
+    },
+    {
+      "query": "Donations",
+      "iconId": "tabler:camera-dollar",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon combines a camera and dollar sign, which is not a standard symbol for donations; a dollar sign alone would be more appropriate.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "f65b146f72747b02e1980fb61b7b40361904f52ec0d9bea752facd73b662a263"
+    },
+    {
+      "query": "Pizza nights",
+      "iconId": "tabler:pizza",
+      "fits": true,
+      "confidence": 0.95,
+      "reason": "The icon clearly depicts a pizza slice, directly representing the 'Pizza nights' category.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "4e0954143d3aaff69ecae4f269bdb389ba36a52ea4909982d61b153316c1981f"
+    },
+    {
+      "query": "Recipes",
+      "iconId": "tabler:cake",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "A cake icon is specific to baking/desserts, not the general concept of recipes.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "eb7e37d5e0e7f2d0c6a52b0ba0bd33ac68190d722f04a1118a8dca55219c4353"
+    },
+    {
+      "query": "Fuel",
+      "iconId": "tabler:barrel",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The grid-like icon does not clearly represent fuel, which typically uses symbols like a gas pump or tank.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "dac8bb2a7189d0b03b71bcf9c1f34316cf0f192f857e3032acc4067d025be31a"
+    },
+    {
+      "query": "Embroidery",
+      "iconId": "tabler:needle",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "The icon depicts a needle, a key tool for embroidery, making it clearly related to the category.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "150e80f4b4ef33dafad371d9adf19aa967308f182e7266609c68cb6552b5b058"
+    },
+    {
+      "query": "Snowboarding",
+      "iconId": "tabler:skateboarding",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon depicts skateboarding, not snowboarding, as it shows a skateboard with wheels on a flat surface, whereas snowboarding involves a snow-specific board.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "7b277abb5a5759d6c139c7f1dff502710ad047b633469beb34218605675997d8"
+    },
+    {
+      "query": "Kombucha brewing",
+      "iconId": "tabler:barrel",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon resembles a grid or barrel, which does not clearly represent kombucha brewing or its common symbols like a jar or SCOBY.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "fc0f81cd9cfb571834f9de3dd90e7065df6b0a3ae4a8a500f1d9f62707a8fec6"
+    },
+    {
+      "query": "Honey harvest",
+      "iconId": "tabler:wheat",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The leaf icon is too generic for honey harvest, which requires a bee or hive-related symbol.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "aa7a5b81190ad40a8cd246fe4358711b94ac3c51a2c9bc437e2887c841d52690"
+    },
+    {
+      "query": "Septic tank",
+      "iconId": "tabler:barrel",
+      "fits": false,
+      "confidence": 0.2,
+      "reason": "The icon resembles a grid or cage, not a septic tank.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "37854819a64ef8744f3c90bece47f3376f23b0ca556658c16a5fe34d1cda80cb"
+    },
+    {
+      "query": "Car servicing",
+      "iconId": "tabler:car-garage",
+      "fits": true,
+      "confidence": 0.8,
+      "reason": "The icon depicts a car under a roof, commonly associated with a garage where car servicing occurs, making it recognizable for the category.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "bf6ab04f00c82fea5d929fc2c0d4c49850ee9b8d48d6364b07dd5bf4c4c20592"
+    },
+    {
+      "query": "Books to read",
+      "iconId": "tabler:books-off",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon shows a book with a prohibition symbol, which contradicts the 'Books to read' category by implying restriction rather than representing the category itself.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "cfd0bf0af1b559be3e53b05d142667e99a167e4e41fc2de500b789249c4ae3af"
+    },
+    {
+      "query": "Passwords",
+      "iconId": "tabler:password",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "Asterisks are commonly used to represent masked passwords in digital interfaces, making it a recognizable symbol for the 'Passwords' category.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "68655ba959513d802a9d83e21e16517b31e81028e62c5e7e82b8399cb31b36be"
+    },
+    {
+      "query": "GitHub stuff",
+      "iconId": "tabler:brand-github-copilot",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "The icon resembles a simplified version of GitHub's octocat logo, a recognizable symbol for GitHub-related content.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "ea4d28078ccc10612090e34743b06455af3c8fb39939a10d14a1f1c181698b71"
+    },
+    {
+      "query": "Car registration",
+      "iconId": "tabler:car-off",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon depicts a 'no car' symbol, which is unrelated to car registration.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "0cb5b9b5a0aed57bf63de211e5ab155758a4e13bcb2b19742e1bd96779a57ae7"
+    },
+    {
+      "query": "Swimming lessons",
+      "iconId": "tabler:pool-off",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon depicts a 'no swimming' prohibition sign, not swimming lessons.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "d902550b37666fa65dfc304a09dee41fc5328742fc1dac975f8e12e9b2ecc423"
+    },
+    {
+      "query": "Health insurance",
+      "iconId": "tabler:first-aid-kit",
+      "fits": false,
+      "confidence": 0.3,
+      "reason": "The icon depicts a first aid kit, which is more associated with immediate medical care than health insurance.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "1c5548ef8d5044bc3ac9b774e3f487cfc685da42bacddace7e6fe2784b70643a"
+    },
+    {
+      "query": "Someday",
+      "iconId": "tabler:basket-heart",
+      "fits": false,
+      "confidence": 0.2,
+      "reason": "The icon depicts a shopping bag with a heart, which is more related to shopping or gifts, not the abstract concept of 'Someday'.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "53d3639931004f8f1a7504d41d0fa83ee28459d08c741ff1fad05ed406f7eff6"
+    },
+    {
+      "query": "Health insurance",
+      "iconId": "tabler:crutches",
+      "fits": false,
+      "confidence": 0.1,
+      "reason": "A crutch icon does not clearly represent health insurance, as it depicts a medical mobility aid rather than insurance concepts like coverage or financial protection.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "48d5f3dc5dbb14a2397972022ea59b8b3ffb9522e3beaee1b04e1cabc9a56da9"
+    },
+    {
+      "query": "Wedding planning",
+      "iconId": "tabler:rings",
+      "fits": false,
+      "confidence": 0.2,
+      "reason": "The icon resembles a dumbbell or balance scale, which is not a recognizable symbol for wedding planning.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "fbbcdc144228deee94be1a21e3dd2f52ce8043036b6a05aacf57b25d440c583d"
+    },
+    {
+      "query": "Bike maintenance",
+      "iconId": "tabler:unicycle",
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The unicycle icon is too specific to a single-wheeled bike and doesn't clearly represent general bike maintenance, which typically involves standard bicycles.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "34b5fd457e5a4c5b25367ffaa1e9376b1c1151ac268bc606c4ebb38de676ca30"
+    },
+    {
+      "query": "Coffee",
+      "iconId": "tabler:milk",
+      "fits": false,
+      "confidence": 0.3,
+      "reason": "The icon depicts a jar, which is more commonly associated with storing coffee beans rather than the drink itself, making it a loose connection to the category 'Coffee'.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "02003c9048c9c1d3f1b6a7862e185f5abfbc01779d34440d7159f2b75103f975"
+    },
+    {
+      "query": "Google Drive",
+      "iconId": "tabler:brand-google-maps",
+      "fits": false,
+      "confidence": 0.95,
+      "reason": "The location pin icon is unrelated to Google Drive, which is a cloud storage service.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "ab83bd24ada18096b533abf4b0b14afa9e7c76134806f91f5ac47c6b4673571e"
+    },
+    {
+      "query": "Investments",
+      "iconId": "tabler:file-bitcoin",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "The Bitcoin symbol directly represents cryptocurrency investments, a common and recognizable aspect of the 'Investments' category.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "9f3aca7528b4887a805daea3bf8a3ee66fc9e7ab147a1c1a540c09f2f75cfe7d"
+    },
+    {
+      "query": "Paperwork",
+      "iconId": "tabler:note",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "The folded document icon is a standard symbol for paperwork, clearly representing the category.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "a58bfb48759e0553333e55fa7d5ed80aa71b80e50db8c237350deb2d48b500d4"
+    },
+    {
+      "query": "Golf",
+      "iconId": "tabler:tournament",
+      "fits": false,
+      "confidence": 0.1,
+      "reason": "The icon resembles a circuit board or network diagram, not a recognizable golf-related object or symbol.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "ccc2b0aa9f4168b8d1582ab04125f7b42224bb527da8f47bd9447a133d163fe3"
+    },
+    {
+      "query": "Wine tasting",
+      "iconId": "tabler:barrel",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "A barrel icon is more associated with wine storage than the act of wine tasting, which typically uses symbols like wine glasses or bottles.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "ed96ba052afec8131703c603fb277fcc9212ac289d929d25743abe4f53282b91"
+    },
+    {
+      "query": "Netflix",
+      "iconId": "tabler:brand-netflix",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The icon is Netflix's official logo, which clearly and recognisably represents the category name.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "786639cf940b2f084af0ba5ac50c6f76f44f6e1dadd9e11e187dce84c4b9761c"
+    },
+    {
+      "query": "Glassblowing",
+      "iconId": "tabler:glass-champagne",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon depicts a champagne glass, which is a product of glassblowing, not the process itself or a symbol for glassblowing.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "f86e7174398c94c9a824a24fd9a55eb0cceaafdf308b771aaedcafe0a34d93f3"
+    },
+    {
+      "query": "Legal",
+      "iconId": "tabler:trademark",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The 'TM' icon specifically denotes trademark, which is too narrow for the general 'Legal' category and not a common symbol for legal concepts.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "2c1c2614506501cd3d1275cb63fb1c4a3bae3fa7f171ead3978b8c4d68dccd60"
+    },
+    {
+      "query": "Fuel",
+      "iconId": "tabler:lighter",
+      "fits": true,
+      "confidence": 0.7,
+      "reason": "The droplet shape is a common symbol for liquid fuel.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "105a730a8c661a0d5da88fd2cf50ee18b9724f7fd94aa31f67aed68a56aa7849"
+    },
+    {
+      "query": "Spotify",
+      "iconId": "tabler:playlist",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "The musical note is a universally recognized symbol for music, directly aligning with Spotify's purpose as a music streaming service.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "b30b9fd975fbb5d3207c98923d44a68b9761c92b03f711e8f2f08f0a41e70ec3"
+    },
+    {
+      "query": "Water bill",
+      "iconId": "tabler:receipt-2",
+      "fits": true,
+      "confidence": 0.8,
+      "reason": "The icon depicts a receipt with a dollar sign, a common symbol for bills, which aligns with the 'Water bill' category as it represents payment for utilities.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "233f09e4315077352e5c5f5328db22a5ebc543ba0c2bd5e0c05c84ef219fa09b"
+    },
+    {
+      "query": "Subscriptions",
+      "iconId": "tabler:brand-tidal",
+      "fits": false,
+      "confidence": 0.2,
+      "reason": "The geometric diamond pattern does not clearly represent subscriptions, which typically use symbols like a calendar or bell.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "eb360eec85f394e20abb92f1394a9edca735505b2d19a2e94b509b9cec03996c"
+    },
+    {
+      "query": "Ventriloquism",
+      "iconId": "tabler:heart-down",
+      "fits": false,
+      "confidence": 0,
+      "reason": "The heart and arrow icon has no connection to ventriloquism, which involves speaking through a dummy or puppet.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "de29290c1ca1de5e35e8d936974c0de282b5a51787a491d6e97b153727cae0c8"
+    },
+    {
+      "query": "Life",
+      "iconId": "tabler:health-recognition",
+      "fits": false,
+      "confidence": 0.2,
+      "reason": "The camera frame with a heart is more associated with photography or love, not the broad concept of 'Life'.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "57b73fc693bd97e2950d05bbac17a4366833971b9eb9c001adf12ee643b53c4e"
+    },
+    {
+      "query": "Phone plan",
+      "iconId": "tabler:phone-calling",
+      "fits": false,
+      "confidence": 0.3,
+      "reason": "The icon depicts a phone receiver, which is more associated with making calls than a phone plan service.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "21a7928ac233820ea2567ad4f16f1b0eac09b70d5a94e8c569e071ca4110a4f5"
+    },
+    {
+      "query": "Paperwork",
+      "iconId": "tabler:notes",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "The icon depicts a document with horizontal lines, a standard symbol for paperwork.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "e5835fa54cadf1ba7f6e590d6aaebced57d6ccd798ce40d33c691ae2d9dcec25"
+    },
+    {
+      "query": "Bike maintenance",
+      "iconId": "tabler:brand-zwift",
+      "fits": false,
+      "confidence": 0.1,
+      "reason": "The icon is an abstract shape with no clear connection to bike maintenance, such as tools or a bicycle.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "edc9a60aff8e0530bcda98392fc8de052e372eeb632812371cebcee493260382"
+    },
+    {
+      "query": "Random",
+      "iconId": "tabler:roulette",
+      "fits": false,
+      "confidence": 0.2,
+      "reason": "The icon resembles a gear or target, not a recognizable symbol for 'Random'.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "ca44f2a7ac302beaa8eda6b1898681d6a954a8af16d32beba068e3af2cb89f32"
+    },
+    {
+      "query": "Bike maintenance",
+      "iconId": "tabler:bike-off",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon depicts a 'no bicycles' prohibition symbol, not bike maintenance.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "2ae4e963bc52a9ac36e331f1329264888f863740d9e839222a1384525d4c9aa3"
+    },
+    {
+      "query": "Reptile supplies",
+      "iconId": "tabler:fish-bone",
+      "fits": false,
+      "confidence": 0.1,
+      "reason": "A fish skeleton icon does not represent reptile supplies, as reptiles are not associated with fish.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "084cab74420c0d9c0b4f5263f8ae00143ed6be2786751cfc870cc1144315a3d8"
+    },
+    {
+      "query": "Random",
+      "iconId": "tabler:grain",
+      "fits": false,
+      "confidence": 0.2,
+      "reason": "The scattered dots icon does not clearly represent the 'Random' category as it lacks a recognizable symbol or object associated with randomness.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "4dc37cc34ed717e9b2da60c1d50e88f6323d97ce6256f4b6cd6f0ad667b184ba"
+    },
+    {
+      "query": "Woodturning",
+      "iconId": "tabler:chisel",
+      "fits": true,
+      "confidence": 0.8,
+      "reason": "The icon resembles a woodturning tool (e.g., a chisel), which is a recognizable object in the category.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "68b6e64740466a55d2a8eed4b2ef3cb6645c698a6ba3f501203feaa08ae95dab"
+    },
+    {
+      "query": "Video games",
+      "iconId": "tabler:go-game",
+      "fits": false,
+      "confidence": 0.1,
+      "reason": "The grid-like icon with circles does not clearly represent video games, which typically use symbols like controllers or screens.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "a566b6226fe88ad6682d70616e71e6ca21c22b539a3c4235ad2a89ecf5495afe"
+    },
+    {
+      "query": "Lacrosse",
+      "iconId": "tabler:rugby",
+      "fits": true,
+      "confidence": 0.8,
+      "reason": "The icon resembles a simplified lacrosse stick, a key object for the category.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "6e1f178331169e471d7bbea3e9e236e118e0e9f36ac1a0571a4f62c1868bcf17"
+    },
+    {
+      "query": "Zoom calls",
+      "iconId": "tabler:zoom-code",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The magnifying glass with arrows icon is unrelated to Zoom calls, which typically use video or communication symbols.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "e85a6034db0bebef80008de97cb62f62db2319c4567176dc255ec1913a0914e9"
+    },
+    {
+      "query": "Probate",
+      "iconId": "tabler:certificate",
+      "fits": false,
+      "confidence": 0.8,
+      "reason": "The icon depicts a generic document with a badge, which is too vague to specifically represent probate (a legal process involving wills and estates) and could apply to many other categories like certificates or awards.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "9578a9fbc544778e44e97903ba20b10c375e9cbc4d22cba246e5e1ac6587fe5e"
+    },
+    {
+      "query": "Reptile supplies",
+      "iconId": "tabler:pig-money",
+      "fits": false,
+      "confidence": 0.95,
+      "reason": "Piggy bank icon is for savings, not reptile supplies.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "4b730e687af97ae11a9a7ac64af0d057109087532df168caf9b4f39eaf5ea2e3"
+    },
+    {
+      "query": "Personal",
+      "iconId": "tabler:folder-user",
+      "fits": true,
+      "confidence": 0.8,
+      "reason": "The folder with a person icon commonly represents personal files or user-specific content, making it a clear match for the \"Personal\" category.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "d57c12f28193f4a8dad69eaecc8f950461b2b6810f7d8bbe0c8fe37731d563ef"
+    },
+    {
+      "query": "Running",
+      "iconId": "tabler:run-sprint",
+      "fits": true,
+      "confidence": 1,
+      "reason": "The icon clearly depicts a person running, which directly represents the category name.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "9614c708089948fde9187c9e9385c70b284bff785f3ba7231a31b6d0dcea5e8a"
+    },
+    {
+      "query": "Dentist",
+      "iconId": "tabler:dental-off",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon shows a tooth with a prohibition slash, which is not a standard symbol for 'Dentist' and instead suggests 'no dental' or prohibition, not the category itself.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "578532f1e741ce44ed1e9e954883c06c0c1ea3215cbccd74493c93d202f8fa15"
+    },
+    {
+      "query": "Baby stuff",
+      "iconId": "tabler:building-warehouse",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The padlock icon inside a house does not clearly represent baby-related items or common symbols for baby products.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "5fafca84b1f33210afad1de2fff111ae370e430224639356666c0333208bf2ae"
+    },
+    {
+      "query": "Glassblowing",
+      "iconId": "tabler:glass-gin",
+      "fits": false,
+      "confidence": 0.2,
+      "reason": "A wine glass icon does not clearly represent the craft of glassblowing, which involves shaping molten glass, rather than a specific glass object.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "8be8baca1824ac7788da01e6a37a9b5202ec5d37137421326f62784a51ed8b5e"
+    },
+    {
+      "query": "Knitting",
+      "iconId": "tabler:brand-threads",
+      "fits": false,
+      "confidence": 0.1,
+      "reason": "The icon is a stylized letter or abstract shape with no recognizable connection to knitting tools or symbols.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "8f6bb6b2fcb7b5e36f423e0dd936abcf285dbec3f2e1a6c122bc13ec51c15133"
+    },
+    {
+      "query": "Life",
+      "iconId": "tabler:lifebuoy",
+      "fits": true,
+      "confidence": 0.8,
+      "reason": "The icon resembles a lifebuoy, a recognizable symbol associated with life and safety, making it relevant to the category name 'Life'.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "0a15dfca433d741ca6565f4282cdccb2511d9d99dc0f2f69478b5540f980b270"
+    },
+    {
+      "query": "Baby stuff",
+      "iconId": "tabler:diaper",
+      "fits": false,
+      "confidence": 0.2,
+      "reason": "The icon depicts generic underwear, not a specific baby-related item like a diaper.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "8b6ca956b6f93a74d521ca4649b4dba28fc291292ac66112a4f79f854e69e51a"
+    },
+    {
+      "query": "Pottery",
+      "iconId": "tabler:plant",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon depicts a plant in a pot, which relates to gardening, not pottery.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "d6a70beface25ae6910a962f1087dd6853eb485535e965f2f0f7e6c7616cdf54"
+    },
+    {
+      "query": "Donations",
+      "iconId": "tabler:tip-jar-pound",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "A jar with a pound sign clearly represents money collection, a common symbol for donations.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "c50541c0c2d6eff86aceb23be13dc7a8a7ece9d9263cdf944b4f3ea34d8ddb44"
+    },
+    {
+      "query": "Fermentation",
+      "iconId": "tabler:bottle-off",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon is a prohibition symbol on a bottle, not a representation of fermentation processes or equipment.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "09a50d58628548562e843aa3f8ba4377eee9dd12ca5d1890b4180a7cc5d3bb15"
+    },
+    {
+      "query": "Birthday party",
+      "iconId": "tabler:cake-off",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon shows a crossed-out cake, which is a prohibition symbol, not a representation of a birthday party.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "af3fddaa817adfe30e3b1cb3d873aee71a2c06622c77b0c422ffafa12d22fc5d"
+    },
+    {
+      "query": "Airbnb stays",
+      "iconId": "tabler:bed-off",
+      "fits": false,
+      "confidence": 0.9,
+      "reason": "The icon shows a 'no' symbol over a bed-like shape, which does not clearly represent Airbnb stays as it implies prohibition rather than accommodation.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "cc278f8d64c30edfe7327a5286497aa2f8c9287ba3da0bafd486a7e9ed2cc773"
+    },
+    {
+      "query": "Tennis",
+      "iconId": "tabler:cricket",
+      "fits": false,
+      "confidence": 1,
+      "reason": "The icon depicts a baby bottle, which is unrelated to tennis.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "8cc27ed476da9504a6c3a3b0edcf671fc2f06d9aab63cd3a26745a161775efbf"
+    },
+    {
+      "query": "Baby stuff",
+      "iconId": "tabler:baby-bottle",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "The icon depicts a baby bottle, a recognizable object directly associated with 'Baby stuff'.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "7c5a190e00ba75103fb0576a6baec0c0323d8ae679b61d12b99df5144db9ed26"
+    },
+    {
+      "query": "Mortgage",
+      "iconId": "tabler:building-bank",
+      "fits": true,
+      "confidence": 0.9,
+      "reason": "The icon depicts a bank, a common entity associated with mortgages, making it recognizable for the category.",
+      "model": "qwen3-vl:8b",
+      "promptVersion": "judge-v1",
+      "hash": "54372eb4d3c8b75e41b758cb5995d7910c90eca0bbb3016142633edf47542296"
+    }
+  ]
+}

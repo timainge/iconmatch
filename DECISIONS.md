@@ -671,3 +671,9 @@ Llama trekking (→ `trekking`), Embroidery and Quilting stop being no-match que
 On v2 test the same config scores Hit@3 0.758, MRR 0.698, fallback recall 0.71. The v3 dev sweep still peaks at 0.65 (P 0.88 / R 0.97), so `DEFAULT_MIN_CONFIDENCE` stays.
 
 v3 becomes the default eval set and the README's cited results once the owner creates `eval/v3/REVIEWED`; the agent can't, by the guard. The Lucide threshold and P4 final numbers now run on their reviewed sets.
+
+## 2026-10-03 — Judge model: qwen3-vl:8b; generation research
+
+A 160-pair judge comparison against the v3 labels gave κ: qwen2.5vl:7b 0.452, gemma4:12b-mlx 0.293, **qwen3-vl:8b 0.569**. `iconmatch-eval --judge` now defaults to `qwen3-vl:8b`. It always reasons before answering (Ollama `think: false` had no effect), at about 8–20 s per judgement. Its κ clears the §15.6 bar (0.4), so it may pre-filter generated icons; human approval stays mandatory.
+
+**Generation research** (`docs/research/2026-10-03-generation-and-review.md`): a frontier model drawing 12 no-match concepts under the same rules gave 12/12 valid and about 10/12 recognisable, judged "fits" 8/12 by qwen3-vl. The local 7B model managed 0/141. The proposed harness: style guide, retrieved semantically close examples, plan-then-draw, a render-and-critique loop, an independent judge, and a human gate, packaged as an Anthropic API provider plus a Claude Code skill. It's estimated at under $15 for the full 42-concept experiment. Not started: it needs an API key and spend approval (hard checkpoint).
