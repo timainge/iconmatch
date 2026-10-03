@@ -1,0 +1,1490 @@
+{
+  "version": 3,
+  "status": "owner-directed label update of v2 (see changes); awaiting the owner's REVIEWED",
+  "basedOn": "eval/v2/queries.json + label improvements from eval/label-issues.md (v1 results, v2 drafting, vision judge)",
+  "changes": [
+    {
+      "query": "Books to read",
+      "split": "test",
+      "added": ["tabler:book-2"],
+      "source": "judge"
+    },
+    {
+      "query": "Recipes",
+      "split": "dev",
+      "added": ["tabler:cooker", "tabler:whisk"],
+      "source": "v1 issues"
+    },
+    {
+      "query": "Photography",
+      "split": "test",
+      "added": ["tabler:photo-sensor", "tabler:aperture"],
+      "source": "v1 issues + judge"
+    },
+    {
+      "query": "Summer holidays",
+      "split": "dev",
+      "added": ["tabler:flip-flops"],
+      "source": "v1 issues + judge"
+    },
+    {
+      "query": "Moving house",
+      "split": "dev",
+      "added": ["tabler:home-move"],
+      "source": "judge"
+    },
+    {
+      "query": "Tax",
+      "split": "dev",
+      "added": ["tabler:tax"],
+      "source": "judge"
+    },
+    {
+      "query": "Insurance",
+      "split": "test",
+      "added": ["tabler:shield-dollar"],
+      "source": "judge"
+    },
+    {
+      "query": "Donations",
+      "split": "dev",
+      "added": ["tabler:tip-jar"],
+      "source": "v1 issues"
+    },
+    {
+      "query": "Passwords",
+      "split": "dev",
+      "added": ["tabler:lock-password"],
+      "source": "judge"
+    },
+    {
+      "query": "Legal",
+      "split": "dev",
+      "added": ["tabler:section-sign"],
+      "source": "judge"
+    },
+    {
+      "query": "Meetings",
+      "split": "dev",
+      "added": ["tabler:calendar-time"],
+      "source": "v1 issues + judge"
+    },
+    {
+      "query": "Work",
+      "split": "test",
+      "added": ["tabler:briefcase-2"],
+      "source": "judge"
+    },
+    {
+      "query": "Contracts",
+      "split": "test",
+      "added": ["tabler:contract"],
+      "source": "v1 issues + judge"
+    },
+    {
+      "query": "Retirement",
+      "split": "dev",
+      "added": ["tabler:old"],
+      "source": "v1 issues"
+    },
+    {
+      "query": "Board games",
+      "split": "dev",
+      "added": [
+        "tabler:meeple",
+        "tabler:dice-1",
+        "tabler:dice-2",
+        "tabler:dice-3",
+        "tabler:dice-4",
+        "tabler:dice-5",
+        "tabler:dice-6",
+        "tabler:go-game"
+      ],
+      "source": "v1 issues + judge"
+    },
+    {
+      "query": "Woodworking",
+      "split": "dev",
+      "added": ["tabler:chisel"],
+      "source": "judge"
+    },
+    {
+      "query": "Home build",
+      "split": "dev",
+      "added": ["tabler:home-2"],
+      "source": "judge"
+    },
+    {
+      "query": "Electricity",
+      "split": "dev",
+      "added": ["tabler:solar-electricity", "tabler:waves-electricity"],
+      "source": "v1 issues + judge"
+    },
+    {
+      "query": "Internet",
+      "split": "dev",
+      "added": ["tabler:network", "tabler:browser"],
+      "source": "v1 issues + judge"
+    },
+    {
+      "query": "Phone plan",
+      "split": "dev",
+      "added": ["tabler:phone-call"],
+      "source": "judge"
+    },
+    {
+      "query": "Important",
+      "split": "dev",
+      "added": ["tabler:label-important", "tabler:urgent"],
+      "source": "v1 issues"
+    },
+    {
+      "query": "Personal",
+      "split": "dev",
+      "added": ["tabler:folder-user"],
+      "source": "v1 issues"
+    },
+    {
+      "query": "Llama trekking",
+      "split": "test",
+      "added": ["tabler:trekking"],
+      "source": "v1 issues (not a no-match)",
+      "group": "no-match -> hobbies"
+    },
+    {
+      "query": "Quilting",
+      "split": "test",
+      "added": ["tabler:needle-thread"],
+      "source": "v2 issues (not a no-match)",
+      "group": "no-match -> hobbies"
+    },
+    {
+      "query": "Embroidery",
+      "split": "dev",
+      "added": ["tabler:needle-thread"],
+      "source": "v2 issues + judge (not a no-match)",
+      "group": "no-match -> hobbies"
+    }
+  ],
+  "queries": [
+    {
+      "query": "Bike maintenance",
+      "acceptable": ["tabler:bike", "tabler:tool", "tabler:tools"],
+      "group": "concrete",
+      "split": "test",
+      "ideal": "tabler:bike"
+    },
+    {
+      "query": "Groceries",
+      "acceptable": [
+        "tabler:shopping-cart",
+        "tabler:basket",
+        "tabler:paper-bag"
+      ],
+      "group": "concrete",
+      "split": "test",
+      "ideal": "tabler:shopping-cart"
+    },
+    {
+      "query": "Dog grooming",
+      "acceptable": [
+        "tabler:dog",
+        "tabler:scissors",
+        "tabler:razor",
+        "tabler:paw"
+      ],
+      "group": "concrete",
+      "split": "test",
+      "ideal": "tabler:dog"
+    },
+    {
+      "query": "Car servicing",
+      "acceptable": [
+        "tabler:car",
+        "tabler:tool",
+        "tabler:tools",
+        "tabler:car-garage",
+        "tabler:engine"
+      ],
+      "group": "concrete",
+      "split": "dev",
+      "ideal": "tabler:car"
+    },
+    {
+      "query": "Laundry",
+      "acceptable": [
+        "tabler:wash-machine",
+        "tabler:wash",
+        "tabler:hanger",
+        "tabler:shirt"
+      ],
+      "group": "concrete",
+      "split": "dev",
+      "ideal": "tabler:wash-machine"
+    },
+    {
+      "query": "Coffee",
+      "acceptable": ["tabler:coffee", "tabler:cup"],
+      "group": "concrete",
+      "split": "dev",
+      "ideal": "tabler:coffee"
+    },
+    {
+      "query": "Gym",
+      "acceptable": [
+        "tabler:barbell",
+        "tabler:dumbbell",
+        "tabler:weight",
+        "tabler:stretching"
+      ],
+      "group": "concrete",
+      "split": "dev",
+      "ideal": "tabler:barbell"
+    },
+    {
+      "query": "Houseplants",
+      "acceptable": [
+        "tabler:plant",
+        "tabler:plant-2",
+        "tabler:leaf",
+        "tabler:seedling",
+        "tabler:flower"
+      ],
+      "group": "concrete",
+      "split": "dev",
+      "ideal": "tabler:plant"
+    },
+    {
+      "query": "Books to read",
+      "acceptable": ["tabler:book", "tabler:books", "tabler:book-2"],
+      "group": "concrete",
+      "split": "test",
+      "ideal": "tabler:books"
+    },
+    {
+      "query": "Recipes",
+      "acceptable": [
+        "tabler:chef-hat",
+        "tabler:tools-kitchen-2",
+        "tabler:soup",
+        "tabler:cooker",
+        "tabler:whisk"
+      ],
+      "group": "concrete",
+      "split": "dev",
+      "ideal": "tabler:chef-hat"
+    },
+    {
+      "query": "Photography",
+      "acceptable": [
+        "tabler:camera",
+        "tabler:photo",
+        "tabler:photo-sensor",
+        "tabler:aperture"
+      ],
+      "group": "concrete",
+      "split": "test",
+      "ideal": "tabler:camera"
+    },
+    {
+      "query": "Music practice",
+      "acceptable": [
+        "tabler:music",
+        "tabler:guitar-pick",
+        "tabler:piano",
+        "tabler:microphone"
+      ],
+      "group": "concrete",
+      "split": "test",
+      "ideal": "tabler:music"
+    },
+    {
+      "query": "Fuel",
+      "acceptable": ["tabler:gas-station"],
+      "group": "concrete",
+      "split": "dev",
+      "ideal": "tabler:gas-station"
+    },
+    {
+      "query": "Travel",
+      "acceptable": [
+        "tabler:plane",
+        "tabler:luggage",
+        "tabler:world",
+        "tabler:map"
+      ],
+      "group": "concrete",
+      "split": "dev",
+      "ideal": "tabler:plane"
+    },
+    {
+      "query": "Summer holidays",
+      "acceptable": [
+        "tabler:beach",
+        "tabler:sun",
+        "tabler:plane",
+        "tabler:luggage",
+        "tabler:flip-flops"
+      ],
+      "group": "concrete",
+      "split": "dev",
+      "ideal": "tabler:beach"
+    },
+    {
+      "query": "Camping",
+      "acceptable": ["tabler:tent", "tabler:campfire"],
+      "group": "concrete",
+      "split": "dev",
+      "ideal": "tabler:tent"
+    },
+    {
+      "query": "Movies",
+      "acceptable": ["tabler:movie", "tabler:device-tv", "tabler:ticket"],
+      "group": "concrete",
+      "split": "dev",
+      "ideal": "tabler:movie"
+    },
+    {
+      "query": "Pizza nights",
+      "acceptable": ["tabler:pizza"],
+      "group": "concrete",
+      "split": "dev",
+      "ideal": "tabler:pizza"
+    },
+    {
+      "query": "Baby stuff",
+      "acceptable": [
+        "tabler:baby-carriage",
+        "tabler:baby-bottle",
+        "tabler:diaper"
+      ],
+      "group": "concrete",
+      "split": "dev",
+      "ideal": "tabler:baby-carriage"
+    },
+    {
+      "query": "Cat food",
+      "acceptable": ["tabler:cat", "tabler:paw"],
+      "group": "concrete",
+      "split": "dev",
+      "ideal": "tabler:cat"
+    },
+    {
+      "query": "Garden",
+      "acceptable": [
+        "tabler:plant",
+        "tabler:flower",
+        "tabler:garden-cart",
+        "tabler:lawn-mower",
+        "tabler:shovel",
+        "tabler:leaf"
+      ],
+      "group": "concrete",
+      "split": "dev"
+    },
+    {
+      "query": "Bills",
+      "acceptable": [
+        "tabler:file-invoice",
+        "tabler:receipt",
+        "tabler:report-money"
+      ],
+      "group": "concrete",
+      "split": "test",
+      "ideal": "tabler:file-invoice"
+    },
+    {
+      "query": "Birthday party",
+      "acceptable": [
+        "tabler:cake",
+        "tabler:balloon",
+        "tabler:gift",
+        "tabler:confetti"
+      ],
+      "group": "concrete",
+      "split": "dev",
+      "ideal": "tabler:cake"
+    },
+    {
+      "query": "Wedding planning",
+      "acceptable": ["tabler:rings", "tabler:confetti", "tabler:heart"],
+      "group": "concrete",
+      "split": "test",
+      "ideal": "tabler:rings"
+    },
+    {
+      "query": "Swimming lessons",
+      "acceptable": ["tabler:swimming", "tabler:pool"],
+      "group": "concrete",
+      "split": "dev",
+      "ideal": "tabler:swimming"
+    },
+    {
+      "query": "Moving house",
+      "acceptable": [
+        "tabler:truck",
+        "tabler:box",
+        "tabler:package",
+        "tabler:home",
+        "tabler:home-move"
+      ],
+      "group": "concrete",
+      "split": "dev",
+      "ideal": "tabler:truck"
+    },
+    {
+      "query": "Super contributions",
+      "acceptable": [
+        "tabler:pig-money",
+        "tabler:moneybag",
+        "tabler:coin",
+        "tabler:cash",
+        "tabler:building-bank",
+        "tabler:report-money"
+      ],
+      "group": "abstract",
+      "split": "dev",
+      "ideal": "tabler:pig-money"
+    },
+    {
+      "query": "Tax",
+      "acceptable": [
+        "tabler:receipt-tax",
+        "tabler:file-invoice",
+        "tabler:calculator",
+        "tabler:percentage",
+        "tabler:tax"
+      ],
+      "group": "abstract",
+      "split": "dev",
+      "ideal": "tabler:receipt-tax"
+    },
+    {
+      "query": "Insurance",
+      "acceptable": [
+        "tabler:shield",
+        "tabler:shield-check",
+        "tabler:umbrella",
+        "tabler:shield-heart",
+        "tabler:shield-dollar"
+      ],
+      "group": "abstract",
+      "split": "test",
+      "ideal": "tabler:shield"
+    },
+    {
+      "query": "Subscriptions",
+      "acceptable": [
+        "tabler:credit-card",
+        "tabler:calendar-repeat",
+        "tabler:repeat"
+      ],
+      "group": "abstract",
+      "split": "dev"
+    },
+    {
+      "query": "Savings",
+      "acceptable": ["tabler:pig-money", "tabler:coin", "tabler:moneybag"],
+      "group": "abstract",
+      "split": "dev",
+      "ideal": "tabler:pig-money"
+    },
+    {
+      "query": "Investments",
+      "acceptable": [
+        "tabler:trending-up",
+        "tabler:chart-line",
+        "tabler:chart-pie",
+        "tabler:coin"
+      ],
+      "group": "abstract",
+      "split": "dev",
+      "ideal": "tabler:trending-up"
+    },
+    {
+      "query": "Budget",
+      "acceptable": [
+        "tabler:calculator",
+        "tabler:wallet",
+        "tabler:chart-pie",
+        "tabler:report-money"
+      ],
+      "group": "abstract",
+      "split": "test"
+    },
+    {
+      "query": "Mortgage",
+      "acceptable": [
+        "tabler:home-dollar",
+        "tabler:building-bank",
+        "tabler:home"
+      ],
+      "group": "abstract",
+      "split": "test",
+      "ideal": "tabler:home-dollar"
+    },
+    {
+      "query": "Loans",
+      "acceptable": ["tabler:building-bank", "tabler:cash", "tabler:coin"],
+      "group": "abstract",
+      "split": "dev",
+      "ideal": "tabler:building-bank"
+    },
+    {
+      "query": "Donations",
+      "acceptable": [
+        "tabler:heart-handshake",
+        "tabler:gift",
+        "tabler:coin",
+        "tabler:tip-jar"
+      ],
+      "group": "abstract",
+      "split": "dev",
+      "ideal": "tabler:heart-handshake"
+    },
+    {
+      "query": "Passwords",
+      "acceptable": [
+        "tabler:key",
+        "tabler:lock",
+        "tabler:password",
+        "tabler:lock-password"
+      ],
+      "group": "abstract",
+      "split": "dev",
+      "ideal": "tabler:key"
+    },
+    {
+      "query": "Legal",
+      "acceptable": [
+        "tabler:gavel",
+        "tabler:scale",
+        "tabler:file-text",
+        "tabler:section-sign"
+      ],
+      "group": "abstract",
+      "split": "dev",
+      "ideal": "tabler:gavel"
+    },
+    {
+      "query": "Paperwork",
+      "acceptable": ["tabler:file-text", "tabler:files", "tabler:folder"],
+      "group": "abstract",
+      "split": "dev",
+      "ideal": "tabler:files"
+    },
+    {
+      "query": "Emails to answer",
+      "acceptable": ["tabler:mail", "tabler:inbox"],
+      "group": "abstract",
+      "split": "dev",
+      "ideal": "tabler:mail"
+    },
+    {
+      "query": "Meetings",
+      "acceptable": [
+        "tabler:users",
+        "tabler:calendar-event",
+        "tabler:presentation",
+        "tabler:calendar-time"
+      ],
+      "group": "abstract",
+      "split": "dev",
+      "ideal": "tabler:users"
+    },
+    {
+      "query": "Work",
+      "acceptable": [
+        "tabler:briefcase",
+        "tabler:building",
+        "tabler:briefcase-2"
+      ],
+      "group": "abstract",
+      "split": "test",
+      "ideal": "tabler:briefcase"
+    },
+    {
+      "query": "Contracts",
+      "acceptable": [
+        "tabler:signature",
+        "tabler:file-text",
+        "tabler:writing-sign",
+        "tabler:contract"
+      ],
+      "group": "abstract",
+      "split": "test",
+      "ideal": "tabler:signature"
+    },
+    {
+      "query": "Goals",
+      "acceptable": ["tabler:target", "tabler:trophy", "tabler:flag"],
+      "group": "abstract",
+      "split": "test",
+      "ideal": "tabler:target"
+    },
+    {
+      "query": "Health insurance",
+      "acceptable": [
+        "tabler:shield-heart",
+        "tabler:first-aid-kit",
+        "tabler:shield-check"
+      ],
+      "group": "abstract",
+      "split": "dev",
+      "ideal": "tabler:shield-heart"
+    },
+    {
+      "query": "Retirement",
+      "acceptable": [
+        "tabler:pig-money",
+        "tabler:coin",
+        "tabler:beach",
+        "tabler:rocking-chair",
+        "tabler:old"
+      ],
+      "group": "abstract",
+      "split": "dev"
+    },
+    {
+      "query": "Ski training",
+      "acceptable": [
+        "tabler:ski-jumping",
+        "tabler:snowflake",
+        "tabler:mountain",
+        "tabler:snowboarding"
+      ],
+      "group": "hobbies",
+      "split": "dev",
+      "ideal": "tabler:ski-jumping"
+    },
+    {
+      "query": "Knitting",
+      "acceptable": ["tabler:yarn", "tabler:needle-thread", "tabler:sock"],
+      "group": "hobbies",
+      "split": "dev",
+      "ideal": "tabler:yarn"
+    },
+    {
+      "query": "Chess club",
+      "acceptable": ["tabler:chess", "tabler:chess-knight"],
+      "group": "hobbies",
+      "split": "dev",
+      "ideal": "tabler:chess"
+    },
+    {
+      "query": "Board games",
+      "acceptable": [
+        "tabler:dice",
+        "tabler:puzzle",
+        "tabler:chess",
+        "tabler:meeple",
+        "tabler:dice-1",
+        "tabler:dice-2",
+        "tabler:dice-3",
+        "tabler:dice-4",
+        "tabler:dice-5",
+        "tabler:dice-6",
+        "tabler:go-game"
+      ],
+      "group": "hobbies",
+      "split": "dev",
+      "ideal": "tabler:dice"
+    },
+    {
+      "query": "Video games",
+      "acceptable": ["tabler:device-gamepad", "tabler:device-gamepad-2"],
+      "group": "hobbies",
+      "split": "dev",
+      "ideal": "tabler:device-gamepad"
+    },
+    {
+      "query": "Fishing trips",
+      "acceptable": ["tabler:fish", "tabler:fish-hook"],
+      "group": "hobbies",
+      "split": "dev",
+      "ideal": "tabler:fish-hook"
+    },
+    {
+      "query": "Birdwatching",
+      "acceptable": ["tabler:binoculars", "tabler:canary", "tabler:feather"],
+      "group": "hobbies",
+      "split": "test",
+      "ideal": "tabler:binoculars"
+    },
+    {
+      "query": "Golf",
+      "acceptable": ["tabler:golf"],
+      "group": "hobbies",
+      "split": "test",
+      "ideal": "tabler:golf"
+    },
+    {
+      "query": "Tennis",
+      "acceptable": ["tabler:ball-tennis"],
+      "group": "hobbies",
+      "split": "dev",
+      "ideal": "tabler:ball-tennis"
+    },
+    {
+      "query": "Yoga",
+      "acceptable": ["tabler:yoga"],
+      "group": "hobbies",
+      "split": "dev",
+      "ideal": "tabler:yoga"
+    },
+    {
+      "query": "Running",
+      "acceptable": ["tabler:run"],
+      "group": "hobbies",
+      "split": "dev",
+      "ideal": "tabler:run"
+    },
+    {
+      "query": "Hiking",
+      "acceptable": [
+        "tabler:mountain",
+        "tabler:walk",
+        "tabler:trekking",
+        "tabler:backpack"
+      ],
+      "group": "hobbies",
+      "split": "dev",
+      "ideal": "tabler:mountain"
+    },
+    {
+      "query": "Astronomy",
+      "acceptable": [
+        "tabler:telescope",
+        "tabler:planet",
+        "tabler:moon",
+        "tabler:stars"
+      ],
+      "group": "hobbies",
+      "split": "test",
+      "ideal": "tabler:telescope"
+    },
+    {
+      "query": "Painting",
+      "acceptable": ["tabler:palette", "tabler:brush", "tabler:paint"],
+      "group": "hobbies",
+      "split": "test",
+      "ideal": "tabler:palette"
+    },
+    {
+      "query": "Woodworking",
+      "acceptable": [
+        "tabler:hammer",
+        "tabler:tool",
+        "tabler:tools",
+        "tabler:chisel"
+      ],
+      "group": "hobbies",
+      "split": "dev",
+      "ideal": "tabler:hammer"
+    },
+    {
+      "query": "Horse riding",
+      "acceptable": ["tabler:horse", "tabler:horseshoe"],
+      "group": "hobbies",
+      "split": "test",
+      "ideal": "tabler:horse"
+    },
+    {
+      "query": "Sewing",
+      "acceptable": [
+        "tabler:needle-thread",
+        "tabler:needle",
+        "tabler:scissors"
+      ],
+      "group": "hobbies",
+      "split": "dev",
+      "ideal": "tabler:needle-thread"
+    },
+    {
+      "query": "Wine tasting",
+      "acceptable": [
+        "tabler:glass",
+        "tabler:glass-full",
+        "tabler:grape",
+        "tabler:bottle"
+      ],
+      "group": "hobbies",
+      "split": "test",
+      "ideal": "tabler:glass"
+    },
+    {
+      "query": "Home brewing",
+      "acceptable": ["tabler:beer", "tabler:bottle", "tabler:barrel"],
+      "group": "hobbies",
+      "split": "dev",
+      "ideal": "tabler:beer"
+    },
+    {
+      "query": "Snowboarding",
+      "acceptable": ["tabler:snowboarding"],
+      "group": "hobbies",
+      "split": "dev",
+      "ideal": "tabler:snowboarding"
+    },
+    {
+      "query": "Home build",
+      "acceptable": [
+        "tabler:home",
+        "tabler:building-cottage",
+        "tabler:crane",
+        "tabler:hammer",
+        "tabler:home-2"
+      ],
+      "group": "home-life",
+      "split": "dev"
+    },
+    {
+      "query": "School stuff",
+      "acceptable": [
+        "tabler:school",
+        "tabler:backpack",
+        "tabler:books",
+        "tabler:pencil"
+      ],
+      "group": "home-life",
+      "split": "test",
+      "ideal": "tabler:school"
+    },
+    {
+      "query": "Medical",
+      "acceptable": [
+        "tabler:stethoscope",
+        "tabler:first-aid-kit",
+        "tabler:pill",
+        "tabler:heartbeat",
+        "tabler:report-medical"
+      ],
+      "group": "home-life",
+      "split": "dev",
+      "ideal": "tabler:stethoscope"
+    },
+    {
+      "query": "Dentist",
+      "acceptable": ["tabler:dental"],
+      "group": "home-life",
+      "split": "dev",
+      "ideal": "tabler:dental"
+    },
+    {
+      "query": "Kids",
+      "acceptable": [
+        "tabler:mood-kid",
+        "tabler:baby-carriage",
+        "tabler:horse-toy"
+      ],
+      "group": "home-life",
+      "split": "dev",
+      "ideal": "tabler:mood-kid"
+    },
+    {
+      "query": "Cleaning",
+      "acceptable": [
+        "tabler:spray",
+        "tabler:bucket",
+        "tabler:vacuum-cleaner",
+        "tabler:wash"
+      ],
+      "group": "home-life",
+      "split": "test",
+      "ideal": "tabler:spray"
+    },
+    {
+      "query": "Repairs",
+      "acceptable": ["tabler:tools", "tabler:tool", "tabler:hammer"],
+      "group": "home-life",
+      "split": "test",
+      "ideal": "tabler:tools"
+    },
+    {
+      "query": "Utilities",
+      "acceptable": [
+        "tabler:bulb",
+        "tabler:plug",
+        "tabler:droplet",
+        "tabler:bolt"
+      ],
+      "group": "home-life",
+      "split": "test"
+    },
+    {
+      "query": "Electricity",
+      "acceptable": [
+        "tabler:bolt",
+        "tabler:plug",
+        "tabler:bulb",
+        "tabler:solar-electricity",
+        "tabler:waves-electricity"
+      ],
+      "group": "home-life",
+      "split": "dev",
+      "ideal": "tabler:bolt"
+    },
+    {
+      "query": "Water bill",
+      "acceptable": ["tabler:droplet", "tabler:file-invoice"],
+      "group": "home-life",
+      "split": "dev",
+      "ideal": "tabler:droplet"
+    },
+    {
+      "query": "Internet",
+      "acceptable": [
+        "tabler:wifi",
+        "tabler:world",
+        "tabler:router",
+        "tabler:network",
+        "tabler:browser"
+      ],
+      "group": "home-life",
+      "split": "dev",
+      "ideal": "tabler:wifi"
+    },
+    {
+      "query": "Phone plan",
+      "acceptable": [
+        "tabler:device-mobile",
+        "tabler:phone",
+        "tabler:phone-call"
+      ],
+      "group": "home-life",
+      "split": "dev",
+      "ideal": "tabler:device-mobile"
+    },
+    {
+      "query": "Rent",
+      "acceptable": ["tabler:home", "tabler:key", "tabler:building"],
+      "group": "home-life",
+      "split": "dev",
+      "ideal": "tabler:home"
+    },
+    {
+      "query": "Car registration",
+      "acceptable": ["tabler:car", "tabler:license", "tabler:id-badge"],
+      "group": "home-life",
+      "split": "test",
+      "ideal": "tabler:car"
+    },
+    {
+      "query": "Pets",
+      "acceptable": ["tabler:paw", "tabler:dog", "tabler:cat"],
+      "group": "home-life",
+      "split": "dev",
+      "ideal": "tabler:paw"
+    },
+    {
+      "query": "Vet visits",
+      "acceptable": [
+        "tabler:paw",
+        "tabler:dog",
+        "tabler:cat",
+        "tabler:stethoscope",
+        "tabler:first-aid-kit"
+      ],
+      "group": "home-life",
+      "split": "dev",
+      "ideal": "tabler:paw"
+    },
+    {
+      "query": "Pharmacy",
+      "acceptable": [
+        "tabler:pill",
+        "tabler:pills",
+        "tabler:prescription",
+        "tabler:capsule"
+      ],
+      "group": "home-life",
+      "split": "dev",
+      "ideal": "tabler:pill"
+    },
+    {
+      "query": "Doctor appointments",
+      "acceptable": [
+        "tabler:stethoscope",
+        "tabler:calendar-event",
+        "tabler:nurse"
+      ],
+      "group": "home-life",
+      "split": "dev",
+      "ideal": "tabler:stethoscope"
+    },
+    {
+      "query": "Chores",
+      "acceptable": [
+        "tabler:checklist",
+        "tabler:list-check",
+        "tabler:spray",
+        "tabler:wash"
+      ],
+      "group": "home-life",
+      "split": "test",
+      "ideal": "tabler:checklist"
+    },
+    {
+      "query": "Recycling",
+      "acceptable": ["tabler:recycle", "tabler:trash"],
+      "group": "home-life",
+      "split": "dev",
+      "ideal": "tabler:recycle"
+    },
+    {
+      "query": "Netflix",
+      "acceptable": ["tabler:brand-netflix"],
+      "group": "brands",
+      "split": "dev",
+      "ideal": "tabler:brand-netflix"
+    },
+    {
+      "query": "Spotify",
+      "acceptable": ["tabler:brand-spotify"],
+      "group": "brands",
+      "split": "dev",
+      "ideal": "tabler:brand-spotify"
+    },
+    {
+      "query": "GitHub stuff",
+      "acceptable": ["tabler:brand-github"],
+      "group": "brands",
+      "split": "test",
+      "ideal": "tabler:brand-github"
+    },
+    {
+      "query": "YouTube",
+      "acceptable": ["tabler:brand-youtube"],
+      "group": "brands",
+      "split": "dev",
+      "ideal": "tabler:brand-youtube"
+    },
+    {
+      "query": "Amazon orders",
+      "acceptable": [
+        "tabler:brand-amazon",
+        "tabler:package",
+        "tabler:truck-delivery"
+      ],
+      "group": "brands",
+      "split": "dev",
+      "ideal": "tabler:brand-amazon"
+    },
+    {
+      "query": "Apple devices",
+      "acceptable": [
+        "tabler:brand-apple",
+        "tabler:device-mobile",
+        "tabler:device-laptop"
+      ],
+      "group": "brands",
+      "split": "test",
+      "ideal": "tabler:brand-apple"
+    },
+    {
+      "query": "Google Drive",
+      "acceptable": ["tabler:brand-google-drive"],
+      "group": "brands",
+      "split": "dev",
+      "ideal": "tabler:brand-google-drive"
+    },
+    {
+      "query": "PayPal",
+      "acceptable": ["tabler:brand-paypal"],
+      "group": "brands",
+      "split": "dev",
+      "ideal": "tabler:brand-paypal"
+    },
+    {
+      "query": "Uber rides",
+      "acceptable": ["tabler:brand-uber", "tabler:car"],
+      "group": "brands",
+      "split": "dev",
+      "ideal": "tabler:brand-uber"
+    },
+    {
+      "query": "Airbnb stays",
+      "acceptable": ["tabler:brand-airbnb", "tabler:home", "tabler:bed"],
+      "group": "brands",
+      "split": "test",
+      "ideal": "tabler:brand-airbnb"
+    },
+    {
+      "query": "Steam games",
+      "acceptable": ["tabler:brand-steam", "tabler:device-gamepad"],
+      "group": "brands",
+      "split": "dev",
+      "ideal": "tabler:brand-steam"
+    },
+    {
+      "query": "Slack",
+      "acceptable": ["tabler:brand-slack"],
+      "group": "brands",
+      "split": "dev",
+      "ideal": "tabler:brand-slack"
+    },
+    {
+      "query": "Dropbox",
+      "acceptable": ["tabler:brand-dropbox"],
+      "group": "brands",
+      "split": "dev",
+      "ideal": "tabler:brand-dropbox"
+    },
+    {
+      "query": "Discord",
+      "acceptable": ["tabler:brand-discord"],
+      "group": "brands",
+      "split": "test",
+      "ideal": "tabler:brand-discord"
+    },
+    {
+      "query": "Zoom calls",
+      "acceptable": ["tabler:brand-zoom", "tabler:video"],
+      "group": "brands",
+      "split": "dev",
+      "ideal": "tabler:brand-zoom"
+    },
+    {
+      "query": "Misc",
+      "acceptable": ["tabler:category", "tabler:dots"],
+      "group": "vague",
+      "split": "test"
+    },
+    {
+      "query": "Stuff to sort",
+      "acceptable": [
+        "tabler:box",
+        "tabler:archive",
+        "tabler:inbox",
+        "tabler:category"
+      ],
+      "group": "vague",
+      "split": "dev"
+    },
+    {
+      "query": "Life",
+      "acceptable": [],
+      "group": "vague",
+      "split": "test"
+    },
+    {
+      "query": "Other",
+      "acceptable": ["tabler:dots", "tabler:category"],
+      "group": "vague",
+      "split": "dev"
+    },
+    {
+      "query": "Random",
+      "acceptable": ["tabler:dice", "tabler:arrows-shuffle"],
+      "group": "vague",
+      "split": "dev"
+    },
+    {
+      "query": "Things",
+      "acceptable": ["tabler:category", "tabler:box"],
+      "group": "vague",
+      "split": "test"
+    },
+    {
+      "query": "Admin",
+      "acceptable": [
+        "tabler:settings",
+        "tabler:clipboard-list",
+        "tabler:file-text",
+        "tabler:briefcase"
+      ],
+      "group": "vague",
+      "split": "dev"
+    },
+    {
+      "query": "Important",
+      "acceptable": [
+        "tabler:star",
+        "tabler:alert-circle",
+        "tabler:flag",
+        "tabler:label-important",
+        "tabler:urgent"
+      ],
+      "group": "vague",
+      "split": "dev"
+    },
+    {
+      "query": "Personal",
+      "acceptable": ["tabler:user", "tabler:folder-user"],
+      "group": "vague",
+      "split": "dev",
+      "ideal": "tabler:user"
+    },
+    {
+      "query": "Ideas",
+      "acceptable": ["tabler:bulb"],
+      "group": "vague",
+      "split": "test",
+      "ideal": "tabler:bulb"
+    },
+    {
+      "query": "Later",
+      "acceptable": ["tabler:clock", "tabler:hourglass"],
+      "group": "vague",
+      "split": "dev"
+    },
+    {
+      "query": "Someday",
+      "acceptable": [],
+      "group": "vague",
+      "split": "dev"
+    },
+    {
+      "query": "Beekeeping",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "dev"
+    },
+    {
+      "query": "Pottery",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "test"
+    },
+    {
+      "query": "Origami",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "dev"
+    },
+    {
+      "query": "Taxidermy",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "test"
+    },
+    {
+      "query": "Falconry",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "dev"
+    },
+    {
+      "query": "Turtle care",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "test"
+    },
+    {
+      "query": "Reptile supplies",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "dev"
+    },
+    {
+      "query": "Sheep shearing",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "dev"
+    },
+    {
+      "query": "Llama trekking",
+      "acceptable": ["tabler:trekking"],
+      "group": "hobbies",
+      "split": "test"
+    },
+    {
+      "query": "Snake enclosure",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "dev"
+    },
+    {
+      "query": "Frog pond",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "dev"
+    },
+    {
+      "query": "Honey harvest",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "dev"
+    },
+    {
+      "query": "Quilting",
+      "acceptable": ["tabler:needle-thread"],
+      "group": "hobbies",
+      "split": "test"
+    },
+    {
+      "query": "Embroidery",
+      "acceptable": ["tabler:needle-thread"],
+      "group": "hobbies",
+      "split": "dev"
+    },
+    {
+      "query": "Woodturning",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "dev"
+    },
+    {
+      "query": "Glassblowing",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "test"
+    },
+    {
+      "query": "Soap making",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "dev"
+    },
+    {
+      "query": "Bookbinding",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "dev"
+    },
+    {
+      "query": "Lacrosse",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "test"
+    },
+    {
+      "query": "Croquet",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "dev"
+    },
+    {
+      "query": "Ferret care",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "test"
+    },
+    {
+      "query": "Hedgehog rescue",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "dev"
+    },
+    {
+      "query": "Axolotl tank",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "test"
+    },
+    {
+      "query": "Chinchilla",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "dev"
+    },
+    {
+      "query": "Kombucha brewing",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "dev"
+    },
+    {
+      "query": "Pickling",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "test"
+    },
+    {
+      "query": "Fermentation",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "test"
+    },
+    {
+      "query": "Probate",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "dev"
+    },
+    {
+      "query": "Septic tank",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "dev"
+    },
+    {
+      "query": "Chimney sweep",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "dev"
+    },
+    {
+      "query": "Gutter cleaning",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "test"
+    },
+    {
+      "query": "Ventriloquism",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "dev"
+    },
+    {
+      "query": "Puppet shows",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "dev"
+    },
+    {
+      "query": "Tattoo appointments",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "dev"
+    },
+    {
+      "query": "Genealogy",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "dev"
+    },
+    {
+      "query": "Harp lessons",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "dev"
+    },
+    {
+      "query": "Bagpipes",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "dev"
+    },
+    {
+      "query": "Accordion",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "dev"
+    },
+    {
+      "query": "Ballroom dancing",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "dev"
+    },
+    {
+      "query": "Macramé",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "dev"
+    },
+    {
+      "query": "Lapidary",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "dev"
+    },
+    {
+      "query": "Mosaic tiles",
+      "acceptable": [],
+      "group": "no-match",
+      "split": "test"
+    }
+  ]
+}

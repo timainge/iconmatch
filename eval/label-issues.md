@@ -61,3 +61,7 @@ The judge said these fit with confidence ≥ 0.95, and I (the agent) think a typ
 | Electricity     | dev   | `tabler:solar-electricity` (1), `tabler:waves-electricity` (2) |
 
 Judge "fits" verdicts I would _not_ accept: Budget → `bell-dollar`, Cleaning → `toilet-paper`, Frog pond → `fountain`, Rent → `tax-pound`, Savings → `cloud-dollar`. The judge also rejected several literal icons the labels rightly accept (Golf → `golf`, Netflix → `brand-netflix`, GitHub stuff → `brand-github`, Knitting → `yarn`).
+
+## Applied in eval v3 (2026-10-03)
+
+At the owner's request, the clear improvements above were applied as `eval/v3/queries.json` (additions only; v2 unchanged). The file's `changes` list records each one and its source. See DECISIONS "Eval v3".

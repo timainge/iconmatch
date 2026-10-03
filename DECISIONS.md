@@ -638,3 +638,36 @@ Two fixes found while running it:
 - My review: 0/141 recognisable. The drawings are abstract stroke glyphs (contact sheets in `docs/audits/P7/`).
 
 **Decision:** nothing is approved and no generated set ships. Per §15.6 the judge (κ 0.394) is advisory only, and here it agrees with the human verdict. A stronger drawing model is the obvious next experiment: `--model` swaps it, and a hosted model is a cost and hard checkpoint for the owner.
+
+## 2026-10-03 — Eval v3: label improvements applied (owner-directed); Lucide and paraphrase sets reviewed
+
+The owner reviewed the Lucide set and the paraphrase set without edits (`eval/lucide/REVIEWED`, `eval/choices/REVIEWED`), and asked for labels to be updated where improvements had been identified.
+
+**Approach:** v2 and its published results stay frozen, so the update is a new revision, `eval/v3/queries.json`. It is v2 with acceptable ids only _added_, each change logged in the file's `changes` with its source. A test pins this: same queries and splits, nothing removed, additions equal to the log. 25 queries change and 37 ids are added. Sources in `eval/label-issues.md`:
+
+- the v1 results list ("Add …"/"Consider …" items with a clear fit);
+- the v2 drafting notes (Embroidery and Quilting → `needle-thread`);
+- the vision judge's confident "fits" that I endorsed there.
+
+Llama trekking (→ `trekking`), Embroidery and Quilting stop being no-match queries and move to the `hobbies` group (test shares stay within 20–40%). Not applied, as ambiguous or rejected in the notes:
+
+- brand icons for "Video games";
+- `id` for Personal;
+- Bookbinding → book;
+- instruments → generic music;
+- Woodturning → wood;
+- Lacrosse → cricket;
+- the judge "fits" I rejected (bell-dollar, toilet-paper, fountain, tax-pound, cloud-dollar).
+
+**Caveat:** most additions were found by looking at what the ranker returned (v1 results, the judge's top-5 review). v3 therefore over-states ranking quality relative to an untouched set, and v2 remains the clean reference. Where v3 numbers are quoted, they need that caveat.
+
+**Results** (`eval/v3/results/2026-10-03.md`, shipped config, threshold 0.65):
+
+| split | Hit@3 | MRR   | fallback recall |
+| ----- | ----- | ----- | --------------- |
+| dev   | 0.861 | 0.776 | 0.97            |
+| test  | 0.829 | 0.762 | 0.83            |
+
+On v2 test the same config scores Hit@3 0.758, MRR 0.698, fallback recall 0.71. The v3 dev sweep still peaks at 0.65 (P 0.88 / R 0.97), so `DEFAULT_MIN_CONFIDENCE` stays.
+
+v3 becomes the default eval set and the README's cited results once the owner creates `eval/v3/REVIEWED`; the agent can't, by the guard. The Lucide threshold and P4 final numbers now run on their reviewed sets.

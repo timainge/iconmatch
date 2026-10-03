@@ -1,3 +1,4 @@
+import { readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import { createLucideAdapter } from "../../packages/pipeline/src/adapters/lucide.js";
@@ -57,6 +58,45 @@ describe("eval/v2/queries.json", () => {
     }
     // Same split rule as v1, applied within the new batch: 30% to test.
     expect(added.filter((q) => q.split === "test")).toHaveLength(9);
+  });
+});
+
+describe("eval/v3/queries.json (owner-directed label update of v2)", () => {
+  const v3File = fileURLToPath(new URL("../v3/queries.json", import.meta.url));
+
+  it("passes every §9.1 check against the installed Tabler catalog", async () => {
+    const [set, { catalog }] = await Promise.all([
+      readEvalSet(v3File),
+      ingest([createTablerAdapter({ log: () => undefined })]),
+    ]);
+    expect(evalSetProblems(set, new Set(catalog.map((e) => e.id)))).toEqual([]);
+  });
+
+  it("is v2 with acceptable ids only added (never removed), splits unchanged, each change logged", async () => {
+    const v2File = fileURLToPath(
+      new URL("../v2/queries.json", import.meta.url),
+    );
+    const [v2, v3] = await Promise.all([
+      readEvalSet(v2File),
+      readEvalSet(v3File),
+    ]);
+    const changes = (
+      JSON.parse(await readFile(v3File, "utf8")) as {
+        changes: { query: string; added: string[] }[];
+      }
+    ).changes;
+    const logged = new Map(changes.map((c) => [c.query, c.added]));
+    expect(v3.queries.map((q) => [q.query, q.split])).toEqual(
+      v2.queries.map((q) => [q.query, q.split]),
+    );
+    v2.queries.forEach((old, i) => {
+      const now = v3.queries[i];
+      expect(now?.acceptable.slice(0, old.acceptable.length)).toEqual(
+        old.acceptable,
+      );
+      const added = now?.acceptable.slice(old.acceptable.length) ?? [];
+      expect(added).toEqual(logged.get(old.query) ?? []);
+    });
   });
 });
 
